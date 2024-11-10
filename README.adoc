@@ -143,9 +143,9 @@ Vous trouverez les idicateurs de qualité (dette technique) ici.
 [cols="2*", options="header"]
 |====
 | Ordre du jours | Comptes rendus
-| https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Suivi%20de%20l'avancement/Ordre%20du%20jour/Ordredujour_1.pdf[Semaine 44] | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Suivi%20de%20l'avancement/Compte%20Rendu/Compte%20Rendu1.docx.pdf[Semaine 44]
-| https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Suivi%20de%20l'avancement/Ordre%20du%20jour/Ordredujour2.pdf[Semaine 45] | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Suivi%20de%20l'avancement/Compte%20Rendu/Compte%20Rendu2.docx.pdf[Semaine 45] 
-| https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Suivi%20de%20l'avancement/Ordre%20du%20jour/OrdreDuJour3.pdf[Réunion avec SweetShop (Semaine 45)] | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/CompteRenduReunionAvecClient/CompteRendu3.pdf[Réunion avec SweetShop (Semaine 45)]
+| https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Suivi%20de%20l%E2%80%99avancement/Ordre%20du%20jour/Ordredujour_1.pdf[Semaine 44] | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Suivi%20de%20l'avancement/Compte%20Rendu/Compte%20Rendu1.docx.pdf[Semaine 44]
+| https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Suivi%20de%20l%E2%80%99avancement/Ordre%20du%20jour/Ordredujour2.pdf[Semaine 45] | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Suivi%20de%20l'avancement/Compte%20Rendu/Compte%20Rendu2.docx.pdf[Semaine 45] 
+| https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Suivi%20de%20l%E2%80%99avancement/Ordre%20du%20jour/OrdreDuJour3.pdf[Réunion avec SweetShop (Semaine 45)] | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/CompteRenduReunionAvecClient/CompteRendu3.pdf[Réunion avec SweetShop (Semaine 45)]
 |  | 
 |  | 
 |  |
