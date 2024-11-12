@@ -51,7 +51,7 @@ Tuteur/tutrice enseignant(e) de l'équipe:: mailto:jean-michel.bruel@univ-tlse2.
 === Présentation du client
 
 SweetShop est une entreprise spécialisée dans la vente de confiseries et chocolats haut de gamme. Cette enseigne propose
-une large gamme de produits telle que des bonbons ou encore des chocolats, ainsi que des boissons telles que des sodas et des thés glacés.
+une large gamme de produits tels que des bonbons ou encore des chocolats, ainsi que des boissons telles que des sodas et des thés glacés.
 L'entreprise vise à exploiter le potentiel digital pour accroître sa visibilité et sa compétitivité afin d'attirer une clientèle plus large et de diversifier ses offres.
 
 [[liensUtiles]]
