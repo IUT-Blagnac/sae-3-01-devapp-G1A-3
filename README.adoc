@@ -37,7 +37,7 @@ toc::[]
 
 == Equipe
 
-Projet est réalisé par::
+Projet réalisé par::
 
 - https://github.com/PierreCornu[Pierre Cornu]
 - https://github.com/RaphaLLamothe[Raphaël Lamothe]
@@ -50,25 +50,25 @@ Tuteur/tutrice enseignant(e) de l'équipe:: mailto:jean-michel.bruel@univ-tlse2.
 
 === Présentation du client
 
-SweetShope est une entreprise spécialisée dans la vente de confiseries et chocolats haut de gamme. Cette enseigne propose
-une large gamme de produits tel que des bonbons ou encore des chocolats, ainsi que des boissons telles que des sodas et des thées glacés.
-L'entreprise vise à expoiter le potentiel digital pou accroître sa visibilité et sa compétitivité afin d'attirer une clientèle plus large et de diversifier ses offres.
+SweetShop est une entreprise spécialisée dans la vente de confiseries et chocolats haut de gamme. Cette enseigne propose
+une large gamme de produits telle que des bonbons ou encore des chocolats, ainsi que des boissons telles que des sodas et des thés glacés.
+L'entreprise vise à exploiter le potentiel digital pour accroître sa visibilité et sa compétitivité afin d'attirer une clientèle plus large et de diversifier ses offres.
 
 [[liensUtiles]]
 === Liens utiles
 
-- Le https://webetud.iut-blagnac.fr/course/view.php?id=841[cours Moodle] sur la SAE
+- Le cours https://webetud.iut-blagnac.fr/course/view.php?id=841[cours Moodle] sur la SAE
 - Le dépôt https://github.com/IUT-Blagnac/sae3-01-template[template] qui sert de base à tous les dépôts étudiants.
 - Le lien https://classroom.github.com/a/OUF7gxEa[classroom] si besoin.
 
-Afin de communiquer nous utilisons discord.
+Afin de communiquer nous utilisons Discord.
 
 == Réalisations 
 Vous trouverez dans cette section toute les informations concernant les réalisations du projet.
 
 === Documentation de conception
 
-Ce document traite des cas d’utilisation du site, il présentera également un diagramme des classes métiers ainsi qu’un diagramme des classes de conceptions, ce dernier axé sur les fonctionnalité de recherche, de visualisation et d’ajout au panier des produits proposés par le site.
+Ce document traite des cas d’utilisation du site, il présentera également un diagramme des classes métiers ainsi qu’un diagramme des classes de conception, ce dernier axé sur les fonctionnalités de recherche, de visualisation et d’ajout au panier des produits proposés par le site.
 Il est destiné à l’équipe de développement afin d’avoir une compréhension unique de l’architecture du site, ainsi qu’au client pour qu’il puisse visualiser comment ce dernier fonctionnera, et enfin à l’équipe pédagogique afin d’être évalué.
 
 [cols="1*", options="header"]
@@ -124,13 +124,13 @@ Vous trouverez les testes unitaires ici.
 
 === Indicateurs de qualité du code (dette technique)
 
-Vous trouverez les idicateurs de qualité (dette technique) ici.
+Vous trouverez les indicateurs de qualité (dette technique) ici.
 
 === Ordres du jours et comptes rendus de réunions
 
 [cols="2*", options="header"]
 |====
-| Ordre du jours | Comptes rendus
+| Ordres du jour | Compte-rendus
 | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Ordre%20du%20jour/Ordredujour_1.pdf[Semaine 44] | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Compte%20Rendu/Compte%20Rendu1.pdf[Semaine 44]
 | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Ordre%20du%20jour/Ordredujour_1.pdf[Semaine 45] | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Compte%20Rendu/Compte%20Rendu2.pdf[Semaine 45] 
 | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Ordre%20du%20jour/OrdreDuJour3.pdf[Réunion avec SweetShop (Semaine 45)] | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/CompteRenduReunionAvecClient/CompteRendu3.pdf[Réunion avec SweetShop (Semaine 45)]
