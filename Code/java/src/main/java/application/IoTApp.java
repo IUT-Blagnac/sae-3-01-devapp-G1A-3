@@ -1,6 +1,6 @@
 package application;
 
-import application.control.DailyBankMainFrame;
+import application.control.IoTMainFrame;
 
 /**
  * 
@@ -8,15 +8,13 @@ import application.control.DailyBankMainFrame;
  *
  */
 
-public class DailyBankApp {
+public class IoTApp {
 
 	/**
 	 *  Lancement de la fenêtre principale.
 	 */
 	
 	public static void main(String[] args) {
-
-		DailyBankMainFrame.runApp();
-
+		IoTMainFrame.runApp();
 	}
 }
