@@ -33,7 +33,9 @@
 -->
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -41,8 +43,8 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -51,6 +53,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
   <children>
@@ -95,18 +98,72 @@
     </MenuBar>
     <SplitPane dividerPositions="0.2505567928730512, 0.7505567928730512" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <items>
-        <AnchorPane>
-          <children>
-            <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Master" textAlignment="CENTER" wrapText="false">
-              <font>
-                <Font size="18.0" fx:id="x1" />
-              </font>
-              <textFill>
-                <Color red="0.624" green="0.624" blue="0.624" fx:id="x2" />
-              </textFill>
-            </Label>
-          </children>
-        </AnchorPane>
+            <VBox>
+               <children>
+                  <CheckBox maxWidth="1.7976931348623157E308" mnemonicParsing="false" selected="true" text="Température">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox maxWidth="1.7976931348623157E308" mnemonicParsing="false" selected="true" text="Co2">
+                     <padding>
+                        <Insets bottom="5.0" />
+                     </padding>
+                  </CheckBox>
+                  <CheckBox maxWidth="1.7976931348623157E308" mnemonicParsing="false" selected="true" text="Humidité">
+                     <padding>
+                        <Insets bottom="5.0" />
+                     </padding>
+                  </CheckBox>
+                  <TitledPane animated="false" text="Alertes :">
+                     <content>
+                        <ScrollPane fitToHeight="true" fitToWidth="true">
+                           <content>
+                              <VBox>
+                                 <children>
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Exemple dangerous room" />
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Exemple dangerous room" />
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Exemple dangerous room" />
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Exemple dangerous room" />
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Exemple dangerous room" />
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Exemple dangerous room" />
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Exemple dangerous room" />
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Exemple dangerous room" />
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Exemple dangerous room" />
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Exemple dangerous room" />
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Exemple dangerous room" />
+                                 </children>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
+                     </content>
+                  </TitledPane>
+                  <TitledPane animated="false" text="Attention :">
+                     <content>
+                        <ScrollPane fitToHeight="true" fitToWidth="true">
+                           <content>
+                              <VBox>
+                                 <children>
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Exemple dangerous room" />
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Exemple dangerous room" />
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Exemple dangerous room" />
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Exemple dangerous room" />
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Exemple dangerous room" />
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Exemple dangerous room" />
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Exemple dangerous room" />
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Exemple dangerous room" />
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Exemple dangerous room" />
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Exemple dangerous room" />
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Exemple dangerous room" />
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Exemple dangerous room" />
+                                 </children>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
+                     </content>
+                  </TitledPane>
+               </children>
+            </VBox>
         <ScrollPane fitToWidth="true" prefHeight="-1.0" prefWidth="-1.0">
                <content>
                   <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
@@ -122,14 +179,25 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B203" GridPane.rowIndex="2" />
-                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B201" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B202" GridPane.rowIndex="1" />
-                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B219" />
-                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B235" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B233" GridPane.columnIndex="1" />
+                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B006" GridPane.rowIndex="2" GridPane.rowSpan="2" />
+                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B008" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B005" GridPane.rowIndex="1" />
+                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B004" />
+                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B009" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B010" GridPane.columnIndex="1" />
+                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B007" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cafeterie" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.rowSpan="2" />
+                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B003" GridPane.columnSpan="2" GridPane.rowIndex="7" GridPane.rowSpan="2" />
+                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B001" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B002" GridPane.rowIndex="6" />
                                  </children>
                               </GridPane>
                            </content>
@@ -145,14 +213,31 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B203" GridPane.rowIndex="2" />
-                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B201" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B202" GridPane.rowIndex="1" />
-                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B219" />
-                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B235" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B233" GridPane.columnIndex="1" />
+                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B106" GridPane.rowIndex="2" GridPane.rowSpan="2" />
+                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B102" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B105" GridPane.rowIndex="1" />
+                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B104" />
+                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B103" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B115" GridPane.columnIndex="1" />
+                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B101" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B108" GridPane.rowIndex="4" GridPane.rowSpan="2" />
+                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B109b" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B109a" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B112b" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B111" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B110" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B107" GridPane.rowIndex="6" />
+                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B112" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="B113" GridPane.rowIndex="7" GridPane.rowSpan="3" />
                                  </children>
                               </GridPane>
                            </content>
@@ -231,11 +316,32 @@
                   </VBox>
                </content>
         </ScrollPane>
-        <AnchorPane>
-          <children>
-            <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="Details" textAlignment="CENTER" textFill="$x2" wrapText="false" />
-          </children>
-        </AnchorPane>
+            <ScrollPane fitToWidth="true">
+               <content>
+                  <VBox>
+                     <children>
+                        <Accordion>
+                          <panes>
+                            <TitledPane animated="false" text="Exemple Room">
+                                 <content>
+                                    <VBox>
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Exemple T° : " />
+                                          <TextField editable="false" maxWidth="1.7976931348623157E308" text="???°C" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Exemple Co2 : " />
+                                          <TextField editable="false" text="???ppm" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Exemple humidity : " />
+                                          <TextField editable="false" text="???%" />
+                                       </children>
+                                    </VBox>
+                                 </content>
+                            </TitledPane>
+                          </panes>
+                        </Accordion>
+                     </children>
+                  </VBox>
+               </content>
+            </ScrollPane>
       </items>
     </SplitPane>
     <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="NEVER">
