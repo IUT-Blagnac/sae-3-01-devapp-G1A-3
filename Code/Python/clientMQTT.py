@@ -15,7 +15,7 @@ TOPICS = config["MQTT"]["topics"].split(", ")
 AM107_ROOMS = config["MQTT"]["AM107_rooms"].split(", ")
 AM107_INFO_TYPES = config["MQTT"]["AM107_info_types"].split(", ")
 SOLAREDGE_INFO_TYPES = config["MQTT"]["solaredge_info_types"].split(", ")
-SEUIL_ALERT = int(config["MQTT"]["seuil_alert"])
+SEUIL_ALERT = config["MQTT"]["seuil_alert"].split(", ")
 PERIOD = int(config["MQTT"]["period"])
 
 def on_connect(client, userdata, flags, rc):
@@ -45,21 +45,36 @@ def on_message(client, userdata, msg):
             message = f"{data}"
         else:
             message = "{"
+            nb_info = len(SOLAREDGE_INFO_TYPES)
+            i=0
             for info in SOLAREDGE_INFO_TYPES:
-                message = message + f"{data[info]}"
+                donnees = data[info]
+                message = message + f"{donnees}"
+                i=i+1
+                if(i<=nb_info-1):
+                    message = message + ", "
             message = message + "}"
         print(message)
         enregistrer_donnees(message,topic)
 
     if flux_mqtt=="AM107":
         salle = parties[2] if len(parties) > 2 else "inconnue"
-        if salle in AM107_ROOMS or AM107_ROOMS == "all":
+        if salle in AM107_ROOMS or AM107_ROOMS[0] == "all":
             if AM107_INFO_TYPES[0] == "all":
                 message = f"{data}"
             else:
                 message = "{"
+                nb_info = len(AM107_INFO_TYPES)
+                i=0
                 for info in AM107_INFO_TYPES:
-                    message = message + f"{data[0][info]}"
+                    donnees = data[0][info]
+                    seuil_alert = SEUIL_ALERT[i]
+                    if(donnees>=int(seuil_alert)):
+                        print("ALERTE (Seuil "+info+" dépassé : "+seuil_alert+") en "+salle+" : "+f"{donnees}")
+                    message = message + f"{donnees}"
+                    i=i+1
+                    if(i<=nb_info-1):
+                        message = message + ", "
                 message = message + "}"
             print(message)
             enregistrer_donnees(message,topic)
