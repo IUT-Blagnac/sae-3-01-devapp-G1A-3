@@ -2,7 +2,7 @@
   <div class="container">
     <!-- Logo -->
     <a class="navbar-brand" href="#">
-      <img src="../images/logo/logo.png" alt="Sweet Shops Logo" height="70" width="100" border-radius="50%">
+      <img src="../images/logo/logo.png" alt="Sweet Shops Logo" height="70" width="100" style="border-radius: 50%;">
     </a>
 
     <!-- Bouton mobile pour le menu -->
@@ -17,15 +17,15 @@
           <a class="nav-link fw-bold text-danger" href="#">PRODUITS</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle fw-bold text-danger" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle fw-bold text-danger" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             CATÉGORIES
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
         </li>
         <li class="nav-item">
           <a class="nav-link fw-bold text-danger" href="#">AIDE</a>
