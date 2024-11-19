@@ -1,14 +1,13 @@
 package application.view;
 
+import application.control.IoTMainFrame;
 import javafx.fxml.FXML;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 
-public class HistoricViewController_V1 {
+public class DonneesAnterieuresMultiplesController {
 
-    // Fenêtre physique ou est la scène contenant le fichier xml contrôlé par this
 	private Stage containingStage;
+    private IoTMainFrame main = new IoTMainFrame();
 
     public void initContext(Stage _containingStage) {
 		this.containingStage = _containingStage;
@@ -19,25 +18,13 @@ public class HistoricViewController_V1 {
     }
 
     @FXML
-    private Menu menu1;
-    @FXML
-    private Menu menu2;
-    @FXML
-    private MenuItem item1;
-    @FXML
-    private MenuItem item2;
-    @FXML
-    private MenuItem item3;
-    
-
-    @FXML
     private void ecranPrincipal(){
-        //redirige vers l'ecran principal
+        main.start(containingStage);
     }
 
     @FXML
     private void ecranDirect(){
-        //redirige vers le javaFX de naria
+        main.changementActuel(containingStage);
     }
 
     @FXML
@@ -47,7 +34,7 @@ public class HistoricViewController_V1 {
 
     @FXML
     private void choisirDonnees(){
-        //ouvre une fenêtre intermédiaire pour changer les données à afficher
+        main.changementAnterieur(containingStage);
     }
 
     /*AlertUtilities.showAlert(this.containingStage, "Erreur clôture compte", null, "Le compte doit avoir un solde égal à 0 pour être clôturé",

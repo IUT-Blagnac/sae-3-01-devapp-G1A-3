@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="824.0" prefWidth="789.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="824.0" prefWidth="789.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.DonneesAnterieuresMultiplesController">
    <top>
       <MenuBar prefHeight="25.0" prefWidth="789.0" BorderPane.alignment="CENTER">
         <menus>
@@ -21,7 +20,10 @@
                   <MenuItem mnemonicParsing="false" text="Fermer" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Choix des données" />
+          <Menu mnemonicParsing="false" text="Choix des données">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#choisirDonnees" text="Choix des données" />
+               </items></Menu>
         </menus>
       </MenuBar>
    </top>
