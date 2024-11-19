@@ -83,4 +83,7 @@ public class TabViewController {
 		Stage stage = (Stage) btnRetour.getScene().getWindow();
         stage.close();
 	}
+
+    AlertUtilities.showAlert(this.containingStage, "Erreur clôture compte", null, "Le compte doit avoir un solde égal à 0 pour être clôturé",
+	AlertType.WARNING);
 }
