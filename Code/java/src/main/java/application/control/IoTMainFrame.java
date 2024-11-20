@@ -74,7 +74,7 @@ public class IoTMainFrame extends Application {
 		try {
 			// Chargement du source fxml
 			FXMLLoader loader = new FXMLLoader(DonneesActuellesController.class.getResource("affichageTpsReel.fxml"));
-			VBox root = loader.load();
+			BorderPane root = loader.load();
 
 			Scene scene = new Scene(root);
 
