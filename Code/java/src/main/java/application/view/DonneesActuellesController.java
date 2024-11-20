@@ -15,6 +15,27 @@ import javafx.scene.input.MouseEvent;
 
 
 public class DonneesActuellesController {
+    private enum TEXTVALUES{
+        TEMPTITLE("Température : "),
+        TEMPID("Temp"),
+        TEMPUNIT("°C"),
+        CO2TITLE("Co2 : "),
+        CO2ID("Co2"),
+        CO2UNIT("ppm"),
+        HUMIDITYTITLE("Humidité : "),
+        HUMIDITYID("Hum"),
+        HUMIDITYUNIT("%");
+
+        private final String displayText;
+
+        TEXTVALUES(String displayText){
+            this.displayText = displayText;
+        }
+
+        private String getDisplayText(){
+            return displayText;
+        }
+    }
     private Stage containingStage;
     @FXML
     private VBox buttonsHolder;
@@ -60,15 +81,15 @@ public class DonneesActuellesController {
                 VBox container = (VBox) titledPane.getContent();
                 for (Node textualNode : container.getChildren()) {
                     if (textualNode instanceof Text text) {
-                        if (text.getText().equals("Température : ")) {
+                        if (text.getId().equals(TEXTVALUES.TEMPID.getDisplayText())) {
                             text.setVisible(temp.isSelected());
                             text.setManaged(temp.isSelected());
                         }
-                        if (text.getText().equals("Taux de Co2 : ")) {
+                        if (text.getId().equals(TEXTVALUES.CO2ID.getDisplayText())) {
                             text.setVisible(co2.isSelected());
                             text.setManaged(co2.isSelected());
                         }
-                        if (text.getText().equals("Humidité : ")) {
+                        if (text.getId().equals(TEXTVALUES.HUMIDITYID.getDisplayText())) {
                             text.setVisible(humidity.isSelected());
                             text.setManaged(humidity.isSelected());
                         }
@@ -109,9 +130,10 @@ public class DonneesActuellesController {
             roomdatas.setText(room);
             VBox datasStorage = new VBox();
             datasStorage.setSpacing(5);
-            Text tempTitle = new Text("Température : ");
-            TextField tempRoom = new TextField("Si vous voyez ça, j'ai mal fait mon boulot °C");
-            tempRoom.setId("Temp");
+            Text tempTitle = new Text(TEXTVALUES.TEMPTITLE.getDisplayText());
+            tempTitle.setId(TEXTVALUES.TEMPID.getDisplayText());
+            TextField tempRoom = new TextField("Si vous voyez ça, j'ai mal fait mon boulot "+TEXTVALUES.TEMPUNIT.getDisplayText());
+            tempRoom.setId(TEXTVALUES.TEMPID.getDisplayText());
             tempRoom.setEditable(false);
             if(!temp.isSelected()){
                 tempTitle.setVisible(false);
@@ -119,9 +141,10 @@ public class DonneesActuellesController {
                 tempRoom.setVisible(false);
                 tempRoom.setManaged(false);
             }
-            Text co2Title = new Text("Taux de Co2 : ");
-            TextField co2Room = new TextField("Si vous voyez ça, j'ai mal fait mon boulot ppm");
-            co2Room.setId("Co2");
+            Text co2Title = new Text(TEXTVALUES.CO2TITLE.getDisplayText());
+            co2Title.setId(TEXTVALUES.CO2ID.getDisplayText());
+            TextField co2Room = new TextField("Si vous voyez ça, j'ai mal fait mon boulot "+TEXTVALUES.CO2UNIT.getDisplayText());
+            co2Room.setId(TEXTVALUES.CO2ID.getDisplayText());
             co2Room.setEditable(false);
             if(!co2.isSelected()){
                 co2Title.setVisible(false);
@@ -129,9 +152,10 @@ public class DonneesActuellesController {
                 co2Room.setVisible(false);
                 co2Room.setManaged(false);
             }
-            Text humTitle = new Text("Humidité : ");
-            TextField humRoom = new TextField("Si vous voyez ça, j'ai mal fait mon boulot %");
-            humRoom.setId("Hum");
+            Text humTitle = new Text(TEXTVALUES.HUMIDITYTITLE.getDisplayText());
+            humTitle.setId(TEXTVALUES.HUMIDITYID.getDisplayText());
+            TextField humRoom = new TextField("Si vous voyez ça, j'ai mal fait mon boulot "+TEXTVALUES.HUMIDITYUNIT.getDisplayText());
+            humRoom.setId(TEXTVALUES.HUMIDITYID.getDisplayText());
             humRoom.setEditable(false);
             if(!humidity.isSelected()){
                 humTitle.setVisible(false);
