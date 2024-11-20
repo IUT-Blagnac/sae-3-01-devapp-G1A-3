@@ -27,4 +27,9 @@ public class ChoixDonneesAnterieuresController {
         main.AnterieurDonneesMultiples(containingStage);
     }
 
+    @FXML
+    private void menu(){
+        main.start(containingStage);
+    }
+
 }
