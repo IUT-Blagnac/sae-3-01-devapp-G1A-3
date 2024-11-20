@@ -2,6 +2,7 @@ package application.view;
 
 import application.control.IoTMainFrame;
 import javafx.fxml.FXML;
+import javafx.scene.chart.LineChart;
 import javafx.stage.Stage;
 
 public class ChoixDonneesAnterieuresController {

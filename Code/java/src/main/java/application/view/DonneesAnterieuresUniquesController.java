@@ -2,12 +2,16 @@ package application.view;
 
 import application.control.IoTMainFrame;
 import javafx.fxml.FXML;
+import javafx.scene.chart.LineChart;
 import javafx.stage.Stage;
 
 public class DonneesAnterieuresUniquesController {
 
 	private Stage containingStage;
     private IoTMainFrame main = new IoTMainFrame();
+
+    @FXML 
+    private LineChart graphique;
 
     public void initContext(Stage _containingStage) {
 		this.containingStage = _containingStage;
