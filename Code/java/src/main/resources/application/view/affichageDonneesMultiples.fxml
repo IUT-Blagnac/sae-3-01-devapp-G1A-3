@@ -35,9 +35,9 @@
          <items>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <LineChart fx:id="grapheCO2" alternativeRowFillVisible="false" horizontalGridLinesVisible="false">
+                  <LineChart fx:id="grapheCO2">
                     <xAxis>
-                      <CategoryAxis side="BOTTOM" />
+                      <NumberAxis side="BOTTOM" />
                     </xAxis>
                     <yAxis>
                       <NumberAxis side="LEFT" />
@@ -45,7 +45,7 @@
                   </LineChart>
                   <LineChart fx:id="grapheHum">
                     <xAxis>
-                      <CategoryAxis side="BOTTOM" />
+                      <NumberAxis side="BOTTOM" />
                     </xAxis>
                     <yAxis>
                       <NumberAxis side="LEFT" />
@@ -53,7 +53,7 @@
                   </LineChart>
                   <LineChart fx:id="grapheTemp">
                     <xAxis>
-                      <CategoryAxis side="BOTTOM" />
+                      <NumberAxis side="BOTTOM" />
                     </xAxis>
                     <yAxis>
                       <NumberAxis side="LEFT" />
