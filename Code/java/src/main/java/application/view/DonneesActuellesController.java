@@ -10,8 +10,11 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
+
+import java.nio.file.Paths;
 
 
 public class DonneesActuellesController {
@@ -37,8 +40,8 @@ public class DonneesActuellesController {
         }
     }
     private Stage containingStage;
-    @FXML
-    private VBox buttonsHolder;
+    //@FXML
+    //private VBox buttonsHolder;
     @FXML
     private VBox displayedDatas;
     @FXML
@@ -48,12 +51,22 @@ public class DonneesActuellesController {
     @FXML
     private CheckBox humidity;
 
+    @FXML
+    private WebView iutschematics;
+
     private IoTMainFrame main = new IoTMainFrame();
 
     public void initContext(Stage _containingStage) {
 		this.containingStage = _containingStage;
-        this.buttons_setup();
+        //this.buttons_setup();
+        this.initWeb();
 	}
+
+    private void initWeb(){
+        String pathSvg = Paths.get("src/main/resources/application/svg/demoSVG.html").toUri().toString();
+        System.out.println(pathSvg);
+        iutschematics.getEngine().load(pathSvg);
+    }
 
     public void displayDialog(){
         this.containingStage.show();
@@ -170,18 +183,18 @@ public class DonneesActuellesController {
         }else displayedDatas.getChildren().remove(toDelete);
     }
 
-    public void buttons_setup(){
-        for (Node titledPaneNode : buttonsHolder.getChildren()) {
-            if(titledPaneNode instanceof TitledPane titledPane) {
-                GridPane gridPane = (GridPane) titledPane.getContent();
-                for(Node buttonNode : gridPane.getChildren()){
-                    if (buttonNode instanceof ToggleButton button){
-                        button.addEventHandler(MouseEvent.MOUSE_CLICKED, event ->  {
-                            displayedListUpdate(button.getText());
-                        });
-                    }
-                }
-            }
-        }
-    }
+//    public void buttons_setup() {
+//        for (Node titledPaneNode : buttonsHolder.getChildren()) {
+//            if (titledPaneNode instanceof TitledPane titledPane) {
+//                GridPane gridPane = (GridPane) titledPane.getContent();
+//                for (Node buttonNode : gridPane.getChildren()) {
+//                    if (buttonNode instanceof ToggleButton button) {
+//                        button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+//                            displayedListUpdate(button.getText());
+//                        });
+//                    }
+//                }
+//            }
+//        }
+//    }
 }
