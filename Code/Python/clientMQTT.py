@@ -42,13 +42,6 @@ def on_message(client, userdata, msg):
         data = payload
 
     if flux_mqtt=="solaredge":
-        liste_fichier=glob.glob(os.path+'\\*')
-        last_file=liste_fichier[-1]
-        tab1=last_file.split('_').split('-')
-        ##Gérer les périodes ici
-        if liste_fichier:
-            return
-        
         if SOLAREDGE_INFO_TYPES[0] == "all" :
             message = f"{data}"
         else:
