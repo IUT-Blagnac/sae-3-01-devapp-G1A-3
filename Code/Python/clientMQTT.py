@@ -1,3 +1,4 @@
+import glob
 import paho.mqtt.client as mqtt
 import configparser
 import json
@@ -29,18 +30,25 @@ def on_connect(client, userdata, flags, rc):
         print(f"Échec de connexion, code de retour : {rc}")
 
 def on_message(client, userdata, msg):
+    date=datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     topic = msg.topic
     payload = msg.payload.decode("utf-8")
+    parties = topic.split("/")
+    flux_mqtt = parties[0]
 
     try:
         data = json.loads(payload)
     except json.JSONDecodeError:
         data = payload
 
-    parties = topic.split("/")
-    flux_mqtt = parties[0]
-
     if flux_mqtt=="solaredge":
+        liste_fichier=glob.glob(os.path+'\\*')
+        last_file=liste_fichier[-1]
+        tab1=last_file.split('_').split('-')
+        ##Gérer les périodes ici
+        if liste_fichier:
+            return
+        
         if SOLAREDGE_INFO_TYPES[0] == "all" :
             message = f"{data}"
         else:
