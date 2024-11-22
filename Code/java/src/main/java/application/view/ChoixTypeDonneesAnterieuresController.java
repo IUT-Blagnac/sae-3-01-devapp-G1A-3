@@ -4,8 +4,9 @@ import application.control.IoTMainFrame;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 
-public class ChoixDonneesAnterieuresController {
+public class ChoixTypeDonneesAnterieuresController {
     
+
     private Stage containingStage;
     private IoTMainFrame main = new IoTMainFrame();
 
@@ -18,18 +19,22 @@ public class ChoixDonneesAnterieuresController {
     }
 
     @FXML
-    private void donneeUnique(){
-        main.ChoixTypeDonneesAnterieures(containingStage);
+    private void choixCO2(){
+        main.AnterieurDonneeUnique(containingStage, "CO2");
     }
 
     @FXML
-    private void multiDonnee(){
-        main.AnterieurDonneesMultiples(containingStage);
+    private void choixHum(){
+        main.AnterieurDonneeUnique(containingStage, "Humidite");
+    }
+
+    @FXML
+    private void choixTemp(){
+        main.AnterieurDonneeUnique(containingStage, "Temperature");
     }
 
     @FXML
     private void menu(){
         main.start(containingStage);
     }
-
 }

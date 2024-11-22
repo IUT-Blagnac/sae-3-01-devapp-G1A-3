@@ -37,13 +37,13 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="./images/test.jpg" class="d-block w-100" alt="First slide">
+                    <a href=""><img src="./images/test.jpg" class="d-block w-100" alt="First slide"></a>
                 </div>
                 <div class="carousel-item">
-                    <img src="./images/test.jpg" class="d-block w-100" alt="Second slide">
+                    <a href=""><img src="./images/test.jpg" class="d-block w-100" alt="First slide"></a>
                 </div>
                 <div class="carousel-item">
-                    <img src="./images/test.jpg" class="d-block w-100" alt="Third slide">
+                    <a href=""><img src="./images/test.jpg" class="d-block w-100" alt="First slide"></a>
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -56,170 +56,136 @@
             </button>
         </div>
     </div>
+    <!-- Carrousel des catégories -->
     <div class="container my-5">
         <h1>Catégories</h1>
-        <div id="myCarousel" class="carousel slide container" data-bs-ride="carousel">
-            <div class="carousel-inner w-100">
+        <div id="categoriesCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <div class="col-md-3">
-                        <div class="card card-body">
-                            <img class="img-fluid" src="http://placehold.it/380?text=1">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <a href=""><img src="http://placehold.it/380?text=1" class="card-img-top" alt="Catégorie 1"></a>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card">
+                                <a href=""><img src="http://placehold.it/380?text=2" class="card-img-top" alt="Catégorie 2"></a>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card">
+                                <a href=""><img src="http://placehold.it/380?text=3" class="card-img-top" alt="Catégorie 3"></a>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card">
+                                <a href=""><img src="http://placehold.it/380?text=4" class="card-img-top" alt="Catégorie 4"></a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <div class="col-md-3">
-                        <div class="card card-body">
-                            <img class="img-fluid" src="http://placehold.it/380?text=2">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <a href=""><img src="http://placehold.it/380?text=5" class="card-img-top" alt="Catégorie 5"></a>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="col-md-3">
-                        <div class="card card-body">
-                            <img class="img-fluid" src="http://placehold.it/380?text=3">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <a href=""><img src="http://placehold.it/380?text=6" class="card-img-top" alt="Catégorie 6"></a>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="col-md-3">
-                        <div class="card card-body">
-                            <img class="img-fluid" src="http://placehold.it/380?text=4">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <a href=""><img src="http://placehold.it/380?text=7" class="card-img-top" alt="Catégorie 7"></a>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="col-md-3">
-                        <div class="card card-body">
-                            <img class="img-fluid" src="http://placehold.it/380?text=5">
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="col-md-3">
-                        <div class="card card-body">
-                            <img class="img-fluid" src="http://placehold.it/380?text=6">
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="col-md-3">
-                        <div class="card card-body">
-                            <img class="img-fluid" src="http://placehold.it/380?text=7">
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="col-md-3">
-                        <div class="card card-body">
-                            <img class="img-fluid" src="http://placehold.it/380?text=8">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <a href=""><img src="http://placehold.it/380?text=8" class="card-img-top" alt="Catégorie 8"></a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#categoriesCarousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#categoriesCarousel" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
     </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-    </div>
-    </div>
+
+    <!-- Liste de souhaits -->
     <div class="container my-5">
         <h1>Liste de souhaits</h1>
-        <div id="myCarousel" class="carousel slide container" data-bs-ride="carousel">
-            <div class="carousel-inner w-100">
+        <div id="wishlistCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <div class="col-md-3">
-                        <div class="card card-body">
-                            <img class="img-fluid" src="http://placehold.it/380?text=1">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <a href=""><img src="http://placehold.it/380?text=1" class="card-img-top" alt="Catégorie 1"></a>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card">
+                                <a href=""><img src="http://placehold.it/380?text=2" class="card-img-top" alt="Catégorie 2"></a>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card">
+                                <a href=""><img src="http://placehold.it/380?text=3" class="card-img-top" alt="Catégorie 3"></a>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card">
+                                <a href=""><img src="http://placehold.it/380?text=4" class="card-img-top" alt="Catégorie 4"></a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <div class="col-md-3">
-                        <div class="card card-body">
-                            <img class="img-fluid" src="http://placehold.it/380?text=2">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <a href=""><img src="http://placehold.it/380?text=5" class="card-img-top" alt="Catégorie 5"></a>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="col-md-3">
-                        <div class="card card-body">
-                            <img class="img-fluid" src="http://placehold.it/380?text=3">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <a href=""><img src="http://placehold.it/380?text=6" class="card-img-top" alt="Catégorie 6"></a>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="col-md-3">
-                        <div class="card card-body">
-                            <img class="img-fluid" src="http://placehold.it/380?text=4">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <a href=""><img src="http://placehold.it/380?text=7" class="card-img-top" alt="Catégorie 7"></a>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="col-md-3">
-                        <div class="card card-body">
-                            <img class="img-fluid" src="http://placehold.it/380?text=5">
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="col-md-3">
-                        <div class="card card-body">
-                            <img class="img-fluid" src="http://placehold.it/380?text=6">
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="col-md-3">
-                        <div class="card card-body">
-                            <img class="img-fluid" src="http://placehold.it/380?text=7">
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="col-md-3">
-                        <div class="card card-body">
-                            <img class="img-fluid" src="http://placehold.it/380?text=8">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <a href=""><img src="http://placehold.it/380?text=8" class="card-img-top" alt="Catégorie 8"></a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#wishlistCarousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#wishlistCarousel" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
     </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-    </div>
-    </div>
+    <script src="script.js"></script>
 
     <?php include './includes/footer.php' ?>
     <script>

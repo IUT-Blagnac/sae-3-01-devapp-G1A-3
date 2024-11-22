@@ -5,25 +5,35 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.ChoixDonneesAnterieuresController">
-   <center>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button mnemonicParsing="false" onAction="#donneeUnique" prefHeight="50.0" prefWidth="113.0" text="Donnée Simple">
-               <HBox.margin>
-                  <Insets left="130.0" top="130.0" />
-               </HBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#multiDonnee" prefHeight="50.0" prefWidth="140.0" text="Données Multiples">
-               <HBox.margin>
-                  <Insets left="110.0" top="130.0" />
-               </HBox.margin>
-            </Button>
-         </children>
-      </HBox>
-   </center>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.ChoixDonneesAnterieuresController">
    <top>
       <Label alignment="CENTER" prefHeight="75.0" prefWidth="700.0" text="Choix de l'affichage" BorderPane.alignment="CENTER" />
    </top>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="164.0" prefWidth="600.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#donneeUnique" prefHeight="50.0" prefWidth="140.0" text="Donnée Simple">
+                     <HBox.margin>
+                        <Insets left="110.0" top="100.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#multiDonnee" prefHeight="50.0" prefWidth="140.0" text="Données Multiples">
+                     <HBox.margin>
+                        <Insets left="110.0" top="100.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <Button mnemonicParsing="false" onAction="#menu" prefHeight="40.0" prefWidth="110.0" text="Menu">
+               <VBox.margin>
+                  <Insets left="250.0" top="80.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </center>
 </BorderPane>

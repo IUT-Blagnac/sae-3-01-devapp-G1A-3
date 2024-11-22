@@ -26,7 +26,7 @@
                   <Insets top="40.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#fermer" prefHeight="30.0" prefWidth="176.0" text="Fermer l'application">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#fermer" prefHeight="30.0" prefWidth="176.0" text="Fermer l'application">
                <VBox.margin>
                   <Insets top="40.0" />
                </VBox.margin>
