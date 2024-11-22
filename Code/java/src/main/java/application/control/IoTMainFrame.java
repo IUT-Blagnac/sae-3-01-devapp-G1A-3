@@ -1,6 +1,7 @@
 package application.control;
 
 import application.view.ChoixDonneesAnterieuresController;
+import application.view.ChoixTypeDonneesAnterieuresController;
 import application.view.DonneesActuellesController;
 import application.view.DonneesAnterieuresMultiplesController;
 import application.view.DonneesAnterieuresUniquesController;
@@ -15,6 +16,7 @@ import javafx.stage.Stage;
 public class IoTMainFrame extends Application {
 
 	private Stage stage;
+	private String typeDonnee = "";
 
 	/**
 	 * Méthode de démarrage (JavaFX).
@@ -74,7 +76,7 @@ public class IoTMainFrame extends Application {
 		try {
 			// Chargement du source fxml
 			FXMLLoader loader = new FXMLLoader(DonneesActuellesController.class.getResource("affichageTpsReel.fxml"));
-			VBox root = loader.load();
+			BorderPane root = loader.load();
 
 			Scene scene = new Scene(root);
 
@@ -92,7 +94,7 @@ public class IoTMainFrame extends Application {
 		}
 	}
 
-	public void AnterieurDonneeUnique(Stage primaryStage) {
+	public void AnterieurDonneeUnique(Stage primaryStage, String choix) {
 		this.stage = primaryStage;
 
 		try {
@@ -107,6 +109,7 @@ public class IoTMainFrame extends Application {
 
 			DonneesAnterieuresUniquesController viewController = loader.getController();
 			viewController.initContext(this.stage);
+			typeDonnee = choix;
 
 			viewController.displayDialog();
 
@@ -138,6 +141,38 @@ public class IoTMainFrame extends Application {
 			e.printStackTrace();
 			System.exit(-1);
 		}
+	}
+
+	public void ChoixTypeDonneesAnterieures(Stage primaryStage) {
+		this.stage = primaryStage;
+
+		try {
+			// Chargement du source fxml
+			FXMLLoader loader = new FXMLLoader(ChoixTypeDonneesAnterieuresController.class.getResource("choixTypeDonneesAnterieures.fxml"));
+			BorderPane root = loader.load();
+
+			Scene scene = new Scene(root);
+
+			this.stage.setScene(scene);
+			this.stage.setTitle("Données anciennes");
+
+			ChoixTypeDonneesAnterieuresController viewController = loader.getController();
+			viewController.initContext(this.stage);
+
+			viewController.displayDialog();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(-1);
+		}
+	}
+
+	public void setDonnee(String choix){
+		typeDonnee = choix;
+	}
+
+	public String getDonnee(){
+		return typeDonnee;
 	}
 
 	/**
