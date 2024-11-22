@@ -1,4 +1,3 @@
-import glob
 import paho.mqtt.client as mqtt
 import configparser
 import json
