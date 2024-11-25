@@ -10,9 +10,19 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Objects;
+
+import netscape.javascript.JSObject;
 
 public class DonneesActuellesController {
     private enum TEXTVALUES{
@@ -36,6 +46,19 @@ public class DonneesActuellesController {
             return displayText;
         }
     }
+
+    public class JSBridge {
+        public void handleClick(String room) {
+            System.out.println("Room clicked: " + room);
+            displayedListUpdate(room);
+            try {
+                getCorrespondingData(room);
+            } catch (URISyntaxException | IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
     private Stage containingStage;
     @FXML
     private VBox buttonsHolder;
@@ -48,12 +71,41 @@ public class DonneesActuellesController {
     @FXML
     private CheckBox humidity;
 
-    private IoTMainFrame main;
+    @FXML
+    private WebView iutschematics;
+    private WebEngine webEngine;
+    private JSBridge jsBridge = new JSBridge();
+    private IoTMainFrame main = new IoTMainFrame();
 
     public void initContext(Stage _containingStage) {
 		this.containingStage = _containingStage;
-        this.buttons_setup();
+        this.initWeb();
 	}
+
+    private void initWeb(){
+        String pathSvg = Objects.requireNonNull(DonneesActuellesController.class.getClassLoader().getResource("application/svg/demoSVG.html")).toString();
+
+        webEngine = iutschematics.getEngine();
+        webEngine.load(pathSvg);
+
+        webEngine.documentProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue != null){
+                JSObject window = (JSObject) webEngine.executeScript("window");
+                window.setMember("javaBridge", jsBridge);
+
+                webEngine.executeScript("""
+                document.querySelectorAll('g').forEach(function(element) {
+                    element.addEventListener('click', function(event) {
+                        // Get the id of the <g> element itself
+                        var id = element.getAttribute('id');
+                        // Pass the id to the Java method
+                        javaBridge.handleClick(id);
+                    });
+                });
+            """);
+            }
+        });
+    }
 
     public void displayDialog(){
         this.containingStage.show();
@@ -118,7 +170,7 @@ public class DonneesActuellesController {
 
 
     public void displayedListUpdate(String room){
-        Boolean deleted = false;
+        boolean deleted = false;
         Node toDelete = null;
         for(Node n : displayedDatas.getChildren()){
             if(n instanceof TitledPane checking){
@@ -174,18 +226,20 @@ public class DonneesActuellesController {
         }else displayedDatas.getChildren().remove(toDelete);
     }
 
-    public void buttons_setup(){
-        for (Node titledPaneNode : buttonsHolder.getChildren()) {
-            if(titledPaneNode instanceof TitledPane titledPane) {
-                GridPane gridPane = (GridPane) titledPane.getContent();
-                for(Node buttonNode : gridPane.getChildren()){
-                    if (buttonNode instanceof ToggleButton button){
-                        button.addEventHandler(MouseEvent.MOUSE_CLICKED, event ->  {
-                            displayedListUpdate(button.getText());
-                        });
-                    }
+    private void getCorrespondingData(String room) throws URISyntaxException, IOException {
+        room=room.toUpperCase();
+        File folder = new File(Objects.requireNonNull(DonneesActuellesController.class.getClassLoader().getResource("application/AM107/"+room)).toURI());
+        if(folder.exists()) {
+            File[] allDatas = folder.listFiles();
+            System.out.println(allDatas.length);
+            assert allDatas != null;
+            File captorData = allDatas[0];
+            for(File current : allDatas){
+                if(current.lastModified() > captorData.lastModified()){
+                    captorData = current;
                 }
             }
+            System.out.println(Files.readString(captorData.toPath()));
         }
     }
 }
