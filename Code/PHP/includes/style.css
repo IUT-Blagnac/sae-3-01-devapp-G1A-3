@@ -1,3 +1,14 @@
+:root {
+  --primary-pink: #C4026E;
+  --light-pink: #f8d7e2;
+  --text-dark: #333;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+}
+
 .footer-container {
     position: fixed;
     bottom: 0;
@@ -11,6 +22,140 @@
     display: block;
     opacity: 1;
 }
+
+h2{ 
+  color: #C4026E; 
+} 
+#form { 
+  text-align: center; 
+  position: relative; 
+  margin-top: 20px
+} 
+
+#form fieldset { 
+  background: white; 
+  border: 0 none; 
+  border-radius: 0.5rem; 
+  box-sizing: border-box; 
+  width: 100%; 
+  margin: 0; 
+  padding-bottom: 20px; 
+  position: relative
+} 
+
+.finish { 
+  text-align: center
+} 
+
+#form fieldset:not(:first-of-type) { 
+  display: none
+} 
+
+#form .previous-step, .next-step { 
+  width: 100px; 
+  font-weight: bold; 
+  color: white; 
+  border: 0 none; 
+  border-radius: 0px; 
+  cursor: pointer; 
+  padding: 10px 5px; 
+  margin: 10px 5px 10px 0px; 
+  float: right
+} 
+
+.form, .previous-step { 
+  background: #616161; 
+} 
+
+.form, .next-step { 
+  background: #C4026E; 
+} 
+
+#form .previous-step:hover, 
+#form .previous-step:focus { 
+  background-color: #000000
+} 
+
+#form .next-step:hover, 
+#form .next-step:focus { 
+  background-color: #C4026E
+} 
+
+.text { 
+  color: #C4026E; 
+  font-weight: normal
+} 
+
+
+.text-pink {
+  color: var(--primary-pink);
+}
+
+h3, h4 {
+  font-weight: 600;
+}
+
+h3.text-uppercase, h4.text-uppercase {
+  border-bottom: 2px solid var(--primary-pink);
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+#progressbar {
+  margin-bottom: 30px;
+  padding: 0;
+}
+
+#progressbar li {
+  list-style: none;
+  width: 25%;
+  position: relative;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: lightgrey;
+}
+
+#progressbar li:before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: lightgrey;
+  display: block;
+  margin: 0 auto 5px;
+}
+
+#progressbar li.active:before {
+  background: var(--primary-pink);
+}
+
+#progressbar li.active {
+  color: var(--primary-pink);
+}
+
+.table th, .table td {
+  border: none;
+}
+
+.btn-pink {
+  background: var(--primary-pink);
+  color: #fff;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.btn-pink:hover {
+  background: var(--text-dark);
+}
+
+.select-style {
+  width: 60px;
+  margin-right: 15px;
+}
+
 
 
 @media (max-width: 768px) {

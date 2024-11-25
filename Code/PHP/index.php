@@ -185,7 +185,8 @@
             </button>
         </div>
     </div>
-    <script src="script.js"></script>
+
+    
 
     <?php include './includes/footer.php' ?>
     <script>

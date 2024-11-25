@@ -39,7 +39,7 @@
           <a class="nav-link fw-bold text-danger" href="#">SE CONNECTER</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link fw-bold text-danger" href="#">MON PANIER</a>
+          <a class="nav-link fw-bold text-danger" href="shoppingCart.php">MON PANIER</a>
         </li>
       </ul>
 
