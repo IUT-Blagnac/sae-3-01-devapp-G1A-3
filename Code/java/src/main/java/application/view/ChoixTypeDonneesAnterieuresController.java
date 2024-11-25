@@ -8,7 +8,7 @@ public class ChoixTypeDonneesAnterieuresController {
     
 
     private Stage containingStage;
-    private IoTMainFrame main = new IoTMainFrame();
+    private IoTMainFrame main;
 
     public void initContext(Stage _containingStage) {
 		this.containingStage = _containingStage;
@@ -16,6 +16,10 @@ public class ChoixTypeDonneesAnterieuresController {
 
     public void displayDialog(){
         this.containingStage.show();
+    }
+
+    public void setMain(IoTMainFrame newMain){
+        main = newMain;
     }
 
     @FXML

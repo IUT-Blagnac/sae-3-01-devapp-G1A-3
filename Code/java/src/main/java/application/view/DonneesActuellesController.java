@@ -61,6 +61,8 @@ public class DonneesActuellesController {
 
     private Stage containingStage;
     @FXML
+    private VBox buttonsHolder;
+    @FXML
     private VBox displayedDatas;
     @FXML
     private CheckBox temp;
@@ -107,6 +109,10 @@ public class DonneesActuellesController {
 
     public void displayDialog(){
         this.containingStage.show();
+    }
+
+    public void setMain(IoTMainFrame newMain){
+        main = newMain;
     }
 
     @FXML
