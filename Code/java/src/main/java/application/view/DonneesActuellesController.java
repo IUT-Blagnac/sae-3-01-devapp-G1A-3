@@ -10,12 +10,14 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
 
 import java.nio.file.Paths;
 
+import netscape.javascript.JSObject;
 
 public class DonneesActuellesController {
     private enum TEXTVALUES{
@@ -39,6 +41,15 @@ public class DonneesActuellesController {
             return displayText;
         }
     }
+
+    public class JSBridge {
+        public void handleClick(String room) {
+            // Log the click and call your method to update the displayed data
+            System.out.println("Room clicked: " + room);
+            displayedListUpdate(room); // Assuming this updates your UI
+        }
+    }
+
     private Stage containingStage;
     //@FXML
     //private VBox buttonsHolder;
@@ -53,7 +64,8 @@ public class DonneesActuellesController {
 
     @FXML
     private WebView iutschematics;
-
+    private WebEngine webEngine;
+    private JSBridge jsBridge = new JSBridge();
     private IoTMainFrame main = new IoTMainFrame();
 
     public void initContext(Stage _containingStage) {
@@ -64,8 +76,26 @@ public class DonneesActuellesController {
 
     private void initWeb(){
         String pathSvg = Paths.get("src/main/resources/application/svg/demoSVG.html").toUri().toString();
-        System.out.println(pathSvg);
-        iutschematics.getEngine().load(pathSvg);
+        webEngine = iutschematics.getEngine();
+        webEngine.load(pathSvg);
+
+        webEngine.documentProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue != null){
+                JSObject window = (JSObject) webEngine.executeScript("window");
+                window.setMember("javaBridge", jsBridge);
+
+                webEngine.executeScript("""
+                document.querySelectorAll('g').forEach(function(element) {
+                    element.addEventListener('click', function(event) {
+                        // Get the id of the <g> element itself
+                        var id = element.getAttribute('id');
+                        // Pass the id to the Java method
+                        javaBridge.handleClick(id);
+                    });
+                });
+            """);
+            }
+        });
     }
 
     public void displayDialog(){
