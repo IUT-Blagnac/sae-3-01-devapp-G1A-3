@@ -15,7 +15,9 @@ import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
 
+import java.io.File;
 import java.nio.file.Paths;
+import java.util.Objects;
 
 import netscape.javascript.JSObject;
 
@@ -75,7 +77,8 @@ public class DonneesActuellesController {
 	}
 
     private void initWeb(){
-        String pathSvg = Paths.get("src/main/resources/application/svg/demoSVG.html").toUri().toString();
+        String pathSvg = Objects.requireNonNull(DonneesActuellesController.class.getClassLoader().getResource("application/svg/demoSVG.html")).toString();
+
         webEngine = iutschematics.getEngine();
         webEngine.load(pathSvg);
 
@@ -157,7 +160,7 @@ public class DonneesActuellesController {
 
 
     public void displayedListUpdate(String room){
-        Boolean deleted = false;
+        boolean deleted = false;
         Node toDelete = null;
         for(Node n : displayedDatas.getChildren()){
             if(n instanceof TitledPane checking){
@@ -213,18 +216,18 @@ public class DonneesActuellesController {
         }else displayedDatas.getChildren().remove(toDelete);
     }
 
-//    public void buttons_setup() {
-//        for (Node titledPaneNode : buttonsHolder.getChildren()) {
-//            if (titledPaneNode instanceof TitledPane titledPane) {
-//                GridPane gridPane = (GridPane) titledPane.getContent();
-//                for (Node buttonNode : gridPane.getChildren()) {
-//                    if (buttonNode instanceof ToggleButton button) {
-//                        button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-//                            displayedListUpdate(button.getText());
-//                        });
-//                    }
-//                }
-//            }
-//        }
-//    }
+    private void getCorrespondingData(String room){
+        File folder = new File(Paths.get("../../Python/AM107/"+room).toString());
+        if(folder.exists()) {
+            File[] allDatas = folder.listFiles();
+            assert allDatas != null;
+            File captorData = allDatas[0];
+            for(File current : allDatas){
+                if(current.lastModified() > captorData.lastModified()){
+                    captorData = current;
+                }
+            }
+            System.out.println(captorData);
+        }
+    }
 }
