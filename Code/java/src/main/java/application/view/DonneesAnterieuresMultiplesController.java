@@ -10,20 +10,24 @@ import javafx.stage.Stage;
 public class DonneesAnterieuresMultiplesController {
 
 	private Stage containingStage;
-    private IoTMainFrame main = new IoTMainFrame();
+    private IoTMainFrame main;
 
     @FXML
-    private LineChart grapheCO2;
+    private LineChart<Number, Number> grapheCO2;
 
     @FXML
-    private LineChart grapheHum;
+    private LineChart<Number, Number> grapheHum;
 
     @FXML
-    private LineChart grapheTemp;
+    private LineChart<Number, Number> grapheTemp;
 
     public void initContext(Stage _containingStage) {
 		this.containingStage = _containingStage;
 	}
+
+    public void setMain(IoTMainFrame newMain){
+        main = newMain;
+    }
 
     public void displayDialog(){
         donneesTemperature(grapheTemp);

@@ -48,7 +48,7 @@ public class DonneesActuellesController {
     @FXML
     private CheckBox humidity;
 
-    private IoTMainFrame main = new IoTMainFrame();
+    private IoTMainFrame main;
 
     public void initContext(Stage _containingStage) {
 		this.containingStage = _containingStage;
@@ -57,6 +57,10 @@ public class DonneesActuellesController {
 
     public void displayDialog(){
         this.containingStage.show();
+    }
+
+    public void setMain(IoTMainFrame newMain){
+        main = newMain;
     }
 
     @FXML

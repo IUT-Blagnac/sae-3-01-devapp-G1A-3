@@ -10,20 +10,31 @@ import javafx.stage.Stage;
 public class DonneesAnterieuresUniquesController {
 
 	private Stage containingStage;
-    private IoTMainFrame main = new IoTMainFrame();
+    private IoTMainFrame main;
     private String choix = "";
 
     @FXML 
-    private LineChart graphique;
+    private LineChart<Number, Number> graphique;
 
     public void initContext(Stage _containingStage) {
 		this.containingStage = _containingStage;
 	}
 
     public void displayDialog(){
-        choix = main.getDonnee();
         ajoutDonnees(graphique, choix);
         this.containingStage.show();
+    }
+
+    public void setMain(IoTMainFrame newMain){
+        main = newMain;
+    }
+
+    public void setDonnee(String val){
+        choix = val;
+    }
+
+    public String getDonnee(){
+       return choix;
     }
 
     @FXML
