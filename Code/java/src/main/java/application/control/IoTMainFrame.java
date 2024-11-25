@@ -1,5 +1,7 @@
 package application.control;
 
+import java.time.LocalDate;
+
 import application.view.ChoixDonneesAnterieuresController;
 import application.view.ChoixTypeDonneesAnterieuresController;
 import application.view.DonneesActuellesController;
@@ -94,7 +96,7 @@ public class IoTMainFrame extends Application {
 		}
 	}
 
-	public void AnterieurDonneeUnique(Stage primaryStage, String choix) {
+	public void AnterieurDonneeUnique(Stage primaryStage, String choix, LocalDate dateDebut, LocalDate dateFin) {
 		this.stage = primaryStage;
 
 		try {
@@ -110,6 +112,8 @@ public class IoTMainFrame extends Application {
 			DonneesAnterieuresUniquesController viewController = loader.getController();
 			viewController.setMain(this);
 			viewController.setDonnee(choix);
+			viewController.setDateDebut(dateDebut);
+			viewController.setDateFin(dateFin);
 			viewController.initContext(this.stage);
 
 			viewController.displayDialog();

@@ -40,6 +40,15 @@ def on_message(client, userdata, msg):
     except json.JSONDecodeError:
         data = payload
 
+    if flux_mqtt == "solaredge":
+        if exists(flux_mqtt):
+            repertoire = Path("./solaredge/")
+            liste_fichiers = [f for f in repertoire.iterdir() if f.is_file()]
+            liste_fichiers_tries = sorted(liste_fichiers, key=lambda f: f.stat().st_mtime)
+            dernier_fichier = liste_fichiers_tries[-1] if liste_fichiers_tries else None
+            nom_dernier_fichier = dernier_fichier.name
+            if gestion_periode(nom_dernier_fichier) == False:
+                return        
         if SOLAREDGE_INFO_TYPES[0] == "all" :
             message = f"{data}"
         else:

@@ -1,5 +1,7 @@
 package application.view;
 
+import java.time.LocalDate;
+
 import application.control.IoTMainFrame;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
@@ -12,6 +14,8 @@ public class DonneesAnterieuresUniquesController {
 	private Stage containingStage;
     private IoTMainFrame main;
     private String choix = "";
+    private LocalDate dateDebut;
+    private LocalDate dateFin;
 
     @FXML 
     private LineChart<Number, Number> graphique;
@@ -21,7 +25,7 @@ public class DonneesAnterieuresUniquesController {
 	}
 
     public void displayDialog(){
-        ajoutDonnees(graphique, choix);
+        ajoutDonnees(graphique, choix, dateDebut, dateFin);
         this.containingStage.show();
     }
 
@@ -31,6 +35,14 @@ public class DonneesAnterieuresUniquesController {
 
     public void setDonnee(String val){
         choix = val;
+    }
+
+    public void setDateDebut(LocalDate date){
+        dateDebut = date;
+    }
+
+    public void setDateFin(LocalDate date){
+        dateFin = date;
     }
 
     public String getDonnee(){
@@ -57,7 +69,7 @@ public class DonneesAnterieuresUniquesController {
         main.changementAnterieur(containingStage);
     }
 
-    public void ajoutDonnees(LineChart<Number, Number> graph, String choix){
+    public void ajoutDonnees(LineChart<Number, Number> graph, String choix, LocalDate dateDebut, LocalDate dateFin){
         //Définir l'axe X
         NumberAxis xAxis = new NumberAxis(0, 24, 1); 
         xAxis.setLabel("Heure de la journée"); 
@@ -72,7 +84,9 @@ public class DonneesAnterieuresUniquesController {
             XYChart.Series<Number, Number> series = new XYChart.Series<>();
             series.setName("Taux de CO2 en fonction de l'heure de la journée");
 
-            // Ajouter des données au graphique
+            for (LocalDate date = dateDebut; date.isBefore(dateFin); date = date.plusDays(1)){
+                
+            }
             series.getData().add(new XYChart.Data<>(3, 15));
             series.getData().add(new XYChart.Data<>(6, 17));
             series.getData().add(new XYChart.Data<>(9, 20));
