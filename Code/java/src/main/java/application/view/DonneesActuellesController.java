@@ -16,6 +16,9 @@ import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Objects;
 
@@ -46,15 +49,17 @@ public class DonneesActuellesController {
 
     public class JSBridge {
         public void handleClick(String room) {
-            // Log the click and call your method to update the displayed data
             System.out.println("Room clicked: " + room);
-            displayedListUpdate(room); // Assuming this updates your UI
+            displayedListUpdate(room);
+            try {
+                getCorrespondingData(room);
+            } catch (URISyntaxException | IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
     private Stage containingStage;
-    //@FXML
-    //private VBox buttonsHolder;
     @FXML
     private VBox displayedDatas;
     @FXML
@@ -72,7 +77,6 @@ public class DonneesActuellesController {
 
     public void initContext(Stage _containingStage) {
 		this.containingStage = _containingStage;
-        //this.buttons_setup();
         this.initWeb();
 	}
 
@@ -216,10 +220,12 @@ public class DonneesActuellesController {
         }else displayedDatas.getChildren().remove(toDelete);
     }
 
-    private void getCorrespondingData(String room){
-        File folder = new File(Paths.get("../../Python/AM107/"+room).toString());
+    private void getCorrespondingData(String room) throws URISyntaxException, IOException {
+        room=room.toUpperCase();
+        File folder = new File(Objects.requireNonNull(DonneesActuellesController.class.getClassLoader().getResource("application/AM107/"+room)).toURI());
         if(folder.exists()) {
             File[] allDatas = folder.listFiles();
+            System.out.println(allDatas.length);
             assert allDatas != null;
             File captorData = allDatas[0];
             for(File current : allDatas){
@@ -227,7 +233,7 @@ public class DonneesActuellesController {
                     captorData = current;
                 }
             }
-            System.out.println(captorData);
+            System.out.println(Files.readString(captorData.toPath()));
         }
     }
 }
