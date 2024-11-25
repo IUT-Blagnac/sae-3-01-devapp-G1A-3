@@ -1,7 +1,9 @@
 package application.view;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import application.control.IoTMainFrame;
 import javafx.fxml.FXML;
@@ -13,7 +15,7 @@ public class ChoixTypeDonneesAnterieuresController {
 
     private Stage containingStage;
     private IoTMainFrame main;
-    private String donnee = "";
+    private List<String> donnees = new ArrayList<String>();
     private LocalDate dateDebut;
     private LocalDate dateFin;
 
@@ -38,17 +40,17 @@ public class ChoixTypeDonneesAnterieuresController {
 
     @FXML
     private void choixCO2(){
-        donnee = "CO2";
+        donnees.add("CO2");
     }
 
     @FXML
     private void choixHum(){
-        donnee = "Humidite";
+        donnees.add("Humidite");
     }
 
     @FXML
     private void choixTemp(){
-        donnee = "Temperature";
+        donnees.add("Temperature");
     }
 
     @FXML
@@ -64,7 +66,7 @@ public class ChoixTypeDonneesAnterieuresController {
 
     @FXML
     private void valider(){
-        main.AnterieurDonneeUnique(containingStage, donnee, dateDebut, dateFin);
+        main.AnterieurDonneeUnique(containingStage, donnees, dateDebut, dateFin);
     }
 
     @FXML
