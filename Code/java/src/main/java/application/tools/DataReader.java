@@ -22,7 +22,7 @@ public class DataReader {
         return tempsToReturn;
     }
 
-    public static List<Float> getHumidities(List<File> datasToFetch){
+    public static List<Float> getHumidites(List<File> datasToFetch){
         List <Float> humiditiesToReturn = new ArrayList<>();
         for(File currentFile : datasToFetch){
             try{

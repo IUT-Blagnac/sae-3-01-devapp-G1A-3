@@ -29,6 +29,11 @@ public class MenuController {
     }
 
     @FXML
+    private void changerConfig(){
+        
+    }
+
+    @FXML
     private void fermer(){
         this.containingStage.close();
     }

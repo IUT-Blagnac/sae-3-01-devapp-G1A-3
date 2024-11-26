@@ -16,7 +16,6 @@ import javafx.stage.Stage;
 public class IoTMainFrame extends Application {
 
 	private Stage stage;
-	private String typeDonnee = "";
 
 	/**
 	 * Méthode de démarrage (JavaFX).
@@ -122,10 +121,6 @@ public class IoTMainFrame extends Application {
 			e.printStackTrace();
 			System.exit(-1);
 		}
-	}
-
-	public String getDonnee(){
-		return typeDonnee;
 	}
 
 	/**
