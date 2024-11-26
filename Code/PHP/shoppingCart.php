@@ -2,10 +2,12 @@
 <html>
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-
+    <link rel="website icon" type="png" href="./images/logo/logo.png">
     <link rel="stylesheet" href="./includes/style.css">
 </head>
 
@@ -26,12 +28,25 @@
             </div>
 
             <!-- Progressbar -->
-            <ul id="progressbar" class="text-center d-flex justify-content">
-                <li class="active" id="step1"><strong>Panier</strong></li>
-                <li id="step2"><strong>Livraison</strong></li>
-                <li id="step3"><strong>Paiement</strong></li>
-                <li id="step4"><strong>Finalisation</strong></li>
-            </ul>
+            <div class="container">
+                <div class="progressbar">
+                    <!-- Step 1 -->
+                    <div class="progress-step active">
+                        <div class="step-circle">1</div>
+                        <div class="step-label">Panier</div>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="progress-step">
+                        <div class="step-circle">2</div>
+                        <div class="step-label">Livraison</div>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="progress-step">
+                        <div class="step-circle">3</div>
+                        <div class="step-label">Paiement</div>
+                    </div>
+                </div>
+            </div>
 
             <hr>
 
@@ -78,6 +93,7 @@
                                 <td>9,45€</td>
                             </tr>
                         </table>
+                        <button class="btn btn-secondary btn-block mt-3"><a style="text-decoration : none; color:aliceblue;" href="index.php">Encore une envie de nostalgie ?</a></button>
                         <button class="btn btn-secondary btn-block mt-3" id="nextToStep2">Valider mon panier</button>
                     </div>
                 </div>
@@ -93,8 +109,8 @@
                     <label for="adresse" class="form-label">Adresse</label>
                     <input type="text" class="form-control" id="adresse" placeholder="Entrez votre adresse">
                 </div>
-                <button class="btn btn-secondary btn-block mt-3" id="nextToStep3">Continuer au paiement</button>
                 <button class="btn btn-secondary btn-block mt-3" id="prevToStep1">Précédent</button>
+                <button class="btn btn-secondary btn-block mt-3" id="nextToStep3">Continuer au paiement</button>
             </div>
 
             <!-- Etape Paiement -->
@@ -112,8 +128,8 @@
                     <label for="cvv" class="form-label">CVV</label>
                     <input type="text" class="form-control" id="cvv" placeholder="CVV">
                 </div>
-                <button class="btn btn-secondary btn-block mt-3" id="nextToStep4">Finaliser la commande</button>
                 <button class="btn btn-secondary btn-block mt-3" id="prevToStep2">Précédent</button>
+                <button class="btn btn-secondary btn-block mt-3" id="nextToStep4">Finaliser la commande</button>
             </div>
 
             <!-- Etape Finalisation -->
@@ -127,16 +143,18 @@
 
     <script>
         $(document).ready(function() {
-            var currentIndex = 0; // Indice de l'étape actuelle dans la barre de progression
+            let currentIndex = 0; // Index de l'étape actuelle dans la barre de progression
+            const steps = $(".progress-step"); // Sélectionne les étapes de progression
 
             // Fonction pour aller à l'étape suivante
             function goToNextStep(currentStep, nextStep) {
                 $(currentStep).hide(); // Masquer l'étape actuelle
                 $(nextStep).show(); // Afficher l'étape suivante
 
-                $("#progressbar li").eq(currentIndex).removeClass("active"); // Désactiver l'étape actuelle
-                currentIndex++; // Passer à l'étape suivante
-                $("#progressbar li").eq(currentIndex).addClass("active"); // Activer l'étape suivante
+                // Activer l'étape suivante dans la barre de progression
+                $(steps.eq(currentIndex)).removeClass("active");
+                currentIndex++;
+                $(steps.eq(currentIndex)).addClass("active");
             }
 
             // Fonction pour revenir à l'étape précédente
@@ -144,35 +162,36 @@
                 $(currentStep).hide(); // Masquer l'étape actuelle
                 $(previousStep).show(); // Afficher l'étape précédente
 
-                $("#progressbar li").eq(currentIndex).removeClass("active"); // Désactiver l'étape actuelle
-                currentIndex--; // Revenir à l'étape précédente
-                $("#progressbar li").eq(currentIndex).addClass("active"); // Activer l'étape précédente
+                // Activer l'étape précédente dans la barre de progression
+                $(steps.eq(currentIndex)).removeClass("active");
+                currentIndex--;
+                $(steps.eq(currentIndex)).addClass("active");
             }
 
             // Navigation entre les étapes
-            $('#nextToStep2').click(function() {
-                goToNextStep('#step1-content', '#step2-content');
+            $("#nextToStep2").click(function() {
+                goToNextStep("#step1-content", "#step2-content");
             });
 
-            $('#nextToStep3').click(function() {
-                goToNextStep('#step2-content', '#step3-content');
+            $("#nextToStep3").click(function() {
+                goToNextStep("#step2-content", "#step3-content");
             });
 
-            $('#nextToStep4').click(function() {
-                goToNextStep('#step3-content', '#step4-content');
+            $("#nextToStep4").click(function() {
+                goToNextStep("#step3-content", "#step4-content");
             });
 
             // Navigation en arrière
-            $('#prevToStep1').click(function() {
-                goToPreviousStep('#step2-content', '#step1-content');
+            $("#prevToStep1").click(function() {
+                goToPreviousStep("#step2-content", "#step1-content");
             });
 
-            $('#prevToStep2').click(function() {
-                goToPreviousStep('#step3-content', '#step2-content');
+            $("#prevToStep2").click(function() {
+                goToPreviousStep("#step3-content", "#step2-content");
             });
 
-            $('#prevToStep3').click(function() {
-                goToPreviousStep('#step4-content', '#step3-content');
+            $("#prevToStep3").click(function() {
+                goToPreviousStep("#step4-content", "#step3-content");
             });
         });
     </script>
