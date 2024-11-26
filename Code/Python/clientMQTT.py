@@ -16,6 +16,7 @@ TOPICS = config["MQTT"]["topics"].split(", ")
 AM107_ROOMS = config["MQTT"]["AM107_rooms"].split(", ")
 AM107_INFO_TYPES = config["MQTT"]["AM107_info_types"].split(", ")
 SOLAREDGE_INFO_TYPES = config["MQTT"]["solaredge_info_types"].split(", ")
+BASE_PATH = config["MQTT"]["base_path"]
 SEUIL_ALERT = config["MQTT"]["seuil_alert"].split(", ")
 PERIOD = int(config["MQTT"]["period"])
 
@@ -41,8 +42,8 @@ def on_message(client, userdata, msg):
         data = payload
 
     if flux_mqtt == "solaredge":
-        if exists(flux_mqtt):
-            repertoire = Path("./solaredge/")
+        if exists(BASE_PATH+flux_mqtt):
+            repertoire = Path(BASE_PATH+"solaredge/")
             liste_fichiers = [f for f in repertoire.iterdir() if f.is_file()]
             liste_fichiers_tries = sorted(liste_fichiers, key=lambda f: f.stat().st_mtime)
             dernier_fichier = liste_fichiers_tries[-1] if liste_fichiers_tries else None
@@ -57,7 +58,7 @@ def on_message(client, userdata, msg):
             i=0
             for info in SOLAREDGE_INFO_TYPES:
                 donnees = data[info]
-                message = message + f"{donnees}"
+                message = message + f"'{info}': {donnees}"
                 i=i+1
                 if(i<=nb_info-1):
                     message = message + ", "
@@ -68,8 +69,8 @@ def on_message(client, userdata, msg):
     if flux_mqtt == "AM107":
         salle = parties[2] if len(parties) > 2 else "inconnue"
         if salle in AM107_ROOMS or AM107_ROOMS[0] == "all":
-            if exists(flux_mqtt+"/"+salle):
-                chemin="./"+flux_mqtt+"/"+salle+"/"
+            if exists(BASE_PATH+flux_mqtt+"/"+salle):
+                chemin=BASE_PATH+flux_mqtt+"/"+salle+"/"
                 repertoire = Path(chemin)
                 liste_fichiers = [f for f in repertoire.iterdir() if f.is_file()]
                 liste_fichiers_tries = sorted(liste_fichiers, key=lambda f: f.stat().st_mtime)
@@ -88,7 +89,7 @@ def on_message(client, userdata, msg):
                     seuil_alert = SEUIL_ALERT[i]
                     if(donnees>=int(seuil_alert)):
                         print("ALERTE (Seuil "+info+" dépassé : "+seuil_alert+") en "+salle+" : "+f"{donnees}")
-                    message = message + f"{donnees}"
+                    message = message + f"'{info}': {donnees}"
                     i=i+1
                     if(i<=nb_info-1):
                         message = message + ", "
@@ -100,16 +101,16 @@ def enregistrer_donnees(data,topic):
     date=datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     parties = topic.split("/")
     flux_mqtt = parties[0]
-    if not exists(flux_mqtt):
-            os.mkdir(flux_mqtt)
+    if not exists(BASE_PATH+flux_mqtt):
+            os.makedirs(BASE_PATH+flux_mqtt)
     if flux_mqtt == "solaredge":
-        with open(flux_mqtt+"/"+date, "a") as f:
+        with open(BASE_PATH+flux_mqtt+"/"+date, "a") as f:
             f.write(data + "\n")
     else:
         salle=parties[2]
-        if not exists(flux_mqtt+"/"+salle):
-            os.mkdir(flux_mqtt+"/"+salle)
-        with open(flux_mqtt+"/"+salle+"/"+date, "a") as f:
+        if not exists(BASE_PATH+flux_mqtt+"/"+salle):
+            os.mkdir(BASE_PATH+flux_mqtt+"/"+salle)
+        with open(BASE_PATH+flux_mqtt+"/"+salle+"/"+date, "a") as f:
             f.write(data + "\n")
 
 def gestion_periode(date_sans_seuil):
