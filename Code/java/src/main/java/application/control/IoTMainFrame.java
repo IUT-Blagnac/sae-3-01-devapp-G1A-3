@@ -1,10 +1,11 @@
 package application.control;
 
-import application.view.ChoixDonneesAnterieuresController;
+import java.time.LocalDate;
+import java.util.List;
+
 import application.view.ChoixTypeDonneesAnterieuresController;
 import application.view.DonneesActuellesController;
-import application.view.DonneesAnterieuresMultiplesController;
-import application.view.DonneesAnterieuresUniquesController;
+import application.view.DonneesAnterieuresController;
 import application.view.MenuController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +16,6 @@ import javafx.stage.Stage;
 public class IoTMainFrame extends Application {
 
 	private Stage stage;
-	private String typeDonnee = "";
 
 	/**
 	 * Méthode de démarrage (JavaFX).
@@ -35,30 +35,6 @@ public class IoTMainFrame extends Application {
 			this.stage.setTitle("Fenêtre Principale");
 
 			MenuController viewController = loader.getController();
-			viewController.initContext(this.stage);
-
-			viewController.displayDialog();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.exit(-1);
-		}
-	}
-
-	public void changementAnterieur(Stage primaryStage) {
-		this.stage = primaryStage;
-
-		try {
-			// Chargement du source fxml
-			FXMLLoader loader = new FXMLLoader(ChoixDonneesAnterieuresController.class.getResource("choixDonneesAnterieures.fxml"));
-			BorderPane root = loader.load();
-
-			Scene scene = new Scene(root);
-
-			this.stage.setScene(scene);
-			this.stage.setTitle("Données anciennes");
-
-			ChoixDonneesAnterieuresController viewController = loader.getController();
 			viewController.initContext(this.stage);
 
 			viewController.displayDialog();
@@ -94,12 +70,12 @@ public class IoTMainFrame extends Application {
 		}
 	}
 
-	public void AnterieurDonneeUnique(Stage primaryStage, String choix) {
+	public void AnterieurDonneeUnique(Stage primaryStage, List<String> choix, LocalDate dateDebut, LocalDate dateFin) {
 		this.stage = primaryStage;
 
 		try {
 			// Chargement du source fxml
-			FXMLLoader loader = new FXMLLoader(DonneesAnterieuresUniquesController.class.getResource("affichageDonneesSeules.fxml"));
+			FXMLLoader loader = new FXMLLoader(DonneesAnterieuresController.class.getResource("affichageDonneesAnterieures.fxml"));
 			BorderPane root = loader.load();
 
 			Scene scene = new Scene(root);
@@ -107,9 +83,11 @@ public class IoTMainFrame extends Application {
 			this.stage.setScene(scene);
 			this.stage.setTitle("Données anciennes");
 
-			DonneesAnterieuresUniquesController viewController = loader.getController();
+			DonneesAnterieuresController viewController = loader.getController();
 			viewController.setMain(this);
-			viewController.setDonnee(choix);
+			viewController.setDonnees(choix);
+			viewController.setDateDebut(dateDebut);
+			viewController.setDateFin(dateFin);
 			viewController.initContext(this.stage);
 
 			viewController.displayDialog();
@@ -120,32 +98,7 @@ public class IoTMainFrame extends Application {
 		}
 	}
 
-	public void AnterieurDonneesMultiples(Stage primaryStage) {
-		this.stage = primaryStage;
-
-		try {
-			// Chargement du source fxml
-			FXMLLoader loader = new FXMLLoader(DonneesAnterieuresMultiplesController.class.getResource("affichageDonneesMultiples.fxml"));
-			BorderPane root = loader.load();
-
-			Scene scene = new Scene(root);
-
-			this.stage.setScene(scene);
-			this.stage.setTitle("Données anciennes");
-
-			DonneesAnterieuresMultiplesController viewController = loader.getController();
-			viewController.setMain(this);
-			viewController.initContext(this.stage);
-
-			viewController.displayDialog();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.exit(-1);
-		}
-	}
-
-	public void ChoixTypeDonneesAnterieures(Stage primaryStage) {
+	public void choixTypeDonneesAnterieures(Stage primaryStage) {
 		this.stage = primaryStage;
 
 		try {
@@ -168,10 +121,6 @@ public class IoTMainFrame extends Application {
 			e.printStackTrace();
 			System.exit(-1);
 		}
-	}
-
-	public String getDonnee(){
-		return typeDonnee;
 	}
 
 	/**

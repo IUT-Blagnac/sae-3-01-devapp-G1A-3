@@ -123,7 +123,7 @@ public class DonneesActuellesController {
 
     @FXML
     private void ecranAnterieur(){
-        main.changementAnterieur(containingStage);
+        main.choixTypeDonneesAnterieures(containingStage);
     }
 
     @FXML

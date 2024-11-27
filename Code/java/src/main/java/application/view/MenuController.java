@@ -27,7 +27,12 @@ public class MenuController {
 
     @FXML
     private void ecranAnterieur(){
-        main.changementAnterieur(containingStage);
+        main.choixTypeDonneesAnterieures(containingStage);
+    }
+
+    @FXML
+    private void changerConfig(){
+        
     }
 
     @FXML
