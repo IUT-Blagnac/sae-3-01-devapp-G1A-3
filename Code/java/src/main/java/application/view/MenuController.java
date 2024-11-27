@@ -2,6 +2,7 @@ package application.view;
 
 import application.control.IoTMainFrame;
 import javafx.fxml.FXML;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class MenuController {
@@ -15,6 +16,7 @@ public class MenuController {
 	}
 
     public void displayDialog(){
+        this.containingStage.getIcons().add(new Image(this.getClass().getResourceAsStream("app_icon.jpg")));
         this.containingStage.show();
     }
 
