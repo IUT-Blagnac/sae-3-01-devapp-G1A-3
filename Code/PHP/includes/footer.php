@@ -48,7 +48,7 @@
                         <p>Rester à l'affut sur les dernières nouvelles de SweetShops !</p>
                         <div class="d-flex flex-column flex-sm-row w-100 gap-2">
                             <label for="newsletter1" class="visually-hidden">Adresse mail</label>
-                            <input id="newsletter1" type="text" class="form-control" placeholder="Adresse mail">
+                            <input id="newsletter1" type="email" class="form-control" placeholder="Adresse mail">
                             <button class="btn btn-primary" type="button">S'abonner</button>
                         </div>
                     </form>

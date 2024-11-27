@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-lg" style="background-color: #ffe4e1;">
   <div class="container">
     <!-- Logo -->
-    <a class="navbar-brand" href="#">
-      <img src="../images/logo/logo.png" alt="Sweet Shops Logo" height="70" width="100" style="border-radius: 50%;">
+    <a class="navbar-brand" href="">
+      <img src="./images/logo/logo.png" alt="Sweet Shops Logo" height="70" width="100" style="border-radius: 50%;">
     </a>
 
     <!-- Bouton mobile pour le menu -->
@@ -30,7 +30,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link fw-bold text-danger" href="#">AIDE</a>
+          <a class="nav-link fw-bold text-danger" href="FAQ.php">AIDE</a>
         </li>
         <li class="nav-item">
           <a class="nav-link fw-bold text-danger" href="#">CONTACT</a>

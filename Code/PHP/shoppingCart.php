@@ -9,6 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <link rel="website icon" type="png" href="./images/logo/logo.png">
     <link rel="stylesheet" href="./includes/style.css">
+    <title>Ma commande</title>
 </head>
 
 <body>
