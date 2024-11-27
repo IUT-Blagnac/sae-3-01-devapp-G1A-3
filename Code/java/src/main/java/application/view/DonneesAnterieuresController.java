@@ -276,7 +276,6 @@ public class DonneesAnterieuresController {
 
 
     private void supprData(List<String> choix, String nomFichier){
-        System.out.println(seriesMap);
         if (choix.contains("CO2")){
             graphCO2.getData().remove(seriesMap.get(nomFichier + "-CO2"));
             seriesMap.remove(nomFichier + "-CO2");
