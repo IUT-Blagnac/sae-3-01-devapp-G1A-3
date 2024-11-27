@@ -10,7 +10,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class IoTMainFrame extends Application {
@@ -84,6 +83,7 @@ public class IoTMainFrame extends Application {
 			this.stage.setTitle("Données actuelles");
 
 			DonneesActuellesController viewController = loader.getController();
+			viewController.setMain(this);
 			viewController.initContext(this.stage);
 
 			viewController.displayDialog();
@@ -108,8 +108,9 @@ public class IoTMainFrame extends Application {
 			this.stage.setTitle("Données anciennes");
 
 			DonneesAnterieuresUniquesController viewController = loader.getController();
+			viewController.setMain(this);
+			viewController.setDonnee(choix);
 			viewController.initContext(this.stage);
-			typeDonnee = choix;
 
 			viewController.displayDialog();
 
@@ -133,6 +134,7 @@ public class IoTMainFrame extends Application {
 			this.stage.setTitle("Données anciennes");
 
 			DonneesAnterieuresMultiplesController viewController = loader.getController();
+			viewController.setMain(this);
 			viewController.initContext(this.stage);
 
 			viewController.displayDialog();
@@ -157,6 +159,7 @@ public class IoTMainFrame extends Application {
 			this.stage.setTitle("Données anciennes");
 
 			ChoixTypeDonneesAnterieuresController viewController = loader.getController();
+			viewController.setMain(this);
 			viewController.initContext(this.stage);
 
 			viewController.displayDialog();
@@ -165,10 +168,6 @@ public class IoTMainFrame extends Application {
 			e.printStackTrace();
 			System.exit(-1);
 		}
-	}
-
-	public void setDonnee(String choix){
-		typeDonnee = choix;
 	}
 
 	public String getDonnee(){
