@@ -255,7 +255,7 @@ public class DonneesAnterieuresController {
         }
         if (choix.contains("Humidite")){
             listeData.clear();
-            listeVal = DataReader.getHumidites(listeFichiers);
+            listeVal = DataReader.getHumidities(listeFichiers);
 
             for (int i = 0; i < listeVal.size(); i ++){
                 float heure = Integer.parseInt(listeFichiers.get(i).getName().split("_")[1].split("-")[0]);
