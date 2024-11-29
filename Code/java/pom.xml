@@ -2,10 +2,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>sae-s2.01-2023</groupId>
-	<artifactId>DailyBank</artifactId>
+	<groupId>sae-s3.01-2024</groupId>
+	<artifactId>SweetShops</artifactId>
 	<version>1.0</version>
-	<name>DailyBank App V2</name>
+	<name>SweetShops APP IoT</name>
 
 	<properties>
 		<maven.compiler.source>17</maven.compiler.source>
