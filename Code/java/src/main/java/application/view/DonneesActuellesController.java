@@ -237,7 +237,8 @@ public class DonneesActuellesController {
 
     private float getCorrespondingData(String room, DATA toFetch) throws URISyntaxException, IOException, Exception {
         room=room.toUpperCase();
-        File folder = new File(Objects.requireNonNull(DonneesActuellesController.class.getClassLoader().getResource("application/AM107/"+room)).toURI());
+        File folder = new File(Objects.requireNonNull(DonneesActuellesController.class.getClassLoader().getResource("application/capteur/AM107/"+room)).toURI());
+        System.out.println(folder.getAbsolutePath());
         if(folder.exists()) {
             File[] allDatas = folder.listFiles();
             assert allDatas != null;
@@ -251,7 +252,6 @@ public class DonneesActuellesController {
                 case CO2 -> DataReader.getCo2(captorData);
                 case HUM -> DataReader.getHumidities(captorData);
                 case TEMP -> DataReader.getTemps(captorData);
-                default -> throw new Exception("Type de donnée inconnue");
             };
         }
         throw new Exception("Erreur de lecture de fichier");
@@ -267,7 +267,7 @@ public class DonneesActuellesController {
         @Override
         public void run() {
             Map<File, Integer> fileAmount = new HashMap<>();
-            File mainFolder = new File(Objects.requireNonNull(DonneesActuellesController.class.getClassLoader().getResource("application/AM107")).toString());
+            File mainFolder = new File(Objects.requireNonNull(DonneesActuellesController.class.getClassLoader().getResource("application/capteur/AM107")).toString());
             for(File folder : Objects.requireNonNull(mainFolder.listFiles())){
                 fileAmount.put(folder, Objects.requireNonNull(folder.listFiles()).length);
             }
