@@ -109,10 +109,10 @@
     padding-right: 10px;
   }
 
-  .dropdown-menu li:first-child a {
+  .dropdown-header {
   font-weight: bold;
   font-size: 1.2em;
   text-transform: uppercase;
-  color: #516beb;
+  /* color: #d0006f; à corriger */
 }
 </style>
