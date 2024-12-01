@@ -18,15 +18,15 @@
         <footer class="py-5">
             <div class="row">
                 <div class="col-6 col-md-2 mb-3">
-                    <h5>Support</h5>
+                    <h5 class="fw-bold text-danger">Support</h5>
                     <ul class="nav flex-column">
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQ</a></li>
+                        <li class="nav-item mb-2"><a href="FAQ.php" class="nav-link p-0 text-muted">FAQ</a></li>
                         <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Contact</a></li>
                         <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Signaler un problème</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-md-2 mb-3">
-                    <h5>À propos de nous</h5>
+                    <h5 class="fw-bold text-danger">À propos de nous</h5>
                     <ul class="nav flex-column">
                         <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Notre Histoire</a></li>
                         <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Nos magasins</a></li>
@@ -34,18 +34,18 @@
                     </ul>
                 </div>
                 <div class="col-6 col-md-2 mb-3">
-                    <h5>Site web</h5>
+                    <h5 class="fw-bold text-danger">Site web</h5>
                     <ul class="nav flex-column">
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Nos produits star</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Nos produits stars</a></li>
                         <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Catégories</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Liste de souhait</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Liste de souhaits</a></li>
                     </ul>
                 </div>
                 <!-- Section newletters qui à quoi en soit ? -->
                 <div class="col-md-5 offset-md-1 mb-3">
                     <form>
-                        <h5>Abonnez-vous à nos Newsletters</h5>
-                        <p>Rester à l'affut sur les dernières nouvelles de SweetShops !</p>
+                        <h5 class="fw-bold text-danger">Abonnez-vous à nos Newsletters</h5>
+                        <p>Restez à l'affût des dernières nouvelles de SweetShops !</p>
                         <div class="d-flex flex-column flex-sm-row w-100 gap-2">
                             <label for="newsletter1" class="visually-hidden">Adresse mail</label>
                             <input id="newsletter1" type="email" class="form-control" placeholder="Adresse mail">

@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="website icon" type="png" href="./images/logo/logo.png">
     <link rel="stylesheet" href="style.css">
-    <title>Accueil</title>
+    <title>Accueil | SweetShops</title>
 </head>
 
 <body style="background-color: #ffe4e1;">
@@ -19,16 +19,16 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1>Quand la qualité et la quantité se rencontrent enfin</h1>
+                <h1 class="fw-bold text-danger">Quand la qualité et la quantité se rencontrent enfin</h1>
             </div>
             <div class="col">
-                <img src="./images/test.jpg" alt="" style="width:60vh; height:50vh;">
+                <img src="http://placehold.it/380?text=1" alt="Test" style="width:60vh; height:50vh;">
             </div>
         </div>
     </div>
-
+    <!-- Produit stars -->
     <div class="container my-5">
-        <h1>Nos produis star</h1>
+        <h1 class="fw-bold text-danger">Nos produits stars</h1>
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -48,7 +48,7 @@
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Précedent</span>
+                <span class="visually-hidden">Précédent</span>
             </button>
             <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
@@ -58,7 +58,7 @@
     </div>
     <!-- Carrousel des catégories -->
     <div class="container my-5">
-        <h1>Catégories</h1>
+        <h1 class="fw-bold text-danger">Catégories</h1>
         <div id="categoriesCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -121,176 +121,10 @@
         </div>
     </div>
 
-    <!-- Liste de souhaits -->
-    <div class="container my-5">
-        <h1>Liste de souhaits</h1>
-        <div id="wishlistCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="card">
-                                <a href=""><img src="http://placehold.it/380?text=1" class="card-img-top" alt="Catégorie 1"></a>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card">
-                                <a href=""><img src="http://placehold.it/380?text=2" class="card-img-top" alt="Catégorie 2"></a>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card">
-                                <a href=""><img src="http://placehold.it/380?text=3" class="card-img-top" alt="Catégorie 3"></a>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card">
-                                <a href=""><img src="http://placehold.it/380?text=4" class="card-img-top" alt="Catégorie 4"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="card">
-                                <a href=""><img src="http://placehold.it/380?text=5" class="card-img-top" alt="Catégorie 5"></a>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card">
-                                <a href=""><img src="http://placehold.it/380?text=6" class="card-img-top" alt="Catégorie 6"></a>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card">
-                                <a href=""><img src="http://placehold.it/380?text=7" class="card-img-top" alt="Catégorie 7"></a>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card">
-                                <a href=""><img src="http://placehold.it/380?text=8" class="card-img-top" alt="Catégorie 8"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#wishlistCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#wishlistCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-    </div>
-    <!-- Avis recents -->
-    <div class="container my-5">
-        <h1>Avis Récents</h1>
-        <div id="opinionsCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="card">
-                                <h5 class="card-header">Pseudo</h5>
-                                <div class="card-body">
-                                    <div data-coreui-read-only="true" data-coreui-toggle="rating" data-coreui-value="3"></div>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card">
-                                <h5 class="card-header">Pseudo</h5>
-                                <div class="card-body">
-                                    <div data-coreui-read-only="true" data-coreui-toggle="rating" data-coreui-value="3"></div>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card">
-                                <h5 class="card-header">Pseudo</h5>
-                                <div class="card-body">
-                                    <div data-coreui-read-only="true" data-coreui-toggle="rating" data-coreui-value="3"></div>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card">
-                                <h5 class="card-header">Pseudo</h5>
-                                <div class="card-body">
-                                    <div data-coreui-read-only="true" data-coreui-toggle="rating" data-coreui-value="3"></div>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="card">
-                                <h5 class="card-header">Pseudo</h5>
-                                <div class="card-body">
-                                    <div data-coreui-read-only="true" data-coreui-toggle="rating" data-coreui-value="3"></div>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card">
-                                <h5 class="card-header">Pseudo</h5>
-                                <div class="card-body">
-                                    <div data-coreui-read-only="true" data-coreui-toggle="rating" data-coreui-value="3"></div>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card">
-                                <h5 class="card-header">Pseudo</h5>
-                                <div class="card-body">
-                                    <div data-coreui-read-only="true" data-coreui-toggle="rating" data-coreui-value="3"></div>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card">
-                                <h5 class="card-header">Pseudo</h5>
-                                <div class="card-body">
-                                    <div data-coreui-read-only="true" data-coreui-toggle="rating" data-coreui-value="3"></div>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#opinionsCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#opinionsCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-    </div>
 
+    <?php include './includes/WishList.php' ?>
 
+    <?php include './includes/AvisRecent.php' ?>
 
     <?php include './includes/footer.php' ?>
     <script>

@@ -9,20 +9,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
     <link rel=" website icon" type="png" href="./images/logo/logo.png">
     <link rel="stylesheet" href="style.css">
-    <title>FAQ</title>
+    <title>FAQ | SweetShops</title>
 </head>
 
 <body>
     <?php include './includes/header.php' ?>
     <div class="question d-flex-fluid my-5">
         <center>
-            <h2>
-                Vous avez des questions?
+            <h2 class="fw-bold text-danger">
+                Vous avez des questions ?
             </h2>
-            <h2>
+            <h2 class="fw-bold text-danger">
                 On a toutes les réponses à vos questions !
             </h2>
         </center>
@@ -31,11 +30,11 @@
             <figure>
                 <blockquote class="blockquote mx-3 my-3 px-3">
                     <p>
-                        Vous trouverez dans cette section toutes les questions fréquentes que nous recevons de nos clients. Si cela vous fait plaisir, vous pouvez aussi consulter nos réseaux sociaux. Si même avec tout cela vous n'avez pas eu de réponses à vos questions, vous pouvez nous contacter sur notre page de contact.
+                        Vous trouverez dans cette section toutes les questions fréquentes que nous recevons de nos clients. Si cela vous fait plaisir, vous pouvez aussi consulter nos réseaux sociaux.<br>Si même avec tout cela vous n'avez pas eu de réponses à vos questions, vous pouvez nous contacter sur notre page de contact.
                     </p>
                 </blockquote>
                 <figcaption class="blockquote-footer text-danger">
-                    L'équipe SweetShop
+                    L'équipe SweetShops
                 </figcaption>
             </figure>
         </center>
