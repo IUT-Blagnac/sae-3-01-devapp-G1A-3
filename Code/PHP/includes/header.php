@@ -75,7 +75,7 @@
   </div>
 </nav>
 
-<!-- CSS personnalisé -->
+<!-- CSS personnalisé pour le menu-->
 <style>
   /* Afficher le menu dropdown au survol */
   .nav-item.dropdown:hover .dropdown-menu {
@@ -108,4 +108,11 @@
     padding-left: 10px;
     padding-right: 10px;
   }
+
+  .dropdown-menu li:first-child a {
+  font-weight: bold;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  color: #516beb;
+}
 </style>

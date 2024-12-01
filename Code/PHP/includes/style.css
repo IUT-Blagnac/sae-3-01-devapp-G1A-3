@@ -8,7 +8,7 @@ body {
   font-family: 'Arial', sans-serif;
   line-height: 1.6;
 }
-
+/* Footer */
 .footer-container {
     position: fixed;
     bottom: 0;
@@ -101,7 +101,7 @@ h3.text-uppercase, h4.text-uppercase {
   display: inline-block;
   padding-bottom: 5px;
 }
-
+/* Barre de progression dans la partie commande */
 .progressbar {
   display: flex;
   justify-content: space-between;
@@ -195,7 +195,7 @@ h3.text-uppercase, h4.text-uppercase {
 }
 
 
-
+/* Pour tout les carousel */
 @media (max-width: 768px) {
     .carousel-inner .carousel-item > div {
       display: none;
