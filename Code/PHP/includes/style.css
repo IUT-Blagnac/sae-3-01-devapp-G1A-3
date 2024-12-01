@@ -219,7 +219,7 @@ h3.text-uppercase, h4.text-uppercase {
 }
 
 .profile-name h4 {
-  color: #343a40;
+  color: #34383d;
   font-weight: bold;
 }
 
@@ -229,11 +229,11 @@ h3.text-uppercase, h4.text-uppercase {
 
 .profile-title h5 {
   font-size: 18px;
-  color: #007bff;
+  color: black;
   font-weight: bold;
 }
 
-.profile-title {
+.profile-title{
   color: #007bff;
   text-decoration: none;
   font-size: 14px;
