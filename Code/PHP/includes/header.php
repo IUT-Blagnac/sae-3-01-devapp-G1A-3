@@ -60,7 +60,7 @@
           <a class="nav-link fw-bold text-danger" href="shoppingCart.php">MON PANIER</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link fw-bold text-danger" href="shoppingCart.php">PROFIL</a>
+          <a class="nav-link fw-bold text-danger" href="profile.php">PROFIL</a>
         </li>
       </ul>
 

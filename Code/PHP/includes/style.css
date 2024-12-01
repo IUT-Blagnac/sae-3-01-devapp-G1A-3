@@ -101,6 +101,8 @@ h3.text-uppercase, h4.text-uppercase {
   display: inline-block;
   padding-bottom: 5px;
 }
+
+
 /* Barre de progression dans la partie commande */
 .progressbar {
   display: flex;
@@ -194,6 +196,148 @@ h3.text-uppercase, h4.text-uppercase {
   margin-right: 15px;
 }
 
+/* Profil */
+.profile-wrapper {
+  background-color: #d3a8c6;
+  border-radius: 15px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.profile-cover-photo {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.profile-photo img {
+  border: 4px solid #ffffff;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+}
+
+.profile-name h4 {
+  color: #343a40;
+  font-weight: bold;
+}
+
+.profile-name p {
+  color: #6c757d;
+}
+
+.profile-title h5 {
+  font-size: 18px;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.profile-title {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 14px;
+  
+}
+
+.profile-link{
+  appearance: button;
+  background-color: #000;
+  background-image: none;
+  border: 1px solid #000;
+  border-radius: 4px;
+  box-shadow: #fff 4px 4px 0 0,#000 4px 4px 0 1px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: ITCAvantGardeStd-Bk,Arial,sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 0 5px 10px 0;
+  overflow: visible;
+  padding: 12px 40px;
+  text-align: center;
+  text-transform: none;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.profile-link:focus {
+  text-decoration: none;
+}
+
+.profile-link:hover {
+  text-decoration: none;
+}
+
+.profile-link:active {
+  box-shadow: rgba(0, 0, 0, .125) 0 3px 5px inset;
+  outline: 0;
+}
+
+.profile-link:not([disabled]):active {
+  box-shadow: #fff 2px 2px 0 0, #000 2px 2px 0 1px;
+  transform: translate(2px, 2px);
+}
+
+.single-details-item {
+  margin-bottom: 15px;
+}
+
+.single-details-item .details-title h6 {
+  color: #495057;
+  font-weight: bold;
+}
+
+.single-details-item .details-content p {
+  margin: 0;
+  color: #6c757d;
+}
+
+.profile-card-info {
+  margin-top: 20px;
+}
+
+.single-card-info {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.single-card-info img {
+  max-width: 50px;
+}
+
+.single-card-info .card-name {
+  font-size: 16px;
+  color: #495057;
+  font-weight: bold;
+}
+
+.single-card-info .card-number {
+  font-size: 14px;
+  color: #6c757d;
+}
+
+.btn-custom {
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.btn-custom:hover {
+  background-color: #0056b3;
+  text-decoration: none;
+}
 
 /* Pour tout les carousel */
 @media (max-width: 768px) {
@@ -235,5 +379,8 @@ h3.text-uppercase, h4.text-uppercase {
     .carousel-inner .carousel-item-prev,
     .carousel-item-prev:not(.carousel-item-end) {
       transform: translateX(-25%) !important;
+    }
+    .profile-link {
+      padding: 12px 50px;
     }
   }
