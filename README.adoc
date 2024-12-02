@@ -136,14 +136,22 @@ Vous trouverez les indicateurs de qualité (dette technique) ici.
 | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Ordre%20du%20jour/OrdreDuJour3.pdf[Réunion avec SweetShops (Semaine 45)] | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/CompteRenduReunionAvecClient/CompteRendu3.pdf[Réunion avec SweetShops (Semaine 45)]
 | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Ordre%20du%20jour/OrdreDuJour4.pdf[Semaine 46] | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Compte%20Rendu/Compte%20Rendu%204.pdf[Semaine 46]
 | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Ordre%20du%20jour/OrdreDuJour5.pdf[Semaine 48] | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Compte%20Rendu/CompteRendu5.pdf[Semaine 48]
-|  |
+| https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Ordre%20du%20jour/OrdreDuJour6.pdf[Semaine 49] |
 |====
 
-==== semaine 48 retour com par EP
-ODJ : manque rôle qui anime, qui prend des notes ? Rubriques succintes, point client ? Qui est responsable de chaque rubrique ? Manque intitulé de la réunion. CR : trop succinct, chaque point doit être rédigé, manque analyse des difficultés:réussites. Manque retour réunion client, manque prochain responsable de l'organisation de la réunion semaine 49.
-note : 1,2/3
-
 == Retours et évaluations
+
+[cols="5*", options="header"]
+|====
+| Semaine |Professeur| Nom | Retour | Note
+| 48| EP  | retour Com  | ODJ : manque rôle qui anime, qui prend des notes ? Rubriques succintes, point client ? Qui est responsable de chaque rubrique ? Manque intitulé de la réunion. CR : trop succinct, chaque point doit être rédigé, manque analyse des difficultés:réussites. Manque retour réunion client, manque prochain responsable de l'organisation de la réunion semaine 49. | 1,2/3
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+|====
+
+
 
 ifdef::env-github[]
 image:https://docs.google.com/spreadsheets/d/e/2PACX-1vTc3HJJ9iSI4aa2I9a567wX1AUEmgGrQsPl7tHGSAJ_Z-lzWXwYhlhcVIhh5vCJxoxHXYKjSLetP6NS/pubchart?oid=1850914734&amp;format=image[link=https://docs.google.com/spreadsheets/d/e/2PACX-1vTc3HJJ9iSI4aa2I9a567wX1AUEmgGrQsPl7tHGSAJ_Z-lzWXwYhlhcVIhh5vCJxoxHXYKjSLetP6NS/pubchart?oid=1850914734&amp;format=image]
@@ -155,12 +163,4 @@ ifndef::env-github[]
 ++++
 endif::[]
 
-[cols="2*", options="header"]
-|====
-| Nom du retour  | Retour
-|  | 
-|  | 
-|  | 
-|  | 
-|  | 
-|====
+
