@@ -197,6 +197,13 @@ h3.text-uppercase, h4.text-uppercase {
 }
 
 /* Profil */
+.profile-body{
+  padding: 20px;
+  background-color: #f1b0c6;
+  border-radius: 2dvh;
+  box-shadow: 10px 5px 5px rgb(54, 54, 54);
+  /* opacity: 0.6; */
+}
 .profile-wrapper {
   background-color: #d3a8c6;
   border-radius: 15px;
@@ -234,7 +241,7 @@ h3.text-uppercase, h4.text-uppercase {
 }
 
 .profile-title{
-  color: #007bff;
+  color: #e884a7;
   text-decoration: none;
   font-size: 14px;
   
