@@ -139,6 +139,9 @@ Vous trouverez les indicateurs de qualité (dette technique) ici.
 |  |
 |====
 
+==== semaine 48 retour com par EP
+ODJ : manque rôle qui anime, qui prend des notes ? Rubriques succintes, point client ? Qui est responsable de chaque rubrique ? Manque intitulé de la réunion. CR : trop succinct, chaque point doit être rédigé, manque analyse des difficultés:réussites. Manque retour réunion client, manque prochain responsable de l'organisation de la réunion semaine 49.
+note : 1,2/3
 
 == Retours et évaluations
 
