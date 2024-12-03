@@ -1,5 +1,7 @@
 package application.tools;
 
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -63,6 +65,25 @@ public class DataReader {
                 try {
                     dictToReturn.put(splittedValues[i], Float.parseFloat(splittedValues[i + 1]));
                 } catch (NumberFormatException ignored) {}
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return dictToReturn;
+    }
+
+    public static Map<String, Float> getSolarDict (File datasToFetch){
+        Map<String, Float> dictToReturn = new HashMap<>();
+        try {
+            JSONObject datas = new JSONObject(Files.readString(datasToFetch.toPath()));
+            for (String firstKey : datas.keySet()) {
+                Object firstValue = datas.get(firstKey);
+                if(firstValue instanceof JSONObject currentData){
+                    for(String secondKey : currentData.keySet()){
+                        Object secondValue = currentData.get(secondKey);
+                        dictToReturn.put(firstKey+"."+secondKey, Float.parseFloat(secondValue.toString()));
+                    }
+                }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

@@ -50,7 +50,6 @@ public class DonneesActuellesController {
 
     public class JSBridge {
         public void handleClick(String room) {
-            System.out.println("Room clicked: " + room);
             try {
                 displayedListUpdate(room);
             } catch (Exception e) {
@@ -61,6 +60,7 @@ public class DonneesActuellesController {
 
     private Node webviewerMemory;
     private Node displayedDatasMemory;
+    private TitledPane solarEdgeDataMemory;
 
     private Stage containingStage;
     @FXML
@@ -86,16 +86,18 @@ public class DonneesActuellesController {
     @FXML
     private void changeInterface()throws Exception {
         if(am107.isSelected()){
-            mainContainer.setCenter(displayedDatas);
-            Node temp = mainContainer.getRight();
-            mainContainer.setRight(displayedDatasMemory);
-            displayedDatasMemory=temp;
+            if(mainContainer.getCenter() instanceof TitledPane) {
+                solarEdgeDataMemory = (TitledPane) mainContainer.getCenter();
+                mainContainer.setCenter(webviewerMemory);
+                mainContainer.setRight(displayedDatasMemory);
+            }
         }else if(solaredge.isSelected()){
-            webviewerMemory=mainContainer.getCenter();
-            Node temp = mainContainer.getRight();
-            mainContainer.setCenter(displayedDatasMemory);
-            displayedDatasMemory=temp;
-            mainContainer.setRight(null);
+            if(mainContainer.getCenter() instanceof ScrollPane) {
+                webviewerMemory = mainContainer.getCenter();
+                displayedDatasMemory = mainContainer.getRight();
+                mainContainer.setCenter(solarEdgeDataMemory);
+                mainContainer.setRight(null);
+            }
         }else{
             throw new Exception("Une a été rencontrée lors de la séléction des capteurs.");
         }
@@ -108,7 +110,7 @@ public class DonneesActuellesController {
 
     public void initContext(Stage _containingStage) {
 		this.containingStage = _containingStage;
-        this.displayedDatasMemory = setUpSolaredge();
+        setUpSolaredge();
         this.initWeb();
         controlUpdateThread checkingRunnable = new controlUpdateThread();
         Thread checkingThread = new Thread(checkingRunnable);
@@ -120,37 +122,33 @@ public class DonneesActuellesController {
         newWarning("B113");
 	}
 
-    private Node setUpSolaredge(){
-        TitledPane solaredge = new TitledPane();
-        solaredge.setText("Solaredge");
-        solaredge.setCollapsible(false);
-        solaredge.setExpanded(true);
-        solaredge.setId("solaredge");
+    private void setUpSolaredge(){
+        solarEdgeDataMemory = new TitledPane();
+        solarEdgeDataMemory.setText("Solaredge");
+        solarEdgeDataMemory.setCollapsible(false);
+        solarEdgeDataMemory.setExpanded(true);
+        solarEdgeDataMemory.setId("solaredge");
         VBox container = new VBox();
         container.setFillWidth(true);
-        solaredge.setContent(container);
+        solarEdgeDataMemory.setContent(container);
         File solarEdgefolder = null;
         try {
             solarEdgefolder = new File(Objects.requireNonNull(DonneesActuellesController.class.getClassLoader().getResource("application/capteur/solaredge")).toURI());
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
-        System.out.println(solarEdgefolder.getAbsolutePath());
-        System.out.println(solarEdgefolder.exists());
         File lastestSolarEdge = Objects.requireNonNull(solarEdgefolder.listFiles())[0];
         for(File current : Objects.requireNonNull(solarEdgefolder.listFiles())){
             if (lastestSolarEdge.lastModified()> current.lastModified()) lastestSolarEdge = current;
         }
-        for(Map.Entry<String, Float> entry : DataReader.getDict(lastestSolarEdge).entrySet()){
-            Text tempText = new Text(entry.getKey());
-            tempText.setId(entry.getKey());
-            TextField tempField = new TextField(String.valueOf(entry.getValue()));
-            tempField.setId(entry.getValue().toString());
-            tempField.setEditable(false);
-            container.getChildren().add(tempText);
-            container.getChildren().add(tempField);
-        }
-        return solaredge;
+        Map<String, Float> solarDatas = DataReader.getSolarDict(lastestSolarEdge);
+        Text tempText = new Text("Puissance actuelle");
+        tempText.setId("power");
+        TextField tempField = new TextField(String.valueOf(solarDatas.get("currentPower.power"))+" Watts");
+        tempField.setId(solarDatas.get("currentPower.power").toString());
+        tempField.setEditable(false);
+        container.getChildren().add(tempText);
+        container.getChildren().add(tempField);
     }
     private void initWeb(){
         String pathSvg = Objects.requireNonNull(DonneesActuellesController.class.getClassLoader().getResource("application/svg/demoSVG.html")).toString();
@@ -240,7 +238,6 @@ public class DonneesActuellesController {
 
 
     public void displayedListUpdate(String room) throws Exception {
-        System.out.println("Debug : "+room);
         boolean deleted = false;
         Node toDelete = null;
         for(Node n : displayedDatas.getChildren()){
@@ -383,7 +380,14 @@ public class DonneesActuellesController {
         @Override
         public void run() {
             Map<File, Integer> fileAmount = new HashMap<>();
-            File mainFolder = new File(Objects.requireNonNull(DonneesActuellesController.class.getClassLoader().getResource("application/capteur/AM107")).toString());
+            File mainFolder, solaredgeFile;
+            try {
+                solaredgeFile = new File(DonneesActuellesController.class.getClassLoader().getResource("application/capteur/solaredge").toURI());
+                mainFolder = new File(Objects.requireNonNull(DonneesActuellesController.class.getClassLoader().getResource("application/capteur/AM107")).toURI());
+            } catch (URISyntaxException e) {
+                throw new RuntimeException(e);
+            }
+            int numberOfSolarDatas= Objects.requireNonNull(solaredgeFile.listFiles()).length;
             for(File folder : Objects.requireNonNull(mainFolder.listFiles())){
                 fileAmount.put(folder, Objects.requireNonNull(folder.listFiles()).length);
             }
@@ -396,6 +400,9 @@ public class DonneesActuellesController {
                             throw new RuntimeException(e);
                         }
                     }
+                }
+                if(numberOfSolarDatas < Objects.requireNonNull(solaredgeFile.listFiles()).length){
+                    setUpSolaredge();
                 }
             }
         }
