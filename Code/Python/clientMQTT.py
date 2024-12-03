@@ -88,7 +88,9 @@ def on_message(client, userdata, msg):
                     donnees = data[0][info]
                     seuil_alert = SEUIL_ALERT[i]
                     if(donnees>=int(seuil_alert)):
+                        message_alerte = "{"+f"'salle': {salle}, 'seuil_{info}': {seuil_alert}, '{info}': {donnees}"+"}"
                         print("ALERTE (Seuil "+info+" dépassé : "+seuil_alert+") en "+salle+" : "+f"{donnees}")
+                        enregistrer_alerte(message_alerte,topic)
                     message = message + f"'{info}': {donnees}"
                     i=i+1
                     if(i<=nb_info-1):
@@ -112,6 +114,18 @@ def enregistrer_donnees(data,topic):
             os.mkdir(BASE_PATH+flux_mqtt+"/"+salle)
         with open(BASE_PATH+flux_mqtt+"/"+salle+"/"+date, "a") as f:
             f.write(data + "\n")
+
+def enregistrer_alerte(data,topic):
+    date=datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    parties = topic.split("/")
+    flux_mqtt = parties[0]
+    if not exists(BASE_PATH+"alerte"):
+        os.makedirs(BASE_PATH+"alerte")
+    salle=parties[2]
+    if not exists(BASE_PATH+"alerte/"+salle):
+        os.mkdir(BASE_PATH+"alerte/"+salle)
+    with open(BASE_PATH+"alerte/"+salle+"/"+date, "a") as f:
+        f.write(data + "\n") 
 
 def gestion_periode(date_sans_seuil):
     tab_str=date_sans_seuil.split('_')[0].split('-')+date_sans_seuil.split('_')[1].split('-')
