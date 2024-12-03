@@ -4,9 +4,9 @@ import application.control.IoTMainFrame;
 import application.tools.DataReader;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TitledPane;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
@@ -59,9 +59,18 @@ public class DonneesActuellesController {
         }
     }
 
+    private Node webviewerMemory;
+    private Node displayedDatasMemory;
+
     private Stage containingStage;
     @FXML
+    private BorderPane mainContainer;
+    @FXML
     private VBox displayedDatas;
+    @FXML
+    private VBox alerts;
+    @FXML
+    private VBox warnings;
     @FXML
     private CheckBox temp;
     @FXML
@@ -70,6 +79,28 @@ public class DonneesActuellesController {
     private CheckBox humidity;
 
     @FXML
+    private RadioMenuItem am107;
+    @FXML
+    private RadioMenuItem solaredge;
+
+    @FXML
+    private void changeInterface()throws Exception {
+        if(am107.isSelected()){
+            mainContainer.setCenter(displayedDatas);
+            Node temp = mainContainer.getRight();
+            mainContainer.setRight(displayedDatasMemory);
+            displayedDatasMemory=temp;
+        }else if(solaredge.isSelected()){
+            webviewerMemory=mainContainer.getCenter();
+            Node temp = mainContainer.getRight();
+            mainContainer.setCenter(displayedDatasMemory);
+            displayedDatasMemory=temp;
+            mainContainer.setRight(null);
+        }else{
+            throw new Exception("Une a été rencontrée lors de la séléction des capteurs.");
+        }
+    }
+    @FXML
     private WebView iutschematics;
     private WebEngine webEngine;
     private final JSBridge jsBridge = new JSBridge();
@@ -77,12 +108,50 @@ public class DonneesActuellesController {
 
     public void initContext(Stage _containingStage) {
 		this.containingStage = _containingStage;
+        this.displayedDatasMemory = setUpSolaredge();
         this.initWeb();
         controlUpdateThread checkingRunnable = new controlUpdateThread();
         Thread checkingThread = new Thread(checkingRunnable);
         checkingThread.start();
+        /*
+         Test pour les notifications
+         */
+        newWarning("b113");
+        newWarning("B113");
 	}
 
+    private Node setUpSolaredge(){
+        TitledPane solaredge = new TitledPane();
+        solaredge.setText("Solaredge");
+        solaredge.setCollapsible(false);
+        solaredge.setExpanded(true);
+        solaredge.setId("solaredge");
+        VBox container = new VBox();
+        container.setFillWidth(true);
+        solaredge.setContent(container);
+        File solarEdgefolder = null;
+        try {
+            solarEdgefolder = new File(Objects.requireNonNull(DonneesActuellesController.class.getClassLoader().getResource("application/capteur/solaredge")).toURI());
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(solarEdgefolder.getAbsolutePath());
+        System.out.println(solarEdgefolder.exists());
+        File lastestSolarEdge = Objects.requireNonNull(solarEdgefolder.listFiles())[0];
+        for(File current : Objects.requireNonNull(solarEdgefolder.listFiles())){
+            if (lastestSolarEdge.lastModified()> current.lastModified()) lastestSolarEdge = current;
+        }
+        for(Map.Entry<String, Float> entry : DataReader.getDict(lastestSolarEdge).entrySet()){
+            Text tempText = new Text(entry.getKey());
+            tempText.setId(entry.getKey());
+            TextField tempField = new TextField(String.valueOf(entry.getValue()));
+            tempField.setId(entry.getValue().toString());
+            tempField.setEditable(false);
+            container.getChildren().add(tempText);
+            container.getChildren().add(tempField);
+        }
+        return solaredge;
+    }
     private void initWeb(){
         String pathSvg = Objects.requireNonNull(DonneesActuellesController.class.getClassLoader().getResource("application/svg/demoSVG.html")).toString();
 
@@ -171,11 +240,12 @@ public class DonneesActuellesController {
 
 
     public void displayedListUpdate(String room) throws Exception {
+        System.out.println("Debug : "+room);
         boolean deleted = false;
         Node toDelete = null;
         for(Node n : displayedDatas.getChildren()){
             if(n instanceof TitledPane checking){
-                if (checking.getText().equals(room)){
+                if (checking.getText().equals(room.toUpperCase())){
                     toDelete = n;
                     deleted = true;
                 }
@@ -193,7 +263,7 @@ public class DonneesActuellesController {
 
     private void updateRoom(String room) throws Exception {
         TitledPane roomdatas = new TitledPane();
-        roomdatas.setText(room);
+        roomdatas.setText(room.toUpperCase());
         VBox datasStorage = new VBox();
         datasStorage.setSpacing(5);
         Text tempTitle = new Text(TEXTVALUES.TEMPTITLE.getDisplayText());
@@ -238,7 +308,6 @@ public class DonneesActuellesController {
     private float getCorrespondingData(String room, DATA toFetch) throws URISyntaxException, IOException, Exception {
         room=room.toUpperCase();
         File folder = new File(Objects.requireNonNull(DonneesActuellesController.class.getClassLoader().getResource("application/capteur/AM107/"+room)).toURI());
-        System.out.println(folder.getAbsolutePath());
         if(folder.exists()) {
             File[] allDatas = folder.listFiles();
             assert allDatas != null;
@@ -255,6 +324,53 @@ public class DonneesActuellesController {
             };
         }
         throw new Exception("Erreur de lecture de fichier");
+    }
+
+    private void newWarning(String room){
+        boolean exists = false;
+        for(Node existingrooms : warnings.getChildren()){
+            if (existingrooms instanceof Button){
+                if (existingrooms.getId().equals(room.toLowerCase())) {
+                    exists = true;
+                }
+            }
+        }
+        if(!exists) {
+            Button warningRoom = notificationHandle(room);
+            this.warnings.getChildren().add(warningRoom);
+        }
+    }
+
+    private void newAlert(String room){
+        boolean exists = false;
+        for(Node existingrooms : alerts.getChildren()){
+            if (existingrooms instanceof Button){
+                if (existingrooms.getId().equals(room.toLowerCase())) {
+                    exists = true;
+                }
+            }
+        }
+        if(!exists) {
+            Button alertButton = notificationHandle(room);
+            this.alerts.getChildren().add(alertButton);
+        }
+    }
+
+    private Button notificationHandle(String room) {
+        Button newButton = new Button();
+        newButton.setText(room.toUpperCase());
+        newButton.setId(room.toLowerCase());
+        newButton.setMaxHeight(Double.MAX_VALUE);
+        newButton.setMaxWidth(Double.MAX_VALUE);
+        newButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+                    try {
+                        displayedListUpdate(room);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+        );
+        return newButton;
     }
 
     private class controlUpdateThread implements Runnable{

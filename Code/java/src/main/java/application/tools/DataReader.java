@@ -53,14 +53,16 @@ public class DataReader {
         return co2ToReturn;
     }
 
-    private static Map<String, Float> getDict(File datasToFetch){
+    public static Map<String, Float> getDict(File datasToFetch){
         Map<String, Float> dictToReturn = new HashMap<>();
         try {
             String data = Files.readString(datasToFetch.toPath());
             data = data.replace("{","").replace("}","").replace("'","");
             String[] splittedValues = data.split(", |: ");
-            for(int i = 0; i<splittedValues.length;i+=2){
-                dictToReturn.put(splittedValues[i], Float.parseFloat(splittedValues[i+1]));
+            for(int i = 0; i<splittedValues.length-1;i+=2){
+                try {
+                    dictToReturn.put(splittedValues[i], Float.parseFloat(splittedValues[i + 1]));
+                } catch (NumberFormatException ignored) {}
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
