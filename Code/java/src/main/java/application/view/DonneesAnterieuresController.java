@@ -320,6 +320,7 @@ public class DonneesAnterieuresController {
         }
         if (choix.contains("Humidite")){
             listeData.clear();
+          
             listeVal = DataReader.getHumidities(listeCapteurs);
 
             for (int i = 0; i < listeVal.size(); i ++){
