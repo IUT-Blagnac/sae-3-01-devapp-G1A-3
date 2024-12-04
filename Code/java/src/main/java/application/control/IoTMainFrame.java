@@ -38,12 +38,14 @@ public class IoTMainFrame extends Application {
 			MenuController viewController = loader.getController();
 			viewController.initContext(this.stage);
 
-			String cmd = "sae-3-01-devapp-G1A-3/Code/Python/";
-			String py = "clientMQTT";
-			String run = "python " + cmd + py + ".py";
+			String chemin = "sae-3-01-devapp-G1A-3/Code/Python/clientMQTT.py";
+			ProcessBuilder processBuilder = new ProcessBuilder();
+            processBuilder.command("wsl", "python3", chemin);
 
-			Process p = Runtime.getRuntime().exec(run);
+			Process p = processBuilder.start();
+			p.getInputStream().transferTo(System.out);
 			p.getErrorStream().transferTo(System.out);
+			
 
 			viewController.displayDialog();
 
