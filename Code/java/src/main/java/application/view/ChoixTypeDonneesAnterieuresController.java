@@ -53,6 +53,11 @@ public class ChoixTypeDonneesAnterieuresController {
     }
 
     @FXML
+    private void choixPanneaux(){
+        donnees.add("solaredge");
+    }
+
+    @FXML
     private void dateDebut(){
         dateDebut = calendDebut.getValue();
     }

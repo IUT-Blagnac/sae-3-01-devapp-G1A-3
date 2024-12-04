@@ -1,5 +1,6 @@
 package application.control;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -38,22 +39,19 @@ public class IoTMainFrame extends Application {
 			MenuController viewController = loader.getController();
 			viewController.initContext(this.stage);
 
-			String chemin = "sae-3-01-devapp-G1A-3/Code/Python/clientMQTT.py";
-			ProcessBuilder processBuilder = new ProcessBuilder();
-            processBuilder.command("wsl", "python3", chemin);
-
-			Process p = processBuilder.start();
-			p.getInputStream().transferTo(System.out);
-			p.getErrorStream().transferTo(System.out);
-			
-
+			PythonRunnable pRunnable = new PythonRunnable();
+			Thread pythonThread = new Thread(pRunnable);
+			pythonThread.start();
+			System.out.println("Python lancé");
+				
 			viewController.displayDialog();
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(-1);
 		}
 	}
+	
+
 
 	public void changementActuel(Stage primaryStage) {
 		this.stage = primaryStage;
@@ -79,6 +77,8 @@ public class IoTMainFrame extends Application {
 			System.exit(-1);
 		}
 	}
+
+
 
 	public void AnterieurDonneeUnique(Stage primaryStage, List<String> choix, LocalDate dateDebut, LocalDate dateFin) {
 		this.stage = primaryStage;
@@ -108,6 +108,8 @@ public class IoTMainFrame extends Application {
 		}
 	}
 
+
+
 	public void choixTypeDonneesAnterieures(Stage primaryStage) {
 		this.stage = primaryStage;
 
@@ -133,6 +135,8 @@ public class IoTMainFrame extends Application {
 		}
 	}
 
+
+
 	public void changementConfig(Stage primaryStage) {
 		this.stage = primaryStage;
 
@@ -157,10 +161,32 @@ public class IoTMainFrame extends Application {
 		}
 	}
 
+
+
 	/**
 	 * Méthode principale de lancement de l'application.
 	 */
 	public static void runApp() {
 		Application.launch();
+	}
+
+
+
+	public class PythonRunnable implements Runnable {
+		@Override
+		public void run() {
+			String chemin = "sae-3-01-devapp-G1A-3/Code/Python/clientMQTT.py";
+			ProcessBuilder processBuilder = new ProcessBuilder();
+			processBuilder.command("wsl", "python3", chemin);
+
+			Process p;
+			try {
+				p = processBuilder.start();
+				p.getInputStream().transferTo(System.out);
+				p.getErrorStream().transferTo(System.out);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }
