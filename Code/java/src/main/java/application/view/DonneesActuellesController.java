@@ -16,17 +16,18 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.HashMap;
+import java.nio.file.*;
 import java.util.Map;
 import java.util.Objects;
 
 import netscape.javascript.JSObject;
 
 public class DonneesActuellesController {
-    private enum DATA{
+    private enum DATA {
         TEMP, CO2, HUM
     }
-    private enum TEXTVALUES{
+
+    private enum TEXTVALUES {
         TEMPTITLE("Température : "),
         TEMPID("Temp"),
         TEMPUNIT("°C"),
@@ -39,11 +40,11 @@ public class DonneesActuellesController {
 
         private final String displayText;
 
-        TEXTVALUES(String displayText){
+        TEXTVALUES(String displayText) {
             this.displayText = displayText;
         }
 
-        private String getDisplayText(){
+        private String getDisplayText() {
             return displayText;
         }
     }
@@ -84,24 +85,25 @@ public class DonneesActuellesController {
     private RadioMenuItem solaredge;
 
     @FXML
-    private void changeInterface()throws Exception {
-        if(am107.isSelected()){
-            if(mainContainer.getCenter() instanceof TitledPane) {
+    private void changeInterface() throws Exception {
+        if (am107.isSelected()) {
+            if (mainContainer.getCenter() instanceof TitledPane) {
                 solarEdgeDataMemory = (TitledPane) mainContainer.getCenter();
                 mainContainer.setCenter(webviewerMemory);
                 mainContainer.setRight(displayedDatasMemory);
             }
-        }else if(solaredge.isSelected()){
-            if(mainContainer.getCenter() instanceof ScrollPane) {
+        } else if (solaredge.isSelected()) {
+            if (mainContainer.getCenter() instanceof ScrollPane) {
                 webviewerMemory = mainContainer.getCenter();
                 displayedDatasMemory = mainContainer.getRight();
                 mainContainer.setCenter(solarEdgeDataMemory);
                 mainContainer.setRight(null);
             }
-        }else{
+        } else {
             throw new Exception("Une a été rencontrée lors de la séléction des capteurs.");
         }
     }
+
     @FXML
     private WebView iutschematics;
     private WebEngine webEngine;
@@ -109,10 +111,10 @@ public class DonneesActuellesController {
     private IoTMainFrame main = new IoTMainFrame();
 
     public void initContext(Stage _containingStage) {
-		this.containingStage = _containingStage;
+        this.containingStage = _containingStage;
         setUpSolaredge();
         this.initWeb();
-        controlUpdateThread checkingRunnable = new controlUpdateThread();
+        controlUpdateThread checkingRunnable = new controlUpdateThread(this);
         Thread checkingThread = new Thread(checkingRunnable);
         checkingThread.start();
         /*
@@ -120,9 +122,10 @@ public class DonneesActuellesController {
          */
         newWarning("b113");
         newWarning("B113");
-	}
+    }
 
-    private void setUpSolaredge(){
+    private void setUpSolaredge() {
+        System.out.println("set up...");
         solarEdgeDataMemory = new TitledPane();
         solarEdgeDataMemory.setText("Solaredge");
         solarEdgeDataMemory.setCollapsible(false);
@@ -131,75 +134,76 @@ public class DonneesActuellesController {
         VBox container = new VBox();
         container.setFillWidth(true);
         solarEdgeDataMemory.setContent(container);
-        File solarEdgefolder = null;
+        File solarEdgefolder;
         try {
             solarEdgefolder = new File(Objects.requireNonNull(DonneesActuellesController.class.getClassLoader().getResource("application/capteur/solaredge")).toURI());
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
         File lastestSolarEdge = Objects.requireNonNull(solarEdgefolder.listFiles())[0];
-        for(File current : Objects.requireNonNull(solarEdgefolder.listFiles())){
-            if (lastestSolarEdge.lastModified()> current.lastModified()) lastestSolarEdge = current;
+        for (File current : Objects.requireNonNull(solarEdgefolder.listFiles())) {
+            if (lastestSolarEdge.lastModified() < current.lastModified()) lastestSolarEdge = current;
         }
         Map<String, Float> solarDatas = DataReader.getSolarDict(lastestSolarEdge);
         Text tempText = new Text("Puissance actuelle");
         tempText.setId("power");
-        TextField tempField = new TextField(String.valueOf(solarDatas.get("currentPower.power"))+" Watts");
+        TextField tempField = new TextField(solarDatas.get("currentPower.power") + " Watts");
         tempField.setId(solarDatas.get("currentPower.power").toString());
         tempField.setEditable(false);
         container.getChildren().add(tempText);
         container.getChildren().add(tempField);
     }
-    private void initWeb(){
+
+    private void initWeb() {
         String pathSvg = Objects.requireNonNull(DonneesActuellesController.class.getClassLoader().getResource("application/svg/demoSVG.html")).toString();
 
         webEngine = iutschematics.getEngine();
         webEngine.load(pathSvg);
 
         webEngine.documentProperty().addListener((observable, oldValue, newValue) -> {
-            if(newValue != null){
+            if (newValue != null) {
                 JSObject window = (JSObject) webEngine.executeScript("window");
                 window.setMember("javaBridge", jsBridge);
 
                 webEngine.executeScript("""
-                document.querySelectorAll('g').forEach(function(element) {
-                    element.addEventListener('click', function(event) {
-                        // Get the id of the <g> element itself
-                        var id = element.getAttribute('id');
-                        // Pass the id to the Java method
-                        javaBridge.handleClick(id);
-                    });
-                });
-            """);
+                            document.querySelectorAll('g').forEach(function(element) {
+                                element.addEventListener('click', function(event) {
+                                    // Get the id of the <g> element itself
+                                    var id = element.getAttribute('id');
+                                    // Pass the id to the Java method
+                                    javaBridge.handleClick(id);
+                                });
+                            });
+                        """);
             }
         });
     }
 
-    public void displayDialog(){
+    public void displayDialog() {
         this.containingStage.show();
     }
 
-    public void setMain(IoTMainFrame newMain){
+    public void setMain(IoTMainFrame newMain) {
         main = newMain;
     }
 
     @FXML
-    private void menu(){
+    private void menu() {
         main.start(containingStage);
     }
 
     @FXML
-    private void ecranAnterieur(){
+    private void ecranAnterieur() {
         main.choixTypeDonneesAnterieures(containingStage);
     }
 
     @FXML
-    private void fermer(){
+    private void fermer() {
         this.containingStage.close();
     }
 
     @FXML
-    private void updateDisplayedDatas(){
+    private void updateDisplayedDatas() {
         for (Node titledPaneNode : displayedDatas.getChildren()) {
             if (titledPaneNode instanceof TitledPane titledPane) {
                 VBox container = (VBox) titledPane.getContent();
@@ -240,18 +244,18 @@ public class DonneesActuellesController {
     public void displayedListUpdate(String room) throws Exception {
         boolean deleted = false;
         Node toDelete = null;
-        for(Node n : displayedDatas.getChildren()){
-            if(n instanceof TitledPane checking){
-                if (checking.getText().equals(room.toUpperCase())){
+        for (Node n : displayedDatas.getChildren()) {
+            if (n instanceof TitledPane checking) {
+                if (checking.getText().equals(room.toUpperCase())) {
                     toDelete = n;
                     deleted = true;
                 }
             }
-            if(deleted) break;
+            if (deleted) break;
         }
-        if(!deleted) {
+        if (!deleted) {
             updateRoom(room);
-        }else displayedDatas.getChildren().remove(toDelete);
+        } else displayedDatas.getChildren().remove(toDelete);
     }
 
     public void displayedListUpdateSoft(String room) throws Exception {
@@ -265,10 +269,10 @@ public class DonneesActuellesController {
         datasStorage.setSpacing(5);
         Text tempTitle = new Text(TEXTVALUES.TEMPTITLE.getDisplayText());
         tempTitle.setId(TEXTVALUES.TEMPID.getDisplayText());
-        TextField tempRoom = new TextField(getCorrespondingData(room, DATA.TEMP)+ TEXTVALUES.TEMPUNIT.getDisplayText());
+        TextField tempRoom = new TextField(getCorrespondingData(room, DATA.TEMP) + TEXTVALUES.TEMPUNIT.getDisplayText());
         tempRoom.setId(TEXTVALUES.TEMPID.getDisplayText());
         tempRoom.setEditable(false);
-        if(!temp.isSelected()){
+        if (!temp.isSelected()) {
             tempTitle.setVisible(false);
             tempTitle.setManaged(false);
             tempRoom.setVisible(false);
@@ -276,10 +280,10 @@ public class DonneesActuellesController {
         }
         Text co2Title = new Text(TEXTVALUES.CO2TITLE.getDisplayText());
         co2Title.setId(TEXTVALUES.CO2ID.getDisplayText());
-        TextField co2Room = new TextField(getCorrespondingData(room, DATA.CO2)+ TEXTVALUES.CO2UNIT.getDisplayText());
+        TextField co2Room = new TextField(getCorrespondingData(room, DATA.CO2) + TEXTVALUES.CO2UNIT.getDisplayText());
         co2Room.setId(TEXTVALUES.CO2ID.getDisplayText());
         co2Room.setEditable(false);
-        if(!co2.isSelected()){
+        if (!co2.isSelected()) {
             co2Title.setVisible(false);
             co2Title.setManaged(false);
             co2Room.setVisible(false);
@@ -287,10 +291,10 @@ public class DonneesActuellesController {
         }
         Text humTitle = new Text(TEXTVALUES.HUMIDITYTITLE.getDisplayText());
         humTitle.setId(TEXTVALUES.HUMIDITYID.getDisplayText());
-        TextField humRoom = new TextField(getCorrespondingData(room, DATA.HUM)+ TEXTVALUES.HUMIDITYUNIT.getDisplayText());
+        TextField humRoom = new TextField(getCorrespondingData(room, DATA.HUM) + TEXTVALUES.HUMIDITYUNIT.getDisplayText());
         humRoom.setId(TEXTVALUES.HUMIDITYID.getDisplayText());
         humRoom.setEditable(false);
-        if(!humidity.isSelected()){
+        if (!humidity.isSelected()) {
             humTitle.setVisible(false);
             humTitle.setManaged(false);
             humRoom.setVisible(false);
@@ -302,15 +306,15 @@ public class DonneesActuellesController {
         roomdatas.setExpanded(true);
     }
 
-    private float getCorrespondingData(String room, DATA toFetch) throws URISyntaxException, IOException, Exception {
-        room=room.toUpperCase();
-        File folder = new File(Objects.requireNonNull(DonneesActuellesController.class.getClassLoader().getResource("application/capteur/AM107/"+room)).toURI());
-        if(folder.exists()) {
+    private float getCorrespondingData(String room, DATA toFetch) throws Exception {
+        room = room.toUpperCase();
+        File folder = new File(Objects.requireNonNull(DonneesActuellesController.class.getClassLoader().getResource("application/capteur/AM107/" + room)).toURI());
+        if (folder.exists()) {
             File[] allDatas = folder.listFiles();
             assert allDatas != null;
             File captorData = allDatas[0];
-            for(File current : allDatas){
-                if(current.lastModified() > captorData.lastModified()){
+            for (File current : allDatas) {
+                if (current.lastModified() > captorData.lastModified()) {
                     captorData = current;
                 }
             }
@@ -323,31 +327,31 @@ public class DonneesActuellesController {
         throw new Exception("Erreur de lecture de fichier");
     }
 
-    private void newWarning(String room){
+    private void newWarning(String room) {
         boolean exists = false;
-        for(Node existingrooms : warnings.getChildren()){
-            if (existingrooms instanceof Button){
+        for (Node existingrooms : warnings.getChildren()) {
+            if (existingrooms instanceof Button) {
                 if (existingrooms.getId().equals(room.toLowerCase())) {
                     exists = true;
                 }
             }
         }
-        if(!exists) {
+        if (!exists) {
             Button warningRoom = notificationHandle(room);
             this.warnings.getChildren().add(warningRoom);
         }
     }
 
-    private void newAlert(String room){
+    private void newAlert(String room) {
         boolean exists = false;
-        for(Node existingrooms : alerts.getChildren()){
-            if (existingrooms instanceof Button){
+        for (Node existingrooms : alerts.getChildren()) {
+            if (existingrooms instanceof Button) {
                 if (existingrooms.getId().equals(room.toLowerCase())) {
                     exists = true;
                 }
             }
         }
-        if(!exists) {
+        if (!exists) {
             Button alertButton = notificationHandle(room);
             this.alerts.getChildren().add(alertButton);
         }
@@ -370,45 +374,92 @@ public class DonneesActuellesController {
         return newButton;
     }
 
-    private class controlUpdateThread implements Runnable{
+    private static class controlUpdateThread implements Runnable {
         boolean terminated;
+        DonneesActuellesController controller;
 
-        public controlUpdateThread(){
-            terminated = false;
+        controlUpdateThread(DonneesActuellesController controller) {
+            this.terminated = false;
+            this.controller = controller;
         }
 
-        @Override
         public void run() {
-            Map<File, Integer> fileAmount = new HashMap<>();
-            File mainFolder, solaredgeFile;
+            // Récupérer le chemin du dossier dans les ressources
+            Path resourcePath;
             try {
-                solaredgeFile = new File(DonneesActuellesController.class.getClassLoader().getResource("application/capteur/solaredge").toURI());
-                mainFolder = new File(Objects.requireNonNull(DonneesActuellesController.class.getClassLoader().getResource("application/capteur/AM107")).toURI());
+                resourcePath = Path.of(DonneesActuellesController.class.getClassLoader().getResource("application/capteur/solaredge").toURI());
             } catch (URISyntaxException e) {
                 throw new RuntimeException(e);
             }
-            int numberOfSolarDatas= Objects.requireNonNull(solaredgeFile.listFiles()).length;
-            for(File folder : Objects.requireNonNull(mainFolder.listFiles())){
-                fileAmount.put(folder, Objects.requireNonNull(folder.listFiles()).length);
+
+            // Vérifier que le dossier existe
+            if (!Files.exists(resourcePath) || !Files.isDirectory(resourcePath)) {
+                System.out.println("Le dossier n'existe pas : " + resourcePath);
+                return;
             }
-            while(!terminated){
-                for(File folder : Objects.requireNonNull(mainFolder.listFiles())){
-                    if(Objects.requireNonNull(folder.listFiles()).length>fileAmount.get(folder)){
-                        try {
-                            displayedListUpdateSoft(folder.getName().toUpperCase());
-                        } catch (Exception e) {
-                            throw new RuntimeException(e);
+
+            // Initialiser le WatchService
+            WatchService watchService;
+            try {
+                watchService = FileSystems.getDefault().newWatchService();
+                resourcePath.register(watchService, StandardWatchEventKinds.ENTRY_CREATE,
+                        StandardWatchEventKinds.ENTRY_DELETE, StandardWatchEventKinds.ENTRY_MODIFY);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            // Compter initialement les fichiers
+            int previousFileCount = countFilesInDirectory(resourcePath);
+            System.out.println("Nombre initial de fichiers : " + previousFileCount);
+
+            System.out.println("Surveillance du dossier : " + resourcePath);
+
+            while (true) {
+                try {
+                    // Attendre un événement
+                    WatchKey key = watchService.take();
+                    for (WatchEvent<?> event : key.pollEvents()) {
+                        // Type de changement
+                        WatchEvent.Kind<?> kind = event.kind();
+
+                        // Nom du fichier modifié
+                        Path changedFile = (Path) event.context();
+                        System.out.println("Changement détecté : " + kind.name() + " -> " + changedFile);
+                        controller.setUpSolaredge();
+                        // Recompter les fichiers
+                        int currentFileCount = countFilesInDirectory(resourcePath);
+                        if (currentFileCount != previousFileCount) {
+                            System.out.println("Le nombre de fichiers a changé ! Nouveau nombre : " + currentFileCount);
+                            previousFileCount = currentFileCount;
                         }
                     }
+                    // Réinitialiser la clé
+                    boolean valid = key.reset();
+                    if (!valid) {
+                        System.out.println("La clé WatchService n'est plus valide. Arrêt.");
+                        break;
+                    }
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    System.out.println("Surveillance interrompue.");
+                    break;
                 }
-                if(numberOfSolarDatas < Objects.requireNonNull(solaredgeFile.listFiles()).length){
-                    setUpSolaredge();
-                }
+            }
+
+        }
+        // Méthode pour compter les fichiers dans un dossier
+        private static int countFilesInDirectory(Path path) {
+            try {
+                return (int) Files.list(path).filter(Files::isRegularFile).count();
+            } catch (IOException e) {
+                System.out.println("Erreur lors du comptage des fichiers : " + e.getMessage());
+                return -1;
             }
         }
 
-        public void stop(){
+        public void stop() {
             this.terminated = true;
         }
     }
 }
+
