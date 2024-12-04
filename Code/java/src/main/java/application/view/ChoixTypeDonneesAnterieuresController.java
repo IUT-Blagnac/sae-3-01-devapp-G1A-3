@@ -19,10 +19,10 @@ public class ChoixTypeDonneesAnterieuresController {
     private LocalDate dateFin;
 
     @FXML
-    DatePicker calendDebut;
+    private DatePicker calendDebut;
 
     @FXML
-    DatePicker calendFin;
+    private DatePicker calendFin;
     
 
     public void initContext(Stage _containingStage) {

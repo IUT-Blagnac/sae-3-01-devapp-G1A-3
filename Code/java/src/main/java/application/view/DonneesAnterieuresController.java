@@ -1,10 +1,12 @@
 package application.view;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 import application.control.IoTMainFrame;
 import application.tools.DataReader;
@@ -27,11 +29,13 @@ public class DonneesAnterieuresController {
     private IoTMainFrame main;
 
     private List<String> choix = new ArrayList<String>();
+    private List<String> alarmes = new ArrayList<>();
+
     private LocalDate dateDebut;
     private LocalDate dateFin;
-
     private int compteNbSalles = 0;
     private int ancienNbSalles = 0;
+
     private LineChart<Number, Number> graphCO2;
     private LineChart<Number, Number> graphTemp;
     private LineChart<Number, Number> graphHum;
@@ -39,7 +43,7 @@ public class DonneesAnterieuresController {
     private HashMap<String, XYChart.Series<Number, Number>> seriesMap = new HashMap<>();
 
     @FXML
-    VBox contenu;
+    private VBox contenu;
 
     public void initContext(Stage _containingStage) {
         this.containingStage = _containingStage;
@@ -215,10 +219,10 @@ public class DonneesAnterieuresController {
 
         List<File> listeFichiers = trouveFichiers(nomFichier);
 
-        List<Float> listeVal = new ArrayList<>();
+        List<Float> listeVal;
 
         List<LineChart.Data<Number, Number>> listeData = new ArrayList<>();
-        List<LineChart.Series<Number,    Number>> listeSeries = new ArrayList<>();
+        List<LineChart.Series<Number, Number>> listeSeries = new ArrayList<>();
 
         if (choix.contains("CO2")){
             listeData.clear();
@@ -227,7 +231,8 @@ public class DonneesAnterieuresController {
             for (int i = 0; i < listeVal.size(); i ++){
                 float heure = Integer.parseInt(listeFichiers.get(i).getName().split("_")[1].split("-")[0]);
                 float minute = Integer.parseInt(listeFichiers.get(i).getName().split("_")[1].split("-")[1]);
-                listeData.add(new Data<Number,Number>(heure + minute/60, listeVal.get(i)));
+                float valY = heure + minute/60;
+                listeData.add(new Data<Number,Number>(valY, listeVal.get(i)));
             }
 
             LineChart.Series<Number,Number> serie = new LineChart.Series<>();
@@ -307,6 +312,7 @@ public class DonneesAnterieuresController {
             graphHum.getData().add(listeSeries.get(parcoursSerie));
             parcoursSerie ++;
         }
+        creerAlarme();
     }
 
 
@@ -320,6 +326,78 @@ public class DonneesAnterieuresController {
         }
         if (choix.contains("Humidite")){
             contenu.getChildren().add(graphHum);
+        }
+    }
+
+
+
+    public void creerAlarme(){
+        List<String> lignes = new ArrayList<>();
+        try {
+            File myObj = new File("Code/Python/config.ini");
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                lignes.add(data);
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        
+
+        for (XYChart.Series<Number, Number> elem : graphTemp.getData()){
+            String nomCapteur = elem.getName();
+            for (XYChart.Data<Number, Number> x : elem.getData()){
+                if (x.getYValue().intValue() > Integer.parseInt(lignes.get(8).split(" = ")[1].split(", ")[2])){
+                    alarmes.add(nomCapteur + "Temp");
+                }
+            }
+        }
+
+        for (XYChart.Series<Number, Number> elem : graphHum.getData()){
+            String nomCapteur = elem.getName();
+            for (XYChart.Data<Number, Number> x : elem.getData()){
+                if (x.getYValue().intValue() > Integer.parseInt(lignes.get(8).split(" = ")[1].split(", ")[2])){
+                    alarmes.add(nomCapteur + "Hum");
+                }
+            }
+        }
+
+        for (XYChart.Series<Number, Number> elem : graphCO2.getData()){
+            String nomCapteur = elem.getName();
+            for (XYChart.Data<Number, Number> x : elem.getData()){
+                if (x.getYValue().intValue() > Integer.parseInt(lignes.get(8).split(" = ")[1].split(", ")[2])){
+                    alarmes.add(nomCapteur + "co2");
+                }
+            }
+        }
+    }
+
+
+
+    public void insererAlarme(){
+        int nbElemTemp = 0;
+        int nbElemHum = 0;
+        int nbElemCO2 = 0;
+
+        for (String elem : alarmes){
+            if (elem.contains("Temp")){
+                if (nbElemTemp == 0){
+
+                }
+            }
+            else if (elem.contains("Hum")){
+                if (nbElemHum == 0){
+                    
+                }
+            }
+            else if (elem.contains("Temp")){
+                if (nbElemCO2 == 0){
+                    
+                }
+            }
         }
     }
 }

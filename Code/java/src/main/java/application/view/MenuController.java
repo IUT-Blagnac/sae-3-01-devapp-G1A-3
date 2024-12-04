@@ -32,7 +32,7 @@ public class MenuController {
 
     @FXML
     private void changerConfig(){
-        
+        main.changementConfig(containingStage);
     }
 
     @FXML

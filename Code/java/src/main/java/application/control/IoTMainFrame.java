@@ -3,6 +3,7 @@ package application.control;
 import java.time.LocalDate;
 import java.util.List;
 
+import application.view.ChangementConfigController;
 import application.view.ChoixTypeDonneesAnterieuresController;
 import application.view.DonneesActuellesController;
 import application.view.DonneesAnterieuresController;
@@ -36,6 +37,13 @@ public class IoTMainFrame extends Application {
 
 			MenuController viewController = loader.getController();
 			viewController.initContext(this.stage);
+
+			String cmd = "Code/Python/";
+			String py = "clientMQTT";
+			String run = "python " + cmd + py + ".py";
+			System.out.println(run);
+
+			Process p = Runtime.getRuntime().exec(run);
 
 			viewController.displayDialog();
 
@@ -112,6 +120,30 @@ public class IoTMainFrame extends Application {
 			this.stage.setTitle("Données anciennes");
 
 			ChoixTypeDonneesAnterieuresController viewController = loader.getController();
+			viewController.setMain(this);
+			viewController.initContext(this.stage);
+
+			viewController.displayDialog();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(-1);
+		}
+	}
+
+	public void changementConfig(Stage primaryStage) {
+		this.stage = primaryStage;
+
+		try {
+			// Chargement du source fxml
+			FXMLLoader loader = new FXMLLoader(ChangementConfigController.class.getResource("changementConfig.fxml"));
+			BorderPane root = loader.load();
+
+			Scene scene = new Scene(root);
+
+			this.stage.setScene(scene);
+
+			ChangementConfigController viewController = loader.getController();
 			viewController.setMain(this);
 			viewController.initContext(this.stage);
 
