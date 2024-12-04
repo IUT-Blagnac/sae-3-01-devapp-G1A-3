@@ -1,7 +1,12 @@
 package application.view;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 import application.control.IoTMainFrame;
 import javafx.fxml.FXML;
+import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
 
 public class ChoixTypeDonneesAnterieuresController {
@@ -9,6 +14,16 @@ public class ChoixTypeDonneesAnterieuresController {
 
     private Stage containingStage;
     private IoTMainFrame main;
+    private List<String> donnees = new ArrayList<String>();
+    private LocalDate dateDebut;
+    private LocalDate dateFin;
+
+    @FXML
+    DatePicker calendDebut;
+
+    @FXML
+    DatePicker calendFin;
+    
 
     public void initContext(Stage _containingStage) {
 		this.containingStage = _containingStage;
@@ -24,17 +39,33 @@ public class ChoixTypeDonneesAnterieuresController {
 
     @FXML
     private void choixCO2(){
-        main.AnterieurDonneeUnique(containingStage, "CO2");
+        donnees.add("CO2");
     }
 
     @FXML
     private void choixHum(){
-        main.AnterieurDonneeUnique(containingStage, "Humidite");
+        donnees.add("Humidite");
     }
 
     @FXML
     private void choixTemp(){
-        main.AnterieurDonneeUnique(containingStage, "Temperature");
+        donnees.add("Temperature");
+    }
+
+    @FXML
+    private void dateDebut(){
+        dateDebut = calendDebut.getValue();
+    }
+
+    @FXML
+    private void dateFin(){
+        dateFin = calendFin.getValue();
+    }
+
+
+    @FXML
+    private void valider(){
+        main.AnterieurDonneeUnique(containingStage, donnees, dateDebut, dateFin);
     }
 
     @FXML
