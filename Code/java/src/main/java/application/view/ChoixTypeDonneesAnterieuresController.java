@@ -19,10 +19,10 @@ public class ChoixTypeDonneesAnterieuresController {
     private LocalDate dateFin;
 
     @FXML
-    DatePicker calendDebut;
+    private DatePicker calendDebut;
 
     @FXML
-    DatePicker calendFin;
+    private DatePicker calendFin;
     
 
     public void initContext(Stage _containingStage) {
@@ -50,6 +50,11 @@ public class ChoixTypeDonneesAnterieuresController {
     @FXML
     private void choixTemp(){
         donnees.add("Temperature");
+    }
+
+    @FXML
+    private void choixPanneaux(){
+        donnees.add("solaredge");
     }
 
     @FXML

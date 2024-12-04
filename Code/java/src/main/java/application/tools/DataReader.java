@@ -67,4 +67,20 @@ public class DataReader {
         }
         return dictToReturn;
     }
+
+    public static List<Float> getSolarData(List<File> datasToFetch){
+        List <Float> dataToReturn = new ArrayList<>();
+        for(File currentFile : datasToFetch){
+            try {
+                String data = Files.readString(currentFile.toPath());
+                data = data.replace("{","").replace("}","");
+                String[] preSplittedValues = data.split(", ");;
+                String[] splittedValues = preSplittedValues[5].split(": ");
+                dataToReturn.add(Float.parseFloat(splittedValues[2]));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return dataToReturn;
+    }
 }

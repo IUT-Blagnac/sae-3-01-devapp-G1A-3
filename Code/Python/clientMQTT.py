@@ -8,7 +8,7 @@ from genericpath import exists
 from pathlib import Path
 
 config = configparser.ConfigParser()
-config.read("config.ini")
+config.read("sae-3-01-devapp-G1A-3/Code/Python/config.ini")
 
 BROKER_ADDRESS = config["MQTT"]["broker_address"]
 PORT = int(config["MQTT"]["port"])

@@ -1,8 +1,10 @@
 package application.control;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
+import application.view.ChangementConfigController;
 import application.view.ChoixTypeDonneesAnterieuresController;
 import application.view.DonneesActuellesController;
 import application.view.DonneesAnterieuresController;
@@ -37,13 +39,19 @@ public class IoTMainFrame extends Application {
 			MenuController viewController = loader.getController();
 			viewController.initContext(this.stage);
 
+			PythonRunnable pRunnable = new PythonRunnable();
+			Thread pythonThread = new Thread(pRunnable);
+			pythonThread.start();
+			System.out.println("Python lancé");
+				
 			viewController.displayDialog();
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(-1);
 		}
 	}
+	
+
 
 	public void changementActuel(Stage primaryStage) {
 		this.stage = primaryStage;
@@ -69,6 +77,8 @@ public class IoTMainFrame extends Application {
 			System.exit(-1);
 		}
 	}
+
+
 
 	public void AnterieurDonneeUnique(Stage primaryStage, List<String> choix, LocalDate dateDebut, LocalDate dateFin) {
 		this.stage = primaryStage;
@@ -98,6 +108,8 @@ public class IoTMainFrame extends Application {
 		}
 	}
 
+
+
 	public void choixTypeDonneesAnterieures(Stage primaryStage) {
 		this.stage = primaryStage;
 
@@ -123,10 +135,58 @@ public class IoTMainFrame extends Application {
 		}
 	}
 
+
+
+	public void changementConfig(Stage primaryStage) {
+		this.stage = primaryStage;
+
+		try {
+			// Chargement du source fxml
+			FXMLLoader loader = new FXMLLoader(ChangementConfigController.class.getResource("changementConfig.fxml"));
+			BorderPane root = loader.load();
+
+			Scene scene = new Scene(root);
+
+			this.stage.setScene(scene);
+
+			ChangementConfigController viewController = loader.getController();
+			viewController.setMain(this);
+			viewController.initContext(this.stage);
+
+			viewController.displayDialog();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(-1);
+		}
+	}
+
+
+
 	/**
 	 * Méthode principale de lancement de l'application.
 	 */
 	public static void runApp() {
 		Application.launch();
+	}
+
+
+
+	public class PythonRunnable implements Runnable {
+		@Override
+		public void run() {
+			String chemin = "sae-3-01-devapp-G1A-3/Code/Python/clientMQTT.py";
+			ProcessBuilder processBuilder = new ProcessBuilder();
+			processBuilder.command("wsl", "python3", chemin);
+
+			Process p;
+			try {
+				p = processBuilder.start();
+				p.getInputStream().transferTo(System.out);
+				p.getErrorStream().transferTo(System.out);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }
