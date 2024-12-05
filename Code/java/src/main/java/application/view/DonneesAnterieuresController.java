@@ -1,12 +1,10 @@
 package application.view;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
 
 import application.control.IoTMainFrame;
 import application.tools.DataReader;
@@ -29,7 +27,6 @@ public class DonneesAnterieuresController {
     private IoTMainFrame main;
 
     private List<String> choix = new ArrayList<String>();
-    private List<String> alarmes = new ArrayList<>();
 
     private LocalDate dateDebut;
     private LocalDate dateFin;
@@ -39,7 +36,6 @@ public class DonneesAnterieuresController {
     private LineChart<Number, Number> graphCO2;
     private LineChart<Number, Number> graphTemp;
     private LineChart<Number, Number> graphHum;
-    private LineChart<Number, Number> graphSolar;
 
     private HashMap<String, XYChart.Series<Number, Number>> seriesMap = new HashMap<>();
 
@@ -110,12 +106,16 @@ public class DonneesAnterieuresController {
 
     public void menu(List<String> choix, LocalDate dateDebut, LocalDate dateFin){
 
-        File dossier = new File("Code/Java/src/main/resources/application/capteur/AM107");
+        File dossier = new File("sae-3-01-devapp-G1A-3/Code/Java/src/main/resources/application/capteur/AM107");
 
         final String sMenuTextStart = "Salle";
         final MenuButton choices = new MenuButton(sMenuTextStart);
+
         final List<CheckMenuItem> items = new ArrayList<>();
         
+        for (String name : dossier.list()) {
+            System.out.println("Nom trouvé : " + name);
+        }
 
         for (String name : dossier.list()){
             CheckMenuItem bouton = new CheckMenuItem(name);
@@ -166,11 +166,6 @@ public class DonneesAnterieuresController {
             yAxis.setLabel("Humidité");
             graphHum = new LineChart<>(xAxis, yAxis);
         }
-        if (choix.contains("solaredge")){
-            NumberAxis yAxis = new NumberAxis(0, 1500, 100); 
-            yAxis.setLabel("Energie courante");
-            graphSolar = new LineChart<>(xAxis, yAxis);
-        }
     }
 
 
@@ -189,7 +184,7 @@ public class DonneesAnterieuresController {
     private List<File> trouveFichiersAM107(String nomFichier){
         int i = 0;
         boolean fini = false;
-        String chemin = "Code/Java/src/main/resources/application/capteur/AM107/" + nomFichier;
+        String chemin = "sae-3-01-devapp-G1A-3/Code/Java/src/main/resources/application/capteur/AM107/" + nomFichier;
         File dossier = new File(chemin);
         LocalDate datePrecedente = null;
 
@@ -202,41 +197,7 @@ public class DonneesAnterieuresController {
             LocalDate date = LocalDate.of(annee, mois, jour);
             if (date == datePrecedente){
                 listeFichiersBonnesDates.add(new File(chemin + "/" + dossier.list()[i]));
-            }
-            else{
-                if (date.isBefore(dateFin)){
-                    if (date.isAfter(dateDebut)){
-                        listeFichiersBonnesDates.add(new File(chemin + "/" + dossier.list()[i]));
-                        datePrecedente = date;
-                    }
-                    else{
-                        fini = true;
-                    }
-                }
-            }
-            i++;
-        }
-        return listeFichiersBonnesDates;
-    }
-
-
-
-    private List<File> trouveFichiersPanneauxSolaires(String nomFichier){
-        int i = 0;
-        boolean fini = false;
-        String chemin = "Code/Java/src/main/resources/application/capteur/solaredge/" + nomFichier;
-        File dossier = new File(chemin);
-        LocalDate datePrecedente = null;
-
-        List<File> listeFichiersBonnesDates = new ArrayList<>();
-
-        while (i < dossier.list().length && fini == false){
-            int annee = Integer.parseInt(dossier.list()[i].split("_")[0].split("-")[0]);
-            int mois = Integer.parseInt(dossier.list()[i].split("_")[0].split("-")[1]);
-            int jour = Integer.parseInt(dossier.list()[i].split("_")[0].split("-")[2]);
-            LocalDate date = LocalDate.of(annee, mois, jour);
-            if (date == datePrecedente){
-                listeFichiersBonnesDates.add(new File(chemin + "/" + dossier.list()[i]));
+                System.out.println("Fichier ajouté");
             }
             else{
                 if (date.isBefore(dateFin)){
@@ -259,31 +220,12 @@ public class DonneesAnterieuresController {
     private void ajouteData(LocalDate dateDebut, LocalDate dateFin, String nomFichier, List<String> choix){
 
         List<File> listeCapteurs = trouveFichiersAM107(nomFichier);
-        List<File> listePanneauxSolaires = trouveFichiersPanneauxSolaires(nomFichier);
-
 
         List<Float> listeVal;
 
         List<LineChart.Data<Number, Number>> listeData = new ArrayList<>();
         List<LineChart.Series<Number, Number>> listeSeries = new ArrayList<>();
 
-        if (choix.contains("solaredge")){
-            listeVal = DataReader.getSolarData(listePanneauxSolaires);
-
-            for (int i = 0; i < listeVal.size(); i ++){
-                float heure = Integer.parseInt(listePanneauxSolaires.get(i).getName().split("_")[1].split("-")[0]);
-                float minute = Integer.parseInt(listePanneauxSolaires.get(i).getName().split("_")[1].split("-")[1]);
-                float valY = heure + minute/60;
-                listeData.add(new Data<Number,Number>(valY, listeVal.get(i)));
-            }
-
-            LineChart.Series<Number,Number> serie = new LineChart.Series<>();
-            serie.setName(nomFichier);
-            serie.getData().addAll(listeData);
-            listeSeries.add(serie);
-
-            seriesMap.put(nomFichier + "-solaredge", serie);
-        }
         if (choix.contains("CO2")){
             listeData.clear();
             listeVal = DataReader.getCo2(listeCapteurs);
@@ -362,7 +304,7 @@ public class DonneesAnterieuresController {
 
 
 
-    public void ajouteValgraphiques(List<String> choix, LocalDate dateDebut, LocalDate dateFin, List<LineChart.Series<Number, Number>> listeSeries){
+    private void ajouteValgraphiques(List<String> choix, LocalDate dateDebut, LocalDate dateFin, List<LineChart.Series<Number, Number>> listeSeries){
         int parcoursSerie = 0;
         
         if (choix.contains("CO2")){
@@ -377,16 +319,11 @@ public class DonneesAnterieuresController {
             graphHum.getData().add(listeSeries.get(parcoursSerie));
             parcoursSerie ++;
         }
-        if (choix.contains("solaredge")){
-            graphSolar.getData().add(listeSeries.get(parcoursSerie));
-            parcoursSerie ++;
-        }
-        creerAlarme();
     }
 
 
     
-    public void ajouteGraphiques(List<String> choix){
+    private void ajouteGraphiques(List<String> choix){
         if (choix.contains("CO2")){
             contenu.getChildren().add(graphCO2);
         }
@@ -395,81 +332,6 @@ public class DonneesAnterieuresController {
         }
         if (choix.contains("Humidite")){
             contenu.getChildren().add(graphHum);
-        }
-        if (choix.contains("solaredge")){
-            contenu.getChildren().add(graphSolar);
-        }
-    }
-
-
-
-    public void creerAlarme(){
-        List<String> lignes = new ArrayList<>();
-        try {
-            File myObj = new File("Code/Python/config.ini");
-            Scanner myReader = new Scanner(myObj);
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                lignes.add(data);
-            }
-            myReader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-        
-
-        for (XYChart.Series<Number, Number> elem : graphTemp.getData()){
-            String nomCapteur = elem.getName();
-            for (XYChart.Data<Number, Number> x : elem.getData()){
-                if (x.getYValue().intValue() > Integer.parseInt(lignes.get(8).split(" = ")[1].split(", ")[2])){
-                    alarmes.add(nomCapteur + "Temp");
-                }
-            }
-        }
-
-        for (XYChart.Series<Number, Number> elem : graphHum.getData()){
-            String nomCapteur = elem.getName();
-            for (XYChart.Data<Number, Number> x : elem.getData()){
-                if (x.getYValue().intValue() > Integer.parseInt(lignes.get(8).split(" = ")[1].split(", ")[2])){
-                    alarmes.add(nomCapteur + "Hum");
-                }
-            }
-        }
-
-        for (XYChart.Series<Number, Number> elem : graphCO2.getData()){
-            String nomCapteur = elem.getName();
-            for (XYChart.Data<Number, Number> x : elem.getData()){
-                if (x.getYValue().intValue() > Integer.parseInt(lignes.get(8).split(" = ")[1].split(", ")[2])){
-                    alarmes.add(nomCapteur + "co2");
-                }
-            }
-        }
-    }
-
-
-
-    public void insererAlarme(){
-        int nbElemTemp = 0;
-        int nbElemHum = 0;
-        int nbElemCO2 = 0;
-
-        for (String elem : alarmes){
-            if (elem.contains("Temp")){
-                if (nbElemTemp == 0){
-
-                }
-            }
-            else if (elem.contains("Hum")){
-                if (nbElemHum == 0){
-                    
-                }
-            }
-            else if (elem.contains("Temp")){
-                if (nbElemCO2 == 0){
-                    
-                }
-            }
         }
     }
 }

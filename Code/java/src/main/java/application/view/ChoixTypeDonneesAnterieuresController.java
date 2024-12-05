@@ -7,6 +7,7 @@ import java.util.List;
 import application.control.IoTMainFrame;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.ToggleButton;
 import javafx.stage.Stage;
 
 public class ChoixTypeDonneesAnterieuresController {
@@ -23,6 +24,15 @@ public class ChoixTypeDonneesAnterieuresController {
 
     @FXML
     private DatePicker calendFin;
+
+    @FXML
+    private ToggleButton co2;
+    @FXML
+    private ToggleButton humidite;
+    @FXML
+    private ToggleButton temperature;
+    @FXML
+    private ToggleButton panneauxSolaires;
     
 
     public void initContext(Stage _containingStage) {
@@ -39,22 +49,75 @@ public class ChoixTypeDonneesAnterieuresController {
 
     @FXML
     private void choixCO2(){
-        donnees.add("CO2");
+        if (co2.isSelected()){
+            donnees.add("CO2");
+            panneauxSolaires.setSelected(false);
+            panneauxSolaires.setDisable(true);
+        }
+        else{
+            donnees.remove("CO2"); 
+        }
+        if (!(co2.isSelected() || temperature.isSelected() || humidite.isSelected())){
+            panneauxSolaires.setDisable(false); 
+        }
     }
 
     @FXML
     private void choixHum(){
-        donnees.add("Humidite");
+        if (humidite.isSelected()){
+            donnees.add("Humidite");
+            panneauxSolaires.setSelected(false);
+            panneauxSolaires.setDisable(true);
+        }
+        else{
+            donnees.remove("Humidite"); 
+        }
+        if (!(co2.isSelected() || temperature.isSelected() || humidite.isSelected())){
+            panneauxSolaires.setDisable(false); 
+        }
     }
 
     @FXML
     private void choixTemp(){
-        donnees.add("Temperature");
+        if (temperature.isSelected()){
+            donnees.add("Temperature");
+            panneauxSolaires.setSelected(false);
+            panneauxSolaires.setDisable(true);
+        }
+        else{
+            donnees.remove("Temperature");
+        }
+        if (!(co2.isSelected() || temperature.isSelected() || humidite.isSelected())){
+            panneauxSolaires.setDisable(false); 
+        }
     }
 
     @FXML
     private void choixPanneaux(){
-        donnees.add("solaredge");
+        if (panneauxSolaires.isSelected()){
+            donnees.add("solaredge");
+
+            donnees.remove("CO2");
+            co2.setSelected(false);
+            co2.setDisable(true);
+
+            donnees.remove("Humidite");
+            humidite.setSelected(false);
+            humidite.setDisable(true);
+
+            donnees.remove("Temperature");
+            temperature.setSelected(false);
+            temperature.setDisable(true);
+        }
+        else{
+            donnees.remove("solaredge");
+
+            co2.setDisable(false); 
+
+            humidite.setDisable(false);
+            
+            temperature.setDisable(false);
+        }
     }
 
     @FXML
@@ -70,7 +133,12 @@ public class ChoixTypeDonneesAnterieuresController {
 
     @FXML
     private void valider(){
-        main.AnterieurDonneeUnique(containingStage, donnees, dateDebut, dateFin);
+        if (donnees.contains("solaredge")){
+            main.AnterieurSolaredge(containingStage, dateDebut, dateFin);
+        }
+        else{
+            main.AnterieurDonneeUnique(containingStage, donnees, dateDebut, dateFin);
+        }
     }
 
     @FXML

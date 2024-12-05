@@ -8,6 +8,7 @@ import application.view.ChangementConfigController;
 import application.view.ChoixTypeDonneesAnterieuresController;
 import application.view.DonneesActuellesController;
 import application.view.DonneesAnterieuresController;
+import application.view.SolaredgeAnterieurController;
 import application.view.MenuController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -39,10 +40,9 @@ public class IoTMainFrame extends Application {
 			MenuController viewController = loader.getController();
 			viewController.initContext(this.stage);
 
-			PythonRunnable pRunnable = new PythonRunnable();
+			/*PythonRunnable pRunnable = new PythonRunnable();
 			Thread pythonThread = new Thread(pRunnable);
-			pythonThread.start();
-			System.out.println("Python lancé");
+			pythonThread.start();*/
 				
 			viewController.displayDialog();
 		} catch (Exception e) {
@@ -96,6 +96,35 @@ public class IoTMainFrame extends Application {
 			DonneesAnterieuresController viewController = loader.getController();
 			viewController.setMain(this);
 			viewController.setDonnees(choix);
+			viewController.setDateDebut(dateDebut);
+			viewController.setDateFin(dateFin);
+			viewController.initContext(this.stage);
+
+			viewController.displayDialog();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(-1);
+		}
+	}
+
+
+
+	public void AnterieurSolaredge(Stage primaryStage, LocalDate dateDebut, LocalDate dateFin) {
+		this.stage = primaryStage;
+
+		try {
+			// Chargement du source fxml
+			FXMLLoader loader = new FXMLLoader(SolaredgeAnterieurController.class.getResource("solaredgeAnterieur.fxml"));
+			BorderPane root = loader.load();
+
+			Scene scene = new Scene(root);
+
+			this.stage.setScene(scene);
+			this.stage.setTitle("Données anciennes");
+
+			SolaredgeAnterieurController viewController = loader.getController();
+			viewController.setMain(this);
 			viewController.setDateDebut(dateDebut);
 			viewController.setDateFin(dateFin);
 			viewController.initContext(this.stage);
@@ -177,13 +206,13 @@ public class IoTMainFrame extends Application {
 		public void run() {
 			String chemin = "sae-3-01-devapp-G1A-3/Code/Python/clientMQTT.py";
 			ProcessBuilder processBuilder = new ProcessBuilder();
-			processBuilder.command("wsl", "python3", chemin);
+			processBuilder.command("python", chemin);
 
 			Process p;
 			try {
 				p = processBuilder.start();
-				p.getInputStream().transferTo(System.out);
 				p.getErrorStream().transferTo(System.out);
+				p.getInputStream().transferTo(System.out);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
