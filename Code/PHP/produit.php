@@ -38,7 +38,7 @@ if ($selectedCategory > 0) {
 <html lang="fr">
 
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css">
@@ -53,6 +53,17 @@ if ($selectedCategory > 0) {
     <?php include './includes/header.php'; ?>
 
     <div class="container-fluid">
+        <ul class="nav justify-content-center custom-nav">
+            <li class="nav-item">
+                <a class="nav-link fw-bold text-danger active" href="#">PROMOTIONS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link fw-bold text-danger" href="#">NOËL</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link fw-bold text-danger" href="#">NOS STARS</a>
+            </li>
+        </ul>
         <div class="row flex-nowrap">
             <!-- Barre de Filtres -->
             <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0" id="filtreProd">
@@ -61,6 +72,12 @@ if ($selectedCategory > 0) {
                         <span class="fs-5 d-none d-sm-inline" id="filtreTitle">Filtres</span>
                     </a>
                     <hr>
+                    <form class="d-flex mb-2" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Rechercher" style="border-radius: 20px; border: none;">
+                        <button class="btn" type="submit" style="background-color: transparent; color: #d0006f;">
+                            <i class="bi bi-search" style="font-size: 1.5rem;"></i>
+                        </button>
+                    </form>
                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start">
                         <!-- Filtre par catégorie -->
                         <li class="nav-item">
@@ -78,7 +95,7 @@ if ($selectedCategory > 0) {
                         <!-- Autres filtres (à personnaliser selon vos besoins) -->
                         <li>
                             <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                                <i class="fa-solid fa-money-bill"></i> <span class="ms-1 d-none d-sm-inline">Par Prix</span> 
+                                <i class="fa-solid fa-money-bill"></i> <span class="ms-1 d-none d-sm-inline">Par Prix</span>
                             </a>
                             <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                                 <li><a href="#" class="nav-link px-0">Item 1</a></li>
@@ -90,6 +107,7 @@ if ($selectedCategory > 0) {
                                 <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Clients</span>
                             </a>
                         </li>
+
                     </ul>
                 </div>
             </div>
@@ -114,7 +132,7 @@ if ($selectedCategory > 0) {
                             </div>
                         <?php endforeach; ?>
                     <?php else: ?>
-                        <div class="alert alert-info py-5 mx-3">Aucun produit disponible pour cette catégorie.</div>
+                        <div class="alert alert-info py-5 m-3">Aucun produit disponible pour cette catégorie.</div>
                     <?php endif; ?>
                 </div>
             </div>
