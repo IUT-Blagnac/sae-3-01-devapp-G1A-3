@@ -83,4 +83,32 @@ public class DataReader {
         }
         return dataToReturn;
     }
+
+
+
+    public static List<List> getAlertes(List<File> datasToFetch){
+        List<List> dataToReturn = new ArrayList<>();
+        List<String> listeSalles = new ArrayList<>();
+        List<Float> listeSeuil = new ArrayList<>();
+        List<Float> listeVal = new ArrayList<>();
+
+        for(File currentFile : datasToFetch){
+            try {
+                String data = Files.readString(currentFile.toPath());
+                data = data.replace("{","").replace("}","");
+                String[] splittedValues = data.split(", ");
+                
+                listeSalles.add(splittedValues[0].split(": ")[1]);
+                listeSeuil.add(Float.parseFloat(splittedValues[1].split(": ")[1]));
+                listeVal.add(Float.parseFloat(splittedValues[2].split(": ")[1]));
+
+                dataToReturn.add(listeSalles);
+                dataToReturn.add(listeSeuil);
+                dataToReturn.add(listeVal);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return dataToReturn;
+    }
 }

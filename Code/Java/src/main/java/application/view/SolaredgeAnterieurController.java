@@ -15,6 +15,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+
+/**
+ * Contrôleur de la vue des données solaires antérieures.
+ * Cette classe gère l'affichage des graphiques des données solaires pour une période spécifiée
+ * ainsi que la gestion des interactions avec l'utilisateur dans l'interface.
+ */
 public class SolaredgeAnterieurController {
 
     private Stage containingStage;
@@ -28,10 +34,19 @@ public class SolaredgeAnterieurController {
     @FXML
     private VBox contenu;
 
+    /**
+     * Initialise le contexte du contrôleur avec le stage de la classe appelante.
+     * 
+     * @param _containingStage Le stage principal de l'application.
+     */
     public void initContext(Stage _containingStage) {
         this.containingStage = _containingStage;
     }
 
+    /**
+     * Affiche la fenêtre du graphique des données solaires pour la période sélectionnée.
+     * Si les dates sont invalides ou manquantes, un message d'erreur est affiché.
+     */
     public void displayDialog() {
         if (dateDebut == null || dateFin == null || dateDebut.isAfter(dateFin)) {
             main.choixTypeDonneesAnterieures(containingStage);
@@ -46,49 +61,84 @@ public class SolaredgeAnterieurController {
         }
     }
 
+    /**
+     * Définit l'objet principal de l'application (IoTMainFrame) pour ce contrôleur.
+     * 
+     * @param newMain L'objet principal de l'application.
+     */
     public void setMain(IoTMainFrame newMain) {
         main = newMain;
     }
 
+    /**
+     * Définit la date de début pour la période des données à afficher.
+     * 
+     * @param date La date de début de la période.
+     */
     public void setDateDebut(LocalDate date) {
         dateDebut = date;
     }
 
+    /**
+     * Définit la date de fin pour la période des données à afficher.
+     * 
+     * @param date La date de fin de la période.
+     */
     public void setDateFin(LocalDate date) {
         dateFin = date;
     }
 
     @FXML
+    /**
+     * Action liée au bouton permettant de revenir à l'écran principal de l'application.
+     */
     private void ecranPrincipal() {
         main.start(containingStage);
     }
 
     @FXML
+    /**
+     * Action liée au bouton permettant de passer à l'écran des données en direct.
+     */
     private void ecranDirect() {
         main.changementActuel(containingStage);
     }
 
     @FXML
+    /**
+     * Action liée au bouton permettant de fermer l'application.
+     */
     private void fermer() {
         this.containingStage.close();
     }
 
     @FXML
+    /**
+     * Action liée au bouton permettant de choisir un autre type de données antérieures.
+     */
     private void choisirDonnees() {
         main.choixTypeDonneesAnterieures(containingStage);
     }
 
 
-
+    /**
+     * Crée le graphique des données solaires en configurant les axes X et Y.
+     * L'axe X représente les heures et minutes, l'axe Y représente l'énergie mesurée.
+     */
     public void creerGraphique(){
         NumberAxis xAxis = new NumberAxis(0, 24, 1);
-        NumberAxis yAxis = new NumberAxis(0, 5000, 500); 
+        NumberAxis yAxis = new NumberAxis(0, 2000, 200); 
         yAxis.setLabel("Energie courante");
         graphSolar = new LineChart<>(xAxis, yAxis);
     }
 
 
 
+    /**
+     * Recherche les fichiers correspondant aux données solaires pour la période spécifiée.
+     * 
+     * @return Liste des fichiers correspondant aux données de la période spécifiée.
+     */
     private List<File> trouveFichiers(){
         int i = 0;
         boolean fini = false;
@@ -123,7 +173,10 @@ public class SolaredgeAnterieurController {
     }
 
     
-
+    /**
+     * Ajoute les données des panneaux solaires dans le graphique créé.
+     * Les données sont extraites des fichiers et ajoutées en tant que séries dans le graphique.
+     */
     private void ajouteData(){
         List<File> listePanneauxSolaires = trouveFichiers();
 

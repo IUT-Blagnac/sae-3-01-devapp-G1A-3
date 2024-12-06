@@ -10,6 +10,10 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.ToggleButton;
 import javafx.stage.Stage;
 
+/**
+ * Contrôleur pour la gestion de la sélection des types de données antérieures
+ * et des plages de dates dans l'application.
+ */
 public class ChoixTypeDonneesAnterieuresController {
     
 
@@ -35,19 +39,36 @@ public class ChoixTypeDonneesAnterieuresController {
     private ToggleButton panneauxSolaires;
     
 
+    /**
+     * Initialise le contexte du contrôleur en définissant la fenêtre parente.
+     * 
+     * @param _containingStage la fenêtre parente.
+     */
     public void initContext(Stage _containingStage) {
 		this.containingStage = _containingStage;
 	}
 
+    /**
+     * Affiche la boîte de dialogue pour la sélection des types de données antérieures.
+     */
     public void displayDialog(){
         this.containingStage.show();
     }
 
+    /**
+     * Définit la référence à la classe principale de l'application.
+     * 
+     * @param newMain l'instance principale de l'application.
+     */
     public void setMain(IoTMainFrame newMain){
         main = newMain;
     }
 
     @FXML
+    /**
+     * Gère la sélection ou la désélection du bouton CO2.
+     * Active ou désactive les options des panneaux solaires en conséquence.
+     */
     private void choixCO2(){
         if (co2.isSelected()){
             donnees.add("CO2");
@@ -63,6 +84,10 @@ public class ChoixTypeDonneesAnterieuresController {
     }
 
     @FXML
+    /**
+     * Gère la sélection ou la désélection du bouton Humidité.
+     * Active ou désactive les options des panneaux solaires en conséquence.
+     */
     private void choixHum(){
         if (humidite.isSelected()){
             donnees.add("Humidite");
@@ -78,6 +103,10 @@ public class ChoixTypeDonneesAnterieuresController {
     }
 
     @FXML
+    /**
+     * Gère la sélection ou la désélection du bouton Température.
+     * Active ou désactive les options des panneaux solaires en conséquence.
+     */
     private void choixTemp(){
         if (temperature.isSelected()){
             donnees.add("Temperature");
@@ -93,6 +122,10 @@ public class ChoixTypeDonneesAnterieuresController {
     }
 
     @FXML
+    /**
+     * Gère la sélection ou la désélection du bouton Panneaux Solaires.
+     * Active ou désactive les autres options en conséquence.
+     */
     private void choixPanneaux(){
         if (panneauxSolaires.isSelected()){
             donnees.add("solaredge");
@@ -121,17 +154,27 @@ public class ChoixTypeDonneesAnterieuresController {
     }
 
     @FXML
+    /**
+     * Définit la date de début sélectionnée par l'utilisateur.
+     */
     private void dateDebut(){
         dateDebut = calendDebut.getValue();
     }
 
     @FXML
+    /**
+     * Définit la date de fin sélectionnée par l'utilisateur.
+     */
     private void dateFin(){
         dateFin = calendFin.getValue();
     }
 
 
     @FXML
+    /**
+     * Valide la sélection des données et des dates, et appelle les méthodes
+     * correspondantes dans la classe principale.
+     */
     private void valider(){
         if (donnees.contains("solaredge")){
             main.AnterieurSolaredge(containingStage, dateDebut, dateFin);
@@ -142,6 +185,9 @@ public class ChoixTypeDonneesAnterieuresController {
     }
 
     @FXML
+    /**
+     * Retourne au menu principal de l'application.
+     */
     private void menu(){
         main.start(containingStage);
     }

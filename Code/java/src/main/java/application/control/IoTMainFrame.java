@@ -39,10 +39,6 @@ public class IoTMainFrame extends Application {
 
 			MenuController viewController = loader.getController();
 			viewController.initContext(this.stage);
-
-			/*PythonRunnable pRunnable = new PythonRunnable();
-			Thread pythonThread = new Thread(pRunnable);
-			pythonThread.start();*/
 				
 			viewController.displayDialog();
 		} catch (Exception e) {
@@ -52,7 +48,19 @@ public class IoTMainFrame extends Application {
 	}
 	
 
+	/**
+	 * Méthode de lancement du programme Python
+	 */
+	public void lanceurPython(){
+		PythonRunnable pRunnable = new PythonRunnable();
+		Thread pythonThread = new Thread(pRunnable);
+		pythonThread.start();
+	}
 
+	
+	/**
+	 * Méthode de lancement de la page des données actuelles
+	 */
 	public void changementActuel(Stage primaryStage) {
 		this.stage = primaryStage;
 
@@ -79,7 +87,9 @@ public class IoTMainFrame extends Application {
 	}
 
 
-
+	/**
+	 * Méthode de lancement de la page des données antérieures des capteurs
+	 */
 	public void AnterieurDonneeUnique(Stage primaryStage, List<String> choix, LocalDate dateDebut, LocalDate dateFin) {
 		this.stage = primaryStage;
 
@@ -109,7 +119,9 @@ public class IoTMainFrame extends Application {
 	}
 
 
-
+	/**
+	 * Méthode de lancement de la page des données antérieures des panneaux solaires
+	 */
 	public void AnterieurSolaredge(Stage primaryStage, LocalDate dateDebut, LocalDate dateFin) {
 		this.stage = primaryStage;
 
@@ -138,7 +150,9 @@ public class IoTMainFrame extends Application {
 	}
 
 
-
+	/**
+	 * Méthode de lancement de la page du choix des données antérieures à afficher
+	 */
 	public void choixTypeDonneesAnterieures(Stage primaryStage) {
 		this.stage = primaryStage;
 
@@ -165,7 +179,9 @@ public class IoTMainFrame extends Application {
 	}
 
 
-
+	/**
+	 * Méthode de lancement de la page du changement du fichier de configuration
+	 */
 	public void changementConfig(Stage primaryStage) {
 		this.stage = primaryStage;
 
@@ -203,6 +219,9 @@ public class IoTMainFrame extends Application {
 
 	public class PythonRunnable implements Runnable {
 		@Override
+		/**
+		* Méthode définissant le travail du thread (exécuter le Python)
+		*/
 		public void run() {
 			String chemin = "sae-3-01-devapp-G1A-3/Code/Python/clientMQTT.py";
 			ProcessBuilder processBuilder = new ProcessBuilder();
