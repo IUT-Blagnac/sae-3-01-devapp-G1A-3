@@ -353,14 +353,13 @@ h3.text-uppercase, h4.text-uppercase {
 
 #filtreProd{
   background-color: #ea8db3;
+  color: white;
   border-radius: 10px;
   padding: 10px;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
 }
 
-#filterMenu{
-  color: white;
-}
+
 
 /* Pour tout les carousel */
 @media (max-width: 768px) {

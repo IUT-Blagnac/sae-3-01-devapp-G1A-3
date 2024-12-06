@@ -27,20 +27,28 @@
 					<div class="card-body">
 						<form method="post" action="./includes/TraitConnexion.php">
 							<p>* champs obligatoires</p>
+							
+							<!-- Affichage des messages d'erreur -->
+							<?php if (isset($_GET['msgErreur'])): ?>
+								<div class="alert alert-danger">
+									<?php echo htmlspecialchars($_GET['msgErreur']); ?>
+								</div>
+							<?php endif; ?>
+							
 							<div class="mb-3">
 								<label class="sub_title" for="login">E-mail *</label>
-								<input placeholder="Entrez votre e-mail" name="user_login" id="login" class="form_style" type="email" value="">
+								<input placeholder="Entrez votre e-mail" name="user_login" id="login" class="form_style" type="email" required>
 							</div>
 							<div class="mb-3">
 								<label class="sub_title" for="password">Mot de passe *</label>
-								<input placeholder="Entrez votre mot de passe" name="user_password" id="password" class="form_style" type="password">
+								<input placeholder="Entrez votre mot de passe" name="user_password" id="password" class="form_style" type="password" required>
 							</div>
 							<div class="mb-3">
 								<label class="sub_title" for="password">Se souvenir de moi</label>
-								<input type="checkbox" name="seSouvenirMoi">
+								<input type="checkbox" name="seSouvenirMoi" id="rememberMe">
 							</div>
 							<div>
-								<input type="submit" name="envoyer" class="btn btn-primary" value="VALIDER">
+								<input type="submit" name="submit" class="btn btn-primary" value="VALIDER">
 							</div>
 						</form>
 					</div>
