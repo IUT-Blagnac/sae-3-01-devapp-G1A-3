@@ -2,6 +2,7 @@ package application.view;
 
 import application.control.IoTMainFrame;
 import application.tools.DataReader;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -17,6 +18,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.*;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Map;
 import java.util.Objects;
 
@@ -112,11 +115,13 @@ public class DonneesActuellesController {
 
     public void initContext(Stage _containingStage) {
         this.containingStage = _containingStage;
+        solarEdgeDataMemory = new TitledPane();
         setUpSolaredge();
         this.initWeb();
         controlUpdateThread checkingRunnable = new controlUpdateThread(this);
         Thread checkingThread = new Thread(checkingRunnable);
         checkingThread.start();
+        containingStage.setOnCloseRequest(event -> checkingRunnable.stop());
         /*
          Test pour les notifications
          */
@@ -126,32 +131,42 @@ public class DonneesActuellesController {
 
     private void setUpSolaredge() {
         System.out.println("set up...");
-        solarEdgeDataMemory = new TitledPane();
         solarEdgeDataMemory.setText("Solaredge");
         solarEdgeDataMemory.setCollapsible(false);
         solarEdgeDataMemory.setExpanded(true);
         solarEdgeDataMemory.setId("solaredge");
-        VBox container = new VBox();
-        container.setFillWidth(true);
-        solarEdgeDataMemory.setContent(container);
-        File solarEdgefolder;
+
+        if (solarEdgeDataMemory.getContent() == null) {
+            solarEdgeDataMemory.setContent(new VBox());
+        }
+
         try {
-            solarEdgefolder = new File(Objects.requireNonNull(DonneesActuellesController.class.getClassLoader().getResource("application/capteur/solaredge")).toURI());
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
+            File solarEdgefolder = new File(Objects.requireNonNull(DonneesActuellesController.class.getClassLoader()
+                    .getResource("application/capteur/solaredge")).toURI());
+            File[] files = Objects.requireNonNull(solarEdgefolder.listFiles());
+
+            // Identify the latest file
+            File latestFile = Arrays.stream(files)
+                    .max(Comparator.comparing(File::lastModified))
+                    .orElseThrow(() -> new RuntimeException("No files found in directory"));
+
+            Map<String, Float> solarDatas = DataReader.getSolarDict(latestFile);
+
+            // Update the UI
+            Platform.runLater(() -> {
+                VBox container = (VBox) solarEdgeDataMemory.getContent();
+                container.getChildren().clear(); // Clear old elements
+
+                // Add new elements
+                Text powerLabel = new Text("Puissance actuelle");
+                TextField powerValue = new TextField(solarDatas.get("currentPower.power") + " Watts");
+                powerValue.setEditable(false);
+                container.getChildren().addAll(powerLabel, powerValue);
+            });
+
+        } catch (Exception e) {
+            System.out.println("Error in setUpSolaredge: " + e.getMessage());
         }
-        File lastestSolarEdge = Objects.requireNonNull(solarEdgefolder.listFiles())[0];
-        for (File current : Objects.requireNonNull(solarEdgefolder.listFiles())) {
-            if (lastestSolarEdge.lastModified() < current.lastModified()) lastestSolarEdge = current;
-        }
-        Map<String, Float> solarDatas = DataReader.getSolarDict(lastestSolarEdge);
-        Text tempText = new Text("Puissance actuelle");
-        tempText.setId("power");
-        TextField tempField = new TextField(solarDatas.get("currentPower.power") + " Watts");
-        tempField.setId(solarDatas.get("currentPower.power").toString());
-        tempField.setEditable(false);
-        container.getChildren().add(tempText);
-        container.getChildren().add(tempField);
     }
 
     private void initWeb() {
@@ -425,7 +440,7 @@ public class DonneesActuellesController {
                         // Nom du fichier modifié
                         Path changedFile = (Path) event.context();
                         System.out.println("Changement détecté : " + kind.name() + " -> " + changedFile);
-                        controller.setUpSolaredge();
+                        Platform.runLater(() -> controller.setUpSolaredge());
                         // Recompter les fichiers
                         int currentFileCount = countFilesInDirectory(resourcePath);
                         if (currentFileCount != previousFileCount) {
