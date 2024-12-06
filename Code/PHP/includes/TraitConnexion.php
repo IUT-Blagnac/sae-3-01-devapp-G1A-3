@@ -3,14 +3,14 @@
 session_start();
 
 // Déclaration des identifiants corrects
-$correct_login = 'Achille';
-$correct_password = 'Talon';
+$correct_login = 'Achille@Talon';
+$correct_password = 'talonducul';
 
 // Vérification si le formulaire a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupération et sécurisation des entrées utilisateur
     $login = htmlentities($_POST['user_login']);
-    $password = htmlentities($_POST['user_passwd']);
+    $password = htmlentities($_POST['user_password']);
     
     // Vérification des identifiants
     if ($login === $correct_login && $password === $correct_password) {
@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Gérer l'option "se souvenir de moi"
         if (isset($_POST['seSouvenirMoi']) && $_POST['seSouvenirMoi'] === 'oui') {
             $expiration = time() + 900; // Cookie expire dans 15 minutes
-            setcookie('CdavidTran', $login, $expiration, "/");
+            setcookie('CookieAchilleTalon', $login, $expiration, "/");
         }
 
         // Redirection vers la page d'accueil
@@ -29,8 +29,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     } else {
         // Identifiants incorrects, redirection vers le formulaire avec un message d'erreur
-        $url = "formConnexion.php?msgErreur=" . urlencode("Login ou mot de passe incorrect.");
+        $url = "../Connexion.php?msgErreur=" . urlencode("Login ou mot de passe incorrect.");
         header("Location: $url");
         exit();
     }
 }
+?>

@@ -14,7 +14,7 @@
     <div class="collapse navbar-collapse" id="navbar">
       <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link fw-bold text-danger" href="#">PRODUITS</a>
+          <a class="nav-link fw-bold text-danger" href="produit.php">PRODUITS</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle fw-bold text-danger" href="#" id="navbarDropdown" role="button">
@@ -24,24 +24,57 @@
             <div class="row">
               <!-- Colonne 1 -->
               <div class="col-md-4">
-                <h6 class="dropdown-header">Catégorie 1</h6>
-                <a class="dropdown-item" href="#">Option 1</a>
-                <a class="dropdown-item" href="#">Option 2</a>
-                <a class="dropdown-item" href="#">Option 3</a>
+                <a href="">
+                  <h6 class="dropdown-header">Gélifiés</h6>
+                </a>
               </div>
               <!-- Colonne 2 -->
               <div class="col-md-4">
-                <h6 class="dropdown-header">Catégorie 2</h6>
-                <a class="dropdown-item" href="#">Option 4</a>
-                <a class="dropdown-item" href="#">Option 5</a>
-                <a class="dropdown-item" href="#">Option 6</a>
+                <a href="">
+                  <h6 class="dropdown-header">Artisanaux</h6>
+                </a>
               </div>
               <!-- Colonne 3 -->
               <div class="col-md-4">
-                <h6 class="dropdown-header">Catégorie 3</h6>
-                <a class="dropdown-item" href="#">Option 7</a>
-                <a class="dropdown-item" href="#">Option 8</a>
-                <a class="dropdown-item" href="#">Option 9</a>
+                <a href="">
+                  <h6 class="dropdown-header">K'rokante</h6>
+                </a>
+              </div>
+              <!-- Colonne 4 -->
+              <div class="col-md-4">
+                <a href="">
+                  <h6 class="dropdown-header">Vegandy</h6>
+                </a>
+              </div>
+              <!-- Colonne 5 -->
+              <div class="col-md-4">
+                <a href="">
+                  <h6 class="dropdown-header">ChoupiPop</h6>
+                </a>
+              </div>
+              <!-- Colonne 6 -->
+              <div class="col-md-4">
+                <a href="">
+                  <h6 class="dropdown-header">ChocoBoom</h6>
+                </a>
+              </div>
+              <!-- Colonne 7 -->
+              <div class="col-md-4">
+                <a href="">
+                  <h6 class="dropdown-header">Praloup</h6>
+                </a>
+              </div>
+              <!-- Colonne 8 -->
+              <div class="col-md-4">
+                <a href="">
+                  <h6 class="dropdown-header">ChocoCraq</h6>
+                </a>
+              </div>
+              <!-- Colonne 9 -->
+              <div class="col-md-4">
+                <a href="">
+                  <h6 class="dropdown-header">Fondoo</h6>
+                </a>
               </div>
             </div>
           </div>
@@ -54,13 +87,40 @@
           <a class="nav-link fw-bold text-danger" href="#">CONTACT</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link fw-bold text-danger" href="Connexion.php">SE CONNECTER</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link fw-bold text-danger" href="shoppingCart.php">MON PANIER</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link fw-bold text-danger" href="profile.php">PROFIL</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle fw-bold text-danger" href="#" id="navbarDropdown" role="button">
+            COMPTE
+          </a>
+          <div class="dropdown-menu p-3" aria-labelledby="navbarDropdown" style="width: 450px;">
+            <div class="row row-cols-1 g-3">
+              <!-- Colonne 1 -->
+              <div class="col">
+                <a href="profile.php" class="dropdown-item">
+                  <h6 class="dropdown-header">Vos Informations personnelles</h6>
+                </a>
+              </div>
+              <!-- Colonne 2 -->
+              <div class="col">
+                <a href="#" class="dropdown-item">
+                  <h6 class="dropdown-header">Vos Commandes</h6>
+                </a>
+              </div>
+              <!-- Colonne 3 -->
+              <div class="col">
+                <a href="Connexion.php" class="dropdown-item">
+                  <h6 class="dropdown-header">Se Connecter</h6>
+                </a>
+              </div>
+              <!-- Colonne 4 -->
+              <div class="col">
+                <a href="#" class="dropdown-item">
+                  <h6 class="dropdown-header">Se Déconnecter</h6>
+                </a>
+              </div>
+            </div>
+          </div>
         </li>
       </ul>
 
@@ -110,9 +170,9 @@
   }
 
   .dropdown-header {
-  font-weight: bold;
-  font-size: 1.2em;
-  text-transform: uppercase;
-  /* color: #d0006f; à corriger */
-}
+    font-weight: bold;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    /* color: #d0006f; à corriger */
+  }
 </style>

@@ -10,11 +10,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel=" website icon" type="png" href="./images/logo/logo.png">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./includes/style.css">
     <title>FAQ | SweetShops</title>
 </head>
 
-<body>
+<body style="background-color: #ffe4e1;">
     <?php include './includes/header.php' ?>
     <div class="question d-flex-fluid my-5">
         <center>
