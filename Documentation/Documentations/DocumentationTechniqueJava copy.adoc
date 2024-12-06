@@ -1,0 +1,41 @@
+= Cahier de recette - Plateforme d'ecommerce - Sweetshop
+:toc:
+:toc-title: Sommaire
+:Entreprise: LudoRama
+:Equipe: LudoRama
+
+== Présentation de l'application
+(Présentation rapide de l'application)
+== Procédure d'installation
+=== Pour le développement 
+(comment installer l'environnement de développement)
+
+
+== Pour le poste
+
+
+== Use Case Global
+(Expliquer le use case global)(types d'utilisateurs, spécificités...)
+
+
+== Architecture 
+=== Architecture générale 
+(Architecture générale en terme de sous-systèmes et rôle de chaque élément : fichier de données, fichier de configuration, parties de l'application, ...)
+=== Ressources externes utilisées et rôles
+( API utilisées avec lien d'accès web + lien doc en ligne, ...)
+=== Structuration en package de l'application 
+(Structuration en packages de l’application documentée. Principes retenus pour cette structuration qui doivent être justifiés. Si des patterns particuliers sont utilisés (MVC, ...), les expliquer clairement.)
+=== Élements essentiels 
+(Eléments essentiels à connaître, spécificités, … nécessaires à la mise en œuvre du développement. Cette partie peut être illustrée par un diagramme de séquence. Par exemple, une structure récurrente de classes peut être décrite ici (contrôleurs de dialogues, contrôleurs de vue, …), les threads utilisés, ...)
+
+
+== Fonctionnalités 
+
+=== Package : src/main/java/
+==== control
+==== tools
+==== view
+
+=== Package : src/main/ressources/
+Vu qu'il y a que les fxml, juste des screens et des explications si possibles.
+

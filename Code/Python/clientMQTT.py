@@ -10,7 +10,7 @@ from pathlib import Path
 
 # Récupération des données contenues dans le fichier config.ini
 config = configparser.ConfigParser()
-config.read("config.ini")
+config.read("sae-3-01-devapp-G1A-3/Code/Python/config.ini")
 
 BROKER_ADDRESS = config["MQTT"]["broker_address"]
 PORT = int(config["MQTT"]["port"])

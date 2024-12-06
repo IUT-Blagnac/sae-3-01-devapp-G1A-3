@@ -38,11 +38,12 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioMenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SeparatorMenuItem?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -51,7 +52,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.web.WebView?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.DonneesActuellesController">
+<BorderPane fx:id="mainContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.DonneesActuellesController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
          <menus>
@@ -62,6 +63,16 @@
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" onAction="#fermer" text="Fermer" />
                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Capteurs">
+              <items>
+                  <RadioMenuItem fx:id="am107" mnemonicParsing="false" onAction="#changeInterface" selected="true" text="AM107">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="captor" />
+                     </toggleGroup>
+                  </RadioMenuItem>
+                  <RadioMenuItem fx:id="solaredge" mnemonicParsing="false" onAction="#changeInterface" text="SolarEdge" toggleGroup="$captor" />
+              </items>
             </Menu>
          </menus>
       </MenuBar>
@@ -85,65 +96,65 @@
          </padding>
       </HBox>
    </bottom>
+   <left>
+      <VBox prefWidth="150.0" BorderPane.alignment="CENTER">
+         <children>
+            <CheckBox fx:id="temp" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#updateDisplayedDatas" selected="true" text="Température">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </CheckBox>
+            <CheckBox fx:id="co2" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#updateDisplayedDatas" selected="true" text="Co2">
+               <padding>
+                  <Insets bottom="5.0" />
+               </padding>
+            </CheckBox>
+            <CheckBox fx:id="humidity" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#updateDisplayedDatas" selected="true" text="Humidité">
+               <padding>
+                  <Insets bottom="5.0" />
+               </padding>
+            </CheckBox>
+            <TitledPane animated="false" text="Alertes :">
+               <content>
+                  <ScrollPane fitToHeight="true" fitToWidth="true">
+                     <content>
+                        <VBox fx:id="alerts">
+                           <children>
+                              <ToggleButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Example critical room" />
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </content>
+            </TitledPane>
+            <TitledPane animated="false" text="Attention :">
+               <content>
+                  <ScrollPane fitToHeight="true" fitToWidth="true">
+                     <content>
+                        <VBox fx:id="warnings">
+                           <children>
+                              <ToggleButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Exemple dangerous room" />
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </content>
+            </TitledPane>
+         </children>
+      </VBox>
+   </left>
+   <right>
+      <ScrollPane fitToWidth="true" prefWidth="175.0" BorderPane.alignment="CENTER">
+         <content>
+            <VBox fx:id="displayedDatas" />
+         </content>
+      </ScrollPane>
+   </right>
    <center>
-      <SplitPane dividerPositions="0.2505567928730512, 0.7505567928730512" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" BorderPane.alignment="CENTER">
-         <items>
-            <VBox prefWidth="150.0">
-               <children>
-                  <CheckBox fx:id="temp" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#updateDisplayedDatas" selected="true" text="Température">
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </CheckBox>
-                  <CheckBox fx:id="co2" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#updateDisplayedDatas" selected="true" text="Co2">
-                     <padding>
-                        <Insets bottom="5.0" />
-                     </padding>
-                  </CheckBox>
-                  <CheckBox fx:id="humidity" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#updateDisplayedDatas" selected="true" text="Humidité">
-                     <padding>
-                        <Insets bottom="5.0" />
-                     </padding>
-                  </CheckBox>
-                  <TitledPane animated="false" text="Alertes :">
-                     <content>
-                        <ScrollPane fitToHeight="true" fitToWidth="true">
-                           <content>
-                              <VBox>
-                                 <children>
-                                    <ToggleButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Example critical room" />
-                                 </children>
-                              </VBox>
-                           </content>
-                        </ScrollPane>
-                     </content>
-                  </TitledPane>
-                  <TitledPane animated="false" text="Attention :">
-                     <content>
-                        <ScrollPane fitToHeight="true" fitToWidth="true">
-                           <content>
-                              <VBox>
-                                 <children>
-                                    <ToggleButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Exemple dangerous room" />
-                                 </children>
-                              </VBox>
-                           </content>
-                        </ScrollPane>
-                     </content>
-                  </TitledPane>
-               </children>
-            </VBox>
-            <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="-1.0" prefWidth="-1.0">
-               <content>
-                  <WebView fx:id="iutschematics" minHeight="-1.0" minWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" />
-               </content>
-            </ScrollPane>
-            <ScrollPane fitToWidth="true" prefWidth="200.0">
-               <content>
-                  <VBox fx:id="displayedDatas" />
-               </content>
-            </ScrollPane>
-         </items>
-      </SplitPane>
+      <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="-1.0" prefWidth="-1.0" BorderPane.alignment="CENTER">
+         <content>
+            <WebView fx:id="iutschematics" minHeight="-1.0" minWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" />
+         </content>
+      </ScrollPane>
    </center>
 </BorderPane>
