@@ -1,4 +1,4 @@
-= Cahier de recette - Plateforme d'ecommerce - Sweetshop
+= Cahier de recette - Plateforme d'ecommerce - Sweetshops
 :toc:
 :toc-title: Sommaire
 :Entreprise: LudoRama

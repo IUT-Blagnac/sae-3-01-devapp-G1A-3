@@ -1,12 +1,18 @@
-= Cahier de recette - Plateforme d'ecommerce - Sweetshop
+= Cahier de recette - Plateforme d'ecommerce - Sweetshops
 :toc:
 :toc-title: Sommaire
 :Entreprise: LudoRama
-:Equipe: LudoRama
+:Equipe: LudoRama / G1A-3
 
 == Présentation de l'application
-(Présentation rapide de l'application)
+
+L'application Java développée permet principalement à l'ensemble des utilisateurs de recueillir des données de différents capteurs.
+De plus, il peut choisir quelles données recueillir parmi l'ensemble de celles récupérables, les seuils à partir desquels une alerte sera levée, et lancer le programme qui récupère les données.
+L'affichage des données se fait de différentes manières : celles-ci sont soit affichées sous forme de graphes, soit sous forme de valeurs.
+Cela permet à l'utilisateur de pouvoir avoir la donnée précise qu'il souhaite, ou autrement d'avoir une idée de comment les données ont varié durant une période donnée.
+
 == Procédure d'installation
+
 === Pour le développement 
 (comment installer l'environnement de développement)
 
