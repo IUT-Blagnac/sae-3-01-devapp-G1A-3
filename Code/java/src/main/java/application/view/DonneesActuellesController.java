@@ -93,7 +93,7 @@ public class DonneesActuellesController {
      * Si "SolarEdge" est sélectionné, affiche les données SolarEdge.
      * @throws Exception en cas d'erreur lors du changement d'interface.
      */
-
+&   
     @FXML
     private void changeInterface() throws Exception {
         if (am107.isSelected()) {
