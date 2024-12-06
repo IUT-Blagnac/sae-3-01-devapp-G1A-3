@@ -87,6 +87,13 @@ public class DonneesActuellesController {
     @FXML
     private RadioMenuItem solaredge;
 
+    /**
+     * Change l'interface affichée en fonction du capteur sélectionné.
+     * Si "AM107" est sélectionné, affiche l'interface correspondante.
+     * Si "SolarEdge" est sélectionné, affiche les données SolarEdge.
+     * @throws Exception en cas d'erreur lors du changement d'interface.
+     */
+
     @FXML
     private void changeInterface() throws Exception {
         if (am107.isSelected()) {
@@ -113,9 +120,19 @@ public class DonneesActuellesController {
     private final JSBridge jsBridge = new JSBridge();
     private IoTMainFrame main = new IoTMainFrame();
 
+    /**
+     * Initialise le contexte du contrôleur avec la fenêtre principale donnée.
+     * Configure les capteurs, initialise les threads de mise à jour,
+     * et met en place les gestionnaires d'événements de fermeture.
+     * @param _containingStage La fenêtre principale (Stage) de l'application.
+     */
     public void initContext(Stage _containingStage) {
         this.containingStage = _containingStage;
         solarEdgeDataMemory = new TitledPane();
+        solarEdgeDataMemory.setText("Solaredge");
+        solarEdgeDataMemory.setCollapsible(false);
+        solarEdgeDataMemory.setExpanded(true);
+        solarEdgeDataMemory.setId("solaredge");
         setUpSolaredge();
         this.initWeb();
         controlUpdateThread checkingRunnable = new controlUpdateThread(this);
@@ -129,12 +146,13 @@ public class DonneesActuellesController {
         newWarning("B113");
     }
 
+    /**
+     * Configure et met à jour l'interface utilisateur pour afficher les données SolarEdge.
+     * Charge les fichiers récents contenant les données SolarEdge et les affiche.
+     * En cas d'erreur, capture et signale l'exception.
+     */
     private void setUpSolaredge() {
-        System.out.println("set up...");
-        solarEdgeDataMemory.setText("Solaredge");
-        solarEdgeDataMemory.setCollapsible(false);
-        solarEdgeDataMemory.setExpanded(true);
-        solarEdgeDataMemory.setId("solaredge");
+
 
         if (solarEdgeDataMemory.getContent() == null) {
             solarEdgeDataMemory.setContent(new VBox());
@@ -169,6 +187,10 @@ public class DonneesActuellesController {
         }
     }
 
+    /**
+     * Initialise la vue Web (WebView) pour afficher un fichier SVG interactif.
+     * Configure l'interaction entre JavaScript et Java via une passerelle JS.
+     */
     private void initWeb() {
         String pathSvg = Objects.requireNonNull(DonneesActuellesController.class.getClassLoader().getResource("application/svg/demoSVG.html")).toString();
 
@@ -194,24 +216,40 @@ public class DonneesActuellesController {
         });
     }
 
+    /**
+     * Affiche la fenêtre principale associée au contrôleur.
+     */
     public void displayDialog() {
         this.containingStage.show();
     }
 
+    /**
+     * Définit le cadre principal (IoTMainFrame) utilisé par ce contrôleur.
+     * @param newMain Le nouvel objet IoTMainFrame.
+     */
     public void setMain(IoTMainFrame newMain) {
         main = newMain;
     }
 
+    /**
+     * Charge l'interface du menu principal via le cadre principal (IoTMainFrame).
+     */
     @FXML
     private void menu() {
         main.start(containingStage);
     }
 
+    /**
+     * Retourne à l'écran précédent qui permet de choisir le type de données antérieures.
+     */
     @FXML
     private void ecranAnterieur() {
         main.choixTypeDonneesAnterieures(containingStage);
     }
 
+    /**
+     * Ferme la fenêtre principale associée à ce contrôleur.
+     */
     @FXML
     private void fermer() {
         this.containingStage.close();
@@ -255,7 +293,12 @@ public class DonneesActuellesController {
         }
     }
 
-
+    /**
+     * Ajoute ou supprime une salle spécifique de la liste des données affichées.
+     * Si la salle est déjà affichée, elle est supprimée. Sinon, elle est ajoutée.
+     * @param room Le nom de la salle à gérer.
+     * @throws Exception si une erreur survient lors de la mise à jour.
+     */
     public void displayedListUpdate(String room) throws Exception {
         boolean deleted = false;
         Node toDelete = null;
@@ -273,10 +316,23 @@ public class DonneesActuellesController {
         } else displayedDatas.getChildren().remove(toDelete);
     }
 
+    /**
+     * Ajoute ou met à jour les données pour une salle spécifique dans l'affichage.
+     * Contrairement à `displayedListUpdate`, cette méthode ne supprime pas les salles existantes.
+     * @param room Le nom de la salle à mettre à jour.
+     * @throws Exception si une erreur survient lors de la mise à jour.
+     */
     public void displayedListUpdateSoft(String room) throws Exception {
         updateRoom(room);
     }
 
+    /**
+     * Met à jour l'affichage des données pour une salle spécifique.
+     * Ajoute une section avec les données de température, CO2 et humidité, si disponibles.
+     * Les champs sont masqués si leur catégorie n'est pas cochée.
+     * @param room Le nom de la salle pour laquelle les données doivent être affichées.
+     * @throws Exception si une erreur survient lors de la récupération des données.
+     */
     private void updateRoom(String room) throws Exception {
         TitledPane roomdatas = new TitledPane();
         roomdatas.setText(room.toUpperCase());
@@ -321,6 +377,14 @@ public class DonneesActuellesController {
         roomdatas.setExpanded(true);
     }
 
+    /**
+     * Récupère les données correspondantes (température, CO2 ou humidité)
+     * pour une salle spécifique à partir des fichiers disponibles.
+     * @param room Le nom de la salle.
+     * @param toFetch Le type de donnée à récupérer (TEMP, CO2, HUM).
+     * @return La valeur correspondante sous forme de float.
+     * @throws Exception si une erreur survient lors de la lecture des fichiers.
+     */
     private float getCorrespondingData(String room, DATA toFetch) throws Exception {
         room = room.toUpperCase();
         File folder = new File(Objects.requireNonNull(DonneesActuellesController.class.getClassLoader().getResource("application/capteur/AM107/" + room)).toURI());
@@ -342,6 +406,11 @@ public class DonneesActuellesController {
         throw new Exception("Erreur de lecture de fichier");
     }
 
+    /**
+     * Ajoute un bouton d'avertissement pour une salle spécifique dans la liste des avertissements.
+     * Si un bouton pour cette salle existe déjà, aucun nouvel ajout n'est effectué.
+     * @param room Le nom de la salle pour laquelle un avertissement doit être créé.
+     */
     private void newWarning(String room) {
         boolean exists = false;
         for (Node existingrooms : warnings.getChildren()) {
@@ -357,6 +426,11 @@ public class DonneesActuellesController {
         }
     }
 
+    /**
+     * Ajoute un bouton d'alerte pour une salle spécifique dans la liste des alertes.
+     * Si un bouton pour cette salle existe déjà, aucun nouvel ajout n'est effectué.
+     * @param room Le nom de la salle pour laquelle une alerte doit être créée.
+     */
     private void newAlert(String room) {
         boolean exists = false;
         for (Node existingrooms : alerts.getChildren()) {
@@ -372,6 +446,12 @@ public class DonneesActuellesController {
         }
     }
 
+    /**
+     * Crée un bouton pour une notification (alerte ou avertissement)
+     * pour une salle spécifique. Ce bouton permet d'interagir avec l'affichage des données.
+     * @param room Le nom de la salle associée à la notification.
+     * @return Un objet Button configuré.
+     */
     private Button notificationHandle(String room) {
         Button newButton = new Button();
         newButton.setText(room.toUpperCase());
@@ -462,7 +542,12 @@ public class DonneesActuellesController {
             }
 
         }
-        // Méthode pour compter les fichiers dans un dossier
+
+        /**
+         * Compte le nombre de fichiers dans un dossier donné.
+         * @param path Le chemin du dossier.
+         * @return Le nombre de fichiers trouvés.
+         */
         private static int countFilesInDirectory(Path path) {
             try {
                 return (int) Files.list(path).filter(Files::isRegularFile).count();
@@ -472,6 +557,9 @@ public class DonneesActuellesController {
             }
         }
 
+        /**
+         * Arrête le thread de mise à jour en modifiant l'état `terminated` à true.
+         */
         public void stop() {
             this.terminated = true;
         }
