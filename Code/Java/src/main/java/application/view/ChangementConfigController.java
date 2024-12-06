@@ -19,6 +19,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
+/**
+ * Contrôleur pour la gestion des changements de configuration dans l'application.
+ */
 public class ChangementConfigController {
     
     private int nbValeurs = 0;
@@ -51,11 +54,19 @@ public class ChangementConfigController {
     private TextField alerteCO2;
 
 
-
+    /**
+     * Initialise le contexte du contrôleur en définissant la fenêtre parente.
+     * 
+     * @param _containingStage la fenêtre parente du contrôleur.
+     */
     public void initContext(Stage _containingStage) {
 		this.containingStage = _containingStage;
 	}
 
+    /**
+     * Affiche la boîte de dialogue de changement de configuration.
+     * Initialise les menus et charge les valeurs actuelles de la configuration.
+     */
     public void displayDialog(){
         lireConfig();
         menuDonneesPanneauxSolaires();
@@ -65,12 +76,19 @@ public class ChangementConfigController {
         this.containingStage.show();
     }
 
+    /**
+     * Définit la référence à la classe principale de l'application.
+     * 
+     * @param newMain l'instance principale de l'application.
+     */
     public void setMain(IoTMainFrame newMain){
         main = newMain;
     }
 
 
-
+    /**
+     * Lit le fichier de configuration et charge les lignes dans une liste.
+     */
     public void lireConfig(){
         try {
             File myObj = new File("sae-3-01-devapp-G1A-3/Code/Python/config.ini");
@@ -87,7 +105,10 @@ public class ChangementConfigController {
     }
 
 
-
+    /**
+     * Initialise le menu pour sélectionner les données des panneaux solaires.
+     * Ajoute un bouton pour chaque donnée disponible.
+     */
     public void menuDonneesPanneauxSolaires(){
         final String sMenuTextStart = "Panneaux solaires";
         final MenuButton choices = new MenuButton(sMenuTextStart);
@@ -116,7 +137,10 @@ public class ChangementConfigController {
     }
 
 
-
+    /**
+     * Initialise le menu pour sélectionner les données des capteurs.
+     * Ajoute un bouton pour chaque type de données disponible.
+     */
     public void menuDonneesCapteurs(){
 
         final String sMenuTextStart = "AM-107";
@@ -145,7 +169,9 @@ public class ChangementConfigController {
     }
 
 
-
+    /**
+     * Définit les valeurs actuelles des seuils et de la période dans les champs de texte.
+     */
     public void setValeurs(){
         String valeurs = listeLignes.get(8).split(" = ")[1];
         
@@ -157,6 +183,9 @@ public class ChangementConfigController {
 
 
     @FXML
+    /**
+     * Valide les changements de configuration et met à jour le fichier de configuration.
+     */
     private void valider(){
         if (periode.getText() != listeLignes.get(9).split(" = ")[1]){
             file.replacePeriode(periode.getText());
@@ -202,6 +231,9 @@ public class ChangementConfigController {
     }
 
     @FXML
+    /**
+     * Annule les changements et retourne à l'écran principal.
+     */
     private void annuler(){
         main.start(containingStage);
     }

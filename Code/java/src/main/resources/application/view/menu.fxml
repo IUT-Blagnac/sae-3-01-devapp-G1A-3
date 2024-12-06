@@ -31,14 +31,23 @@
                   </Button>
                </children>
             </HBox>
-            <Button mnemonicParsing="false" onAction="#changerConfig" prefHeight="40.0" prefWidth="160.0" text="Configuration des données">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Button>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#changerConfig" prefHeight="50.0" prefWidth="160.0" text="Configuration des données">
+                     <HBox.margin>
+                        <Insets left="100.0" top="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#lancerPython" prefHeight="50.0" prefWidth="160.0" text="Lancer le Python">
+                     <HBox.margin>
+                        <Insets left="80.0" top="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
             <Button alignment="CENTER" mnemonicParsing="false" onAction="#fermer" prefHeight="30.0" prefWidth="176.0" text="Fermer l'application">
                <VBox.margin>
-                  <Insets top="85.0" />
+                  <Insets top="55.0" />
                </VBox.margin>
             </Button>
          </children>
