@@ -12,7 +12,7 @@ import java.util.Scanner;
  */
 public class FichierConfig {
     private List<String> lignes;
-    private String cheminConfig = "sae-3-01-devapp-G1A-3/Code/Python/config.ini";
+    private String cheminConfig = "Code/Python/config.ini";
 
     /**
      * Définit la liste des lignes du fichier de configuration.

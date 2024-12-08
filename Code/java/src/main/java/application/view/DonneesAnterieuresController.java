@@ -169,7 +169,7 @@ public class DonneesAnterieuresController {
      */
     public void menu(List<String> choix, LocalDate dateDebut, LocalDate dateFin){
 
-        File dossier = new File("sae-3-01-devapp-G1A-3/Code/Java/src/main/resources/application/capteur/AM107");
+        File dossier = new File("Code/Java/src/main/resources/application/capteur/AM107");
 
         final String sMenuTextStart = "Salle";
         final MenuButton choices = new MenuButton(sMenuTextStart);
@@ -258,7 +258,7 @@ public class DonneesAnterieuresController {
     private List<File> trouveFichiersAM107(String nomFichier){
         int i = 0;
         boolean fini = false;
-        String chemin = "sae-3-01-devapp-G1A-3/Code/Java/src/main/resources/application/capteur/AM107/" + nomFichier;
+        String chemin = "Code/Java/src/main/resources/application/capteur/AM107/" + nomFichier;
         File dossier = new File(chemin);
         LocalDate datePrecedente = null;
 
@@ -455,7 +455,7 @@ public class DonneesAnterieuresController {
     private List<File> trouveAlertes(String nomFichier){
         int i = 0;
         boolean fini = false;
-        String chemin = "sae-3-01-devapp-G1A-3/Code/Java/src/main/resources/application/capteur/alerte/" + nomFichier;
+        String chemin = "Code/Java/src/main/resources/application/capteur/alerte/" + nomFichier;
         File dossier = new File(chemin);
         LocalDate datePrecedente = null;
 

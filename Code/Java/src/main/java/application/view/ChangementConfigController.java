@@ -91,7 +91,7 @@ public class ChangementConfigController {
      */
     public void lireConfig(){
         try {
-            File myObj = new File("sae-3-01-devapp-G1A-3/Code/Python/config.ini");
+            File myObj = new File("Code/Python/config.ini");
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
