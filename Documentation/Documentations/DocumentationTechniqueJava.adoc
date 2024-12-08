@@ -23,7 +23,11 @@ Pour le poste de l'utilisateur, il sera seulement nécessaire d'installer Java e
 
 
 == Use Case Global
-(Expliquer le use case global)(types d'utilisateurs, spécificités...)
+
+Cette application ne possède pour utilisateur que des membres classiques. Ces derniers pourrant à l'aide de cette application connaître les données importantes envoyées par les capteurs de leurs entrepôts.
+Ils pourront pour cela accéder à des données archivées dans une arborescence précise, ou bien accéder à des données actuelles afin de vérifier qu'il n'y ait aucun souci.
+Si l'utilisateur aperçoit une donnée qui dépasse un seuil fourni à l'application, alors une alerte sera donnée. Celle-ci sera visible lorsque le client sera en train de regarder des données.
+Si l'utilisateur ne saisit pas correctement l'ensemble des données souhaitées, alors, il recevra des erreurs venant de l'application.
 
 
 == Architecture 
