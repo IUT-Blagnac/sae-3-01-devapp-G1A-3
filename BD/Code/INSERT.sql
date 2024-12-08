@@ -5,7 +5,7 @@
 -- Table PERMISSION
 INSERT INTO PERMISSION (NOMPERMISSION) VALUES
 ('Admin'),
-('Utilisateur');
+('Utilisateur')
 
 -- Table ADRESSE
 INSERT INTO ADRESSE (NORUE, VILLE, CODEPOSTAL, PAYS) VALUES
@@ -251,12 +251,12 @@ INSERT INTO OPTIONPAIEMENT (NOMOPTION) VALUES
 INSERT INTO METHODEPAIEMENT (IDCOMPTE, IDOPTION, NUMCARTE, IDPAYPAL, STATUS) VALUES
 (31, 1, '7984951075303687', NULL, 'Valide'),
 (41, 2, NULL, 1, 'Valide'),
-(45, 1, '8765432187654321', NULL, 'En attente'),
+(45, 1, '8765432187654321', NULL, 'Valide'),
 (36, 1, '4444333322221111', NULL, 'Valide'),
 (27, 2, NULL, 5, 'Valide'),
 (18, 1, '5555444433332222', NULL, 'Valide'),
-(29, 2, NULL, 7, 'Annulé'),
-(50, 1, '6666555544443333', NULL, 'En attente');
+(29, 2, NULL, 7, 'Expire'),
+(50, 1, '6666555544443333', NULL, 'Valide');
 
 -- Table FORMATPROD
 INSERT INTO FORMATPROD (NOMFORMAT) VALUES
@@ -291,22 +291,133 @@ INSERT INTO CONDITIONNEMENT (NOMCONDI) VALUES
 ('Panier');
 
 -- Table COMMANDE
-INSERT INTO COMMANDE (IDADRESSE, IDPAIEMENT, IDCOMPTE, STATUS, DATECOMMANDE, DATELIVR) VALUES
-(1, 1, 1, 'Livré', '2024-11-01', '2024-11-05'),
+INSERT INTO COMMANDE (IDADRESSE, IDPAIEMENT, IDCOMPTE, STATUSCOMMANDE, DATECOMMANDE, DATELIVR) VALUES
+(1, 1, 1, 'Livre', '2024-11-01', '2024-11-05'),
 (2, 2, 2, 'En cours', '2024-11-02', NULL),
-(3, 1, 3, 'Annulée', '2024-11-03', NULL),
-(4, 2, 4, 'Livré', '2024-11-04', '2024-11-07'),
+(3, 1, 3, 'Annule', '2024-11-03', NULL),
+(4, 2, 4, 'Livre', '2024-11-04', '2024-11-07'),
 (5, 1, 5, 'En cours', '2024-11-05', NULL),
-(6, 2, 6, 'Livré', '2024-11-06', '2024-11-09'),
-(7, 1, 7, 'Livré', '2024-11-07', '2024-11-10'),
+(6, 2, 6, 'Livre', '2024-11-06', '2024-11-09'),
+(7, 1, 7, 'Livre', '2024-11-07', '2024-11-10'),
 (8, 2, 8, 'En cours', '2024-11-08', NULL),
-(9, 2, 9, 'Livré', '2024-11-09', '2024-11-12'),
-(10, 1, 10, 'Livré', '2024-11-10', '2024-11-13');;
+(9, 2, 9, 'Livre', '2024-11-09', '2024-11-12'),
+(10, 1, 10, 'Livre', '2024-11-10', '2024-11-13'),
+(11, 1, 11, 'En cours', '2024-11-11', NULL),
+(12, 2, 12, 'Annule', '2024-11-12', NULL),
+(13, 1, 13, 'Livre', '2024-11-13', '2024-11-16'),
+(14, 2, 14, 'Livre', '2024-11-14', '2024-11-17'),
+(15, 1, 15, 'En cours', '2024-11-15', NULL),
+(16, 2, 16, 'Livre', '2024-11-16', '2024-11-19'),
+(17, 1, 17, 'Livre', '2024-11-17', '2024-11-20'),
+(18, 2, 18, 'Annule', '2024-11-18', NULL),
+(19, 1, 19, 'Livre', '2024-11-19', '2024-11-22'),
+(20, 2, 20, 'En cours', '2024-11-20', NULL),
+(21, 1, 21, 'En cours', '2024-11-21', NULL),
+(22, 2, 22, 'Livre', '2024-11-22', '2024-11-25'),
+(23, 1, 23, 'Annule', '2024-11-23', NULL),
+(24, 2, 24, 'Livre', '2024-11-24', '2024-11-27'),
+(25, 1, 25, 'En cours', '2024-11-25', NULL),
+(26, 2, 26, 'Livre', '2024-11-26', '2024-11-29'),
+(27, 1, 27, 'Annule', '2024-11-27', NULL),
+(28, 2, 28, 'Livre', '2024-11-28', '2024-12-01'),
+(29, 1, 29, 'En cours', '2024-11-29', NULL),
+(30, 2, 30, 'Livre', '2024-11-30', '2024-12-03'),
+(41, 1, 5, 'En cours', '2024-12-11', NULL), 
+(42, 2, 6, 'Livre', '2024-12-12', '2024-12-15'), 
+(43, 1, 7, 'Livre', '2024-12-13', '2024-12-16'), 
+(44, 2, 8, 'En cours', '2024-12-14', NULL), 
+(45, 1, 9, 'Annule', '2024-12-15', NULL), 
+(46, 2, 10, 'Livre', '2024-12-16', '2024-12-19'),
+(47, 1, 5, 'Livre', '2024-12-17', '2024-12-20'), 
+(48, 2, 6, 'Annule', '2024-12-18', NULL), 
+(49, 1, 7, 'Livre', '2024-12-19', '2024-12-22'), 
+(50, 2, 8, 'En cours', '2024-12-20', NULL),
+(41, 1, 5, 'En cours', '2024-12-11', NULL),
+(42, 2, 6, 'Livre', '2024-12-12', '2024-12-15'),
+(43, 1, 7, 'Livre', '2024-12-13', '2024-12-16'),
+(44, 2, 8, 'En cours', '2024-12-14', NULL),
+(45, 1, 9, 'Annule', '2024-12-15', NULL),
+(46, 2, 10, 'Livre', '2024-12-16', '2024-12-19'),
+(47, 1, 5, 'Livre', '2024-12-17', '2024-12-20'),
+(48, 2, 6, 'Annule', '2024-12-18', NULL),
+(49, 1, 7, 'Livre', '2024-12-19', '2024-12-22'),
+(50, 2, 8, 'En cours', '2024-12-20', NULL),
+(10, 1, 5, 'En cours', '2024-12-11', NULL),
+(20, 2, 6, 'Livre', '2024-12-12', '2024-12-15'),
+(30, 1, 7, 'Livre', '2024-12-13', '2024-12-16'),
+(40, 2, 8, 'En cours', '2024-12-14', NULL),
+(50, 1, 9, 'Annule', '2024-12-15', NULL),
+(15, 2, 10, 'Livre', '2024-12-16', '2024-12-19'),
+(25, 1, 5, 'Livre', '2024-12-17', '2024-12-20'),
+(35, 2, 6, 'Annule', '2024-12-18', NULL),
+(45, 1, 7, 'Livre', '2024-12-19', '2024-12-22'),
+(50, 2, 8, 'En cours', '2024-12-20', NULL),
+(5, 1, 5, 'Livre', '2024-12-21', '2024-12-24'),
+(10, 2, 6, 'En cours', '2024-12-22', NULL),
+(20, 1, 7, 'Annule', '2024-12-23', NULL),
+(25, 2, 8, 'Livre', '2024-12-24', '2024-12-27'),
+(35, 1, 1, 'En cours', '2024-12-25', NULL),
+(40, 2, 2, 'Livre', '2024-12-26', '2024-12-29'),
+(45, 1, 3, 'Livre', '2024-12-27', '2024-12-30'),
+(50, 2, 4, 'Annule', '2024-12-28', NULL),
+(10, 1, 1, 'Livre', '2024-12-29', '2024-12-31'),
+(20, 2, 5, 'En cours', '2024-12-30', NULL),
+(15, 1, 5, 'Livre', '2025-01-01', '2025-01-04'),
+(25, 2, 6, 'En cours', '2025-01-02', NULL),
+(35, 1, 7, 'Livre', '2025-01-03', '2025-01-06'),
+(45, 2, 8, 'Annule', '2025-01-04', NULL),
+(5, 1, 9, 'Livre', '2025-01-05', '2025-01-08'),
+(10, 2, 10, 'En cours', '2025-01-06', NULL),
+(20, 1, 5, 'Annule', '2025-01-07', NULL),
+(30, 2, 6, 'Livre', '2025-01-08', '2025-01-11'),
+(40, 1, 7, 'Livre', '2025-01-09', '2025-01-12'),
+(50, 2, 8, 'En cours', '2025-01-10', NULL),
+(5, 1, 1, 'Livre', '2025-01-11', '2025-01-14'),
+(15, 2, 2, 'En cours', '2025-01-12', NULL),
+(25, 1, 3, 'Livre', '2025-01-13', '2025-01-16'),
+(35, 2, 4, 'Annule', '2025-01-14', NULL),
+(45, 1, 5, 'Livre', '2025-01-15', '2025-01-18'),
+(10, 2, 6, 'En cours', '2025-01-16', NULL),
+(20, 1, 7, 'Annule', '2025-01-17', NULL),
+(30, 2, 8, 'Livre', '2025-01-18', '2025-01-21'),
+(40, 1, 9, 'En cours', '2025-01-19', NULL),
+(50, 2, 10, 'Livre', '2025-01-20', '2025-01-23'),
+(12, 1, 2, 'En cours', '2025-01-21', NULL),
+(18, 2, 3, 'Livre', '2025-01-22', '2025-01-25'),
+(24, 1, 1, 'Livre', '2025-01-23', '2025-01-26'),
+(36, 2, 4, 'Annule', '2025-01-24', NULL),
+(42, 1, 5, 'Livre', '2025-01-25', '2025-01-28'),
+(48, 2, 6, 'En cours', '2025-01-26', NULL),
+(8, 1, 7, 'Annule', '2025-01-27', NULL),
+(16, 2, 2, 'Livre', '2025-01-28', '2025-01-31'),
+(32, 1, 9, 'En cours', '2025-01-29', NULL),
+(40, 2, 1, 'Livre', '2025-01-30', '2025-02-02');
+
 
 -- Table COMMENTAIRE
 INSERT INTO COMMENTAIRE (IDCOMPTE, IDPROD, NBETOILE, CONTENU) VALUES
 (1, 1, 5, 'Produit incroyable ! Très satisfait.'),
-(2, 2, 3, 'Bon produit, mais quelques défauts.');
+(2, 2, 3, 'Bon produit, mais quelques défauts.')
+(1, 5, 4, 'Bon produit, mais peut être amélioré.'),
+(3, 12, 5, 'Rien à redire, parfait !'),
+(2, 8, 3, 'Correct, mais pas exceptionnel.'),
+(4, 20, 5, 'Excellente qualité, je recommande.'),
+(5, 25, 2, 'Pas à la hauteur de mes attentes.'),
+(6, 30, 4, 'Plutôt satisfait, bon rapport qualité-prix.'),
+(7, 35, 5, 'Une vraie découverte, super produit.'),
+(8, 40, 3, 'Bof, pourrait être mieux.'),
+(9, 45, 4, 'Produit conforme à la description.'),
+(10, 50, 1, 'Très déçu, je ne rachèterai pas.')
+(2, 55, 5, 'J\'adore ce produit, merci !'),
+(4, 60, 4, 'Bon produit, mais un peu cher.'),
+(3, 65, 3, 'Moyen, pourrait être amélioré.'),
+(1, 70, 5, 'Super qualité, j\'en recommanderai !'),
+(5, 75, 2, 'Pas très convaincu, peut mieux faire.'),
+(6, 16, 5, 'Une très belle surprise, excellent produit.'),
+(8, 22, 4, 'Bon produit, mais le conditionnement pourrait être amélioré.'),
+(7, 33, 1, 'Produit arrivé endommagé, très déçu.'),
+(9, 48, 5, 'Je suis ravi, excellent achat.'),
+(10, 52, 4, 'Très bon produit, mais délai de livraison un peu long.');
 
 -- Table IMAGE
 INSERT INTO IMAGE (IDPROD, NOMFICHIER) VALUES
