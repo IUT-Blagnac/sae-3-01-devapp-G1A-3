@@ -87,10 +87,12 @@ project/
 == 3. Étapes de Lancement du Code
 
 1. Vérifiez la configuration dans config.ini. +
-2. Lancez le script avec la commande : +
+2. Lancez le script avec la commande :
++
 ```bash
 python3 clientMQTT.py
 ```
++
 3. Surveillez les logs dans le terminal : +
  - Connexion réussie au broker.
  - Messages reçus et enregistrés.
