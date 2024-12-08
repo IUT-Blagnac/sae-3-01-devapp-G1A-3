@@ -12,7 +12,7 @@
         <artifactId>javafx-maven-plugin</artifactId>
         <version>${javafx.maven.plugin.version}</version>
         <configuration>
-          <mainClass>application.DailyBankApp</mainClass>
+          <mainClass>application.IoTApp</mainClass>
         </configuration>
       </plugin>
       <plugin>
@@ -27,7 +27,7 @@
               <shadedArtifactAttached>true</shadedArtifactAttached>
               <transformers>
                 <transformer>
-                  <mainClass>application.DailyBankApp</mainClass>
+                  <mainClass>application.IoTApp</mainClass>
                 </transformer>
               </transformers>
             </configuration>
@@ -64,26 +64,12 @@
       </build>
     </profile>
   </profiles>
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.13.2</version>
-      <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>hamcrest-core</artifactId>
-          <groupId>org.hamcrest</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-  </dependencies>
   <properties>
     <maven.compiler.source>17</maven.compiler.source>
     <javafx.maven.plugin.version>0.0.8</javafx.maven.plugin.version>
     <maven.shade.plugin.version>3.4.1</maven.shade.plugin.version>
     <maven.compiler.target>17</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <javafx.version>17</javafx.version>
+    <javafx.version>17.0.13</javafx.version>
   </properties>
 </project>

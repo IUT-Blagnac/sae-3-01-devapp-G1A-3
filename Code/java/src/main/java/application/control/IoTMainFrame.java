@@ -223,7 +223,7 @@ public class IoTMainFrame extends Application {
 		* Méthode définissant le travail du thread (exécuter le Python)
 		*/
 		public void run() {
-			String chemin = "sae-3-01-devapp-G1A-3/Code/Python/clientMQTT.py";
+			String chemin = "Code/Python/clientMQTT.py";
 			ProcessBuilder processBuilder = new ProcessBuilder();
 			processBuilder.command("python", chemin);
 

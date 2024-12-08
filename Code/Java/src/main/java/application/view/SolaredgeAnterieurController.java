@@ -142,7 +142,7 @@ public class SolaredgeAnterieurController {
     private List<File> trouveFichiers(){
         int i = 0;
         boolean fini = false;
-        String chemin = "sae-3-01-devapp-G1A-3/Code/Java/src/main/resources/application/capteur/solaredge";
+        String chemin = "Code/Java/src/main/resources/application/capteur/solaredge";
         File dossier = new File(chemin);
         LocalDate datePrecedente = null;
 
