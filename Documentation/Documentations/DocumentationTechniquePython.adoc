@@ -110,9 +110,14 @@ python3 clientMQTT.py
  - Les données s'affichent dans le terminal.
  - Les fichiers sont correctement enregistrés.
 
-.Capture d'écran : Connexion réussie image::captures/connexion_reussie.png[alt="Connexion réussie"]
+.Capture d'écran : Connexion réussie
+image::assets/Python_Succes_connexion.png[alt="Connexion réussie"]
 
-.Capture d'écran : Données enregistrées image::captures/donnees_enregistrees.png[alt="Données enregistrées"]
+.Capture d'écran : Données affichées
+image::assets/Python_Donnees_affichees.png[alt="Données affichées"]
+
+.Capture d'écran : Données enregistrées
+image::assets/Python_Donnees_enregistrees.png[alt="Données enregistrées"]
 
 === 4.2 Gestion des Alertes Test de génération d'alertes en cas de dépassement des seuils.
 
@@ -124,18 +129,20 @@ python3 clientMQTT.py
  - Une alerte est générée dans le terminal.
  - Les alertes sont stockées dans des fichiers.
 
-.Capture d'écran : Alerte déclenchée image::captures/alerte_declenchee.png[alt="Alerte déclenchée"]
+.Capture d'écran : Alertes déclenchées
+image::assets/Python_Alertes_affichees.png[alt="Alertes affichées"]
+
+.Capture d'écran : Alertes enregistrées
+image::assets/Python_Alertes_enregistrees.png[alt="Alertes enregistrées"]
 
 === 4.3 Gestion des Erreurs Tests de robustesse avec des données incorrectes.
 
 Cas testés :
 
-- Message JSON invalide : Le message est ignoré.
 - Topic inconnu : Le message est ignoré sans erreur.
 
-.Capture d'écran : JSON invalide image::captures/json_invalide.png[alt="JSON invalide"]
-
-.Capture d'écran : Topic inconnu image::captures/topic_inconnu.png[alt="Topic inconnu"]
+.Capture d'écran : Topic inconnu
+image::assets/Python_Execution_sans_erreur_avec_topic_inexistant.png[alt="Topic inconnu"]
 
 == 5. Résumé
 
