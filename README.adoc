@@ -83,12 +83,12 @@ Une documentation technique de la partie administration du site sera fournie. El
 
 [cols="1*", options="header"]
 |=======
-|  https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/Documentation%20conception.adoc[Lien vers la documentation technique utilisateur]   
+|  https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/DocumentationTechniqueJava.adoc[Lien vers la documentation technique Java]   
 |=======
 
 [cols="1*", options="header"]
 |=======
-|  https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/Documentation%20conception.adoc[Lien vers la documentation technique administrateur]   
+|  https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/DocumentationTechniquePython.adoc[Lien vers la documentation technique Python]   
 |=======
 
 === Documentation utilisateur
