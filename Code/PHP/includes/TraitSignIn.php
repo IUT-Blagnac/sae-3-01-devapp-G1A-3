@@ -28,12 +28,11 @@ if (isset($_POST['submit'])) {
 	
 	try {
         // Préparation de l'insertion des données
-        $stmt = $connect->prepare('INSERT INTO COMPTE (IDCOMPTE, NOM, PRENOM, MAIL, MDP) VALUES (?, ?, ?, ?, ?)');
-        $id = generateId('CP'); // Génère un ID unique
-        $stmt->execute([$id, $nom, $prenom, $mail, $hashedPassword]);
+        $stmt = $conn->prepare('INSERT INTO COMPTE (NOM, PRENOM, MAIL, MDP) VALUES (?, ?, ?, ?)');
+        $stmt->execute([$nom, $prenom, $mail, $hashedPassword]);
 
         echo 'Compte créé avec succès !';
-        header('Location: index.php'); // Redirige l'utilisateur après inscription
+        header('Location: ../index.php');
         exit();
     } catch (PDOException $e) {
         die('Erreur : ' . $e->getMessage());

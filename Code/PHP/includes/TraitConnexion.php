@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     require_once '../connect.inc.php';
 	
 	try {
-        $stmt = $connect->prepare('	SELECT * FROM COMPTE
+        $stmt = $conn->prepare('	SELECT * FROM COMPTE
 									WHERE MAIL = :mail
 									AND	MDP = :mdp 		');
 		$stmt->bindParam(':mail', $login);
@@ -28,8 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			echo "Nom : " . $utilisateur['nom'] . ", Email : " . $utilisateur['email'] . "<br>";
 		}
 
-        echo 'Compte créé avec succès !';
-        header('Location: ../Connexion.php'); // Redirige l'utilisateur après inscription
+        header('Location: ../Connexion.php');
         exit();
     } catch (PDOException $e) {
         die('Erreur : ' . $e->getMessage());
