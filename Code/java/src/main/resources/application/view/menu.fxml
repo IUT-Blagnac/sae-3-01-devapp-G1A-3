@@ -19,7 +19,7 @@
             </Label>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#ecranDirect" prefHeight="50.0" prefWidth="140.0" text="Données actuelles">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#ecranDirect" prefHeight="50.0" prefWidth="140.0" text="Données actuelles">
                      <HBox.margin>
                         <Insets left="110.0" top="20.0" />
                      </HBox.margin>
@@ -33,12 +33,12 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#changerConfig" prefHeight="50.0" prefWidth="160.0" text="Configuration des données">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#changerConfig" prefHeight="50.0" prefWidth="160.0" text="Configuration des données">
                      <HBox.margin>
                         <Insets left="100.0" top="20.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#lancerPython" prefHeight="50.0" prefWidth="160.0" text="Lancer le Python">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#lancerPython" prefHeight="50.0" prefWidth="160.0" text="Lancer le Python">
                      <HBox.margin>
                         <Insets left="80.0" top="20.0" />
                      </HBox.margin>

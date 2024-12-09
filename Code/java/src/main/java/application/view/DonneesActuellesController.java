@@ -1,11 +1,31 @@
 package application.view;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardWatchEventKinds;
+import java.nio.file.WatchEvent;
+import java.nio.file.WatchKey;
+import java.nio.file.WatchService;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Map;
+import java.util.Objects;
+
 import application.control.IoTMainFrame;
 import application.tools.DataReader;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.RadioMenuItem;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TitledPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -13,16 +33,6 @@ import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.nio.file.*;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Map;
-import java.util.Objects;
-
 import netscape.javascript.JSObject;
 
 public class DonneesActuellesController {
@@ -110,7 +120,7 @@ public class DonneesActuellesController {
                 mainContainer.setRight(null);
             }
         } else {
-            throw new Exception("Une a été rencontrée lors de la séléction des capteurs.");
+            throw new Exception("Une erreur a été rencontrée lors de la sélection des capteurs.");
         }
     }
 
