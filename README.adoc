@@ -83,12 +83,12 @@ Une documentation technique de la partie administration du site sera fournie. El
 
 [cols="1*", options="header"]
 |=======
-|  https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/Documentation%20conception.adoc[Lien vers la documentation technique utilisateur]   
+|  https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/DocumentationTechniqueJava.adoc[Lien vers la documentation technique Java]   
 |=======
 
 [cols="1*", options="header"]
 |=======
-|  https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/Documentation%20conception.adoc[Lien vers la documentation technique administrateur]   
+|  https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/DocumentationTechniquePython.adoc[Lien vers la documentation technique Python]   
 |=======
 
 === Documentation utilisateur
@@ -154,7 +154,7 @@ Vous trouverez les indicateurs de qualité (dette technique) ici.
 
 
 ifdef::env-github[]
-image:https://docs.google.com/spreadsheets/d/e/2PACX-1vTc3HJJ9iSI4aa2I9a567wX1AUEmgGrQsPl7tHGSAJ_Z-lzWXwYhlhcVIhh5vCJxoxHXYKjSLetP6NS/pubchart?oid=1850914734&amp;format=image[link=https://docs.google.com/spreadsheets/d/e/2PACX-1vTc3HJJ9iSI4aa2I9a567wX1AUEmgGrQsPl7tHGSAJ_Z-lzWXwYhlhcVIhh5vCJxoxHXYKjSLetP6NS/pubchart?oid=1850914734&amp;format=image]
+image:https://docs.google.com/spreadsheets/d/e/2PACX-1vSACcYeKaH_ims3faegSLAFJ9s5_Kd9Fbyi4ODEb8BTN5OnUXWenVGhlVPo84yQDhTkTj3f9nXiluh1/pubchart?oid=2038500358&format=image[link=https://docs.google.com/spreadsheets/d/e/2PACX-1vSACcYeKaH_ims3faegSLAFJ9s5_Kd9Fbyi4ODEb8BTN5OnUXWenVGhlVPo84yQDhTkTj3f9nXiluh1/pubchart?oid=2038500358&format=image]
 endif::[]
 
 ifndef::env-github[]
