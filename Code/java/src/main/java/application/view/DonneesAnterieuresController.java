@@ -169,13 +169,14 @@ public class DonneesAnterieuresController {
      */
     public void menu(List<String> choix, LocalDate dateDebut, LocalDate dateFin){
 
-        File dossier = new File("Code/Java/src/main/resources/application/capteur/AM107");
+        String chemin = "Code/Java/src/main/resources/application/capteur/AM107";
+        File dossier = new File(chemin);
 
         final String sMenuTextStart = "Salle";
         final MenuButton choices = new MenuButton(sMenuTextStart);
 
         final List<CheckMenuItem> items = new ArrayList<>();
-
+        
         for (String name : dossier.list()){
             CheckMenuItem bouton = new CheckMenuItem(name);
             bouton.setOnAction(new EventHandler<ActionEvent>() {
@@ -269,13 +270,13 @@ public class DonneesAnterieuresController {
             int mois = Integer.parseInt(dossier.list()[i].split("_")[0].split("-")[1]);
             int jour = Integer.parseInt(dossier.list()[i].split("_")[0].split("-")[2]);
             LocalDate date = LocalDate.of(annee, mois, jour);
-            if (date == datePrecedente){
+            if (datePrecedente != null && date.isEqual(datePrecedente)){
                 listeFichiersBonnesDates.add(new File(chemin + "/" + dossier.list()[i]));
                 System.out.println("Fichier ajouté");
             }
             else{
-                if (date.isBefore(dateFin)){
-                    if (date.isAfter(dateDebut)){
+                if (date.isBefore(dateFin) || date.isEqual(dateFin)){
+                    if (date.isAfter(dateDebut) || date.isEqual(dateDebut)){
                         listeFichiersBonnesDates.add(new File(chemin + "/" + dossier.list()[i]));
                         datePrecedente = date;
                     }
@@ -467,12 +468,12 @@ public class DonneesAnterieuresController {
                 int mois = Integer.parseInt(dossier.list()[i].split("_")[0].split("-")[1]);
                 int jour = Integer.parseInt(dossier.list()[i].split("_")[0].split("-")[2]);
                 LocalDate date = LocalDate.of(annee, mois, jour);
-                if (date == datePrecedente){
+                if (datePrecedente != null && date.isEqual(datePrecedente)){
                     listeFichiersBonnesDates.add(new File(chemin + "/" + dossier.list()[i]));
                 }
                 else{
-                    if (date.isBefore(dateFin)){
-                        if (date.isAfter(dateDebut)){
+                    if (date.isBefore(dateFin) || date.isEqual(dateFin)){
+                        if (date.isAfter(dateDebut) || date.isEqual(dateDebut)){
                             listeFichiersBonnesDates.add(new File(chemin + "/" + dossier.list()[i]));
                             datePrecedente = date;
                         }

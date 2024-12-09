@@ -1,7 +1,7 @@
 
 
 <?php
-require_once(../connect.inc.php);
+require_once('../connect.inc.php');
 
 function accessProduits(){
 	$PDOReq = $connect -> prepare('SELECT * FROM PRODUIT');
@@ -10,7 +10,7 @@ function accessProduits(){
 }
 
 function accessProduitPrix($idProduit){
-		$PDOReq = -> $connect -> prepare('SELECT * FROM DISPOFORMAT WHERE idProduit = ?');
+		$PDOReq =  $connect -> prepare('SELECT * FROM DISPOFORMAT WHERE idProduit = ?');
 		$PDOReq -> execute([$idProduit]);
 		return $PDOReq -> fetchAll();
 }
