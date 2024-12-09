@@ -169,13 +169,14 @@ public class DonneesAnterieuresController {
      */
     public void menu(List<String> choix, LocalDate dateDebut, LocalDate dateFin){
 
-        File dossier = new File("Code/Java/src/main/resources/application/capteur/AM107");
+        String chemin = "Code/Java/src/main/resources/application/capteur/AM107";
+        File dossier = new File(chemin);
 
         final String sMenuTextStart = "Salle";
         final MenuButton choices = new MenuButton(sMenuTextStart);
 
         final List<CheckMenuItem> items = new ArrayList<>();
-
+        
         for (String name : dossier.list()){
             CheckMenuItem bouton = new CheckMenuItem(name);
             bouton.setOnAction(new EventHandler<ActionEvent>() {
