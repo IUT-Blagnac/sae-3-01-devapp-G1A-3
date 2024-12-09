@@ -83,12 +83,12 @@ Une documentation technique de la partie administration du site sera fournie. El
 
 [cols="1*", options="header"]
 |=======
-|  https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/Documentation%20conception.adoc[Lien vers la documentation technique utilisateur]   
+|  https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/DocumentationTechniqueJava.adoc[Lien vers la documentation technique Java]   
 |=======
 
 [cols="1*", options="header"]
 |=======
-|  https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/Documentation%20conception.adoc[Lien vers la documentation technique administrateur]   
+|  https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/DocumentationTechniquePython.adoc[Lien vers la documentation technique Python]   
 |=======
 
 === Documentation utilisateur
@@ -120,7 +120,7 @@ https://github.com/orgs/IUT-Blagnac/projects/253/views/2[ici].
 
 === Tests unitaires et plans de test
 
-Vous trouverez les testes unitaires ici.
+Vous trouverez les testes unitaires https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/CahierDeRecette.adoc[ici].
 
 === Indicateurs de qualité du code (dette technique)
 
@@ -131,33 +131,36 @@ Vous trouverez les indicateurs de qualité (dette technique) ici.
 [cols="2*", options="header"]
 |====
 | Ordres du jour | Compte-rendus
-| https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Ordre%20du%20jour/Ordredujour_1.pdf[Semaine 44] | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Compte%20Rendu/Compte%20Rendu1.pdf[Semaine 44]
-| https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Ordre%20du%20jour/Ordredujour_1.pdf[Semaine 45] | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Compte%20Rendu/Compte%20Rendu2.pdf[Semaine 45] 
+| https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Ordre%20du%20jour/OrdreDuJour1.pdf[Semaine 44] | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Compte%20Rendu/Compte%20Rendu1.pdf[Semaine 44]
+| https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Ordre%20du%20jour/OrdreDuJour2.pdf[Semaine 45] | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Compte%20Rendu/Compte%20Rendu2.pdf[Semaine 45] 
 | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Ordre%20du%20jour/OrdreDuJour3.pdf[Réunion avec SweetShops (Semaine 45)] | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/CompteRenduReunionAvecClient/CompteRendu3.pdf[Réunion avec SweetShops (Semaine 45)]
 | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Ordre%20du%20jour/OrdreDuJour4.pdf[Semaine 46] | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Compte%20Rendu/Compte%20Rendu%204.pdf[Semaine 46]
 | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Ordre%20du%20jour/OrdreDuJour5.pdf[Semaine 48] | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Compte%20Rendu/CompteRendu5.pdf[Semaine 48]
-|  |
+| https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Ordre%20du%20jour/OrdreDuJour6.pdf[Semaine 49] |
 |====
-
 
 == Retours et évaluations
 
+[cols="5*", options="header"]
+|====
+| Semaine |Professeur| Nom | Retour | Note
+| 48| EP  | retour Com  | ODJ : manque rôle qui anime, qui prend des notes ? Rubriques succintes, point client ? Qui est responsable de chaque rubrique ? Manque intitulé de la réunion. CR : trop succinct, chaque point doit être rédigé, manque analyse des difficultés:réussites. Manque retour réunion client, manque prochain responsable de l'organisation de la réunion semaine 49. | 1,2/3
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+|====
+
+
+
 ifdef::env-github[]
-image:https://docs.google.com/spreadsheets/d/e/2PACX-1vTc3HJJ9iSI4aa2I9a567wX1AUEmgGrQsPl7tHGSAJ_Z-lzWXwYhlhcVIhh5vCJxoxHXYKjSLetP6NS/pubchart?oid=1850914734&amp;format=image[link=https://docs.google.com/spreadsheets/d/e/2PACX-1vTc3HJJ9iSI4aa2I9a567wX1AUEmgGrQsPl7tHGSAJ_Z-lzWXwYhlhcVIhh5vCJxoxHXYKjSLetP6NS/pubchart?oid=1850914734&amp;format=image]
+image:https://docs.google.com/spreadsheets/d/e/2PACX-1vSACcYeKaH_ims3faegSLAFJ9s5_Kd9Fbyi4ODEb8BTN5OnUXWenVGhlVPo84yQDhTkTj3f9nXiluh1/pubchart?oid=2038500358&format=image[link=https://docs.google.com/spreadsheets/d/e/2PACX-1vSACcYeKaH_ims3faegSLAFJ9s5_Kd9Fbyi4ODEb8BTN5OnUXWenVGhlVPo84yQDhTkTj3f9nXiluh1/pubchart?oid=2038500358&format=image]
 endif::[]
 
 ifndef::env-github[]
 ++++
-<iframe width="786" height="430" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTc3HJJ9iSI4aa2I9a567wX1AUEmgGrQsPl7tHGSAJ_Z-lzWXwYhlhcVIhh5vCJxoxHXYKjSLetP6NS/pubchart?oid=1850914734&amp;format=image"></iframe>
+<iframe width="786" height="430" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSACcYeKaH_ims3faegSLAFJ9s5_Kd9Fbyi4ODEb8BTN5OnUXWenVGhlVPo84yQDhTkTj3f9nXiluh1/pubchart?oid=2038500358&format=image"></iframe>
 ++++
 endif::[]
 
-[cols="2*", options="header"]
-|====
-| Nom du retour  | Retour
-|  | 
-|  | 
-|  | 
-|  | 
-|  | 
-|====
+

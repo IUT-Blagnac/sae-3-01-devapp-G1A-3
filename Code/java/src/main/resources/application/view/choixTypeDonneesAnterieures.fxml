@@ -23,19 +23,24 @@
          <children>
             <HBox prefHeight="112.0" prefWidth="600.0">
                <children>
-                  <ToggleButton mnemonicParsing="false" onAction="#choixCO2" prefHeight="50.0" prefWidth="100.0" text="CO2">
+                  <ToggleButton fx:id="co2" mnemonicParsing="false" onAction="#choixCO2" prefHeight="50.0" prefWidth="120.0" text="CO2">
                      <HBox.margin>
-                        <Insets left="70.0" top="30.0" />
+                        <Insets left="30.0" top="30.0" />
                      </HBox.margin>
                   </ToggleButton>
-                  <ToggleButton mnemonicParsing="false" onAction="#choixHum" prefHeight="50.0" prefWidth="100.0" text="Humidité">
+                  <ToggleButton fx:id="humidite" mnemonicParsing="false" onAction="#choixHum" prefHeight="50.0" prefWidth="120.0" text="Humidité">
                      <HBox.margin>
-                        <Insets left="85.0" top="30.0" />
+                        <Insets left="20.0" top="30.0" />
                      </HBox.margin>
                   </ToggleButton>
-                  <ToggleButton mnemonicParsing="false" onAction="#choixTemp" prefHeight="50.0" prefWidth="100.0" text="Température">
+                  <ToggleButton fx:id="temperature" mnemonicParsing="false" onAction="#choixTemp" prefHeight="50.0" prefWidth="120.0" text="Température">
                      <HBox.margin>
-                        <Insets left="85.0" top="30.0" />
+                        <Insets left="20.0" top="30.0" />
+                     </HBox.margin>
+                  </ToggleButton>
+                  <ToggleButton fx:id="panneauxSolaires" mnemonicParsing="false" onAction="#choixPanneaux" prefHeight="50.0" prefWidth="120.0" text="Panneaux Solaires">
+                     <HBox.margin>
+                        <Insets left="20.0" top="30.0" />
                      </HBox.margin>
                   </ToggleButton>
                </children>
