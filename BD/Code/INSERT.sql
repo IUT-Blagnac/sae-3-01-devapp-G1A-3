@@ -5,7 +5,7 @@
 -- Table PERMISSION
 INSERT INTO PERMISSION (NOMPERMISSION) VALUES
 ('Admin'),
-('Utilisateur');
+('Utilisateur')
 
 -- Table ADRESSE
 INSERT INTO ADRESSE (NORUE, VILLE, CODEPOSTAL, PAYS) VALUES
@@ -20,22 +20,107 @@ INSERT INTO ADRESSE (NORUE, VILLE, CODEPOSTAL, PAYS) VALUES
 (29, 'Nantes', '44000', 'France'),
 (84, 'Montpellier', '34000', 'France'),
 (99, 'Rennes', '35000', 'France'),
-(10, 'Brest', '29200', 'France');
+(10, 'Brest', '29200', 'France'),
+(12, 'Paris', '75001', 'France'),
+(34, 'Lyon', '69002', 'France'),
+(56, 'Toulouse', '31000', 'France'),
+(78, 'Marseille', '13001', 'France'),
+(90, 'Bordeaux', '33000', 'France'),
+(101, 'Nice', '06000', 'France'),
+(102, 'Nantes', '44000', 'France'),
+(103, 'Strasbourg', '67000', 'France'),
+(104, 'Rennes', '35000', 'France'),
+(105, 'Montpellier', '34000', 'France'),
+(106, 'Lille', '59000', 'France'),
+(107, 'Reims', '51100', 'France'),
+(108, 'Le Havre', '76600', 'France'),
+(109, 'Saint-Étienne', '42000', 'France'),
+(110, 'Grenoble', '38000', 'France'),
+(111, 'Dijon', '21000', 'France'),
+(112, 'Angers', '49000', 'France'),
+(113, 'Tours', '37000', 'France'),
+(114, 'Clermont-Ferrand', '63000', 'France'),
+(115, 'Aix-en-Provence', '13090', 'France'),
+(116, 'Metz', '57000', 'France'),
+(117, 'Besançon', '25000', 'France'),
+(118, 'Orléans', '45000', 'France'),
+(119, 'Nancy', '54000', 'France'),
+(120, 'Rouen', '76000', 'France'),
+(121, 'Caen', '14000', 'France'),
+(122, 'Mulhouse', '68100', 'France'),
+(123, 'Boulogne-sur-Mer', '62200', 'France'),
+(124, 'Amiens', '80000', 'France'),
+(125, 'Perpignan', '66000', 'France'),
+(126, 'Toulon', '83000', 'France'),
+(127, 'Avignon', '84000', 'France'),
+(128, 'Chambéry', '73000', 'France'),
+(129, 'Bayonne', '64100', 'France'),
+(130, 'Poitiers', '86000', 'France'),
+(131, 'Pau', '64000', 'France'),
+(132, 'La Rochelle', '17000', 'France'),
+(133, 'Limoges', '87000', 'France'),
+(134, 'Annecy', '74000', 'France'),
+(135, 'Valence', '26000', 'France'),
+(136, 'Nîmes', '30000', 'France');
+
+
 
 -- Table COMPTE
 INSERT INTO COMPTE (IDADRESSE, IDPERMISSION, NOM, PRENOM, MAIL, MDP) VALUES
 (1, 2, 'John', 'Doe', 'john.doe@example.com', 'password123'),
-(2, 1, 'Jane', 'Smith', 'jane.smith@example.com', 'securePass!'),
+(2, 2, 'Jane', 'Smith', 'jane.smith@example.com', 'securePass!'),
 (1, 1, 'David', 'Tran', 'david.tran@example.com', 'adminPass1'),
 (2, 1, 'Pierre', 'Cornu', 'pierre.cornu@example.com', 'adminPass2'),
 (3, 1, 'Raphael', 'Lamothe', 'raphael.lamothe@example.com', 'adminPass3'),
 (4, 1, 'Naria', 'Savary', 'naria.savary@example.com', 'adminPass4'),
-(5, 2, 'John', 'Doe', 'john.doe@example.com', 'password123'),
-(6, 2, 'Jane', 'Smith', 'jane.smith@example.com', 'securePass!'),
-(7, 2, 'Alice', 'Brown', 'alice.brown@example.com', 'alicePass2024'),
-(8, 2, 'Michael', 'Johnson', 'michael.johnson@example.com', 'michael123'),
-(9, 2, 'Sophia', 'Williams', 'sophia.williams@example.com', 'sophiaPass987'),
-(10, 2, 'James', 'Jones', 'james.jones@example.com', 'james789Pass');
+(6, 2, 'Alice', 'Brown', 'alice.brown@example.com', 'alicePass2024'),
+(7, 2, 'Michael', 'Johnson', 'michael.johnson@example.com', 'michael123'),
+(8, 2, 'Sophia', 'Williams', 'sophia.williams@example.com', 'sophiaPass987'),
+(9, 2, 'James', 'Jones', 'james.jones@example.com', 'james789Pass'),
+(10, 2, 'Lemoine', 'Thomas', 'thomas.lemoine@mail.com', 'mdpThomas'),
+(11, 2, 'Blanc', 'Julie', 'julie.blanc@mail.com', 'mdpJulie'),
+(12, 2, 'Perrot', 'Alice', 'alice.perrot@mail.com', 'mdpAlice'),
+(13, 2, 'Fournier', 'Charles', 'charles.fournier@mail.com', 'mdpCharles'),
+(14, 2, 'Girard', 'Émilie', 'emilie.girard@mail.com', 'mdpEmilie'),
+(15, 2, 'Dupuis', 'Maxime', 'maxime.dupuis@mail.com', 'mdpMaxime'),
+(16, 2, 'Marchand', 'Sophie', 'sophie.marchand@mail.com', 'mdpSophie'),
+(17, 2, 'Aubert', 'Lucas', 'lucas.aubert@mail.com', 'mdpLucas'),
+(18, 2, 'Gauthier', 'Clara', 'clara.gauthier@mail.com', 'mdpClara'),
+(19, 2, 'Fontaine', 'Nathan', 'nathan.fontaine@mail.com', 'mdpNathan'),
+(20, 2, 'Renard', 'Alice', 'alice.renard@mail.com', 'mdpAlice'),
+(21, 2, 'Barbier', 'Hugo', 'hugo.barbier@mail.com', 'mdpHugo'),
+(22, 2, 'Rousseau', 'Emma', 'emma.rousseau@mail.com', 'mdpEmma'),
+(23, 2, 'Chevalier', 'Théo', 'theo.chevalier@mail.com', 'mdpTheo'),
+(24, 2, 'Moulin', 'Sarah', 'sarah.moulin@mail.com', 'mdpSarah'),
+(25, 2, 'Noël', 'Lucas', 'lucas.noel@mail.com', 'mdpLucas'),
+(26, 2, 'Bertrand', 'Chloé', 'chloe.bertrand@mail.com', 'mdpChloe'),
+(27, 2, 'Morin', 'Paul', 'paul.morin@mail.com', 'mdpPaul'),
+(28, 2, 'Dufour', 'Marie', 'marie.dufour@mail.com', 'mdpMarie'),
+(29, 2, 'Leroy', 'Julien', 'julien.leroy@mail.com', 'mdpJulien'),
+(30, 2, 'Henry', 'Laura', 'laura.henry@mail.com', 'passwordLaura'),
+(31, 2, 'Morel', 'Antoine', 'antoine.morel@mail.com', 'passwordAntoine'),
+(32, 2, 'Dupont', 'Camille', 'camille.dupont@mail.com', 'passwordCamille'),
+(33, 2, 'Durand', 'Victor', 'victor.durand@mail.com', 'passwordVictor'),
+(34, 2, 'Petit', 'Hélène', 'helene.petit@mail.com', 'passwordHelene'),
+(35, 2, 'Renaud', 'Élise', 'elise.renaud@mail.com', 'passwordElise'),
+(36, 2, 'Lambert', 'Arthur', 'arthur.lambert@mail.com', 'passwordArthur'),
+(37, 2, 'Perrin', 'Julie', 'julie.perrin@mail.com', 'passwordJulie'),
+(38, 2, 'Bonnet', 'Emma', 'emma.bonnet@mail.com', 'passwordEmma'),
+(39, 2, 'Clément', 'Léo', 'leo.clement@mail.com', 'passwordLeo'),
+(40, 2, 'Boucher', 'Nathan', 'nathan.boucher@mail.com', 'passwordNathan'),
+(41, 2, 'Masson', 'Sophie', 'sophie.masson@mail.com', 'passwordSophie'),
+(42, 2, 'Garnier', 'Lucie', 'lucie.garnier@mail.com', 'passwordLucie'),
+(43, 2, 'Faure', 'Martin', 'martin.faure@mail.com', 'passwordMartin'),
+(44, 2, 'Caron', 'Manon', 'manon.caron@mail.com', 'passwordManon'),
+(45, 2, 'Royer', 'Léa', 'lea.royer@mail.com', 'passwordLea'),
+(46, 2, 'Michel', 'Hugo', 'hugo.michel@mail.com', 'passwordHugo'),
+(47, 2, 'David', 'Emma', 'emma.david@mail.com', 'passwordEmmaD'),
+(48, 2, 'Garcia', 'Lucas', 'lucas.garcia@mail.com', 'passwordLucasG'),
+(49, 2, 'Lopez', 'Élise', 'elise.lopez@mail.com', 'passwordEliseL'),
+(50, 2, 'Perrin', 'Camille', 'camille.perrin@mail.com', 'passwordCamille');
+
+
+
 
 -- Table CATEGORIE
 INSERT INTO CATEGORIE (NOMCATEG) VALUES
@@ -130,13 +215,32 @@ INSERT INTO PRODUIT (IDCATEG, NOMPROD, COMPOSITION, NOTESTECH, DESCRIPTION) VALU
 
 -- Table CB
 INSERT INTO CB (NUMCARTE, DATEEXPIRATION, CCV) VALUES
-('1234567812345678', '2025-12-31', '123'),
-('8765432187654321', '2026-06-30', '456');
+('7984951075303687', '2025-12-31', '123'),
+('8765432187654321', '2026-06-30', '456'),
+('3214785219632024', '2025-12-31', '123'),
+('9658725874169869', '2026-06-30', '456'),
+('1111222233334444', '2027-05-20', '789'),
+('4444333322221111', '2024-09-15', '111'),
+('5555444433332222', '2026-12-11', '654'),
+('6666555544443333', '2025-03-10', '321'),
+('7777666655554444', '2027-04-01', '432'),
+('8888777766665555', '2024-11-30', '567'),
+('9999888877776666', '2025-07-22', '876'),
+('1010101010101010', '2026-08-14', '234');
 
 -- Table PAYPAL
 INSERT INTO PAYPAL (MAIL) VALUES
 ('john.doe@example.com'),
-('jane.smith@example.com');
+('jane.smith@example.com'),
+('alice.jones@example.com'),
+('bob.green@example.com'),
+('charlie.white@example.com'),
+('daniel.miller@example.com'),
+('emma.wilson@example.com'),
+('frank.martin@example.com'),
+('george.clark@example.com'),
+('hannah.moore@example.com');
+
 
 -- Table OPTIONPAIEMENT
 INSERT INTO OPTIONPAIEMENT (NOMOPTION) VALUES
@@ -145,55 +249,239 @@ INSERT INTO OPTIONPAIEMENT (NOMOPTION) VALUES
 
 -- Table METHODEPAIEMENT
 INSERT INTO METHODEPAIEMENT (IDCOMPTE, IDOPTION, NUMCARTE, IDPAYPAL, STATUS) VALUES
-(1, 1, '1234567812345678', NULL, 'Valide'),
-(2, 2, NULL, 1, 'Valide');
+(31, 1, '7984951075303687', NULL, 'Valide'),
+(41, 2, NULL, 1, 'Valide'),
+(45, 1, '8765432187654321', NULL, 'Valide'),
+(36, 1, '4444333322221111', NULL, 'Valide'),
+(27, 2, NULL, 5, 'Valide'),
+(18, 1, '5555444433332222', NULL, 'Valide'),
+(29, 2, NULL, 7, 'Expire'),
+(50, 1, '6666555544443333', NULL, 'Valide');
 
 -- Table FORMATPROD
 INSERT INTO FORMATPROD (NOMFORMAT) VALUES
 ('Petit'),
-('Grand');
+('Grand'),
+('Jumbo');
 
 -- Table COULEUR
 INSERT INTO COULEUR (NOMCOULEUR) VALUES
 ('Rouge'),
-('Bleu');
+('Bleu'),
+('Vert'),
+('Jaune'),
+('Noir'),
+('Blanc'),
+('Orange'),
+('Violet'),
+('Rose'),
+('Gris');;
 
 -- Table CONDITIONNEMENT
 INSERT INTO CONDITIONNEMENT (NOMCONDI) VALUES
 ('Sachet'),
-('Boîte');
+('Boîte'),
+('Tube'),
+('Carton'),
+('Sac'),
+('Bocal'),
+('Vasque'),
+('Paquet'),
+('Barquette'),
+('Panier');
 
 -- Table COMMANDE
-INSERT INTO COMMANDE (IDADRESSE, IDPAIEMENT, IDCOMPTE, STATUS, DATECOMMANDE, DATELIVR) VALUES
-(1, 1, 1, 'Livré', '2024-11-01', '2024-11-05'),
-(2, 2, 2, 'En cours', '2024-11-02', NULL);
+INSERT INTO COMMANDE (IDADRESSE, IDPAIEMENT, IDCOMPTE, STATUSCOMMANDE, DATECOMMANDE, DATELIVR) VALUES
+(1, 1, 1, 'Livre', '2024-11-01', '2024-11-05'),
+(2, 2, 2, 'En cours', '2024-11-02', NULL),
+(3, 1, 3, 'Annule', '2024-11-03', NULL),
+(4, 2, 4, 'Livre', '2024-11-04', '2024-11-07'),
+(5, 1, 5, 'En cours', '2024-11-05', NULL),
+(6, 2, 6, 'Livre', '2024-11-06', '2024-11-09'),
+(7, 1, 7, 'Livre', '2024-11-07', '2024-11-10'),
+(8, 2, 8, 'En cours', '2024-11-08', NULL),
+(9, 2, 9, 'Livre', '2024-11-09', '2024-11-12'),
+(10, 1, 10, 'Livre', '2024-11-10', '2024-11-13'),
+(11, 1, 11, 'En cours', '2024-11-11', NULL),
+(12, 2, 12, 'Annule', '2024-11-12', NULL),
+(13, 1, 13, 'Livre', '2024-11-13', '2024-11-16'),
+(14, 2, 14, 'Livre', '2024-11-14', '2024-11-17'),
+(15, 1, 15, 'En cours', '2024-11-15', NULL),
+(16, 2, 16, 'Livre', '2024-11-16', '2024-11-19'),
+(17, 1, 17, 'Livre', '2024-11-17', '2024-11-20'),
+(18, 2, 18, 'Annule', '2024-11-18', NULL),
+(19, 1, 19, 'Livre', '2024-11-19', '2024-11-22'),
+(20, 2, 20, 'En cours', '2024-11-20', NULL),
+(21, 1, 21, 'En cours', '2024-11-21', NULL),
+(22, 2, 22, 'Livre', '2024-11-22', '2024-11-25'),
+(23, 1, 23, 'Annule', '2024-11-23', NULL),
+(24, 2, 24, 'Livre', '2024-11-24', '2024-11-27'),
+(25, 1, 25, 'En cours', '2024-11-25', NULL),
+(26, 2, 26, 'Livre', '2024-11-26', '2024-11-29'),
+(27, 1, 27, 'Annule', '2024-11-27', NULL),
+(28, 2, 28, 'Livre', '2024-11-28', '2024-12-01'),
+(29, 1, 29, 'En cours', '2024-11-29', NULL),
+(30, 2, 30, 'Livre', '2024-11-30', '2024-12-03'),
+(41, 1, 5, 'En cours', '2024-12-11', NULL), 
+(42, 2, 6, 'Livre', '2024-12-12', '2024-12-15'), 
+(43, 1, 7, 'Livre', '2024-12-13', '2024-12-16'), 
+(44, 2, 8, 'En cours', '2024-12-14', NULL), 
+(45, 1, 9, 'Annule', '2024-12-15', NULL), 
+(46, 2, 10, 'Livre', '2024-12-16', '2024-12-19'),
+(47, 1, 5, 'Livre', '2024-12-17', '2024-12-20'), 
+(48, 2, 6, 'Annule', '2024-12-18', NULL), 
+(49, 1, 7, 'Livre', '2024-12-19', '2024-12-22'), 
+(50, 2, 8, 'En cours', '2024-12-20', NULL),
+(41, 1, 5, 'En cours', '2024-12-11', NULL),
+(42, 2, 6, 'Livre', '2024-12-12', '2024-12-15'),
+(43, 1, 7, 'Livre', '2024-12-13', '2024-12-16'),
+(44, 2, 8, 'En cours', '2024-12-14', NULL),
+(45, 1, 9, 'Annule', '2024-12-15', NULL),
+(46, 2, 10, 'Livre', '2024-12-16', '2024-12-19'),
+(47, 1, 5, 'Livre', '2024-12-17', '2024-12-20'),
+(48, 2, 6, 'Annule', '2024-12-18', NULL),
+(49, 1, 7, 'Livre', '2024-12-19', '2024-12-22'),
+(50, 2, 8, 'En cours', '2024-12-20', NULL),
+(10, 1, 5, 'En cours', '2024-12-11', NULL),
+(20, 2, 6, 'Livre', '2024-12-12', '2024-12-15'),
+(30, 1, 7, 'Livre', '2024-12-13', '2024-12-16'),
+(40, 2, 8, 'En cours', '2024-12-14', NULL),
+(50, 1, 9, 'Annule', '2024-12-15', NULL),
+(15, 2, 10, 'Livre', '2024-12-16', '2024-12-19'),
+(25, 1, 5, 'Livre', '2024-12-17', '2024-12-20'),
+(35, 2, 6, 'Annule', '2024-12-18', NULL),
+(45, 1, 7, 'Livre', '2024-12-19', '2024-12-22'),
+(50, 2, 8, 'En cours', '2024-12-20', NULL),
+(5, 1, 5, 'Livre', '2024-12-21', '2024-12-24'),
+(10, 2, 6, 'En cours', '2024-12-22', NULL),
+(20, 1, 7, 'Annule', '2024-12-23', NULL),
+(25, 2, 8, 'Livre', '2024-12-24', '2024-12-27'),
+(35, 1, 1, 'En cours', '2024-12-25', NULL),
+(40, 2, 2, 'Livre', '2024-12-26', '2024-12-29'),
+(45, 1, 3, 'Livre', '2024-12-27', '2024-12-30'),
+(50, 2, 4, 'Annule', '2024-12-28', NULL),
+(10, 1, 1, 'Livre', '2024-12-29', '2024-12-31'),
+(20, 2, 5, 'En cours', '2024-12-30', NULL),
+(15, 1, 5, 'Livre', '2025-01-01', '2025-01-04'),
+(25, 2, 6, 'En cours', '2025-01-02', NULL),
+(35, 1, 7, 'Livre', '2025-01-03', '2025-01-06'),
+(45, 2, 8, 'Annule', '2025-01-04', NULL),
+(5, 1, 9, 'Livre', '2025-01-05', '2025-01-08'),
+(10, 2, 10, 'En cours', '2025-01-06', NULL),
+(20, 1, 5, 'Annule', '2025-01-07', NULL),
+(30, 2, 6, 'Livre', '2025-01-08', '2025-01-11'),
+(40, 1, 7, 'Livre', '2025-01-09', '2025-01-12'),
+(50, 2, 8, 'En cours', '2025-01-10', NULL),
+(5, 1, 1, 'Livre', '2025-01-11', '2025-01-14'),
+(15, 2, 2, 'En cours', '2025-01-12', NULL),
+(25, 1, 3, 'Livre', '2025-01-13', '2025-01-16'),
+(35, 2, 4, 'Annule', '2025-01-14', NULL),
+(45, 1, 5, 'Livre', '2025-01-15', '2025-01-18'),
+(10, 2, 6, 'En cours', '2025-01-16', NULL),
+(20, 1, 7, 'Annule', '2025-01-17', NULL),
+(30, 2, 8, 'Livre', '2025-01-18', '2025-01-21'),
+(40, 1, 9, 'En cours', '2025-01-19', NULL),
+(50, 2, 10, 'Livre', '2025-01-20', '2025-01-23'),
+(12, 1, 2, 'En cours', '2025-01-21', NULL),
+(18, 2, 3, 'Livre', '2025-01-22', '2025-01-25'),
+(24, 1, 1, 'Livre', '2025-01-23', '2025-01-26'),
+(36, 2, 4, 'Annule', '2025-01-24', NULL),
+(42, 1, 5, 'Livre', '2025-01-25', '2025-01-28'),
+(48, 2, 6, 'En cours', '2025-01-26', NULL),
+(8, 1, 7, 'Annule', '2025-01-27', NULL),
+(16, 2, 2, 'Livre', '2025-01-28', '2025-01-31'),
+(32, 1, 9, 'En cours', '2025-01-29', NULL),
+(40, 2, 1, 'Livre', '2025-01-30', '2025-02-02');
+
 
 -- Table COMMENTAIRE
 INSERT INTO COMMENTAIRE (IDCOMPTE, IDPROD, NBETOILE, CONTENU) VALUES
 (1, 1, 5, 'Produit incroyable ! Très satisfait.'),
-(2, 2, 3, 'Bon produit, mais quelques défauts.');
+(2, 2, 3, 'Bon produit, mais quelques défauts.')
+(1, 5, 4, 'Bon produit, mais peut être amélioré.'),
+(3, 12, 5, 'Rien à redire, parfait !'),
+(2, 8, 3, 'Correct, mais pas exceptionnel.'),
+(4, 20, 5, 'Excellente qualité, je recommande.'),
+(5, 25, 2, 'Pas à la hauteur de mes attentes.'),
+(6, 30, 4, 'Plutôt satisfait, bon rapport qualité-prix.'),
+(7, 35, 5, 'Une vraie découverte, super produit.'),
+(8, 40, 3, 'Bof, pourrait être mieux.'),
+(9, 45, 4, 'Produit conforme à la description.'),
+(10, 50, 1, 'Très déçu, je ne rachèterai pas.')
+(2, 55, 5, 'J\'adore ce produit, merci !'),
+(4, 60, 4, 'Bon produit, mais un peu cher.'),
+(3, 65, 3, 'Moyen, pourrait être amélioré.'),
+(1, 70, 5, 'Super qualité, j\'en recommanderai !'),
+(5, 75, 2, 'Pas très convaincu, peut mieux faire.'),
+(6, 16, 5, 'Une très belle surprise, excellent produit.'),
+(8, 22, 4, 'Bon produit, mais le conditionnement pourrait être amélioré.'),
+(7, 33, 1, 'Produit arrivé endommagé, très déçu.'),
+(9, 48, 5, 'Je suis ravi, excellent achat.'),
+(10, 52, 4, 'Très bon produit, mais délai de livraison un peu long.');
 
 -- Table IMAGE
 INSERT INTO IMAGE (IDPROD, NOMFICHIER) VALUES
 (1, 'image1.jpg'),
-(2, 'image2.jpg');
+(2, 'image2.jpg'),
+(3, 'image3.jpg'),
+(4, 'image4.jpg'),
+(5, 'image5.jpg'),
+(6, 'image6.jpg'),
+(7, 'image7.jpg'),
+(8, 'image8.jpg'),
+(9, 'image9.jpg'),
+(10, 'image10.jpg');
+
 
 -- Table DISPONIBLECOULEUR
 INSERT INTO DISPONIBLECOULEUR (IDCOULEUR, IDPROD) VALUES
 (1, 1),
-(2, 2);
+(2, 1),
+(3, 2),
+(4, 2),
+(5, 3),
+(6, 3),
+(7, 4),
+(8, 4),
+(9, 5),
+(10, 5);
 
 -- Table DISPONIBLECONDITIONNEMENT
 INSERT INTO DISPONIBLECONDITIONNEMENT (IDCONDI, IDPROD) VALUES
 (1, 1),
-(2, 2);
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 7),
+(8, 8),
+(9, 9),
+(10, 10);
 
 -- Table CONTIENT
 INSERT INTO CONTIENT (IDCOMMANDE, IDPROD, QTE) VALUES
 (1, 1, 2),
-(2, 2, 1);
+(2, 2, 1),
+(3, 3, 1),
+(4, 4, 3),
+(5, 5, 2),
+(6, 6, 1),
+(7, 7, 2),
+(8, 8, 4),
+(9, 9, 3),
+(10, 10, 2);
 
 -- Table DISPOFORMAT
 INSERT INTO DISPOFORMAT (IDFORMAT, IDPROD, PRIX) VALUES
 (1, 1, 3.50),
-(2, 2, 5.00);
+(2, 2, 5.00),
+(3, 3, 7.00),
+(3, 4, 10.00),
+(1, 5, 2.50),
+(2, 6, 6.00),
+(3, 7, 8.00),
+(2, 8, 4.50),
+(2, 9, 9.00),
+(2, 10, 11.00);
+
