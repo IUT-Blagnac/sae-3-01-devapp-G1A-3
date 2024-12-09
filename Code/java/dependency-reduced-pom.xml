@@ -8,6 +8,17 @@
   <build>
     <plugins>
       <plugin>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.3.0</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <mainClass>application.IoTApp</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>org.openjfx</groupId>
         <artifactId>javafx-maven-plugin</artifactId>
         <version>${javafx.maven.plugin.version}</version>
@@ -40,6 +51,7 @@
         <configuration>
           <show>public</show>
           <nohelp>false</nohelp>
+          <mainClass>application.IoTApp</mainClass>
         </configuration>
       </plugin>
     </plugins>
