@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.ChoixTypeDonneesAnterieuresController">
+   <top>
+      <Label alignment="CENTER" prefHeight="74.0" prefWidth="600.0" text="Choix de la donnée à afficher" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+   </top>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="112.0" prefWidth="600.0">
+               <children>
+                  <ToggleButton fx:id="co2" mnemonicParsing="false" onAction="#choixCO2" prefHeight="50.0" prefWidth="120.0" text="CO2">
+                     <HBox.margin>
+                        <Insets left="30.0" top="30.0" />
+                     </HBox.margin>
+                  </ToggleButton>
+                  <ToggleButton fx:id="humidite" mnemonicParsing="false" onAction="#choixHum" prefHeight="50.0" prefWidth="120.0" text="Humidité">
+                     <HBox.margin>
+                        <Insets left="20.0" top="30.0" />
+                     </HBox.margin>
+                  </ToggleButton>
+                  <ToggleButton fx:id="temperature" mnemonicParsing="false" onAction="#choixTemp" prefHeight="50.0" prefWidth="120.0" text="Température">
+                     <HBox.margin>
+                        <Insets left="20.0" top="30.0" />
+                     </HBox.margin>
+                  </ToggleButton>
+                  <ToggleButton fx:id="panneauxSolaires" mnemonicParsing="false" onAction="#choixPanneaux" prefHeight="50.0" prefWidth="120.0" text="Panneaux Solaires">
+                     <HBox.margin>
+                        <Insets left="20.0" top="30.0" />
+                     </HBox.margin>
+                  </ToggleButton>
+               </children>
+            </HBox>
+            <HBox prefHeight="59.0" prefWidth="600.0">
+               <children>
+                  <Label text="Première date de données">
+                     <HBox.margin>
+                        <Insets left="130.0" top="18.0" />
+                     </HBox.margin>
+                  </Label>
+                  <DatePicker fx:id="calendDebut" onAction="#dateDebut">
+                     <HBox.margin>
+                        <Insets left="10.0" top="15.0" />
+                     </HBox.margin>
+                  </DatePicker>
+               </children>
+            </HBox>
+            <HBox prefHeight="58.0" prefWidth="600.0">
+               <children>
+                  <Label text="Dernière date de données">
+                     <HBox.margin>
+                        <Insets left="130.0" top="18.0" />
+                     </HBox.margin>
+                  </Label>
+                  <DatePicker fx:id="calendFin" onAction="#dateFin">
+                     <HBox.margin>
+                        <Insets left="12.0" top="15.0" />
+                     </HBox.margin>
+                  </DatePicker>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#menu" prefHeight="40.0" prefWidth="110.0" text="Menu">
+                     <HBox.margin>
+                        <Insets left="100.0" top="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#valider" prefHeight="40.0" prefWidth="110.0" text="Valider">
+                     <HBox.margin>
+                        <Insets left="180.0" top="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
