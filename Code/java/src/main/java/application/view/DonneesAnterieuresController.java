@@ -270,13 +270,13 @@ public class DonneesAnterieuresController {
             int mois = Integer.parseInt(dossier.list()[i].split("_")[0].split("-")[1]);
             int jour = Integer.parseInt(dossier.list()[i].split("_")[0].split("-")[2]);
             LocalDate date = LocalDate.of(annee, mois, jour);
-            if (date == datePrecedente){
+            if (datePrecedente != null && date.isEqual(datePrecedente)){
                 listeFichiersBonnesDates.add(new File(chemin + "/" + dossier.list()[i]));
                 System.out.println("Fichier ajouté");
             }
             else{
-                if (date.isBefore(dateFin)){
-                    if (date.isAfter(dateDebut)){
+                if (date.isBefore(dateFin) || date.isEqual(dateFin)){
+                    if (date.isAfter(dateDebut) || date.isEqual(dateDebut)){
                         listeFichiersBonnesDates.add(new File(chemin + "/" + dossier.list()[i]));
                         datePrecedente = date;
                     }
@@ -468,12 +468,12 @@ public class DonneesAnterieuresController {
                 int mois = Integer.parseInt(dossier.list()[i].split("_")[0].split("-")[1]);
                 int jour = Integer.parseInt(dossier.list()[i].split("_")[0].split("-")[2]);
                 LocalDate date = LocalDate.of(annee, mois, jour);
-                if (date == datePrecedente){
+                if (datePrecedente != null && date.isEqual(datePrecedente)){
                     listeFichiersBonnesDates.add(new File(chemin + "/" + dossier.list()[i]));
                 }
                 else{
-                    if (date.isBefore(dateFin)){
-                        if (date.isAfter(dateDebut)){
+                    if (date.isBefore(dateFin) || date.isEqual(dateFin)){
+                        if (date.isAfter(dateDebut) || date.isEqual(dateDebut)){
                             listeFichiersBonnesDates.add(new File(chemin + "/" + dossier.list()[i]));
                             datePrecedente = date;
                         }
