@@ -1,34 +1,149 @@
-= Cahier de recette - Plateforme d'ecommerce - Sweetshop
+= Documentation Technique : clientMQTT.py et config.ini
 :toc:
 :toc-title: Sommaire
 :Entreprise: LudoRama
 :Equipe: LudoRama
 
-== Présentation de l'application
-(Présentation rapide de l'application)
-== Procédure d'installation
-=== Pour le développement 
-(comment installer l'environnement de développement)
+Cette documentation décrit le fonctionnement et l'utilisation des fichiers `clientMQTT.py` et `config.ini`.
 
+== Objectifs
+Cette documentation a pour objectifs : +
+1. Expliquer la structure du code. +
+2. Décrire les étapes d'installation. +
+3. Décrire les étapes de lancement du code. +
+4. Montrer les cas de tests, avec des captures d'écran.
 
-== Pour le poste
+== 1. Structure du Code
 
+=== 1.1 Fichier config.ini
+Le fichier `config.ini` contient les paramètres de configuration nécessaires au bon fonctionnement du client MQTT.
 
-== Use Case Global
-(Expliquer le use case global)(types d'utilisateurs, spécificités...)
+[source, ini]
+----
+[MQTT]
+# Connexion MQTT
+broker_address = mqtt.iut-blagnac.fr
+port = 1883
 
+# Topics et données à surveiller
+topics = AM107, solaredge
+AM107_rooms = all
+AM107_info_types = temperature, humidity, co2
+solaredge_info_types = all
 
-== Architecture 
-=== Architecture générale 
-(Architecture générale en terme de sous-systèmes et rôle de chaque élément : fichier de données, fichier de configuration, parties de l'application, ...)
-=== Ressources externes utilisées et rôles
-( API utilisées avec lien d'accès web + lien doc en ligne, ...)
-=== Structuration en package de l'application 
-(Structuration en packages de l’application documentée. Principes retenus pour cette structuration qui doivent être justifiés. Si des patterns particuliers sont utilisés (MVC, ...), les expliquer clairement.)
-=== Élements essentiels 
-(Eléments essentiels à connaître, spécificités, … nécessaires à la mise en œuvre du développement. Cette partie peut être illustrée par un diagramme de séquence. Par exemple, une structure récurrente de classes peut être décrite ici (contrôleurs de dialogues, contrôleurs de vue, …), les threads utilisés, ...)
+# Stockage et paramètres
+base_path = ../Java/src/main/resources/application/capteur/
+seuil_alert = 30, 60, 1000
+period = 15
+----
 
+**Description des paramètres :** +
+- `broker_address` : Adresse du broker MQTT. +
+- `port` : Port utilisé pour la communication. +
+- `topics` : Topics surveillés, séparés par des virgules. +
+- `AM107_rooms` : Salles surveillées (`all` ou noms spécifiques). +
+- `base_path` : Chemin pour stocker les données. +
+- `seuil_alert` : Seuils d'alerte pour chaque type de données.
 
-== Fonctionnalités 
+=== 1.2 Fichier clientMQTT.py
+Le fichier `clientMQTT.py` est le script principal qui : +
+- Se connecte au broker MQTT. +
+- Récupère les messages des topics surveillés. +
+- Stocke les données et génère des alertes si les seuils sont dépassés. +
 
+**Structure du code :** +
+1. Importation des bibliothèques nécessaires. +
+2. Chargement des paramètres depuis `config.ini`. +
+3. Connexion au broker MQTT via la fonction `on_connect`. +
+4. Traitement des messages reçus avec `on_message`. +
+5. Gestion des périodes avec la fonction `gestion_periode`. +
+6. Enregistrement des données et alertes via `enregistrer_donnees` et `enregistrer_alerte`.
 
+== 2. Étapes d'Installation
+
+=== 2.1 Prérequis
+- Python 3 installé.
+- Bibliothèques nécessaires : `paho-mqtt`.
+
+=== 2.2 Installation des dépendances
+Pour installer les dépendances, exécutez :
+```bash
+pip install paho-mqtt
+```
+
+=== 2.3 Configuration de config.ini Modifiez config.ini pour adapter les paramètres :
+- Broker MQTT : Adresse et port.
+- Topics : Indiquez les topics à surveiller.
+- Chemin de stockage : Assurez-vous que le chemin spécifié est accessible.
+
+=== 2.4 Organisation des fichiers Structure des fichiers recommandée :
+```arduino
+project/
+├── clientMQTT.py
+├── config.ini
+└── [répertoire de stockage défini dans base_path]
+```
+
+== 3. Étapes de Lancement du Code
+
+1. Vérifiez la configuration dans config.ini. +
+2. Lancez le script avec la commande :
++
+```bash
+python3 clientMQTT.py
+```
++
+3. Surveillez les logs dans le terminal : +
+ - Connexion réussie au broker.
+ - Messages reçus et enregistrés.
+4. Vérifiez les fichiers générés dans le répertoire de stockage.
+
+== 4. Cas de Tests
+
+=== 4.1 Fonctionnement Nominal Test de collecte et d'enregistrement des données.
+
+Étapes :
+
+1. Configurez config.ini avec des paramètres valides. +
+2. Publiez des messages via MQTT Explorer ou un script. +
+3. Vérifiez : +
+ - Les données s'affichent dans le terminal.
+ - Les fichiers sont correctement enregistrés.
+
+.Capture d'écran : Connexion réussie
+image::assets/Python_Succes_connexion.png[alt="Connexion réussie"]
+
+.Capture d'écran : Données affichées
+image::assets/Python_Donnees_affichees.png[alt="Données affichées"]
+
+.Capture d'écran : Données enregistrées
+image::assets/Python_Donnees_enregistrees.png[alt="Données enregistrées"]
+
+=== 4.2 Gestion des Alertes Test de génération d'alertes en cas de dépassement des seuils.
+
+Étapes :
+
+1. Configurez des seuils faibles dans config.ini.
+2. Publiez des messages contenant des valeurs élevées.
+3. Vérifiez :
+ - Une alerte est générée dans le terminal.
+ - Les alertes sont stockées dans des fichiers.
+
+.Capture d'écran : Alertes déclenchées
+image::assets/Python_Alertes_affichees.png[alt="Alertes affichées"]
+
+.Capture d'écran : Alertes enregistrées
+image::assets/Python_Alertes_enregistrees.png[alt="Alertes enregistrées"]
+
+=== 4.3 Gestion des Erreurs Tests de robustesse avec des données incorrectes.
+
+Cas testés :
+
+- Topic inconnu : Le message est ignoré sans erreur.
+
+.Capture d'écran : Topic inconnu
+image::assets/Python_Execution_sans_erreur_avec_topic_inexistant.png[alt="Topic inconnu"]
+
+== 5. Résumé
+
+Ce système permet de surveiller des données en temps réel avec gestion des seuils et stockage structuré. En suivant cette documentation, vous pourrez installer, configurer et tester le système avec succès.
