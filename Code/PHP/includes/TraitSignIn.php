@@ -1,11 +1,4 @@
 <?php
-// Fonction permettant de générer un id unique
-function generateId($prefix)
-{
-    $randomNumber = str_pad(mt_rand(1, 999999), 6, '0', STR_PAD_LEFT); // Génère un nombre à 6 chiffres
-    return $prefix . $randomNumber; // Ajoute un préfixe (ex: 'CP', 'ADR')
-}
-
 if (isset($_POST['submit'])) {
     // Récupération des informations lors de l'inscription
     $nom = $_POST['nom'];
@@ -13,7 +6,14 @@ if (isset($_POST['submit'])) {
     $mail = filter_var($_POST['mail'], FILTER_SANITIZE_EMAIL);
     $psswd = $_POST['password'];
 
-	if (empty($nom) || empty($prenom) || empty($mail) || empty($psswd)) {
+    $numeroRue = $_POST['numeroRue'];
+    $nomRue = $_POST['nomRue'];
+    $ville = $_POST['ville'];
+    $codePostal = $_POST['codePostal'];
+    $pays = $_POST['pays'];
+    
+
+	if (empty($nom) || empty($prenom) || empty($mail) || empty($psswd)  || empty($numeroRue) || empty($nomRue) || empty($ville) || empty($codePostal) || empty($pays)) {
         die('Tous les champs sont obligatoires.');
     }
 	
@@ -28,8 +28,15 @@ if (isset($_POST['submit'])) {
 	
 	try {
         // Préparation de l'insertion des données
-        $stmt = $conn->prepare('INSERT INTO COMPTE (NOM, PRENOM, MAIL, MDP) VALUES (?, ?, ?, ?)');
-        $stmt->execute([$nom, $prenom, $mail, $hashedPassword]);
+        $stmt = $conn->prepare('INSERT INTO ADRESSE (CODEPOSTAL, NOMRUE, NUMRUE, PAYS, VILLE) VALUES (?, ?, ?, ?, ?)');
+        $stmt->execute([$codePostal, $nomRue, $numeroRue, $pays, $ville]);
+
+        $stmt = $conn->prepare('SELECT IDADRESSE FROM ADRESSE WHERE CODEPOSTAL = ? AND NOMRUE = ? AND NUMRUE = ? AND PAYS = ? AND VILLE = ?');
+        $stmt->execute([$codePostal, $nomRue, $numeroRue, $pays, $ville]);
+        $idAdr = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $stmt = $conn->prepare('INSERT INTO COMPTE (NOM, PRENOM, MAIL, MDP, IDADRESSE) VALUES (?, ?, ?, ?, ?)');
+        $stmt->execute([$nom, $prenom, $mail, $hashedPassword, $idAdr]);
 
         echo 'Compte créé avec succès !';
         header('Location: ../index.php');
