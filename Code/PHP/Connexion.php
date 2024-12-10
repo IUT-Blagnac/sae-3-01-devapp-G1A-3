@@ -37,7 +37,7 @@
 							
 							<div class="mb-3">
 								<label class="sub_title" for="login">E-mail *</label>
-								<input placeholder="Entrez votre e-mail" name="user_login" id="login" class="form_style" type="email" required>
+								<input placeholder="Entrez votre e-mail" name="user_mail" id="mail" class="form_style" type="email" required>
 							</div>
 							<div class="mb-3">
 								<label class="sub_title" for="password">Mot de passe *</label>

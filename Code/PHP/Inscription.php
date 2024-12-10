@@ -48,7 +48,15 @@
 							</div>
 							<div class="mb-3">
 								<label for="nomRue" class="form-label">Nom de la Rue *</label>
-								<input placeholder="Entrez le nom de la rue" name="nomRue" id="nomRue" class="form-control" type="text" required>
+								<input placeholder="Entrez le numéro de la rue" name="nomRue" id="nomRue" class="form-control" type="text" required>
+							</div>
+							<div class="mb-3">
+								<label for="ville" class="form-label">Ville *</label>
+								<input placeholder="Entrez le nom de votre ville" name="ville" id="ville" class="form-control" type="text" required>
+							</div>
+							<div class="mb-3">
+								<label for="codepostal" class="form-label">Code Postal *</label>
+								<input placeholder="Entrez votre code postal" name="codepostal" id="codepostal" class="form-control" type="text" required>
 							</div>
 							<div class="mb-3">
 								<label for="pays" class="form-label">Pays *</label>

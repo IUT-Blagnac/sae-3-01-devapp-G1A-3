@@ -24,55 +24,55 @@
             <div class="row">
               <!-- Colonne 1 -->
               <div class="col-md-4">
-                <a href="">
+                <a href="produit.php">
                   <h6 class="dropdown-header">Gélifiés</h6>
                 </a>
               </div>
               <!-- Colonne 2 -->
               <div class="col-md-4">
-                <a href="">
+                <a href="produit.php">
                   <h6 class="dropdown-header">Artisanaux</h6>
                 </a>
               </div>
               <!-- Colonne 3 -->
               <div class="col-md-4">
-                <a href="">
+                <a href="produit.php">
                   <h6 class="dropdown-header">K'rokante</h6>
                 </a>
               </div>
               <!-- Colonne 4 -->
               <div class="col-md-4">
-                <a href="">
+                <a href="produit.php">
                   <h6 class="dropdown-header">Vegandy</h6>
                 </a>
               </div>
               <!-- Colonne 5 -->
               <div class="col-md-4">
-                <a href="">
+                <a href="produit.php">
                   <h6 class="dropdown-header">ChoupiPop</h6>
                 </a>
               </div>
               <!-- Colonne 6 -->
               <div class="col-md-4">
-                <a href="">
+                <a href="produit.php">
                   <h6 class="dropdown-header">ChocoBoom</h6>
                 </a>
               </div>
               <!-- Colonne 7 -->
               <div class="col-md-4">
-                <a href="">
+                <a href="produit.php">
                   <h6 class="dropdown-header">Praloup</h6>
                 </a>
               </div>
               <!-- Colonne 8 -->
               <div class="col-md-4">
-                <a href="">
+                <a href="produit.php">
                   <h6 class="dropdown-header">ChocoCraq</h6>
                 </a>
               </div>
               <!-- Colonne 9 -->
               <div class="col-md-4">
-                <a href="">
+                <a href="produit.php">
                   <h6 class="dropdown-header">Fondoo</h6>
                 </a>
               </div>

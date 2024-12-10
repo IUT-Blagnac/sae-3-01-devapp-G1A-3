@@ -1,16 +1,17 @@
 <?php
 if (isset($_POST['submit'])) {
-    // Récupération des informations lors de l'inscription
-    $nom = $_POST['nom'];
-    $prenom = $_POST['prenom'];
-    $mail = filter_var($_POST['mail'], FILTER_SANITIZE_EMAIL);
-    $psswd = $_POST['password'];
 
-    $numeroRue = $_POST['numeroRue'];
-    $nomRue = $_POST['nomRue'];
-    $ville = $_POST['ville'];
-    $codePostal = $_POST['codePostal'];
-    $pays = $_POST['pays'];
+    // Récupération des informations lors de l'inscription
+    $nom = htmlentities($_POST['nom']);
+    $prenom = htmlentities($_POST['prenom']);
+    $mail = htmlentities(filter_var($_POST['mail'], FILTER_SANITIZE_EMAIL));
+    $psswd = htmlentities($_POST['password']);
+
+    $numeroRue = htmlentities($_POST['numeroRue']);
+    $nomRue = htmlentities($_POST['nomRue']);
+    $ville = htmlentities($_POST['ville']);
+    $codePostal = htmlentities($_POST['codepostal']);
+    $pays = htmlentities($_POST['pays']);
     
 
 	if (empty($nom) || empty($prenom) || empty($mail) || empty($psswd)  || empty($numeroRue) || empty($nomRue) || empty($ville) || empty($codePostal) || empty($pays)) {
@@ -31,11 +32,12 @@ if (isset($_POST['submit'])) {
         $stmt = $conn->prepare('INSERT INTO ADRESSE (CODEPOSTAL, NOMRUE, NUMRUE, PAYS, VILLE) VALUES (?, ?, ?, ?, ?)');
         $stmt->execute([$codePostal, $nomRue, $numeroRue, $pays, $ville]);
 
+
         $stmt = $conn->prepare('SELECT IDADRESSE FROM ADRESSE WHERE CODEPOSTAL = ? AND NOMRUE = ? AND NUMRUE = ? AND PAYS = ? AND VILLE = ?');
         $stmt->execute([$codePostal, $nomRue, $numeroRue, $pays, $ville]);
-        $idAdr = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $idAdr = $stmt->fetch(PDO::FETCH_ASSOC)['IDADRESSE'];
 
-        $stmt = $conn->prepare('INSERT INTO COMPTE (NOM, PRENOM, MAIL, MDP, IDADRESSE) VALUES (?, ?, ?, ?, ?)');
+        $stmt = $conn->prepare('INSERT INTO COMPTE (NOM, PRENOM, MAIL, MDP, IDADRESSE, IDPERMISSION) VALUES (?, ?, ?, ?, ?, 2)');
         $stmt->execute([$nom, $prenom, $mail, $hashedPassword, $idAdr]);
 
         echo 'Compte créé avec succès !';
