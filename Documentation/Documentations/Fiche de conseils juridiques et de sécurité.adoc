@@ -1,0 +1,136 @@
+= Fiche de conseils juridiques et de sécurité
+:toc:
+:toc-title: Sommaire
+:Entreprise: LudoRama
+:Equipe: LudoRama
+
+== 1. Mentions légales
+
+=== Liste des mentions légales que doit comporter le site WEB
+
+* Identification du professionnel
+ ** Identité de l'entreprise : votre nom, prénom et adresse. Si vous êtes entrepreneur individuel (y compris, micro-entrepreneur), vos nom et prénom sont accompagnés de la mention entrepreneur individuel ou des initiales EI.
+ ** Numéro d'immatriculation au RCS (Registre du commerce et des sociétés)
+ ** Mail et numéro de téléphone pour contacter votre entreprise
+ ** Numéro d'identification à la TVA
+ ** Identité de l'hébergeur du site : nom ou dénomination sociale, adresse et numéro de téléphone
+ ** Si vous exercez une activité réglementée et soumise à autorisation (pharmacie ou débit de boissons, par exemple) : nom et adresse de l'autorité qui a délivré l'autorisation.
+* Conditions générales de vente (CGV)
+* Traitement des données personnelles et utilisation de cookies
+* Moyen de contact pour que les utilisateurs puissent exercer leurs droits par voie électronique (ex: Résiliation d'un abonnement)
+* Des « mentions CNIL » en bas du formulaire de contact
+
+=== Mentions légales actuellement manquantes sur le site WEB
+
+* Mention Légale Manquante 01
+* Mention Légale Manquante 02
+
+== 2. Processus de vente en ligne
+
+Description détaillée du processus de vente en ligne à l’aide d’un diagramme de collaboration BPMN.
+
+=== Diagramme BPMN
+
+(Diagramme de collaboration BPMN)
+
+== 3. Protection des données
+
+Une liste de mesures applicables et leurs modalités de mise en œuvre concernant la protection des données.
+
+[cols="3*"]
+|====
+|Mesure |Modalités |Priorité
+
+// Exemple
+|Exemple : La personne concernée a consenti au traitement de ses données à caractère personnel pour une ou plusieurs finalités spécifiques
+|Consentement recueilli à la création du compte client dans le formulaire.
+|(à compléter)
+
+// 01
+|Mesure 01
+|Modalités 01
+|(à compléter)
+
+// 02
+|Mesure 02
+|Modalités 02
+|(à compléter)
+
+// 03
+|Mesure 03
+|Modalités 03
+|(à compléter)
+
+// 04
+|Mesure 04
+|Modalités 04
+|(à compléter)
+
+// 05
+|Mesure 05
+|Modalités 05
+|(à compléter)
+
+// 06
+|Mesure 06
+|Modalités 06
+|(à compléter)
+|====
+
+== 4. Sécurité des données
+
+Une liste de mesures applicables et leurs modalités de mise en œuvre concernant la sécurité des données (sur le même modèle que ci-dessus).
+
+[cols="3*", options="header"]
+|====
+| Mesure | Modalités | Priorité
+
+// 01
+|Mesure 01
+|Modalités 01
+|(à compléter)
+
+// 02
+|Mesure 02
+|Modalités 02
+|(à compléter)
+
+// 03
+|Mesure 03
+|Modalités 03
+|(à compléter)
+
+// 04
+|Mesure 04
+|Modalités 04
+|(à compléter)
+
+// 05
+|Mesure 05
+|Modalités 05
+|(à compléter)
+
+// 06
+|Mesure 06
+|Modalités 06
+|(à compléter)
+|====
+
+== 5. Use Case à ajouter au dernier sprint
+
+La liste des US à ajouter au dernier sprint pour tenir compte des points 3 et 4 les plus importants (à négocier avec votre client en fonction des priorités !).
+
+* Use Case 01
+* Use Case 02
+* Use Case 03
+
+== Annexe
+
+=== Ressources utiles
+
+* CNIL +
+https://www.cnil.fr/fr/rgpd-en-pratique-communiquer-en-ligne
+
+* Gouvernement & Service public +
+https://entreprendre.service-public.fr/vosdroits/F31228 +
+https://www.economie.gouv.fr/entreprises/site-internet-mentions-obligatoires#
