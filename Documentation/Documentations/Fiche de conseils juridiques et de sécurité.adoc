@@ -10,10 +10,10 @@
 
 * Identification du professionnel
  ** Identité de l'entreprise : votre nom, prénom et adresse. Si vous êtes entrepreneur individuel (y compris, micro-entrepreneur), vos nom et prénom sont accompagnés de la mention entrepreneur individuel ou des initiales EI.
- ** Numéro d'immatriculation au RCS: RCS : Registre du commerce et des sociétés
+ ** Numéro d'immatriculation au RCS (Registre du commerce et des sociétés)
  ** Mail et numéro de téléphone pour contacter votre entreprise
  ** Numéro d'identification à la TVA
- ** Identité de l'hébergeurPersonne physique ou dirigeant d'une personne morale qui stocke des écrits, des sons, des images ou des vidéos réalisés par des tiers (hébergeurs d'un réseau social, d'un forum, d'un jeu en ligne, d'un blog) du site : nom ou dénomination sociale, adresse et numéro de téléphone
+ ** Identité de l'hébergeur du site : nom ou dénomination sociale, adresse et numéro de téléphone
  ** Si vous exercez une activité réglementée et soumise à autorisation (pharmacie ou débit de boissons, par exemple) : nom et adresse de l'autorité qui a délivré l'autorisation.
 * Conditions générales de vente (CGV)
 * Traitement des données personnelles et utilisation de cookies
