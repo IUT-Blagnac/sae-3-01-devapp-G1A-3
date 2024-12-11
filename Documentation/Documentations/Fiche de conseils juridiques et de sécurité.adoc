@@ -1,4 +1,119 @@
-# Fiche de conseils juridiques et de sécurité
+= Fiche de conseils juridiques et de sécurité
+:toc:
+:toc-title: Sommaire
+:Entreprise: LudoRama
+:Equipe: LudoRama
 
-TO DO
-...
+== 1. Mentions légales
+
+=== Liste des mentions légales que doit comporter le site WEB
+
+- Mention Légale 01
+- Mention Légale 02
+- Mention Légale 03
+- Mention Légale 04
+- Mention Légale 05
+
+=== Mentions légales actuellement manquantes sur le site WEB
+
+- Mention Légale Manquante 01
+- Mention Légale Manquante 02
+
+== 2. Processus de vente en ligne
+
+Description détaillée du processus de vente en ligne à l’aide d’un diagramme de collaboration BPMN.
+
+=== Diagramme BPMN
+
+(Diagramme de collaboration BPMN)
+
+== 3. Protection des données
+
+Une liste de mesures applicables et leurs modalités de mise en œuvre concernant la protection des données.
+
+[cols="3*"]
+|====
+|Mesure |Modalités |Priorité
+
+// Exemple
+|Exemple : La personne concernée a consenti3 au traitement de ses données à caractère personnel pour une ou plusieurs finalités spécifiques
+|Consentement recueilli à la création du compte client dans le formulaire.
+|(à compléter)
+
+// 01
+|Mesure 01
+|Modalités 01
+|(à compléter)
+
+// 02
+|Mesure 02
+|Modalités 02
+|(à compléter)
+
+// 03
+|Mesure 03
+|Modalités 03
+|(à compléter)
+
+// 04
+|Mesure 04
+|Modalités 04
+|(à compléter)
+
+// 05
+|Mesure 05
+|Modalités 05
+|(à compléter)
+
+// 06
+|Mesure 06
+|Modalités 06
+|(à compléter)
+|====
+
+== 4. Sécurité des données
+
+Une liste de mesures applicables et leurs modalités de mise en œuvre concernant la sécurité des données (sur le même modèle que ci-dessus).
+
+[cols="3*", options="header"]
+|====
+| Mesure | Modalités | Priorité
+
+// 01
+|Mesure 01
+|Modalités 01
+|(à compléter)
+
+// 02
+|Mesure 02
+|Modalités 02
+|(à compléter)
+
+// 03
+|Mesure 03
+|Modalités 03
+|(à compléter)
+
+// 04
+|Mesure 04
+|Modalités 04
+|(à compléter)
+
+// 05
+|Mesure 05
+|Modalités 05
+|(à compléter)
+
+// 06
+|Mesure 06
+|Modalités 06
+|(à compléter)
+|====
+
+== 5. Use Case à ajouter au dernier sprint
+
+La liste des US à ajouter au dernier sprint pour tenir compte des points 3 et 4 les plus importants (à négocier avec votre client en fonction des priorités !).
+
+- Use Case 01
+- Use Case 02
+- Use Case 03
