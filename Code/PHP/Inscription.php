@@ -44,11 +44,11 @@
 							<h5 class="text-danger mb-3">Adresse</h5>
 							<div class="mb-3">
 								<label for="numeroRue" class="form-label">N° de Rue *</label>
-								<input placeholder="Entrez le numéro de la rue" name="numeroRue" id="numeroRue" class="form-control" type="text" required>
+								<input placeholder="Entrez votre numéro de rue" name="numeroRue" id="numeroRue" class="form-control" type="text" required>
 							</div>
 							<div class="mb-3">
 								<label for="nomRue" class="form-label">Nom de la Rue *</label>
-								<input placeholder="Entrez le numéro de la rue" name="nomRue" id="nomRue" class="form-control" type="text" required>
+								<input placeholder="Entrez le nom de votre rue" name="nomRue" id="nomRue" class="form-control" type="text" required>
 							</div>
 							<div class="mb-3">
 								<label for="ville" class="form-label">Ville *</label>
@@ -60,7 +60,7 @@
 							</div>
 							<div class="mb-3">
 								<label for="pays" class="form-label">Pays *</label>
-								<input placeholder="Entrez le pays" name="pays" id="pays" class="form-control" type="text" required>
+								<input placeholder="Entrez votre pays" name="pays" id="pays" class="form-control" type="text" required>
 							</div>
 							<div>
 								<button type="submit" name="submit" class="btn btn-primary">VALIDER</button>

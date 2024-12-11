@@ -119,6 +119,7 @@ if ($selectedCategory > 0) {
                         <?php foreach ($produits as $produit): ?>
                             <div class="col-md-4">
                                 <div class="card mb-4">
+                                    
                                     <div class="card-body">
                                         <h5 class="card-title"><?= htmlspecialchars($produit['NOMPROD']) ?></h5>
                                         <p class="card-text">
