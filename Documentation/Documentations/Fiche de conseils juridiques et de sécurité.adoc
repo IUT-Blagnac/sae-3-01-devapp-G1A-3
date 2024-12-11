@@ -8,16 +8,22 @@
 
 === Liste des mentions légales que doit comporter le site WEB
 
-- Mention Légale 01
-- Mention Légale 02
-- Mention Légale 03
-- Mention Légale 04
-- Mention Légale 05
+* Identification du professionnel
+ ** Identité de l'entreprise : votre nom, prénom et adresse. Si vous êtes entrepreneur individuel (y compris, micro-entrepreneur), vos nom et prénom sont accompagnés de la mention entrepreneur individuel ou des initiales EI.
+ ** Numéro d'immatriculation au RCS: RCS : Registre du commerce et des sociétés
+ ** Mail et numéro de téléphone pour contacter votre entreprise
+ ** Numéro d'identification à la TVA
+ ** Identité de l'hébergeurPersonne physique ou dirigeant d'une personne morale qui stocke des écrits, des sons, des images ou des vidéos réalisés par des tiers (hébergeurs d'un réseau social, d'un forum, d'un jeu en ligne, d'un blog) du site : nom ou dénomination sociale, adresse et numéro de téléphone
+ ** Si vous exercez une activité réglementée et soumise à autorisation (pharmacie ou débit de boissons, par exemple) : nom et adresse de l'autorité qui a délivré l'autorisation.
+* Conditions générales de vente (CGV)
+* Traitement des données personnelles et utilisation de cookies
+* Moyen de contact pour que les utilisateurs puissent exercer leurs droits par voie électronique (ex: Résiliation d'un abonnement)
+* Des « mentions CNIL » en bas du formulaire de contact
 
 === Mentions légales actuellement manquantes sur le site WEB
 
-- Mention Légale Manquante 01
-- Mention Légale Manquante 02
+* Mention Légale Manquante 01
+* Mention Légale Manquante 02
 
 == 2. Processus de vente en ligne
 
@@ -114,6 +120,17 @@ Une liste de mesures applicables et leurs modalités de mise en œuvre concernan
 
 La liste des US à ajouter au dernier sprint pour tenir compte des points 3 et 4 les plus importants (à négocier avec votre client en fonction des priorités !).
 
-- Use Case 01
-- Use Case 02
-- Use Case 03
+* Use Case 01
+* Use Case 02
+* Use Case 03
+
+== Annexe
+
+=== Ressources utiles
+
+* CNIL +
+https://www.cnil.fr/fr/rgpd-en-pratique-communiquer-en-ligne
+
+* Gouvernement & Service public +
+https://entreprendre.service-public.fr/vosdroits/F31228 +
+https://www.economie.gouv.fr/entreprises/site-internet-mentions-obligatoires#
