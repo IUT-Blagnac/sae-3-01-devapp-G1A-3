@@ -37,6 +37,14 @@
 								<input placeholder="Entrez votre e-mail" name="mail" id="email" class="form-control" type="email" required>
 							</div>
 							<div class="mb-3">
+								<label for="datenaissance" class="form-label">Date de naissance *</label>
+								<input name="datenaissance" id="datenaissance" class="form-control" type="date" required>
+							</div>
+							<div class="mb-3">
+								<label for="numtelephone" class="form-label">Numéro de téléphone *</label>
+								<input placeholder="Entrez votre numéro de téléphone" name="numtelephone" id="numtelephone" class="form-control" type="text" required>
+							</div>
+							<div class="mb-3">
 								<label for="password" class="form-label">Mot de passe *</label>
 								<input placeholder="Entrez votre mot de passe" name="password" id="password" class="form-control" type="password" required>
 							</div>

@@ -52,7 +52,7 @@
               </div>
               <!-- Colonne 4 -->
               <div class='col'>
-                <a href='#' class='dropdown-item'>
+                <a href='includes/deconnexion.php' class='dropdown-item'>
                   <h6 class='dropdown-header'>Se Déconnecter</h6>
                 </a>
               </div>

@@ -13,20 +13,44 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     require_once '../connect.inc.php';
 	
 	try {
-        $stmt = $conn->prepare('	SELECT * FROM COMPTE
-									WHERE MAIL = ?');
+        $stmt = $conn->prepare('SELECT * FROM COMPTE
+								WHERE MAIL = ?');
 		$stmt->execute([$mail]);
 		
 		// Récupère les résultats sous forme de tableau associatif
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($result){
+            $idCompte = $result['IDCOMPTE'];
             $passwordBD = $result['MDP'];
+            $nom = $result['NOM'];
             $prenom = $result['PRENOM'];
             $idAdresse = $result['IDADRESSE'];
+            $idPermission = $result['IDPERMISSION'];
+            $numTelephone = $result['NUMTEL'];
+            $dateNaissance = $result['DTN'];
         }
-		
+    
+    } catch (PDOException $e) {
+        die('Erreur : ' . $e->getMessage());
+    }
+
+    try {
+        $stmt = $conn->prepare('	SELECT * FROM ADRESSE
+                                    WHERE IDADRESSE = ?');
+        $stmt->execute([$idAdresse]);
         
+        // Récupère les résultats sous forme de tableau associatif
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($result){
+            $numRue = $result['NUMRUE'];
+            $ville = $result['VILLE'];
+            $codePostal = $result['CODEPOSTAL'];
+            $pays = $result['PAYS'];
+            $nomRue = $result['NOMRUE'];
+        }
+         
     } catch (PDOException $e) {
         die('Erreur : ' . $e->getMessage());
     }
@@ -35,30 +59,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (password_verify($password, $passwordBD)) {
         // Identifiants corrects, initialisation de la session
         $_SESSION["loggedin"] = true;
-        $_SESSION["prenom"] = $prenom; // Stocker le login pour réutilisation
-
-        try {
-            $stmt = $conn->prepare('	SELECT * FROM ADRESSE
-                                        WHERE IDADRESSE = ?');
-            $stmt->execute([$mail]);
-            
-            // Récupère les résultats sous forme de tableau associatif
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    
-            if ($result){
-                $adresse = $result['MDP'];
-                $adresse = $result['PRENOM'];
-            }
-            
-            
-        } catch (PDOException $e) {
-            die('Erreur : ' . $e->getMessage());
+        if ($idPermission === 1){
+            $_SESSION["idPermission"] = "Administrateur";
         }
+        else{
+            $_SESSION["idPermission"] = "Client";
+        }
+        $_SESSION["idCompte"] = $idCompte;
+        $_SESSION["nom"] = $nom;
+        $_SESSION["prenom"] = $prenom;
+        $_SESSION["mail"] = $mail;
+        $_SESSION["dateNaissance"] = $dateNaissance;
+        $_SESSION["numeroTelephone"] = $numTelephone;
 
-        $_SESSION["adresse"] = $adresse;
-        $_SESSION["mail"] = $mail;
-        $_SESSION["mail"] = $mail;
-        $_SESSION["mail"] = $mail;
+        $_SESSION["numRue"] = $numRue;
+        $_SESSION["ville"] = $ville;
+        $_SESSION["codePostal"] = $codePostal;
+        $_SESSION["pays"] = $pays;
+        $_SESSION["nomRue"] = $nomRue;
+        $_SESSION["idAdresse"] = $idAdresse;
 
         // Gérer l'option "se souvenir de moi"
         if ($remember_me) {

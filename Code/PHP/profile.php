@@ -18,14 +18,13 @@
     
     <section class="profile-wrapper mt-5 mx-auto my-5" style="max-width: 900px;">
         <div class="profile-header">
-            <div class="profile-cover-photo" style="background-image: url('./images/test.jpg');"></div>
             <div class="profile-author d-sm-flex flex-row-reverse justify-content-between align-items-end">
                 <div class="profile-photo">
                     <img src="./images/test.jpg" alt="Photo de profil" width="120" height="120">
                 </div>
                 <div class="profile-name">
-                    <h4 class="name">John Doe Nick</h4>
-                    <p class="email">doe@email.com</p>
+                    <h4 class="name"><?php echo $_SESSION["nom"]." ".$_SESSION["prenom"];?></h4>
+                    <p class="email"><?php echo $_SESSION["mail"];?></p>
                 </div>
             </div>
         </div>
@@ -33,7 +32,7 @@
         <div class="profile-body mt-4">
             <div class="profile-title d-flex justify-content-between align-items-center">
                 <h5 class="title">Détails Personnels</h5>
-                <a class="profile-link" href="#">Modifier</a>
+                <a class="profile-link" href="Modification.php">Modifier</a>
             </div>
             <div class="profile-details">
                 <div class="single-details-item d-flex">
@@ -41,7 +40,7 @@
                         <h6>Nom Complet :</h6>
                     </div>
                     <div class="details-content">
-                        <p>John Doe Nick</p>
+                        <p><?php echo $_SESSION["prenom"]." ".$_SESSION["nom"];?></p>
                     </div>
                 </div>
                 <div class="single-details-item d-flex">
@@ -49,7 +48,7 @@
                         <h6>Email :</h6>
                     </div>
                     <div class="details-content">
-                        <p>doe@email.com</p>
+                        <p><?php echo $_SESSION["mail"];?></p>
                     </div>
                 </div>
                 <div class="single-details-item d-flex">
@@ -57,7 +56,7 @@
                         <h6>Téléphone :</h6>
                     </div>
                     <div class="details-content">
-                        <p>+123 456 789 0234</p>
+                        <p><?php echo $_SESSION["numeroTelephone"];?></p>
                     </div>
                 </div>
                 <div class="single-details-item d-flex">
@@ -65,15 +64,23 @@
                         <h6>Adresse :</h6>
                     </div>
                     <div class="details-content">
-                        <p>Company Inc., 8901 Marmora Road, Glasgow, D04 89GR.</p>
+                        <p><?php echo $_SESSION["numRue"]." ".$_SESSION["nomRue"].", ".$_SESSION["ville"];?></p>
                     </div>
                 </div>
                 <div class="single-details-item d-flex">
                     <div class="details-title">
-                        <h6>Sexe :</h6>
+                        <h6>Code Postal :</h6>
                     </div>
                     <div class="details-content">
-                        <p>Homme</p>
+                        <p><?php echo $_SESSION["codePostal"]; ?></p>
+                    </div>
+                </div>
+                <div class="single-details-item d-flex">
+                    <div class="details-title">
+                        <h6>Pays :</h6>
+                    </div>
+                    <div class="details-content">
+                        <p><?php echo $_SESSION["pays"]; ?></p>
                     </div>
                 </div>
                 <div class="single-details-item d-flex">
@@ -81,7 +88,7 @@
                         <h6>Date de naissance :</h6>
                     </div>
                     <div class="details-content">
-                        <p>04 Janvier 1992</p>
+                        <p><?php echo $_SESSION["dateNaissance"]; ?></p>
                     </div>
                 </div>
             </div>
@@ -124,43 +131,85 @@
         <div class="profile-footer mt-5">
             <div class="profile-title d-flex justify-content-between align-items-center">
                 <h5 class="title">Cartes</h5>
-                <a class="profile-link" href="#">Ajouter une carte</a>
+                <a class="profile-link" href="AjoutCB.php">Ajouter une carte</a>
             </div>
             <div class="profile-card-info">
                 <div class="row">
-                    <div class="col-md-4 col-sm-6 mb-3">
-                        <div class="single-card-info d-flex">
-                            <img src="./images/visa.png" alt="Visa">
-                            <div class="card-info ms-3">
-                                <h5 class="card-name">Musa Ahmed</h5>
-                                <p class="card-number">.... 4534 <span>02/20</span></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 mb-3">
-                        <div class="single-card-info d-flex">
-                            <img src="./images/american-express.png" alt="American Express">
-                            <div class="card-info ms-3">
-                                <h5 class="card-name">Musa Ahmed</h5>
-                                <p class="card-number">.... 4534 <span>02/20</span></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 mb-3">
-                        <div class="single-card-info d-flex">
-                            <img src="./images/mastercard.png" alt="Mastercard">
-                            <div class="card-info ms-3">
-                                <h5 class="card-name">Musa Ahmed</h5>
-                                <p class="card-number">.... 4534 <span>02/20</span></p>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+                        require_once 'connect.inc.php';
+                        try {
+                            $stmt = $conn->prepare('CALL get_client_cb(?)');
+                            $stmt->execute([$_SESSION['idCompte']]);
+                            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            foreach ($result as $cb){
+                                echo "<div class='col-md-4 col-sm-6 mb-3'>
+                                    <div class='single-card-info d-flex'>
+                                        <img src='./images/mastercard.png' alt='Mastercard'>
+                                        <div class='card-info ms-3'>
+                                            <h5 class='card-name'>";
+                                            echo $_SESSION['prenom'].' '.$_SESSION['nom'];
+                                            echo "</h5><p class='card-number'>";
+                                            $fincb = substr($cb['NUMCARTE'], -4); // returns "s"
+                                            echo $fincb;
+                                            echo "<span>";
+                                            $expi = substr($cb['DATEEXPIRATION'], -2);
+                                            $expi .= "/";
+                                            $expi .= substr($cb['DATEEXPIRATION'], 2, 2);
+                                            echo $expi;
+                                            echo "</span></p>
+                                        </div>
+                                    </div>
+                                </div>";
+                            }
+                        }   catch (PDOException $e) {
+                            die('Erreur : ' . $e->getMessage());
+                        }
+                    ?>   
                 </div>
             </div>
         </div>
 
+        <!-- Section Paypal -->
+        <div class="profile-footer mt-5">
+            <div class="profile-title d-flex justify-content-between align-items-center">
+                <h5 class="title">Paypal</h5>
+                <a class="profile-link" href="AjoutPaypal.php">Ajouter un paypal</a>
+            </div>
+            <div class="profile-card-info">
+                <div class="row">
+                    <?php
+                        require_once 'connect.inc.php';
+                        try {
+                            $stmt = $conn->prepare('CALL get_client_paypal(?)');
+                            $stmt->execute([$_SESSION['idCompte']]);
+                            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            foreach ($result as $cb){
+                                echo "<div class='col-md-4 col-sm-6 mb-3'>
+                                    <div class='single-card-info d-flex'>
+                                        <img src='./images/mastercard.png' alt='Mastercard'>
+                                        <div class='card-info ms-3'>
+                                            <h5 class='card-name'>";
+                                            echo $_SESSION['prenom'].' '.$_SESSION['nom'];
+                                            echo "</h5><p class='card-number'>";
+                                            $fincb = substr($cb['NUMCARTE'], -4); // returns "s"
+                                            echo $fincb;
+                                            echo "<span>";
+                                            $expi = substr($cb['DATEEXPIRATION'], -2);
+                                            $expi .= "/";
+                                            $expi .= substr($cb['DATEEXPIRATION'], 2, 2);
+                                            echo $expi;
+                                            echo "</span></p>
+                                        </div>
+                                    </div>
+                                </div>";
+                            }
+                        }   catch (PDOException $e) {
+                            die('Erreur : ' . $e->getMessage());
+                        }
+                    ?>   
+                </div>
+            </div>
+        </div>
     </section>
-
 </body>
-
 </html>

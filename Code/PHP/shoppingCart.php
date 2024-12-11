@@ -61,37 +61,47 @@
                             <div class="ms-3 flex-grow-1">
                                 <p class="mb-1">SweetShop - Bonbons Variés</p>
                                 <div class="d-flex align-items-center">
-                                    <select class="form-select w-25 me-3" aria-label="Quantité">
-                                        <option selected>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                    </select>
-                                    <button class="btn btn-link text-danger">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
-                                            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
-                                        </svg>
-                                    </button>
+									<form action="shoppingCart.php" method="post">
+										<input type="number" id="quantity" name="quantity" min="1" step="1" value="1" required onblur="checkNegativeOnBlur(this)" oninput="sendInputValue(this)">
+									</form>
+									<button class="btn btn-link text-danger">
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+											<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+											<path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+										</svg>
+									</button>
                                 </div>
                             </div>
-                            <span class="text-pink fw-bold">6,95€</span>
+                            <span class="text-pink fw-bold"><?php $prix = 6.95; echo $prix ?> €</span>
                         </div>
                     </div>
+					
+					<?php
+					if ($_SERVER["REQUEST_METHOD"] == "POST") {
+						$quantity = isset($_POST['quantity']) ? $_POST['quantity'] : 1;
+
+						if (is_numeric($quantity)) {
+							echo "Le nombre saisi est : " . htmlspecialchars($quantity);
+						} else {
+							echo "Aucune valeur valide n'a été saisie.";
+						}
+					}
+					?>
 
                     <div class="col-lg-4">
                         <h5 class="text-uppercase text-pink mb-3">Résumé de la commande</h5>
                         <table class="table text-end">
                             <tr>
                                 <td>Total des articles (Prix initial)</td>
-                                <td>6,95€</td>
+                                <td><?php $total_articles = isset($quantity) ? $prix * $quantity : $prix; echo $total_articles ?> €</td>
                             </tr>
                             <tr>
                                 <td>Frais de livraison</td>
-                                <td>2,50€</td>
+                                <td><?php $frais_livraison = 2.50; echo $frais_livraison ?> €</td>
                             </tr>
                             <tr class="fw-bold">
                                 <td>Total de la commande</td>
-                                <td>9,45€</td>
+                                <td><?php $total_commande = $total_articles+$frais_livraison; echo $total_commande ?> €</td>
                             </tr>
                         </table>
                         <button class="btn btn-secondary btn-block mt-3"><a style="text-decoration : none; color:aliceblue;" href="index.php">Encore une envie de nostalgie ?</a></button>
@@ -195,6 +205,29 @@
                 goToPreviousStep("#step4-content", "#step3-content");
             });
         });
+
+        function checkNegativeOnBlur(input) {
+            if (input.value < 1) {
+                input.value = 1;
+            }
+        }
+		
+        function sendInputValue(input) {
+			const value = input.value;
+
+			fetch('shoppingCart.php', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded',
+				},
+				body: `quantity=${encodeURIComponent(value)}`
+			})
+			.then(response => response.text())
+			.then(data => {
+				document.getElementById('prix-total').textContent = `${data} €`;
+			})
+			.catch(error => console.error('Erreur:', error));
+		}
     </script>
 </body>
 
