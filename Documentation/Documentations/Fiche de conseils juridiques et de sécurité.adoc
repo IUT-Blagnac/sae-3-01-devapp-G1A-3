@@ -42,7 +42,7 @@ Une liste de mesures applicables et leurs modalités de mise en œuvre concernan
 |Mesure |Modalités |Priorité
 
 // Exemple
-|Exemple : La personne concernée a consenti3 au traitement de ses données à caractère personnel pour une ou plusieurs finalités spécifiques
+|Exemple : La personne concernée a consenti au traitement de ses données à caractère personnel pour une ou plusieurs finalités spécifiques
 |Consentement recueilli à la création du compte client dans le formulaire.
 |(à compléter)
 
