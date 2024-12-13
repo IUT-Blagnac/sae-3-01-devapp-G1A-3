@@ -46,7 +46,7 @@ Description détaillée du processus de vente en ligne à l’aide d’un diagra
 
 === Diagramme BPMN
 
-(Diagramme de collaboration BPMN)
+image::assets/Diagramme_BPMN.png[alt="Diagramme BPMN"]
 
 == 3. Protection des données
 
