@@ -4,20 +4,35 @@
 :Entreprise: LudoRama
 :Equipe: LudoRama
 
-== 1. Mentions légales
+== 1. Mentions Légales Obligatoires
 
 === Liste des mentions légales que doit comporter le site WEB
 
-* Identification du professionnel
- ** Identité de l'entreprise : votre nom, prénom et adresse. Si vous êtes entrepreneur individuel (y compris, micro-entrepreneur), vos nom et prénom sont accompagnés de la mention entrepreneur individuel ou des initiales EI.
- ** Numéro d'immatriculation au RCS (Registre du commerce et des sociétés)
- ** Mail et numéro de téléphone pour contacter votre entreprise
- ** Numéro d'identification à la TVA
- ** Identité de l'hébergeur du site : nom ou dénomination sociale, adresse et numéro de téléphone
- ** Si vous exercez une activité réglementée et soumise à autorisation (pharmacie ou débit de boissons, par exemple) : nom et adresse de l'autorité qui a délivré l'autorisation.
+* Identification de l'éditeur du site
+ ** Nom de l'entreprise
+ ** Adresse de l'entreprise
+ ** Numéro de téléphone de l'entreprise
+ ** E-Mail de l'entreprise
+ ** Numéro SIRET
+ ** RCS (Registre du commerce et des sociétés)
+ ** TVA intra-communautaire
+
+* Responsable de la publication
+ ** Nom et prénom
+
+* Hébergeur
+ ** Nom de l'hébergeur
+ ** Adresse de l'hébergeur
+ ** Numéro de téléphone de l'hébergeur
+ ** E-Mail de l'hébergeur
+ ** Mentions relatives aux cookies
+
 * Conditions générales de vente (CGV)
+ ** Modalités de paiement
+ ** Délai de retractation
+ ** Politique de confidentialité et protection des données personnelles
+
 * Traitement des données personnelles et utilisation de cookies
-* Moyen de contact pour que les utilisateurs puissent exercer leurs droits par voie électronique (ex: Résiliation d'un abonnement)
 * Des « mentions CNIL » en bas du formulaire de contact
 
 === Mentions légales actuellement manquantes sur le site WEB
@@ -41,40 +56,20 @@ Une liste de mesures applicables et leurs modalités de mise en œuvre concernan
 |====
 |Mesure |Modalités |Priorité
 
-// Exemple
-|Exemple : La personne concernée a consenti au traitement de ses données à caractère personnel pour une ou plusieurs finalités spécifiques
-|Consentement recueilli à la création du compte client dans le formulaire.
-|(à compléter)
-
 // 01
-|Mesure 01
-|Modalités 01
-|(à compléter)
+|Consentement au traitement des données
+|Recueilli lors de la création du compte
+|Élevée
 
 // 02
-|Mesure 02
-|Modalités 02
-|(à compléter)
+|Droits des utilisateurs (accès, rectification, suppression)
+|Formulaire de demande dans l'espace client
+|Moyenne
 
 // 03
-|Mesure 03
-|Modalités 03
-|(à compléter)
-
-// 04
-|Mesure 04
-|Modalités 04
-|(à compléter)
-
-// 05
-|Mesure 05
-|Modalités 05
-|(à compléter)
-
-// 06
-|Mesure 06
-|Modalités 06
-|(à compléter)
+|Limitation des données collectées
+|Collecte uniquement des données strictement nécessaires
+|Moyenne
 |====
 
 == 4. Sécurité des données
@@ -83,46 +78,42 @@ Une liste de mesures applicables et leurs modalités de mise en œuvre concernan
 
 [cols="3*", options="header"]
 |====
-| Mesure | Modalités | Priorité
+|Mesure |Modalités |Priorité
 
 // 01
-|Mesure 01
-|Modalités 01
-|(à compléter)
+|Sécurisation des connexions
+|Utilisation du protocole HTTPS
+|Élevée
 
 // 02
-|Mesure 02
-|Modalités 02
-|(à compléter)
+|Gestion des mots de passe
+|Stockage chiffré des mots de passe (hashage avec salage)
+|Élevée
 
 // 03
-|Mesure 03
-|Modalités 03
-|(à compléter)
+|Protection contre les attaques
+|Mise en place d'un pare-feu et surveillance des journaux
+|Élevée
 
 // 04
-|Mesure 04
-|Modalités 04
-|(à compléter)
-
-// 05
-|Mesure 05
-|Modalités 05
-|(à compléter)
-
-// 06
-|Mesure 06
-|Modalités 06
-|(à compléter)
+|Sauvegarde des données
+|Plan de sauvegarde hebdomadaire avec vérification
+|Moyenne
 |====
 
-== 5. Use Case à ajouter au dernier sprint
+== 5. User Stories (US) à ajouter au dernier sprint
 
 La liste des US à ajouter au dernier sprint pour tenir compte des points 3 et 4 les plus importants (à négocier avec votre client en fonction des priorités !).
 
-* Use Case 01
-* Use Case 02
-* Use Case 03
+**Protection des données**
+
+* **US 01 :** En tant que client, je veux qu'on me demande mon consentement de façon explicite lors de la création de mon compte.
+* **US 02 :** En tant que client, je veux pouvoir accéder à mes données personnelles via un formulaire.
+
+**Sécurisation des données**
+
+* **US 03 :** En tant qu'administrateur, je veux que toutes les connexions soient chiffrées pour garantir la sécurité des informations échangées.
+* **US 04 :** En tant que client, je veux que mes mots de passe soient stockés de manière sécurisée pour éviter tout vol de mes informations personnelles.
 
 == Annexe
 
