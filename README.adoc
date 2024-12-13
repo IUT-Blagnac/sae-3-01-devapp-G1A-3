@@ -108,9 +108,32 @@ De plus, nous inclurons deux diagrammes de collaboration pour clarifier les proc
 |  https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/Documentation%20conception.adoc[Lien vers la documentation de administrateur]   
 |=======
 
+
+===  Plateforme e-commerce
+[cols="2*", options="header"]
+|=======
+|  **Plateforme** |  Code Source
+|  http://193.54.227.208/~R2024SAE3008/[Lien vers le site web de SweetShops]   | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/tree/master/Code/PHP[Code sources du site web]
+|=======
+
+===  Apllication IOT
+==== Java
+[cols="2*", options="header"]
+|=======
+|  **Plateforme** |  Code source
+|  https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/tree/master/Code/Java/src/main[L'application]   | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/tree/master/Code/Java/src/main[Code sources l'application]
+|=======
+
+==== Python
+[cols="2*", options="header"]
+|=======
+|  **Plateforme** |  Code source
+|  https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/tree/master/Code/Python[L'application]   | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/tree/master/Code/Python[Code sources l'application]
+|=======
+
 == Gestion de projet & Qualité
 
-Version courante : https://github.com/IUT-Blagnac/sae3-01-template/releases/tag/v0.1.2[v1]
+Version courante : https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3[v2]
 
 === User Stories 
 
@@ -120,11 +143,12 @@ https://github.com/orgs/IUT-Blagnac/projects/253/views/2[ici].
 
 === Tests unitaires et plans de test
 
-Vous trouverez les testes unitaires https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/CahierDeRecette.adoc[ici].
+[cols="1*", options="header"]
+|=======
+|  Vous trouverez les testes unitaires via le lien ci-dessous : 
+|   https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/CahierDeRecette.adoc[CAHIER DE RECETTES]
+|=======
 
-=== Indicateurs de qualité du code (dette technique)
-
-Vous trouverez les indicateurs de qualité (dette technique) ici.
 
 === Ordres du jours et comptes rendus de réunions
 
@@ -139,6 +163,14 @@ Vous trouverez les indicateurs de qualité (dette technique) ici.
 | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Ordre%20du%20jour/OrdreDuJour6.pdf[Semaine 49] | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/tree/master/Documentation/CompteRenduReunionAvecClient[Semaine 48]
 |====
 
+
+== Livrables
+[cols="3*", options="header"]
+|=======
+| Matière | Professeurs référents | Liens vers le livrable 
+|  |  | 
+|  |  |  
+|=======
 == Retours et évaluations
 
 [cols="5*", options="header"]
