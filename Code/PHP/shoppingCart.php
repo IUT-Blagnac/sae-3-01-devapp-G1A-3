@@ -1,3 +1,7 @@
+<?php
+require_once 'includes/verif_inactivite.php';
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -51,43 +55,74 @@
 
             <hr>
 
+			<?php
+			if ($_SERVER["REQUEST_METHOD"] == "POST") {
+				$prixUnitaire = 6.95;
+				$fraisLivraison = 2.50;
+				$quantity = isset($_POST['quantity']) ? (int)$_POST['quantity'] : 1;
+				if ($quantity < 1) {
+					$quantity = 1;
+				}
+				$totalArticles = $prixUnitaire * $quantity;
+				$totalCommande = $totalArticles + $fraisLivraison;
+			}
+			?>
             <!-- Contenu de la commande -->
             <div id="step1-content">
                 <div class="row">
                     <div class="col-lg-8">
                         <h4 class="text-uppercase text-pink mb-4">Articles de mon panier :</h4>
-                        <div class="d-flex align-items-center py-3 border-bottom">
-                            <img src="./images/test.jpg" alt="Produit" class="img-fluid" style="max-width: 120px;">
-                            <div class="ms-3 flex-grow-1">
-                                <p class="mb-1">SweetShop - Bonbons Variés</p>
-                                <div class="d-flex align-items-center">
-									<form action="shoppingCart.php" method="post">
-										<input type="number" id="quantity" name="quantity" min="1" step="1" value="1" required onblur="checkNegativeOnBlur(this)" oninput="sendInputValue(this)">
-									</form>
-									<button class="btn btn-link text-danger">
-										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-											<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
-											<path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
-										</svg>
-									</button>
-                                </div>
-                            </div>
-                            <span class="text-pink fw-bold"><?php $prix = 6.95; echo $prix ?> €</span>
-                        </div>
+						<form id="cart-form">
+                                    <?php
+                                        require_once('connect.inc.php');
+
+                                        $stmt = $conn->prepare('CALL get_panier(?)');
+                                        $stmt->execute([$_SESSION['idCompte']]);
+                                        $panier = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                                        if ($panier){
+                                            $stmt = $conn->prepare('CALL get_commande_details(?)');
+                                            $stmt->execute([$panier['IDCOMMANDE']]);
+
+                                            $produits = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                                            foreach ($produits as $produit){
+                                                $stmt = $conn->prepare("CALL get_dispos_produit_light(?)");
+                                                $stmt->execute([$produit['IDPROD']]);
+                                                $infos = $stmt->fetch(PDO::FETCH_ASSOC); 
+                                                
+                                                $prix = $infos['PRIX'];
+
+                                                echo "<div class='d-flex align-items-center py-3 border-bottom'>
+                                                    <img src='./images/test.jpg' alt='Produit' class='img-fluid' style='max-width: 120px;'>
+                                                    <div class='ms-3 flex-grow-1'>
+                                                <p class='mb-1'>";
+
+                                                $stmt = $conn->prepare("SELECT NOMPROD FROM PRODUIT WHERE IDPROD = ?");
+                                                $stmt->execute([$produit['IDPROD']]);
+                                                $nom = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                                                echo $nom['NOMPROD'];
+                                                echo "</p>
+                                                        <div class='d-flex align-items-center'>
+                                                            <form action='shoppingCart.php' method='post'>
+                                                                <input type='number' id='quantity' name='quantity' min='1' step='1' value='".$produit['QTE']."' required onblur='checkNegativeOnBlur(this)' oninput='sendInputValue(this)'>
+                                                            </form>
+                                                            <button class='btn btn-link text-danger'>
+                                                                <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash' viewBox='0 0 16 16'>
+                                                                    <path d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z' />
+                                                                    <path d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z' />
+                                                                </svg>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <span class='text-pink fw-bold'>".$prix."€ </span>
+                                                </div>";
+                                            }
+                                        }
+                                    ?>
+						</form>
                     </div>
-					
-					<?php
-					if ($_SERVER["REQUEST_METHOD"] == "POST") {
-						$quantity = isset($_POST['quantity']) ? $_POST['quantity'] : 1;
-
-						if (is_numeric($quantity)) {
-							echo "Le nombre saisi est : " . htmlspecialchars($quantity);
-						} else {
-							echo "Aucune valeur valide n'a été saisie.";
-						}
-					}
-					?>
-
                     <div class="col-lg-4">
                         <h5 class="text-uppercase text-pink mb-3">Résumé de la commande</h5>
                         <table class="table text-end">
@@ -213,7 +248,12 @@
         }
 		
         function sendInputValue(input) {
-			const value = input.value;
+			const value = parseInt(input.value, 10);
+
+			if (isNaN(value) || value < 1) {
+				input.value = 1;
+				return;
+			}
 
 			fetch('shoppingCart.php', {
 				method: 'POST',
@@ -222,9 +262,11 @@
 				},
 				body: `quantity=${encodeURIComponent(value)}`
 			})
-			.then(response => response.text())
+			.then(response => response.json())
 			.then(data => {
-				document.getElementById('prix-total').textContent = `${data} €`;
+				document.getElementById('prix-total').textContent = `${data.total} €`;
+
+				document.getElementById('current-quantity').textContent = data.quantity;
 			})
 			.catch(error => console.error('Erreur:', error));
 		}

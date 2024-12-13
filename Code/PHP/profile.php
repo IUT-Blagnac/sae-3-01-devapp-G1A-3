@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 
+<?php
+require_once 'includes/verif_inactivite.php';
+?>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +18,8 @@
 
 <body style="background-color: #ffe4e1; font-family: 'Arial', sans-serif;">
 
-    <?php include_once './includes/header.php'; ?>
+    <?php include_once './includes/header.php';
+    include_once 'includes/verif_session.php'; ?>
     
     <section class="profile-wrapper mt-5 mx-auto my-5" style="max-width: 900px;">
         <div class="profile-header">
@@ -141,8 +146,10 @@
                             $stmt = $conn->prepare('CALL get_client_cb(?)');
                             $stmt->execute([$_SESSION['idCompte']]);
                             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            $date = date('Y-m-d', time());
                             foreach ($result as $cb){
-                                echo "<div class='col-md-4 col-sm-6 mb-3'>
+                                if ($cb['DATEEXPIRATION'] >= $date){
+                                    echo "<div class='col-md-4 col-sm-6 mb-3'>
                                     <div class='single-card-info d-flex'>
                                         <img src='./images/mastercard.png' alt='Mastercard'>
                                         <div class='card-info ms-3'>
@@ -160,6 +167,11 @@
                                         </div>
                                     </div>
                                 </div>";
+                                }
+                                else{
+                                    $stmt = $conn->prepare('CALL del_cb(?)');
+                                    $stmt->execute([$cb['NUMCARTE']]);
+                                }
                             }
                         }   catch (PDOException $e) {
                             die('Erreur : ' . $e->getMessage());
@@ -186,19 +198,13 @@
                             foreach ($result as $cb){
                                 echo "<div class='col-md-4 col-sm-6 mb-3'>
                                     <div class='single-card-info d-flex'>
-                                        <img src='./images/mastercard.png' alt='Mastercard'>
+                                        <img src='./images/paypal.png' alt='Paypal'>
                                         <div class='card-info ms-3'>
                                             <h5 class='card-name'>";
                                             echo $_SESSION['prenom'].' '.$_SESSION['nom'];
                                             echo "</h5><p class='card-number'>";
-                                            $fincb = substr($cb['NUMCARTE'], -4); // returns "s"
-                                            echo $fincb;
-                                            echo "<span>";
-                                            $expi = substr($cb['DATEEXPIRATION'], -2);
-                                            $expi .= "/";
-                                            $expi .= substr($cb['DATEEXPIRATION'], 2, 2);
-                                            echo $expi;
-                                            echo "</span></p>
+                                            echo $cb['MAIL'];
+                                            echo "</p>
                                         </div>
                                     </div>
                                 </div>";

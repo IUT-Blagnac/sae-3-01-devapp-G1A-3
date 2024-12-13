@@ -1,47 +1,21 @@
-<?php
-// Connexion à la base de données
-include 'connect.inc.php';
-
-// Récupérer la catégorie sélectionnée
-$selectedCategory = isset($_POST['categorie']) ? intval($_POST['categorie']) : 0;
-
-// Récupérer les catégories depuis la base de données
-try {
-    $stmtCat = $conn->prepare("SELECT IDCATEG, NOMCATEG FROM CATEGORIE");
-    $stmtCat->execute();
-    $categories = $stmtCat->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    echo "<div class='alert alert-danger'>Erreur lors de la récupération des catégories : {$e->getMessage()}</div>";
-    die();
-}
-
-// Récupérer les produits de la catégorie sélectionnée
-$produits = [];
-try {
-    if ($selectedCategory > 0) {
-        $stmtProd = $conn->prepare(
-            "SELECT IDPROD, NOMPROD, COMPOSITION, NOTESTECH, DESCRIPTION 
-             FROM PRODUIT 
-             WHERE IDCATEG = :idCateg"
-        );
-        $stmtProd->bindParam(':idCateg', $selectedCategory, PDO::PARAM_INT);
-        $stmtProd->execute();
-    } else {
-        $stmtProd = $conn->prepare(
-            "SELECT IDPROD, NOMPROD, COMPOSITION, NOTESTECH, DESCRIPTION 
-             FROM PRODUIT"
-        );
-        $stmtProd->execute();
-    }
-    $produits = $stmtProd->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    echo "<div class='alert alert-danger'>Erreur lors de la récupération des produits : {$e->getMessage()}</div>";
-    die();
-}
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
+
+<?php
+require_once 'includes/verif_inactivite.php';
+
+if (!empty($_POST)){
+    $min = $_POST['min'];
+    $max = $_POST['max'];
+}
+if(empty($min)){
+    $min = 0;
+}
+if(empty($max)){
+    $max = 100;
+}
+
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -55,7 +29,8 @@ try {
 </head>
 
 <body style="background-color: #ffe4e1;">
-    <?php include './includes/header.php'; ?>
+    <?php include './includes/header.php';
+    include './includes/FiltreProduit.php'; ?>
 
     <div class="container-fluid">
         <!-- Navigation supérieure -->
@@ -87,35 +62,41 @@ try {
                             <?php endforeach; ?>
                         </select>
                     </form>
+                    <hr>
+                    <h5 class="text-center">Prix</h5>
                 </div>
             </div>
 
             <!-- Affichage des produits -->
             <div class="col-12 col-md-9">
                 <div class="row g-4">
-                    <?php if (!empty($produits)): ?>
-                        <?php foreach ($produits as $produit): ?>
-                            <div class="col-12 col-sm-6 col-lg-4">
-                                <div class="card h-100">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-truncate"><?= htmlspecialchars($produit['NOMPROD']) ?></h5>
-                                        <p class="card-text">
-                                            <strong>Composition :</strong> <?= htmlspecialchars($produit['COMPOSITION']) ?><br>
-                                            <strong>Notes techniques :</strong> <?= htmlspecialchars($produit['NOTESTECH'] ?? 'Non spécifié') ?><br>
-                                            <strong>Description :</strong> <?= htmlspecialchars($produit['DESCRIPTION'] ?? 'Aucune description disponible') ?>
-                                        </p>
-                                        <a href="detailProd.php?idProduit=<?= htmlspecialchars($produit['IDPROD']) ?>" class="btn btn-primary">Voir l'article</a>
+                    <?php if (!empty($produits)){
+                            foreach ($produits as &$produit){
+                                echo "<div class='col-12 col-sm-6 col-lg-4'>
+                                    <div class='card h-100'>
+                                        <div class='card-body'>
+                                            <h5 class='card-title text-truncate'>".htmlspecialchars($produit['NOMPROD'])."</h5>
+                                            <p class='card-text'>
+                                                <strong>Composition :</strong>".htmlspecialchars($produit['COMPOSITION'])."<br>
+                                                <strong>Notes techniques :</strong>".htmlspecialchars($produit['NOTESTECH'] ?? 'Non spécifié')."<br>
+                                                <strong>Description :</strong>".htmlspecialchars($produit['DESCRIPTION'] ?? 'Aucune description disponible')."
+                                                <br>
+                                                <strong>".htmlspecialchars($produit['DISPO'][0]['PRIX'])." €</strong>
+                                            </p>
+                                            <a href='detailProd.php?idProduit=".htmlspecialchars($produit['IDPROD'])."' class='btn btn-primary'>Voir l'article</a>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <p class="text-center">Aucun produit trouvé.</p>
-                    <?php endif; ?>
+                                </div>";
+                            }
+                        }
+                        else{
+                            echo "<p class='text-center'>Aucun produit trouvé.</p>";
+                        } ?>
                 </div>
             </div>
         </div>
     </div>
+    
 
     <?php include './includes/footer.php'; ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

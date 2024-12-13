@@ -20,23 +20,23 @@ if (isset($_POST['submit'])) {
     require_once '../connect.inc.php';
 	
 	try {
-        // Préparation de l'insertion des données
-        $stmt = $conn->prepare('INSERT INTO CB (NUMCARTE, CVV, DATEEXPIRATION) VALUES (?, ?, ?)');
-        $stmt->execute([$numeroCB, $cvv, $dateExpiration]);
-
         $date = date('Y-m-d', time());
         if ($dateExpiration > $date){
-            $valide = "Valide";
+            $stmt = $conn->prepare('INSERT INTO CB (NUMCARTE, CVV, DATEEXPIRATION) VALUES (?, ?, ?)');
+            $stmt->execute([$numeroCB, $cvv, $dateExpiration]);
+
+            $stmt = $conn->prepare('INSERT INTO METHODEPAIEMENT (IDCOMPTE, IDOPTION, NUMCARTE, STATUT) VALUES (?, 1, ?, ?)');
+            $stmt->execute([$_SESSION["idCompte"], $numeroCB, "Valide"]);
+            header('Location: ../profile.php');
+            exit();
         }
         else{
-            $valide = "Expire";
+            $error_message = "Votre carte a expiré.";
+            header("Location: ../AjoutCB.php?msgErreur=" . urlencode($error_message));
+            exit();
         }
-
-        $stmt = $conn->prepare('INSERT INTO METHODEPAIEMENT (IDCOMPTE, IDOPTION, NUMCARTE, STATUT) VALUES (?, 1, ?, ?)');
-        $stmt->execute([$_SESSION["idCompte"], $numeroCB, $valide]);
         
-        header('Location: ../profile.php');
-        exit();
+        
     } catch (PDOException $e) {
         die('Erreur : ' . $e->getMessage());
     }

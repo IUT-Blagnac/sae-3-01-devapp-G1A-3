@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 
+<?php
+require_once 'includes/verif_inactivite.php';
+?>
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,6 +27,9 @@
 					</div>
 					<div class="card-body">
 						<form method="POST" action="./includes/TraitAjoutCB.php">
+							<?php if (isset($_GET['msgErreur'])){
+								echo "<div class='alert alert-danger'>".htmlspecialchars($_GET['msgErreur'])."</div>";
+							} ?>
 							<div class="mb-3">
 								<label for="nom_carte" class="form-label">Nom sur la carte</label>
 								<input placeholder="John Doe" name="nomCB" id="nomCB" class="form-control" type="text" required>

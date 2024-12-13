@@ -4,7 +4,7 @@
         <div id="opinionsCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <div class="row">
+                    <div class="row mx-auto">
                         <div class="col-md-3">
                             <div class="card">
                                 <h5 class="card-header">Pseudo</h5>
@@ -48,7 +48,7 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <div class="row">
+                    <div class="row mx-auto">
                         <div class="col-md-3">
                             <div class="card">
                                 <h5 class="card-header">Pseudo</h5>

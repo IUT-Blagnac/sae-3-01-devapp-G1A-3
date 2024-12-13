@@ -10,11 +10,11 @@
                 </ul>
             </div>
             <div class="col-6 col-md-2 mb-3">
-                <h5 class="fw-bold text-danger">À propos de nous</h5>
+                <h5 class="fw-bold text-danger">À propos</h5>
                 <ul class="nav flex-column">
                     <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Notre Histoire</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Nos magasins</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Quelques chiffres</a></li>
+                    <li class="nav-item mb-2"><a href="MentionsLegales.php" class="nav-link p-0 text-muted">Mentions légales</a></li>
+					<li class="nav-item mb-2"><a href="CGV.php" class="nav-link p-0 text-muted">CGV</a></li>
                 </ul>
             </div>
             <div class="col-6 col-md-2 mb-3">

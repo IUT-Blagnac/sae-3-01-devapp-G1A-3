@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 
+<?php
+require_once 'includes/verif_inactivite.php';
+?>
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,11 +33,9 @@
 							<p>* champs obligatoires</p>
 							
 							<!-- Affichage des messages d'erreur -->
-							<?php if (isset($_GET['msgErreur'])): ?>
-								<div class="alert alert-danger">
-									<?php echo htmlspecialchars($_GET['msgErreur']); ?>
-								</div>
-							<?php endif; ?>
+							<?php if (isset($_GET['msgErreur'])){
+								echo "<div class='alert alert-danger'>".htmlspecialchars($_GET['msgErreur'])."</div>";
+							} ?>
 							
 							<div class="mb-3">
 								<label class="sub_title" for="login">E-mail *</label>

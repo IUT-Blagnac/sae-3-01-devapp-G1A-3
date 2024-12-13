@@ -1,7 +1,3 @@
-<?php
-  session_start();
-?>
-
 <nav class="navbar navbar-expand-lg" style="background-color: #ffe4e1;">
   <div class="container">
     <!-- Logo -->

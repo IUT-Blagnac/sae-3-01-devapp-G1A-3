@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 
+<?php
+require_once 'includes/verif_inactivite.php';
+?>
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +19,8 @@
 </head>
 
 <body style="background-color: #ffe4e1;">
-	<?php include './includes/header.php' ?>
+	<?php include_once './includes/header.php';
+	include_once 'includes/verif_session.php'?>
 
 	<div class="container-fluid py-2 my-2">
 		<div class="row py-2 mx-auto justify-content-evenly">
