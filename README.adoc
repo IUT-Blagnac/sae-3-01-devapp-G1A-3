@@ -160,7 +160,7 @@ https://github.com/orgs/IUT-Blagnac/projects/253/views/2[ici].
 | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Ordre%20du%20jour/OrdreDuJour3.pdf[Réunion avec SweetShops (Semaine 45)] | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/CompteRenduReunionAvecClient/CompteRendu3.pdf[Réunion avec SweetShops (Semaine 45)]
 | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Ordre%20du%20jour/OrdreDuJour4.pdf[Semaine 46] | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Compte%20Rendu/Compte%20Rendu%204.pdf[Semaine 46]
 | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Ordre%20du%20jour/OrdreDuJour5.pdf[Semaine 48] | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Compte%20Rendu/CompteRendu5.pdf[Semaine 48]
-| https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Ordre%20du%20jour/OrdreDuJour6.pdf[Semaine 49] | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/tree/master/Documentation/CompteRenduReunionAvecClient[Semaine 48]
+| https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Ordre%20du%20jour/OrdreDuJour6.pdf[Semaine 49] | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/tree/master/Documentation/CompteRenduReunionAvecClient[Semaine 49]
 |====
 
 
@@ -168,8 +168,17 @@ https://github.com/orgs/IUT-Blagnac/projects/253/views/2[ici].
 [cols="3*", options="header"]
 |=======
 | Matière | Professeurs référents | Liens vers le livrable 
-|  |  | 
-|  |  |  
+| IOT Python Java | AP / PS | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/DocumentationTechniqueJava.adoc[Lien vers la documentation technique Java]
+| IOT Python Java | AP / PS | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/DocumentationTechniquePython.adoc[Lien vers la documentation technique Python]
+| IOT Python Java | AP / PS | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/tree/master/Code/Python[Code sources l'application]
+| IOT Python Java | AP / PS | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/tree/master/Code/Java/src/main[Code sources l'application]
+| BD | LN | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/BD/CR.pdf[Diagramme de classe + schéma relationnel]
+| BD | LN | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/BD/CompteRenduBD1GA3.pdf[Livrable BD : Trace d'exécution création de la BD + Inserts]
+| BD | LN |  
+| PHP | NH |
+| PHP | NH |
+| PHP | NH | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/User_Stories_Principales_1GA3.pdf[User strories principales]
+| MSI | EP | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/Fiche%20de%20conseils%20juridiques%20et%20de%20sécurité.adoc[Fiche conseil juridique]
 |=======
 == Retours et évaluations
 
