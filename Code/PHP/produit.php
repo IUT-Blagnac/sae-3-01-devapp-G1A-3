@@ -3,18 +3,6 @@
 
 <?php
 require_once 'includes/verif_inactivite.php';
-
-if (!empty($_POST)){
-    $min = $_POST['min'];
-    $max = $_POST['max'];
-}
-if(empty($min)){
-    $min = 0;
-}
-if(empty($max)){
-    $max = 100;
-}
-
 ?>
 
 <head>
@@ -77,6 +65,7 @@ if(empty($max)){
                                         <div class='card-body'>
                                             <h5 class='card-title text-truncate'>".htmlspecialchars($produit['NOMPROD'])."</h5>
                                             <p class='card-text'>
+                                                <img src='images/produits/image".htmlspecialchars($produit['IDPROD']).".jpeg' width='100%'>
                                                 <strong>Composition :</strong>".htmlspecialchars($produit['COMPOSITION'])."<br>
                                                 <strong>Notes techniques :</strong>".htmlspecialchars($produit['NOTESTECH'] ?? 'Non spécifié')."<br>
                                                 <strong>Description :</strong>".htmlspecialchars($produit['DESCRIPTION'] ?? 'Aucune description disponible')."

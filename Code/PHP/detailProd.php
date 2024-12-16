@@ -1,109 +1,3 @@
-<?php
-require_once 'includes/verif_inactivite.php';
-require_once 'connect.inc.php';
-
-// Vérification de l'ID du produit passé dans l'URL
-if (isset($_GET['idProduit'])) {
-    $idProduit = $_GET['idProduit'];
-    try {
-        // Requête pour récupérer les informations du produit
-        $stmt = $conn->prepare("SELECT * FROM PRODUIT WHERE IDPROD = ?");
-        $stmt->execute([$idProduit]);
-        $produit = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        $stmt = $conn->prepare('CALL get_dispos_produit(?)');
-        $stmt->execute([$idProduit]);
-        $carac = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        $stmt = $conn->prepare('CALL get_moyenne_prod(?)');
-        $stmt->execute([$idProduit]);
-        $moyenneNotes = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        // Vérification si le produit existe
-        if (!$produit) {
-            echo "Aucun produit trouvé pour cet ID.";
-            exit();
-        }
-        else{
-            echo "<p>";
-            echo $produit['NOMPROD'];
-            echo "<br>";
-            if ($moyenneNotes !== false){
-                $moyenneNotes = round($moyenneNotes['noteAvg'], 0, PHP_ROUND_HALF_DOWN);
-                for ($i = 0; $i < $moyenneNotes - 1; $i += 2){
-                    echo "<img src='images/etoile_pleine.png' width='20' height='20'></img>";
-                }
-                if ($moyenneNotes - $i == 1){
-                    echo "<img src='images/demi_etoile.png' width='20' height='20'></img>";
-                    $i +=2;
-                }
-                for ($i; $i < 10; $i += 2){
-                    echo "<img src='images/etoile_vide.png' width='20' height='20'></img>";
-                }
-            }
-            else{
-                echo "Aucun avis sur ce produit";
-            }
-            echo "<br>";
-            echo $produit['NOTESTECH'];
-            echo "<br>";
-            echo $produit['DESCRIPTION'];
-            echo "</p>";
-            echo "<p>";
-            echo "Ingrédients : <br>";
-            echo $produit['COMPOSITION'];
-            echo "</p>";
-
-            echo "<p>";
-            echo "<h3>";
-            echo "Format";
-            echo "</h3>";
-            $formats = array();
-            foreach($carac as $car){
-                if (!(in_array($car['NOMFORMAT'], $formats))){
-                    echo "<input type='button' value='".$car['NOMFORMAT']."'/>";
-                    array_push($formats, $car['NOMFORMAT']);
-                }
-            }
-            echo "</p>";
-            echo "<p>";
-                echo "<h3>";
-                echo "Couleur(s) disponible(s)";
-                echo "</h3>";
-                $couleurs = array();
-                foreach($carac as $car){
-                    if (!(in_array($car['NOMCOULEUR'], $couleurs))){
-                        echo "<input type='button' value='".$car['NOMCOULEUR']."'/>";
-                        array_push($couleurs, $car['NOMCOULEUR']);
-                    }
-                }
-            echo "</p>";
-            echo "<p>";
-            echo "Faire les boutons en bas des bonbons";
-            echo "</p>";
-
-            echo "<p>";
-            echo "<h3>";
-            echo "En STOCK";
-            echo "</h3>";
-            echo "<form action='includes/TraitAjoutPanier.php?idProduit=".htmlspecialchars($idProduit)."' method='POST'>
-                <input type='number' id='quantite' name='quantite' min='1' step='1' value='1' required onblur='checkNegativeOnBlur(this)'/>
-                <input type='submit' name='action' value='Ajouter au panier' class='btn btn-primary'/>
-                <input type='submit' name='action' value='Acheter' class='btn btn-primary'/>
-            </form>";
-            echo "</p>";
-        }
-        
-
-    } catch (PDOException $e) {
-        echo "Erreur : " . $e->getMessage();
-        die();
-    }
-} else {
-    echo "ID produit manquant.";
-    exit();
-}
-?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -113,67 +7,122 @@ if (isset($_GET['idProduit'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="website icon" type="png" href="./images/logo/logo.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="./images/logo/logo.png">
     <link rel="stylesheet" href="./includes/style.css">
     <title>Détails du Produit | SweetShops</title>
 </head>
 
-<body>
-<script>
-        $(document).ready(function() {
-            let currentIndex = 0; // Index de l'étape actuelle dans la barre de progression
-            const steps = $(".progress-step"); // Sélectionne les étapes de progression
+<body style="background-color: #ffe4e1;">
+    <?php
+    include 'includes/header.php';
+    require_once 'includes/verif_inactivite.php';
+    require_once 'connect.inc.php';
+    ?>
 
-            // Fonction pour aller à l'étape suivante
-            function goToNextStep(currentStep, nextStep) {
-                $(currentStep).hide(); // Masquer l'étape actuelle
-                $(nextStep).show(); // Afficher l'étape suivante
+    <div class="container my-5">
+        <div class="row">
+            <!-- Section Image -->
+            <div class="col-md-6 text-center product-image" id="product-img">
+                <div class="cadre-image">
+                    <?php $idProduit = (int)$_GET['idProduit']; echo "<img src='images/produits/image" . htmlspecialchars($idProduit) . ".jpeg' width='100%'>" ?>
+                </div>
+            </div>
 
-                // Activer l'étape suivante dans la barre de progression
-                $(steps.eq(currentIndex)).removeClass("active");
-                currentIndex++;
-                $(steps.eq(currentIndex)).addClass("active");
-            }
+            <!-- Détails du Produit -->
+            <div class="col-md-6">
+                <div class="mb-3 product-details" id="product-detail">
+                    <?php
+                    if (isset($_GET['idProduit']) && is_numeric($_GET['idProduit'])) {
+                        $idProduit = (int)$_GET['idProduit']; // Cast sécurisé en entier
+                        try {
+                            // Requête produit
+                            $stmt = $conn->prepare("SELECT * FROM PRODUIT WHERE IDPROD = ?");
+                            $stmt->execute([$idProduit]);
+                            $produit = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            // Fonction pour revenir à l'étape précédente
-            function goToPreviousStep(currentStep, previousStep) {
-                $(currentStep).hide(); // Masquer l'étape actuelle
-                $(previousStep).show(); // Afficher l'étape précédente
+                            if (!$produit) {
+                                echo "<p class='text-danger'>Aucun produit trouvé pour cet ID.</p>";
+                                exit();
+                            }
 
-                // Activer l'étape précédente dans la barre de progression
-                $(steps.eq(currentIndex)).removeClass("active");
-                currentIndex--;
-                $(steps.eq(currentIndex)).addClass("active");
-            }
+                            // Affichage des données produit
+                            echo "<h2 class='textProduit'>" . htmlspecialchars($produit['NOMPROD']) . "</h2>";
 
-            // Navigation entre les étapes
-            $("#nextToStep2").click(function() {
-                goToNextStep("#step1-content", "#step2-content");
-            });
+                            // Requête moyenne des avis
+                            $stmt = $conn->prepare('CALL get_moyenne_prod(?)');
+                            $stmt->execute([$idProduit]);
+                            $moyenneNotes = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            $("#nextToStep3").click(function() {
-                goToNextStep("#step2-content", "#step3-content");
-            });
+                            // Affichage des étoiles
+                            echo "<div class='star-rating'>";
+                            if ($moyenneNotes !== false) {
+                                $moyenneNotes = round($moyenneNotes['noteAvg'], 0, PHP_ROUND_HALF_DOWN);
+                                for ($i = 0; $i < $moyenneNotes - 1; $i += 2) {
+                                    echo "<img src='images/etoile_pleine.png' width='20' height='20'></img>";
+                                }
+                                if ($moyenneNotes - $i == 1) {
+                                    echo "<img src='images/demi_etoile.png' width='20' height='20'></img>";
+                                    $i += 2;
+                                }
+                                for ($i; $i < 10; $i += 2) {
+                                    echo "<img src='images/etoile_vide.png' width='20' height='20'></img>";
+                                }
+                            } else {
+                                echo "Aucun avis sur ce produit";
+                            }
+                            echo "</div>";
 
-            $("#nextToStep4").click(function() {
-                goToNextStep("#step3-content", "#step4-content");
-            });
+                            echo "<p><strong>Notes Techniques : </strong>" . htmlspecialchars($produit['NOTESTECH']) . "</p>";
+                            echo "<p><strong>Description : </strong>" . htmlspecialchars($produit['DESCRIPTION']) . "</p>";
+                            echo "<p><strong>Ingrédients : </strong>" . htmlspecialchars($produit['COMPOSITION']) . "</p>";
 
-            // Navigation en arrière
-            $("#prevToStep1").click(function() {
-                goToPreviousStep("#step2-content", "#step1-content");
-            });
+                            // Requête caractéristiques (formats et couleurs)
+                            $stmt = $conn->prepare('CALL get_dispos_produit(?)');
+                            $stmt->execute([$idProduit]);
+                            $carac = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            $("#prevToStep2").click(function() {
-                goToPreviousStep("#step3-content", "#step2-content");
-            });
+                            echo "<h3>Formats Disponibles</h3>";
+                            $formats = [];
+                            foreach ($carac as $car) {
+                                if (!in_array($car['NOMFORMAT'], $formats)) {
+                                    echo "<button class='btn btn-format'>" . htmlspecialchars($car['NOMFORMAT']) . "</button>";
+                                    $formats[] = $car['NOMFORMAT'];
+                                }
+                            }
 
-            $("#prevToStep3").click(function() {
-                goToPreviousStep("#step4-content", "#step3-content");
-            });
-        });
+                            echo "<h3>Couleurs Disponibles</h3>";
+                            $couleurs = [];
+                            foreach ($carac as $car) {
+                                if (!in_array($car['NOMCOULEUR'], $couleurs)) {
+                                    echo "<button class='btn btn-color'>" . htmlspecialchars($car['NOMCOULEUR']) . "</button>";
+                                    $couleurs[] = $car['NOMCOULEUR'];
+                                }
+                            }
+                            
+                            // Formulaire pour ajout au panier
+                            echo "<div class='stock-info'>
+                                    <h3>En Stock</h3>
+                                    <form action='includes/TraitAjoutPanier.php?idProduit=" . htmlspecialchars($idProduit) . "' method='POST' class='form-inline'>
+                                        <input type='number' id='quantite' name='quantite' class='form-control' min='1' step='1' value='1' required onblur='checkNegativeOnBlur(this)'>
+                                        <button type='submit' name='action' value='Ajouter au panier' class='btn btn-success ms-2'>Ajouter au panier</button>
+                                        <button type='submit' name='action' value='Acheter' class='btn btn-danger ms-2'>Acheter</button>
+                                    </form>
+                                  </div>";
+                        } catch (PDOException $e) {
+                            echo "<p class='text-danger'>Erreur : " . htmlspecialchars($e->getMessage()) . "</p>";
+                        }
+                    } else {
+                        echo "<p class='text-danger'>ID produit manquant ou invalide.</p>";
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <?php include_once("./includes/footer.php"); ?>
+
+    <script>
         function checkNegativeOnBlur(input) {
             if (input.value < 1) {
                 input.value = 1;
