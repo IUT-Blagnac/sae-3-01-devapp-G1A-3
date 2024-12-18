@@ -46,12 +46,11 @@ try {
         $dispo = $stmtPrix->fetch(PDO::FETCH_ASSOC);
 		$stmtPrix->closeCursor();
 
-        // Ajouts les données retournées par la procédure au produit
-        $produit['DISPO'] = $dispo;
+        $produit = array_merge($produit, $dispo);
     }
 
     if(isset($_POST['inf10'])){
-        $stmtPrix = $conn->prepare('CALL get_dispos_produit_borne(?, ?)');
+        $stmtPrix = $conn->prepare('CALL get_dispos_produit_borne_min(?, ?)');
         $stmtPrix->execute([0,10]);
         $produits = $stmtPrix->fetchAll(PDO::FETCH_ASSOC);
         $stmtPrix->closeCursor();
@@ -66,45 +65,99 @@ try {
             $stmtProd->execute([$produit['IDPROD']]);
             $carac = $stmtProd->fetch(PDO::FETCH_ASSOC);
             $stmtProd->closeCursor();
-
-            $produit['CARAC'] = $carac;
+            
+            $produit = array_merge($produit, $carac);
         }
-
-        var_dump($produits);
     }
     if(isset($_POST['10a20'])){
-        $stmtPrix = $conn->prepare('CALL get_dispos_produit_borne(?, ?)');
+        $stmtPrix = $conn->prepare('CALL get_dispos_produit_borne_min(?, ?)');
         $stmtPrix->execute([10,20]);
         $produits = $stmtPrix->fetchAll(PDO::FETCH_ASSOC);
         $stmtPrix->closeCursor();
+
+        foreach ($produits as &$produit) {
+            $stmtProd = $conn->prepare(
+                "SELECT NOMPROD, COMPOSITION, NOTESTECH, DESCRIPTION 
+                FROM PRODUIT 
+                WHERE IDPROD = ?"
+            );
+
+            $stmtProd->execute([$produit['IDPROD']]);
+            $carac = $stmtProd->fetch(PDO::FETCH_ASSOC);
+            $stmtProd->closeCursor();
+            
+            $produit = array_merge($produit, $carac);
+        }
     }
     if(isset($_POST['20a35'])){
-        $stmtPrix = $conn->prepare('CALL get_dispos_produit_borne(?, ?)');
+        $stmtPrix = $conn->prepare('CALL get_dispos_produit_borne_min(?, ?)');
         $stmtPrix->execute([20,35]);
         $produits = $stmtPrix->fetchAll(PDO::FETCH_ASSOC);
         $stmtPrix->closeCursor();
+
+        foreach ($produits as &$produit) {
+            $stmtProd = $conn->prepare(
+                "SELECT NOMPROD, COMPOSITION, NOTESTECH, DESCRIPTION 
+                FROM PRODUIT 
+                WHERE IDPROD = ?"
+            );
+
+            $stmtProd->execute([$produit['IDPROD']]);
+            $carac = $stmtProd->fetch(PDO::FETCH_ASSOC);
+            $stmtProd->closeCursor();
+            
+            $produit = array_merge($produit, $carac);
+        }
     }
     if(isset($_POST['35a50'])){
-        $stmtPrix = $conn->prepare('CALL get_dispos_produit_borne(?, ?)');
+        $stmtPrix = $conn->prepare('CALL get_dispos_produit_borne_min(?, ?)');
         $stmtPrix->execute([35,50]);
         $produits = $stmtPrix->fetchAll(PDO::FETCH_ASSOC);
         $stmtPrix->closeCursor();
+
+        foreach ($produits as &$produit) {
+            $stmtProd = $conn->prepare(
+                "SELECT NOMPROD, COMPOSITION, NOTESTECH, DESCRIPTION 
+                FROM PRODUIT 
+                WHERE IDPROD = ?"
+            );
+
+            $stmtProd->execute([$produit['IDPROD']]);
+            $carac = $stmtProd->fetch(PDO::FETCH_ASSOC);
+            $stmtProd->closeCursor();
+            
+            $produit = array_merge($produit, $carac);
+        }
     }
     if(isset($_POST['sup50'])){
-        $stmtPrix = $conn->prepare('CALL get_dispos_produit_borne(?, ?)');
+        $stmtPrix = $conn->prepare('CALL get_dispos_produit_borne_min(?, ?)');
         $stmtPrix->execute([50,5000]);
         $produits = $stmtPrix->fetchAll(PDO::FETCH_ASSOC);
         $stmtPrix->closeCursor();
+
+        foreach ($produits as &$produit) {
+            $stmtProd = $conn->prepare(
+                "SELECT NOMPROD, COMPOSITION, NOTESTECH, DESCRIPTION 
+                FROM PRODUIT 
+                WHERE IDPROD = ?"
+            );
+
+            $stmtProd->execute([$produit['IDPROD']]);
+            $carac = $stmtProd->fetch(PDO::FETCH_ASSOC);
+            $stmtProd->closeCursor();
+            
+            $produit = array_merge($produit, $carac);
+        }
     }
     if (isset($_POST['asc'])) {
-        $stmtPrix = $conn ->prepare('CALL get_dispos_produit_borne(?, ?)');
-        $stmtPrix ->execute([0,5000]);
+        $stmtPrix = $conn ->prepare('CALL get_dispos_produit_light_asc()');
+        $stmtPrix ->execute();
         $stmtPrix ->setFetchMode(PDO::FETCH_ASSOC);
         $stmtPrix->closeCursor();
     }
     if (isset($_POST['desc'])) {
-        $stmtPrix = $conn ->prepare('CALL get_dispos_produit_borne(?, ?)');
-        $stmtPrix ->execute([5000,0]);
+        $stmtPrix = $conn ->prepare('CALL get_dispos_produit_light_desc()');
+        $stmtPrix ->execute();
         $stmtPrix ->setFetchMode(PDO::FETCH_ASSOC);
         $stmtPrix->closeCursor();
     }

@@ -67,8 +67,7 @@ require_once 'includes/verif_inactivite.php';
                         </div>
                         <div>
                             <input type="radio" id="prix" name="inf10" onchange='this.form.submit()' />
-                            <label for="inf10">
-                                < 10€</label>
+                            <label for="inf10">< 10€</label>
                         </div>
                         <div>
                             <input type="radio" id="prix" name="10a20" onchange='this.form.submit()' />
@@ -105,7 +104,7 @@ require_once 'includes/verif_inactivite.php';
                                                 <strong>Notes techniques :</strong>" . htmlspecialchars($produit['NOTESTECH'] ?? 'Non spécifié') . "<br>
                                                 <strong>Description :</strong>" . htmlspecialchars($produit['DESCRIPTION'] ?? 'Aucune description disponible') . "
                                                 <br>
-                                                <strong>" . htmlspecialchars($produit['DISPO']['PRIX']) . " €</strong>
+                                                <strong>" . htmlspecialchars($produit['PRIX']) . " €</strong>
                                             </p>
                                             <a href='detailProd.php?idProduit=" . htmlspecialchars($produit['IDPROD']) . "' class='btn btn-primary'>Voir l'article</a>
                                         </div>
