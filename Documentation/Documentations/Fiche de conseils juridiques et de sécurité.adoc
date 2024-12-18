@@ -119,7 +119,8 @@ La liste des US à ajouter au dernier sprint pour tenir compte des points 3 et 4
 === Ressources utiles
 
 * CNIL +
-https://www.cnil.fr/fr/rgpd-en-pratique-communiquer-en-ligne
+https://www.cnil.fr/fr/rgpd-en-pratique-communiquer-en-ligne +
+https://www.cnil.fr/fr/reglement-europeen-protection-donnees
 
 * Gouvernement & Service public +
 https://entreprendre.service-public.fr/vosdroits/F31228 +
