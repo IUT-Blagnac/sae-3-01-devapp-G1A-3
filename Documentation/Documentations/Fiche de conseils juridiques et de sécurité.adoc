@@ -6,7 +6,7 @@
 
 == 1. Mentions Légales Obligatoires
 
-=== Liste des mentions légales que doit comporter le site WEB
+=== Liste des mentions légales obligatoires que doit comporter le site WEB
 
 * Identification de l'éditeur du site
  ** Nom de l'entreprise
@@ -33,12 +33,11 @@
  ** Politique de confidentialité et protection des données personnelles
 
 * Traitement des données personnelles et utilisation de cookies
-* Des « mentions CNIL » en bas du formulaire de contact
+* Présence de mentions CNIL
 
 === Mentions légales actuellement manquantes sur le site WEB
 
-* Mention Légale Manquante 01
-* Mention Légale Manquante 02
+Toutes les obligations sus-mentionnées ont été implémentée correctement sur notre site.
 
 == 2. Processus de vente en ligne
 
