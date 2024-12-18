@@ -105,8 +105,8 @@ require_once 'includes/verif_inactivite.php';
                                                 echo $nom['NOMPROD'];
                                                 echo "</p>
                                                         <div class='d-flex align-items-center'>
-                                                            <form action='shoppingCart.php' method='post'>
-                                                                <input type='number' id='quantity' name='quantity' min='1' step='1' value='".$produit['QTE']."' required onblur='checkNegativeOnBlur(this)' oninput='sendInputValue(this)'>
+                                                            <form action='shoppingCart.php' method='post' onchange='this.form.submit()'>
+                                                                <input type='number' id='quantity' name='quantity' min='1' step='1' value='".$produit['QTE']."' required onblur='checkNegativeOnBlur(this)'>
                                                             </form>
                                                             <button class='btn btn-link text-danger'>
                                                                 <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash' viewBox='0 0 16 16'>
@@ -246,30 +246,6 @@ require_once 'includes/verif_inactivite.php';
                 input.value = 1;
             }
         }
-		
-        function sendInputValue(input) {
-			const value = parseInt(input.value, 10);
-
-			if (isNaN(value) || value < 1) {
-				input.value = 1;
-				return;
-			}
-
-			fetch('shoppingCart.php', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/x-www-form-urlencoded',
-				},
-				body: `quantity=${encodeURIComponent(value)}`
-			})
-			.then(response => response.json())
-			.then(data => {
-				document.getElementById('prix-total').textContent = `${data.total} €`;
-
-				document.getElementById('current-quantity').textContent = data.quantity;
-			})
-			.catch(error => console.error('Erreur:', error));
-		}
     </script>
 </body>
 

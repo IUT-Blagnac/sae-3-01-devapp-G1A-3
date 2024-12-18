@@ -14,8 +14,8 @@
 
 <body style="background-color: #ffe4e1;">
     <?php
-    include 'includes/header.php';
     require_once 'includes/verif_inactivite.php';
+    include 'includes/header.php';
     require_once 'connect.inc.php';
     ?>
 
@@ -33,7 +33,6 @@
                 <div class="mb-3 product-details" id="product-detail">
                     <?php
                     if (isset($_GET['idProduit']) && is_numeric($_GET['idProduit'])) {
-                        $idProduit = (int)$_GET['idProduit']; // Cast sécurisé en entier
                         try {
                             // Requête produit
                             $stmt = $conn->prepare("SELECT * FROM PRODUIT WHERE IDPROD = ?");

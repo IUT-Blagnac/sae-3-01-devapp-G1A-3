@@ -3,7 +3,7 @@ if (empty($_SESSION)){
     session_start();
 }
 
-$limiteTemps = 600;
+$limiteTemps = 1800;
 
 if (isset($_SESSION["lastActivity"])) {
     $tempsDepuisDerniereActivite = time() - $_SESSION["lastActivity"];

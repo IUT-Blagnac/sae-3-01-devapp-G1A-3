@@ -63,8 +63,8 @@
       </ul>
 
       <!-- Barre de recherche -->
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Rechercher" style="border-radius: 20px; border: none;">
+      <form class="d-flex" role="search" action='produit.php' method='get'>
+        <input class="form-control me-2" type='text' name='query' placeholder="Rechercher" aria-label="Rechercher" style="border-radius: 20px; border: none;">
         <button class="btn" type="submit" style="background-color: transparent; color: #d0006f;">
           <i class="bi bi-search" style="font-size: 1.5rem;"></i>
         </button>

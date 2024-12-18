@@ -410,6 +410,7 @@ h3.text-uppercase, h4.text-uppercase {
   color: #28a745;
 }
 
+
 /* Pour tout les carousel */
 @media (max-width: 768px) {
     .carousel-inner .carousel-item > div {
