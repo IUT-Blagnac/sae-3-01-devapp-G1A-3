@@ -186,7 +186,7 @@ https://github.com/orgs/IUT-Blagnac/projects/253/views/2[ici].
 |====
 | Semaine |Professeur| Nom | Retour | Note
 | 48| EP  | retour Com  | ODJ : manque rôle qui anime, qui prend des notes ? Rubriques succintes, point client ? Qui est responsable de chaque rubrique ? Manque intitulé de la réunion. CR : trop succinct, chaque point doit être rédigé, manque analyse des difficultés:réussites. Manque retour réunion client, manque prochain responsable de l'organisation de la réunion semaine 49. | 1,2/3
-|49 | EP| ODJ|L'ODJ parle d'une réunion pour le 03/ 11, les thèmes ne sont pas à jour !! Pas de CR disponible pour la semaine 49.  Note : 0,2/3     Note appel Offre :11,64/20 (avec malus surnotation des autres équipes !) |0,2/3
+|49 | EP| ODJ|L'ODJ parle d'une réunion pour le 03/ 11, les thèmes ne sont pas à jour !! Pas de CR disponible pour la semaine 49.  Note : 0,2/3     Note appel Offre :11,64/20 (avec malus surnotation des autres équipes !)  MODIF NOTE CR publié (attention votre CR montre plus la forme que le contenu ... quelles sont vos réussites, quelles sont les retours du client ??|0,2/3 -> 2,2/3
 |50 |EP | Pas d'ODJ ni CR pour la semaine 50| 0/3|
 | | | | |
 | | | | |
