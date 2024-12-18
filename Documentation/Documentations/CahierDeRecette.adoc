@@ -1,0 +1,262 @@
+= Cahier de recette - Plateforme d'ecommerce - Sweetshop
+:toc:
+:toc-title: Sommaire
+:Entreprise: LudoRama
+:Equipe:
+
+image::../images/.jpg[role=logo, align=center]
+
+  
+
+Créé par : l'équipe LudoRama +
+
+
+== I. Introduction
+=== 1. Objet :
+[.text-justify]
+Ce document a été produit dans le cadre d'un projet d'élaboration d'une plateforme d'e-commerce, spécialisée dans la vente de confiseries et chocolats haut de gamme pour la société SweetShops.
+
+
+== II. Pre-Requis :
+[.text-justify]
+L'exécution des tests spécifiés au chapitre suivant requiert :
+
+* Ordinateur sous Windows ou OS équivalent. (On sait jamais ça peut servir)
+* Une base de données installée (cf document technique).
+* Une connexion internet afin d'accéder au site de SweetShop.
+* Un navigateur web (Google Chrome, Mozilla Firefox, Safari, etc.) pour accéder à la plateforme de SweetShop.
+
+
+
+
+=== Éléments à tester :
+[.text-justify]
+Les éléments testés concernent les User-Stories spécifiés dans la *documentation technique*.
+
+== III. Testes des différentes fonctionnalités :
+
+=== 1. Partie Plateforme e-commerce : 
+
+User Story reliée : En tant que nouveau client, je veux créer un compte facilement, afin de gérer mes informations personnelles et mes commandes.
+
+==== 1.1 Gestiion des comptes :
+
+===== 1.1.1 : Création d'un compte :
+
+Afin de pouvoir créer son compte, l'utilisateur doit fournir les informations suivantes :
+
+* Nom
+* Prénom
+* Adresse 
+* Adresse e-mail
+* Mot de passe
+
+[cols="4*", options="header"]
+|==========
+| Action | Comportement attendus | Pré-condition | Résultat 
+| Saisie des informations | Saisie des informations dans les champs requis | Compte vide | Compte créé avec les informations saisies
+|==========
+
+
+===== 1.1.2 : Connexion à un compte existant :
+
+Afin de pouvoir se connecter à son compte, l'utilisateur doit fournir les informations suivantes :
+
+* Adresse e-mail
+* Mot de passe
+
+[cols="4*", options="header"]
+|==========
+| Action | Comportement attendus | Pré-condition | Résultat 
+| Connexion à un compte existant | Connexion au compte | Compte existant | Connexion réussie
+|==========
+
+==== 1.2 Recherche et navigation :
+
+===== 1.2.1 : Rechercher des produits :
+
+User Story reliée : En tant que client, je veux pouvoir rechercher des confiseries par nom ou catégorie, afin de trouver rapidement ce que je souhaite acheter.
+
+[cols="4*", options="header"]
+|==========
+| Action | Comportement attendu | Pré-condition | Résultat 
+| Rechercher par catégorie | Les produits correspondant à la catégorie sélectionnée sont affichés. | Une catégorie valide est sélectionnée. | La liste des produits correspondant est affichée.
+| Trier par prix croissant | La liste des produits est triée par ordre croissant des prix. | Les produits sont affichés. | Les produits sont triés par prix croissant.
+| Trier par prix décroissant | La liste des produits est triée par ordre décroissant des prix. | Les produits sont affichés. | Les produits sont triés par prix décroissant.
+| Rechercher par mot-clé | Les produits correspondant au mot-clé saisi sont affichés. | Un mot-clé valide est saisi. | Les produits correspondant au mot-clé sont affichés.
+| Rechercher par regroupement | Les produits correspondant au regroupement sélectionné sont affichés. | Un regroupement valide est sélectionné. | La liste des produits correspondant est affichée.
+| Visualiser la liste des produits | Visualiser la liste des produits correspondant à la recherche. | Une recherche valide a été effectuée. | Les produits sont affichés avec leurs informations de base.
+|==========
+
+==== 1.3 Détail des produits :
+
+===== 1.3.1 : Visualiser le détail d'un produit :
+
+User Story reliée : En tant que client, je veux voir des photos et des descriptions détaillées des confiseries, afin de prendre une décision éclairée avant d'acheter.
+
+[cols="4*", options="header"]
+|==========
+| Action | Comportement attendu | Pré-condition | Résultat 
+| Voir les photos du produit | Les photos du produit sont affichées. | Le produit sélectionné a des photos associées. | Les photos du produit sont visibles.
+| Lire les descriptions et détails du produit | Les descriptions et notes techniques du produit sont affichées. | Le produit sélectionné a une description. | Les informations détaillées sont visibles.
+| Consulter les avis et notes des clients | Les avis et la moyenne des notes des clients sont affichés. | Des avis sont associés au produit. | Les avis et la moyenne des notes sont visibles.
+|==========
+
+==== 1.4 Gestion de la commande :
+
+===== 1.4.1 : Finalisation de la commande :
+
+User Story reliée : En tant que client, je veux pouvoir finaliser ma commande en choisissant le mode de livraison et le mode de paiement, afin de recevoir mes confiseries.
+
+[cols="4*", options="header"]
+|==========
+| Action | Comportement attendu | Pré-condition | Résultat 
+| Valider le panier | Le contenu du panier est validé pour la commande. | Le panier contient au moins un produit. | La commande est prête à être finalisée.
+| Choisir le mode de livraison | Le client peut sélectionner un mode de livraison (standard, express, etc.). | Les options de livraison sont disponibles. | Le mode de livraison est enregistré pour la commande.
+| Choisir le mode de paiement | Le client peut choisir un mode de paiement (CB, PayPal, etc.). | Les options de paiement sont disponibles. | Le mode de paiement est enregistré pour la commande.
+|==========
+
+===== 1.4.2 : Suivi de la commande :
+
+User Story reliée : En tant que client, je veux pouvoir suivre l’état de ma commande, afin de savoir quand je vais recevoir mes produits.
+
+[cols="4*", options="header"]
+|==========
+| Action | Comportement attendu | Pré-condition | Résultat 
+| Suivre l'état de la commande | L'état actuel de la commande (en préparation, expédiée, livrée) est affiché. | Une commande a été validée. | L'état actuel de la commande est visible.
+| Recevoir des notifications sur l'état de la commande | Le client est informé des changements de statut. | Un moyen de contact est configuré (e-mail, SMS). | Les notifications sont reçues correctement.
+|==========
+
+===== 1.4.3 : Visualiser ses commandes passées :
+
+[cols="4*", options="header"]
+|==========
+| Action | Comportement attendu | Pré-condition | Résultat 
+| Saisir un avis sur un type de produit acheté et livré | Le client peut laisser un avis sur un produit livré. | Le produit a été acheté et livré. | L'avis est enregistré.
+| Ajouter une photo éventuelle | Le client peut ajouter une photo à son avis. | L'avis est en cours de saisie. | La photo est associée à l'avis.
+|==========
+
+==== 1.5 Gestion du panier :
+
+User Story reliée : En tant que client, je veux pouvoir ajouter des produits à mon panier et voir le total en temps réel, afin de mieux gérer mon budget.
+
+[cols="4*", options="header"]
+|==========
+| Action | Comportement attendu | Pré-condition | Résultat 
+| Modifier la quantité d'un produit dans le panier | La quantité du produit est mise à jour et le total est recalculé. | Le produit est déjà dans le panier. | La quantité et le total sont correctement mis à jour.
+| Ajouter un produit dans le panier | Le produit est ajouté au panier. | Le produit est disponible en stock. | Le produit est visible dans le panier.
+| Supprimer un produit dans le panier | Le produit est retiré du panier. | Le produit est dans le panier. | Le produit est supprimé, et le total est recalculé.
+| Voir le montant total en temps réel | Le montant total des produits dans le panier est mis à jour immédiatement. | Le panier contient des produits. | Le montant total reflète les modifications en temps réel.
+|==========
+
+
+
+=== 2. Partie Application Java / Python : 
+
+
+==== 2.1 Lecture et gestion des fichiers de configuration
+[cols="4*", options="header"]
+|==========
+| Action | Comportement attendu | Pré-condition | Résultat 
+
+| Lecture du fichier de configuration
+| Le fichier de configuration est correctement lu et ses paramètres sont appliqués (types de données, fréquence, seuils, chemins des fichiers).
+| Un fichier de configuration valide existe.
+| Les paramètres sont chargés sans erreur.
+
+| Lecture d'un fichier de configuration invalide
+| Un message d'erreur est affiché indiquant le problème.
+| Le fichier de configuration est manquant ou mal formé.
+| L'erreur est correctement signalée.
+|==========
+
+==== 2.2 Connexion et lecture des données depuis MQTT
+[cols="4*", options="header"]
+|==========
+| Action | Comportement attendu | Pré-condition | Résultat 
+
+| Connexion au serveur MQTT
+| La connexion est établie avec succès.
+| Le serveur MQTT est disponible.
+| Les messages des capteurs sont reçus.
+
+| Échec de connexion au serveur MQTT
+| Un message d'erreur est affiché à l'utilisateur.
+| Le serveur MQTT est indisponible ou les paramètres sont incorrects.
+| L'erreur est affichée à l'écran.
+
+| Lecture des données des capteurs
+| Les données (température, humidité, CO2) sont lues et triées par salle.
+| Les capteurs publient des données sur le serveur MQTT.
+| Les valeurs des capteurs sont enregistrées correctement.
+|==========
+
+==== 2.3 Gestion des alertes
+[cols="4*", options="header"]
+|==========
+| Action | Comportement attendu | Pré-condition | Résultat 
+
+| Gestion des alertes
+| Les dépassements de seuil sont détectés et écrits dans un fichier d'alerte.
+| Les seuils sont correctement définis dans le fichier de configuration.
+| Les alertes sont affichées pour chaque capteur concerné.
+|==========
+
+==== 2.4 Gestion des logs et données historiques
+[cols="4*", options="header"]
+|==========
+| Action | Comportement attendu | Pré-condition | Résultat 
+
+| Écriture des fichiers de logs
+| Les données sont enregistrées dans un fichier (UTF-8) selon le paramétrage.
+| Les capteurs publient des données.
+| Les fichiers sont créés sans erreur.
+
+| Visualisation des données historiques
+| Les graphiques affichent l'historique des capteurs pour une salle ou plusieurs salles.
+| Des fichiers de logs valides existent.
+| Les graphiques sont lisibles et les données cohérentes.
+|==========
+
+==== 2.5 Intégration Java et Python
+[cols="4*", options="header"]
+|==========
+| Action | Comportement attendu | Pré-condition | Résultat 
+
+| Lancement du programme Python par Java
+| Le programme Python démarre sans erreur.
+| Le chemin vers le programme Python est correctement défini.
+| Les logs montrent un lancement réussi.
+|==========
+
+==== 2.6 Visualisation en temps réel et alertes
+[cols="4*", options="header"]
+|==========
+| Action | Comportement attendu | Pré-condition | Résultat 
+
+| Visualisation en temps réel
+| Les valeurs actuelles des capteurs sont affichées et mises à jour dynamiquement.
+| Les capteurs publient des données en temps réel.
+| L'interface montre les valeurs correctes.
+
+| Affichage des alertes
+| Les alertes de seuil sont affichées en temps réel avec des messages explicites.
+| Les seuils sont dépassés pour un ou plusieurs capteurs.
+| Les alertes sont visibles immédiatement.
+|==========
+
+==== 2.7 Paramétrage via l'interface Java
+[cols="4*", options="header"]
+|==========
+| Action | Comportement attendu | Pré-condition | Résultat 
+
+| Paramétrage du fichier de configuration via l'interface Java
+| L'utilisateur peut modifier les paramètres (type de données, fréquence, seuils).
+| L'interface Java est fonctionnelle.
+| Le fichier de configuration est sauvegardé correctement.
+|==========
+
+
+
+
+
