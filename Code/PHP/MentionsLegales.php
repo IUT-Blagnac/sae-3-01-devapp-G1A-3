@@ -28,12 +28,12 @@ require_once 'includes/verif_inactivite.php';
 				<strong>Nom de l'entreprise :</strong> SweetShops<br>
 				<strong>Forme juridique :</strong> SARL (Société à Responsabilité Limitée)<br>
 				<strong>Capital social :</strong> 5 623 984 € <br>
-				<strong>Adresse du siège social :</strong> 1 rue Bonbon - CS 20012 - 31000 Toulouse Cedex.<br>
-				<strong>Numéro de téléphone :</strong> 00 00 00 00 00 (coût d’un appel local non surtaxé)<br>
-				<strong>Adresse e-mail :</strong> relationclient@sweetShops.com<br>
-				<strong>Numéro SIRET :</strong> 000 000 000 00000<br>
-				<strong>RCS :</strong> Toulouse<br>
-				<strong>TVA intra-communautaire :</strong> FR 00000000000<br>
+				<strong>Adresse du siège social :</strong> 45 Rue de la République, 31000 Toulouse, France<br>
+				<strong>Numéro de téléphone :</strong> +33 01 23 45 67 89 (coût d’un appel local non surtaxé)<br>
+				<strong>Adresse e-mail :</strong> <a href='mailto:relationclient@sweetShops.com'>relationclient@sweetShops.com</a><br>
+				<strong>Numéro SIRET :</strong> 123 456 789 00010<br>
+				<strong>RCS :</strong> Toulouse B 987 654 321<br>
+				<strong>TVA intra-communautaire :</strong> FR 12 345678901<br>
 				<br>
 				<h2>Directeur de publication</h2>
 				<strong>Nom et prénom :</strong> Mr Alain PROVIST<br>
@@ -43,10 +43,11 @@ require_once 'includes/verif_inactivite.php';
 				<strong>Nom de l’hébergeur :</strong> IUT de BLAGNAC<br>
 				<strong>Adresse de l'hébergeur : </strong> 1 PLACE GEORGES BRASSENS, BP 60073, 31703 BLAGNAC CEDEX<br>
 				<strong>Numéro de téléphone :</strong> Tel +33 (0)5 62 74 75 75<br>
-				<strong>Adresse e-mail :</strong> <a href='mailto:poleinformatique.iutb@univ-tlse2.fr'>poleinformatique.iutb@univ-tlse2.fr</a></strong><br>
+				<strong>Adresse e-mail :</strong> <a href='mailto:poleinformatique.iutb@univ-tlse2.fr'>poleinformatique.iutb@univ-tlse2.fr</a><br>
 				<br>
 				<h2>Traitement des données</h2>
-				Les informations, photos et témoignages relatives au site sont exclusivement destinées à l’éditeur du site. Pour toute information supplémentaire sur la protection des données personnelles, nous vous invitons à consulter le site de la <a href="http://www.cnil.fr">Commission Nationale de l’Informatique et des Libertés (CNIL)</a>.<br>
+				Les informations, photos et témoignages relatives au site sont exclusivement destinées à l’éditeur du site.<br>
+				Pour toute information supplémentaire sur la protection des données personnelles, nous vous invitons à consulter le site de la <a href="http://www.cnil.fr">Commission Nationale de l’Informatique et des Libertés (CNIL)</a>.<br>
 				<br>
 				L’utilisateur utilise le site à ses seuls risques et dans le respect des lois applicables. En aucun cas l’éditeur du site ne pourra être tenu responsable des dommages directs ou indirects, préjudice financier, résultant de l’accès ou de l’utilisation de ce site ou de tous sites qui lui sont liés. Le contenu du site est présenté sans aucune garantie de quelque nature que ce soit.<br>
 				<br>
@@ -62,17 +63,17 @@ require_once 'includes/verif_inactivite.php';
 				<li>Droit à l’effacement</li>
 				<li>Droit à la limitation du traitement</li>
 				<li>Droit d’opposition</li>
-				<li>Droit à la portabilité</li><br>
+				<li>Droit à la portabilité</li>
 				<br>
 				Pour exercer ces droits, vous pouvez nous contacter à :<br>
-				<strong>Adresse e-mail :</strong> [Adresse e-mail de contact pour les données personnelles]<br>
-				<strong>Adresse postale :</strong> [Adresse complète]<br>
+				<strong>Adresse e-mail :</strong> <a href='mailto:relationclient@sweetShops.com'>relationclient@sweetShops.com</a><br>
+				<strong>Adresse postale :</strong> 45 Rue de la République, 31000 Toulouse, France<br>
 				<br>
-				Nous collectons des données personnelles dans le cadre de [préciser les finalités, ex. la gestion des commandes, l’envoi de newsletters].<br>
+				Nous collectons des données personnelles dans le cadre de : la gestion des commandes ainsi que l’envoi de newsletters.<br>
 				Ces données ne sont pas transférées à des tiers sans consentement préalable.<br>
 				<br>
 				<h2>Cookies</h2>
-				Le site utilise des cookies pour améliorer l’expérience utilisateur. Vous pouvez gérer vos préférences en matière de cookies [indiquer un lien vers une politique de gestion des cookies].<br>
+				Le site utilise des cookies pour améliorer l’expérience utilisateur. Vous pouvez gérer vos préférences en matière de cookies (voir le <a href='https://www.cnil.fr/fr/reglement-europeen-protection-donnees'>RGPD</a> pour plus d'informations).<br>
 				<br>
 				<h2>Responsabilité</h2>
 				Le site (SweetShops) ne saurait être tenu responsable en cas de dysfonctionnements techniques, d’erreurs ou d’omissions dans le contenu publié.<br>

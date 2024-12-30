@@ -2,8 +2,6 @@
 session_start();
 
 if (isset($_POST['submit'])) {
-
-    var_dump($_POST);
     // Récupération des informations lors de l'inscription
     $idCompte = htmlentities($_POST['idcompte']);
     $nom = htmlentities($_POST['nom']);
@@ -18,8 +16,6 @@ if (isset($_POST['submit'])) {
     $ville = htmlentities($_POST['ville']);
     $codePostal = htmlentities($_POST['codepostal']);
     $pays = htmlentities($_POST['pays']);
-    
-    var_dump($nom);
 
 	if (empty($nom) || empty($prenom) || empty($mail)  || empty($numRue) || empty($nomRue) || empty($ville) || empty($codePostal) || empty($pays)) {
         die('Tous les champs sont obligatoires.');

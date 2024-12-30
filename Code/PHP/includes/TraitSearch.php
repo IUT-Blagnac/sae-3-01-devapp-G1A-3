@@ -2,7 +2,7 @@
 require_once('connect.inc.php');
 
 if (isset($_GET['query'])) {
-    $search = htmlspecialchars($_GET['query']);
+    $search = htmlentities($_GET['query']);
 
     $sql = "SELECT * FROM PRODUIT WHERE NOMPROD LIKE :search OR DESCRIPTION LIKE :search";
     $stmt = $conn->prepare($sql);

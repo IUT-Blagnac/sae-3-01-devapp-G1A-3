@@ -22,8 +22,22 @@ require_once 'includes/verif_inactivite.php';
 			$safeIdCommande=htmlentities($_GET["id_commande"]);
 			require_once 'connect.inc.php';
 			$detailsCommande = $conn -> prepare('CALL get_commande_details(?)');
+			$detailsProduit = $conn -> prepare('CALL get_details_produit(?,?)');
 			$detailsCommande -> execute([$safeIdCommande]);
-			var_dump($detailsCommande);
+			foreach($detailsCommande -> fetchAll() as $produit){
+				echo '<div>';
+				echo '<span>';
+				echo '<a href = "detailProd.php?idProduit='.$produit["IDPROD"].'">'.$produit["NOMPROD"].'</a>  ';
+				echo '</span>';
+				$detailsCommande -> closeCursor();
+				$detailsProduit -> execute ([$produit["IDPROD"],$produit["IDFORMAT"]]);
+				$prodComplements = $detailsProduit -> fetch();
+				echo '<span>';
+				echo 'Prix unitiaire : '.$prodComplements["PRIX"].'   Prix total : '.$prodComplements["PRIX"]*$produit["QTE"].'<BR/>';
+				echo 'Quantité : '.$produit["QTE"];
+				echo '</span>';
+				echo '</div>';
+			}
 		}
 	?>
 </body>

@@ -58,10 +58,10 @@ require_once 'includes/verif_inactivite.php';
                         <div class="container-fluid">
                             <div class="row justify-content-evenly">
                                 <div class="col-5">
-                                    <div class="btn" id="asc" name="asc">Croissant</div>
+                                    <button type="submit" name="asc" class="btn">Croissant</button>
                                 </div>
                                 <div class="col-5">
-                                    <div class="btn" id="desc" name="desc">Décroissant</div>
+                                    <button type="submit" name="desc" class="btn">Décroissant</button>
                                 </div>
                             </div>
                         </div>
