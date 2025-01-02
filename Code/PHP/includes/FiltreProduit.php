@@ -156,34 +156,39 @@ try {
     // Tri par ordre croissant 
     if (isset($_POST['asc'])) {
         try {
-            // Appel de la procédure stockée pour le tri croissant
-            $stmtPrix = $conn->prepare('CALL get_dispos_produit_light_asc(?)');
-            $stmtPrix->bindParam(1, $_POST['produit_id'], PDO::PARAM_INT); // Passage du paramètre produit_id
+            // Appel de la procédure stockée ou exécution directe de la requête SQL
+            $stmtPrix = $conn->prepare("  
+            SELECT DF.IDPROD, NOMFORMAT, PRIX 
+            FROM DISPOFORMAT DF 
+            INNER JOIN FORMATPROD F ON F.IDFORMAT = DF.IDFORMAT
+            ORDER BY DF.IDPROD ASC, PRIX ASC
+        ");
             $stmtPrix->execute();
 
-            $produits = $stmtPrix->fetchAll(PDO::FETCH_ASSOC); // Récupère tous les résultats
-            var_dump($produits);
+            // Récupération des résultats
+            $produits = $stmtPrix->fetchAll(PDO::FETCH_ASSOC);
             $stmtPrix->closeCursor();
 
+            // Ajout les détails pour chaque produit
             foreach ($produits as &$produit) {
-                // Récupération des détails pour chaque produit
-                $stmtProd = $conn->prepare(
-                    "SELECT NOMPROD, COMPOSITION, NOTESTECH, DESCRIPTION 
-                    FROM PRODUIT 
-                    WHERE IDPROD = :idProd"
-                );
+                $stmtProd = $conn->prepare("
+                SELECT NOMPROD, COMPOSITION, NOTESTECH, DESCRIPTION 
+                FROM PRODUIT 
+                WHERE IDPROD = :idProd
+            ");
                 $stmtProd->bindParam(':idProd', $produit['IDPROD'], PDO::PARAM_INT);
                 $stmtProd->execute();
                 $details = $stmtProd->fetch(PDO::FETCH_ASSOC);
                 $stmtProd->closeCursor();
 
-                // Ajout des détails au tableau produit
+                // Fusion les informations dans le tableau final
                 $produit = array_merge($produit, $details);
             }
         } catch (PDOException $e) {
-            echo "Erreur lors de la récupération des produits : " . $e->getMessage();
+            echo "Erreur lors de la récupération des produits (tri croissant) : " . $e->getMessage();
         }
     }
+
 
     // Tri par ordre décroissant
     if (isset($_POST['desc'])) {
