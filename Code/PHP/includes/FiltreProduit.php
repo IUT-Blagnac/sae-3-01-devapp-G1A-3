@@ -164,7 +164,6 @@ try {
             ORDER BY DF.IDPROD ASC, PRIX ASC
         ");
             $stmtPrix->execute();
-
             // Récupération des résultats
             $produits = $stmtPrix->fetchAll(PDO::FETCH_ASSOC);
             $stmtPrix->closeCursor();

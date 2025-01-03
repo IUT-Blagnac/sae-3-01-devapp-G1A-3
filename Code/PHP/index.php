@@ -2,7 +2,7 @@
 <html lang="fr">
 
 <?php
-    session_start();
+session_start();
 ?>
 
 <head>
@@ -19,16 +19,23 @@
 <body style="background-color: #ffe4e1;">
     <?php include './includes/header.php' ?>
 
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <h1 class="fw-bold text-danger">Quand la qualité et la quantité se rencontrent enfin</h1>
+    <div class="container mt-5 position-relative">
+        <div class="row align-items-center">
+            <!-- Colonne pour le texte -->
+            <div class="col-md-6 position-relative">
+                <h1 class="fw-bold text-danger custom-text">
+                    Quand la qualité et la quantité<br>se rencontrent enfin
+                </h1>
             </div>
-            <div class="col">
-                <img src="http://placehold.it/380?text=1" alt="Test" style="width:60vh; height:50vh;">
+            <!-- Colonne pour l'image -->
+            <div class="col-md-6">
+                <img src="./images/indexSweets.jpg" alt="Test" class="img-fluid rounded custom-image">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0099ff" fill-opacity="1" d="M0,64L30,85.3C60,107,120,149,180,144C240,139,300,85,360,85.3C420,85,480,139,540,170.7C600,203,660,213,720,202.7C780,192,840,160,900,160C960,160,1020,192,1080,208C1140,224,1200,224,1260,192C1320,160,1380,96,1410,64L1440,32L1440,0L1410,0C1380,0,1320,0,1260,0C1200,0,1140,0,1080,0C1020,0,960,0,900,0C840,0,780,0,720,0C660,0,600,0,540,0C480,0,420,0,360,0C300,0,240,0,180,0C120,0,60,0,30,0L0,0Z"></path></svg>
             </div>
         </div>
     </div>
+
+
     <!-- Produit stars -->
     <div class="container my-5">
         <h1 class="fw-bold text-danger">Nos produits stars</h1>

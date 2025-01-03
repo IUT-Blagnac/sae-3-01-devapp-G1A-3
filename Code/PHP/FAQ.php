@@ -48,102 +48,78 @@ require_once 'includes/verif_inactivite.php';
         <hr>
 
         <div class="container-fluid py-5 my-5">
+            <h3 class="fw-bold text-danger text-center mb-4">Questions fréquentes</h3>
             <div class="row py-5 mx-auto justify-content-evenly">
+                <!-- Question 1 -->
                 <div class="col-md-5 col-sm-12 col-xs-12 my-5">
                     <div class="card text-center">
-                        <div class="card-header">
-                            Featured
+                        <div class="card-header fw-bold">
+                            Quels modes de paiement acceptez-vous ?
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                        <div class="card-footer text-muted">
-                            2 days ago
+                            <p class="card-text">Nous acceptons les paiements par carte bancaire (Visa, MasterCard, American Express) et PayPal. Si vous souhaitez utiliser un autre moyen, contactez-nous via notre page de contact.</p>
                         </div>
                     </div>
                 </div>
+                <!-- Question 2 -->
                 <div class="col-md-5 col-sm-12 col-xs-12 my-5">
                     <div class="card text-center">
-                        <div class="card-header">
-                            Featured
+                        <div class="card-header fw-bold">
+                            Proposez-vous une livraison internationale ?
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                        <div class="card-footer text-muted">
-                            2 days ago
+                            <p class="card-text">Oui, nous livrons dans de nombreux pays. Les frais de livraison varient selon votre localisation. Consultez notre page Livraison pour plus de détails.</p>
                         </div>
                     </div>
                 </div>
+                <!-- Question 3 -->
                 <div class="col-md-5 col-sm-12 col-xs-12 my-5">
                     <div class="card text-center">
-                        <div class="card-header">
-                            Featured
+                        <div class="card-header fw-bold">
+                            Puis-je annuler ou modifier ma commande ?
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                        <div class="card-footer text-muted">
-                            2 days ago
+                            <p class="card-text">Vous pouvez annuler ou modifier votre commande dans un délai de 24 heures après validation. Pour cela, contactez notre service client rapidement.</p>
                         </div>
                     </div>
                 </div>
+                <!-- Question 4 -->
                 <div class="col-md-5 col-sm-12 col-xs-12 my-5">
                     <div class="card text-center">
-                        <div class="card-header">
-                            Featured
+                        <div class="card-header fw-bold">
+                            Quels sont vos délais de livraison ?
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                        <div class="card-footer text-muted">
-                            2 days ago
+                            <p class="card-text">Nos délais de livraison varient entre 3 et 7 jours ouvrables pour la France métropolitaine, et 7 à 14 jours pour l'international.</p>
                         </div>
                     </div>
                 </div>
+                <!-- Question 5 -->
                 <div class="col-md-5 col-sm-12 col-xs-12 my-5">
                     <div class="card text-center">
-                        <div class="card-header">
-                            Featured
+                        <div class="card-header fw-bold">
+                            Proposez-vous des produits sans allergènes ?
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                        <div class="card-footer text-muted">
-                            2 days ago
+                            <p class="card-text">Oui, nous avons une gamme de produits sans gluten, sans lactose et sans noix. Consultez les étiquettes de nos produits ou contactez-nous pour plus d'informations.</p>
                         </div>
                     </div>
                 </div>
+                <!-- Question 6 -->
                 <div class="col-md-5 col-sm-12 col-xs-12 my-5">
                     <div class="card text-center">
-                        <div class="card-header">
-                            Featured
+                        <div class="card-header fw-bold">
+                            Comment suivre ma commande ?
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                        <div class="card-footer text-muted">
-                            2 days ago
+                            <p class="card-text">Une fois votre commande expédiée, vous recevrez un e-mail avec un lien de suivi pour suivre votre colis en temps réel.</p>
                         </div>
                     </div>
                 </div>
-
-
-
             </div>
         </div>
+
+    </div>
 
     </div>
 

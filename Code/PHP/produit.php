@@ -58,37 +58,43 @@ require_once 'includes/verif_inactivite.php';
                         <div class="container-fluid">
                             <div class="row justify-content-evenly">
                                 <div class="col-5">
-                                    <button type="submit" name="asc" class="btn">Croissant</button>
+                                    <button type="submit" name="asc" class="btn" id="asc-btn">Croissant</button>
                                 </div>
                                 <div class="col-5">
-                                    <button type="submit" name="desc" class="btn">Décroissant</button>
+                                    <button type="submit" name="desc" class="btn" id="desc-btn">Décroissant</button>
+                                </div>
+                                <hr>
+                                <div>
+                                    <input type="radio" id="prix" name="inf10" onchange='this.form.submit()' />
+                                    <label for="inf10">
+                                        < 10€</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="prix" name="10a20" onchange='this.form.submit()' />
+                                    <label for="10a20">10-20€</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="prix" name="20a35" onchange='this.form.submit()' />
+                                    <label for="20a35">20-35€</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="prix" name="35a50" onchange='this.form.submit()' />
+                                    <label for="35a50">35-50€</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="prix" name="sup50" onchange='this.form.submit()' />
+                                    <label for="sup50"> > 50€</label>
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <input type="radio" id="prix" name="inf10" onchange='this.form.submit()' />
-                            <label for="inf10">< 10€</label>
-                        </div>
-                        <div>
-                            <input type="radio" id="prix" name="10a20" onchange='this.form.submit()' />
-                            <label for="10a20">10-20€</label>
-                        </div>
-                        <div>
-                            <input type="radio" id="prix" name="20a35" onchange='this.form.submit()' />
-                            <label for="20a35">20-35€</label>
-                        </div>
-                        <div>
-                            <input type="radio" id="prix" name="35a50" onchange='this.form.submit()' />
-                            <label for="35a50">35-50€</label>
-                        </div>
-                        <div>
-                            <input type="radio" id="prix" name="sup50" onchange='this.form.submit()' />
-                            <label for="sup50"> > 50€</label>
-                        </div>
+                        <hr>
+
+                        <hr>
+
                     </form>
                 </div>
             </div>
-
+            
             <!-- Affichage des produits -->
             <div class="col-12 col-md-9">
                 <div class="row g-4">
@@ -96,7 +102,7 @@ require_once 'includes/verif_inactivite.php';
                         foreach ($produits as &$produit) {
                             echo "<div class='col-12 col-sm-6 col-lg-4'>
                                     <div class='card h-100'>
-                                        <div class='card-body'>
+                                        <div class='card-body d-flex flex-column align-items-center'>
                                             <h5 class='card-title text-truncate'>" . htmlspecialchars($produit['NOMPROD']) . "</h5>
                                             <p class='card-text'>
                                                 <img src='images/produits/image" . htmlspecialchars($produit['IDPROD']) . ".jpeg' width='100%'>
@@ -106,7 +112,7 @@ require_once 'includes/verif_inactivite.php';
                                                 <br>
                                                 <strong>" . htmlspecialchars($produit['PRIX']) . " €</strong>
                                             </p>
-                                            <a href='detailProd.php?idProduit=" . htmlspecialchars($produit['IDPROD']) . "' class='btn btn-primary'>Voir l'article</a>
+                                            <a href='detailProd.php?idProduit=" . htmlspecialchars($produit['IDPROD']) . "' class='btn' id='prd-btn'>Voir l'article</a>
                                         </div>
                                     </div>
                                 </div>";
