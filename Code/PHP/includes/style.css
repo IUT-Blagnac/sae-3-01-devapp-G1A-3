@@ -35,6 +35,12 @@ body {
    
 }
 
+.wave1{
+  position: absolute;
+  transform: rotate(90deg);
+  /* left: 90px; */
+}
+
 /* Footer */
 
 .footer-container {
