@@ -21,14 +21,14 @@
           <a class="nav-link fw-bold text-danger" href="FAQ.php">AIDE</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link fw-bold text-danger" href="#">CONTACT</a>
+          <a class="nav-link fw-bold text-danger" href="contact.php">CONTACT</a>
         </li>
         <li class="nav-item">
           <a class="nav-link fw-bold text-danger" href="shoppingCart.php">MON PANIER</a>
         </li>
         <li class="nav-item dropdown">
           <?php
-          if (!empty($_SESSION["loggedin"])){
+          if (!empty($_SESSION["loggedin"])) {
             echo "<a class='nav-link dropdown-toggle fw-bold text-danger' href='#' id='navbarDropdown' role='button'>
             COMPTE
           </a>
@@ -54,8 +54,7 @@
               </div>
             </div>
           </div>";
-          }
-          else{
+          } else {
             echo "<a class='nav-link fw-bold text-danger' href='Connexion.php'>SE CONNECTER</a>";
           }
           ?>

@@ -493,6 +493,12 @@ h3.text-uppercase, h4.text-uppercase {
 }
 
 
+/* page contacte */
+
+#contact-h{
+  background-color: #C4026E;
+}
+
 /* Pour tout les carousel */
 @media (max-width: 768px) {
     .carousel-inner .carousel-item > div {
