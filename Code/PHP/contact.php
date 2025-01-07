@@ -10,7 +10,7 @@
     <title>Contactez-nous | SweetShops</title>
 </head>
 
-<body style="background-color: #f8f9fa;">
+<body style="background-color: #ffe4e1;">
     <!-- Header -->
     <header style="background-color: #C4026E; color: white;" class="py-4">
         <div class="container text-center">
@@ -51,6 +51,11 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- Bouton retour à l'accueil -->
+    <div class="text-center my-4">
+        <a href="index.php" class="btn btn-secondary btn-lg">Retour à l'accueil</a>
     </div>
 
     <!-- Informations de contact -->
