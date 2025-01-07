@@ -35,10 +35,8 @@ body {
    
 }
 
-.wave1{
-  position: absolute;
-  transform: rotate(90deg);
-  /* left: 90px; */
+.carcateg h5{
+  color :#C4026E;
 }
 
 /* Footer */
@@ -79,6 +77,19 @@ h2{
   padding-bottom: 20px; 
   position: relative
 } 
+
+.btn-p-cmd{
+  padding: 10px;
+  margin: 10px;
+  background-color: #C4026E; 
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 13px
+}
 
 .finish { 
   text-align: center
@@ -447,7 +458,7 @@ h3.text-uppercase, h4.text-uppercase {
 #asc-btn{
   padding: 10px;
   margin: 10px;
-  background-color: #C4026E; /* Green */
+  background-color: #C4026E; 
   border: none;
   border-radius: 5px;
   color: white;
@@ -459,7 +470,7 @@ h3.text-uppercase, h4.text-uppercase {
 #desc-btn{
   padding: 10px;
   margin: 10px;
-  background-color: #C4026E; /* Green */
+  background-color: #C4026E; 
   border: none;
   border-radius: 5px;
   color: white;

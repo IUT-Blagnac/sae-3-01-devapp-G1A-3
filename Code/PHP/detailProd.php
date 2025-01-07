@@ -82,31 +82,40 @@
 
                             echo "<h3>Formats Disponibles</h3>";
                             $formats = [];
+							$defaultFormat = $carac[0]['NOMFORMAT'];
                             foreach ($carac as $car) {
                                 if (!in_array($car['NOMFORMAT'], $formats)) {
-                                    echo "<button class='btn btn-format'>" . htmlspecialchars($car['NOMFORMAT']) . "</button>";
+									$isSelected = $car['NOMFORMAT'] === $defaultFormat ? "selected" : "";
+                                    echo "<button type = 'button' class='btn btn-format $isSelected' data-category='format' data-value='" . htmlspecialchars($car['NOMFORMAT']) . "'>". htmlspecialchars($car['NOMFORMAT']) . "</button>";
                                     $formats[] = $car['NOMFORMAT'];
                                 }
                             }
 
                             echo "<h3>Couleurs Disponibles</h3>";
                             $couleurs = [];
+							$defaultColor = $carac[0]['NOMCOULEUR'];
                             foreach ($carac as $car) {
                                 if (!in_array($car['NOMCOULEUR'], $couleurs)) {
-                                    echo "<button class='btn btn-color'>" . htmlspecialchars($car['NOMCOULEUR']) . "</button>";
+									$isSelected = $car['NOMCOULEUR'] === $defaultColor ? "selected" : "";
+                                    echo "<button type='button' class='btn btn-color $isSelected' data-category='color' data-value='" . htmlspecialchars($car['NOMCOULEUR']) . "'>" . htmlspecialchars($car['NOMCOULEUR']) . "</button>";
                                     $couleurs[] = $car['NOMCOULEUR'];
                                 }
                             }
                             
                             // Formulaire pour ajout au panier
                             echo "<div class='stock-info'>
-                                    <h3>En Stock</h3>
-                                    <form action='includes/TraitAjoutPanier.php?idProduit=" . htmlspecialchars($idProduit) . "' method='POST' class='form-inline'>
+                                    <h3>En Stock</h3>"
+							?>
+										<form action='includes/TraitAjoutPanier.php' method='POST' class='form-inline'>
                                         <input type='number' id='quantite' name='quantite' class='form-control' min='1' step='1' value='1' required onblur='checkNegativeOnBlur(this)'>
+										<input type='hidden' id='selected-format' name='selected-format' value="<?=htmlspecialchars($defaultFormat)?>">
+										<input type='hidden' id='selected-color' name='selected-color' value="<?=htmlspecialchars($defaultColor)?>">
+										<input type='hidden' id='idProduit' name='idProduit' value="<?=htmlspecialchars($idProduit)?>">
                                         <button type='submit' name='action' value='Ajouter au panier' class='btn btn-success ms-2'>Ajouter au panier</button>
                                         <button type='submit' name='action' value='Acheter' class='btn btn-danger ms-2'>Acheter</button>
                                     </form>
-                                  </div>";
+                                  </div>
+							<?php
                         } catch (PDOException $e) {
                             echo "<p class='text-danger'>Erreur : " . htmlspecialchars($e->getMessage()) . "</p>";
                         }
@@ -128,6 +137,34 @@
             }
         }
     </script>
+	
+	<script>
+		document.querySelectorAll('.btn').forEach(button => {
+			button.addEventListener('click', function () {
+				// Deselect all buttons in the same category
+				const category = this.dataset.category;
+				document.querySelectorAll(`.btn[data-category='${category}']`).forEach(btn => btn.classList.remove('selected'));
+				
+				// Select the clicked button
+				this.classList.add('selected');
+				
+				// Update the hidden input with the selected value
+				if (category === 'format') {
+					document.getElementById('selected-format').value = this.dataset.value;
+				} else if (category === 'color') {
+					document.getElementById('selected-color').value = this.dataset.value;
+				}
+			});
+		});
+	</script>
+	
+<style>
+    .btn.selected {
+        background-color: #007bff;
+        color: white;
+        border-color: #0056b3;
+    }
+</style>
 </body>
 
 </html>

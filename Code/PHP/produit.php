@@ -18,7 +18,6 @@ require_once 'includes/verif_inactivite.php';
 
 <body style="background-color: #ffe4e1;">
     <?php include './includes/header.php';
-    include './includes/TraitSearch.php';
     include './includes/FiltreProduit.php'; ?>
 
     <div class="container-fluid">

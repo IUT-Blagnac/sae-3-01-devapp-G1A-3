@@ -4,10 +4,12 @@ session_start();
 // Connexion à la base de données
 require_once '../connect.inc.php';
 
+$idProduit = $_POST['idProduit'];
 $quantite =  $_POST['quantite'];
-if (isset($_GET['idProduit'])) {
-    $idProduit = $_GET['idProduit'];
-}
+$format = $_POST['selected-format'];
+$idformatreq = $conn -> prepare('SELECT IDFORMAT FROM FORMATPROD WHERE NOMFORMAT = ?');
+$idformatreq -> execute([$format]);
+$idformat = $idformatreq -> fetch()["IDFORMAT"];
 	
 if (gettype($_SESSION['idCompte']) === "integer"){
     try {
@@ -30,8 +32,8 @@ if (gettype($_SESSION['idCompte']) === "integer"){
         $quantiteActuelle = $stmt->fetch(PDO::FETCH_ASSOC);
     
         if (empty($quantiteActuelle)){
-            $stmt = $conn->prepare('INSERT INTO CONTIENT (IDCOMMANDE, IDPROD, QTE) VALUES (?, ?, ?)');
-            $stmt->execute([$panier['IDCOMMANDE'], $idProduit, $quantite]);
+            $stmt = $conn->prepare('INSERT INTO CONTIENT (IDCOMMANDE, IDPROD, IDFORMAT, QTE) VALUES (?, ?, ?, ?)');
+            $stmt->execute([$panier['IDCOMMANDE'], $idProduit, $idformat, $quantite]);
         }
         else{
             $stmt = $conn->prepare('UPDATE CONTIENT SET QTE = ? WHERE IDCOMMANDE = ? AND IDPROD = ?');
@@ -52,11 +54,48 @@ if (gettype($_SESSION['idCompte']) === "integer"){
 }
 else{
     if (empty($_COOKIE['panierInvite'])){
-        setcookie('panierInvite[0]', $idProduit);
+        foreach($_COOKIE["panierInvite"] as $name => $value){
+            $data = unserialize($value);
+
+            if ($idProduit == $data['idProduit']){
+                $ajoute = true;
+            }
+        }
+        if ($ajoute == false){
+            $data = [
+                'idProduit' => $idProduit,
+                'qteProduit' => $quantite,
+                'formatProduit' => $format
+            ];
+    
+            // Sérialiser les données
+            $serializedData = serialize($data);
+    
+            setcookie('panierInvite[0]', $serializedData, time()+3600 * 24 * 31, "/");
+        }
     }
     else{
         $nbVal = count($_COOKIE['panierInvite']);
-        setcookie('panierInvite['.$nbVal.']', $idProduit);
+
+        foreach($_COOKIE["panierInvite"] as $name => $value){
+            $data = unserialize($value);
+
+            if ($idProduit == $data['idProduit']){
+                $ajoute = true;
+            }
+        }
+        if ($ajoute == false){
+            $data = [
+                'idProduit' => $idProduit,
+                'qteProduit' => $quantite,
+                'formatProduit' => $format
+            ];
+    
+            // Sérialiser les données
+            $serializedData = serialize($data);
+    
+            setcookie('panierInvite['.$nbVal.']', $serializedData, time()+3600 * 24 * 31, "/");
+        }
     }
     if ($_POST['action'] == 'Ajouter au panier'){
         header('Location: ../detailProd.php?idProduit='.$idProduit);

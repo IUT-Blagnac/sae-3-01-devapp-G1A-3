@@ -31,9 +31,9 @@ require_once 'includes/verif_inactivite.php';
 					</div>
 					<div class="card-body">
 						<form method="post" action="./includes/TraitModification.php">
+							<h5 class="text-danger mb-3">Données personnelles</h5>
 							<div class="mb-3">
-								<label class="sub_title" for="login">Identifiant de compte</label>
-								<input name="idcompte" id="idcompte" class="form_style" type="text" value="<?php echo $_SESSION["idCompte"] ?>" readonly>
+								<input name="idcompte" id="idcompte" type="hidden" value="<?php echo $_SESSION["idCompte"] ?>">
 							</div>						
 							<div class="mb-3">
 								<label class="sub_title" for="login">Nom</label>
@@ -58,8 +58,7 @@ require_once 'includes/verif_inactivite.php';
 							<hr>
 							<h5 class="text-danger mb-3">Adresse</h5>
 							<div class="mb-3">
-								<label class="sub_title" for="login">Identifiant d'adresse</label>
-								<input name="idadresse" id="idadresse" class="form_style" type="text" value="<?php echo $_SESSION["idAdresse"] ?>" readonly>
+								<input name="idadresse" id="idadresse" class="form_style" type="hidden" value="<?php echo $_SESSION["idAdresse"] ?>">
 							</div>
 							<div class="mb-3">
 								<label class="sub_title" for="login">Numéro de rue</label>

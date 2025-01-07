@@ -20,192 +20,63 @@ try {
 $produits = [];
 try {
     //Récupération des produits 
-    if ($selectedCategory > 0) {
-        $stmtProd = $conn->prepare(
-            "SELECT IDPROD, NOMPROD, COMPOSITION, NOTESTECH, DESCRIPTION 
-             FROM PRODUIT 
-             WHERE IDCATEG = :idCateg"
-        );
-        $stmtProd->bindParam(':idCateg', $selectedCategory, PDO::PARAM_INT);
-    } else {
-        $stmtProd = $conn->prepare(
-            "SELECT IDPROD, NOMPROD, COMPOSITION, NOTESTECH, DESCRIPTION 
-             FROM PRODUIT"
-        );
-    }
-    $stmtProd->execute();
-    $produits = $stmtProd->fetchAll(PDO::FETCH_ASSOC);
-    $stmtProd->closeCursor();
-
-    // Appel de la procédure stockée pour chaque produit 
-    foreach ($produits as &$produit) {
-        $stmtPrix = $conn->prepare("CALL get_dispos_produit_light(:IDPROD)");
-        $stmtPrix->bindParam(':IDPROD', $produit['IDPROD'], PDO::PARAM_INT);
-
-        $stmtPrix->execute();
-        $dispo = $stmtPrix->fetch(PDO::FETCH_ASSOC);
-        $stmtPrix->closeCursor();
-
-        $produit = array_merge($produit, $dispo);
-    }
-    //produit inférieur à 10
-    if (isset($_POST['inf10'])) {
-        $stmtPrix = $conn->prepare('CALL get_dispos_produit_borne_min(?, ?)');
-        $stmtPrix->execute([0, 10]);
-        $produits = $stmtPrix->fetchAll(PDO::FETCH_ASSOC);
-        $stmtPrix->closeCursor();
-
-        foreach ($produits as &$produit) {
-            $stmtProd = $conn->prepare(
-                "SELECT NOMPROD, COMPOSITION, NOTESTECH, DESCRIPTION 
-                FROM PRODUIT 
-                WHERE IDPROD = ?"
-            );
-
-            $stmtProd->execute([$produit['IDPROD']]);
-            $carac = $stmtProd->fetch(PDO::FETCH_ASSOC);
-            $stmtProd->closeCursor();
-
-            $produit = array_merge($produit, $carac);
-        }
-    }
-    // produit entrte dans la plage 10-20
-    if (isset($_POST['10a20'])) {
-        $stmtPrix = $conn->prepare('CALL get_dispos_produit_borne_min(?, ?)');
-        $stmtPrix->execute([10, 20]);
-        $produits = $stmtPrix->fetchAll(PDO::FETCH_ASSOC);
-        $stmtPrix->closeCursor();
-
-        foreach ($produits as &$produit) {
-            $stmtProd = $conn->prepare(
-                "SELECT NOMPROD, COMPOSITION, NOTESTECH, DESCRIPTION 
-                FROM PRODUIT 
-                WHERE IDPROD = ?"
-            );
-
-            $stmtProd->execute([$produit['IDPROD']]);
-            $carac = $stmtProd->fetch(PDO::FETCH_ASSOC);
-            $stmtProd->closeCursor();
-
-            $produit = array_merge($produit, $carac);
-        }
-    }
-    // produit entrte dans la plage 20-35
-    if (isset($_POST['20a35'])) {
-        $stmtPrix = $conn->prepare('CALL get_dispos_produit_borne_min(?, ?)');
-        $stmtPrix->execute([20, 35]);
-        $produits = $stmtPrix->fetchAll(PDO::FETCH_ASSOC);
-        $stmtPrix->closeCursor();
-
-        foreach ($produits as &$produit) {
-            $stmtProd = $conn->prepare(
-                "SELECT NOMPROD, COMPOSITION, NOTESTECH, DESCRIPTION 
-                FROM PRODUIT 
-                WHERE IDPROD = ?"
-            );
-
-            $stmtProd->execute([$produit['IDPROD']]);
-            $carac = $stmtProd->fetch(PDO::FETCH_ASSOC);
-            $stmtProd->closeCursor();
-
-            $produit = array_merge($produit, $carac);
-        }
-    }
-    // produit entrte dans la plage 35-50
-    if (isset($_POST['35a50'])) {
-        $stmtPrix = $conn->prepare('CALL get_dispos_produit_borne_min(?, ?)');
-        $stmtPrix->execute([35, 50]);
-        $produits = $stmtPrix->fetchAll(PDO::FETCH_ASSOC);
-        $stmtPrix->closeCursor();
-
-        foreach ($produits as &$produit) {
-            $stmtProd = $conn->prepare(
-                "SELECT NOMPROD, COMPOSITION, NOTESTECH, DESCRIPTION 
-                FROM PRODUIT 
-                WHERE IDPROD = ?"
-            );
-
-            $stmtProd->execute([$produit['IDPROD']]);
-            $carac = $stmtProd->fetch(PDO::FETCH_ASSOC);
-            $stmtProd->closeCursor();
-
-            $produit = array_merge($produit, $carac);
-        }
-    }
-    // produit supérieur à 50
-    if (isset($_POST['sup50'])) {
-        $stmtPrix = $conn->prepare('CALL get_dispos_produit_borne_min(?, ?)');
-        $stmtPrix->execute([50, 5000]);
-        $produits = $stmtPrix->fetchAll(PDO::FETCH_ASSOC);
-        $stmtPrix->closeCursor();
-
-        foreach ($produits as &$produit) {
-            $stmtProd = $conn->prepare(
-                "SELECT NOMPROD, COMPOSITION, NOTESTECH, DESCRIPTION 
-                FROM PRODUIT 
-                WHERE IDPROD = ?"
-            );
-
-            $stmtProd->execute([$produit['IDPROD']]);
-            $carac = $stmtProd->fetch(PDO::FETCH_ASSOC);
-            $stmtProd->closeCursor();
-
-            $produit = array_merge($produit, $carac);
-        }
-    }
-    // Tri par ordre croissant 
-    if (isset($_POST['asc'])) {
-        try {
+	if (isset($_GET['query'])) {
+		try {
             // Appel de la procédure stockée ou exécution directe de la requête SQL
-            $stmtPrix = $conn->prepare("  
-            SELECT DF.IDPROD, NOMFORMAT, PRIX 
-            FROM DISPOFORMAT DF 
-            INNER JOIN FORMATPROD F ON F.IDFORMAT = DF.IDFORMAT
-            ORDER BY DF.IDPROD ASC, PRIX ASC
-        ");
-            $stmtPrix->execute();
-            // Récupération des résultats
-            $produits = $stmtPrix->fetchAll(PDO::FETCH_ASSOC);
-            $stmtPrix->closeCursor();
+            $search = htmlentities($_GET['query']);
+			
+			// Base de la requête SQL
+			$sql = "SELECT DF.IDPROD, NOMFORMAT, PRIX
+				FROM DISPOFORMAT DF
+				INNER JOIN FORMATPROD F ON F.IDFORMAT = DF.IDFORMAT
+				INNER JOIN PRODUIT P ON P.IDPROD = DF.IDPROD
+				WHERE (P.NOMPROD LIKE :search OR P.DESCRIPTION LIKE :search)";
+				
+			// Ajout de la condition de catégorie si sélectionnée
+			if ($selectedCategory > 0) {
+				$sql = $sql . " AND IDCATEG = :idCateg";
+			}
+			
+			// Ajout de la condition de la fourchette de prix sélectionnée
+			if (isset($_POST['inf10'])) {
+				$sql .= " AND PRIX >= 0 AND PRIX < 10";
+			}elseif (isset($_POST['10a20'])) {
+				$sql .= " AND PRIX >= 10 AND PRIX <= 20";
+			}elseif (isset($_POST['20a35'])) {
+				$sql .= " AND PRIX >= 20 AND PRIX <= 35";
+			}elseif (isset($_POST['35a50'])) {
+				$sql .= " AND PRIX >= 35 AND PRIX <= 50";
+			}elseif (isset($_POST['sup50'])) {
+				$sql .= " AND PRIX > 50 AND PRIX <= 5000";
+			}
+			
+			// Ajout de l'ordre de tri si spécifié
+			if (isset($_POST['asc'])) {
+				$sql .= " ORDER BY PRIX ASC";
+			} elseif (isset($_POST['desc'])) {
+				$sql .= " ORDER BY PRIX DESC";
+			} else {
+				$sql .= " ORDER BY IDPROD ASC";
+			}
+			
+			$stmt = $conn->prepare($sql);
+			
+			// Liaison des paramètres
+			$stmt->bindValue(':search', '%' . $search . '%', PDO::PARAM_STR);
+			if ($selectedCategory > 0) {
+				$stmt->bindValue(':idCateg', $selectedCategory, PDO::PARAM_INT);
+			}
+			$stmt->execute();
 
-            // Ajout les détails pour chaque produit
-            foreach ($produits as &$produit) {
-                $stmtProd = $conn->prepare("
-                SELECT NOMPROD, COMPOSITION, NOTESTECH, DESCRIPTION 
-                FROM PRODUIT 
-                WHERE IDPROD = :idProd
-            ");
-                $stmtProd->bindParam(':idProd', $produit['IDPROD'], PDO::PARAM_INT);
-                $stmtProd->execute();
-                $details = $stmtProd->fetch(PDO::FETCH_ASSOC);
-                $stmtProd->closeCursor();
-
-                // Fusion les informations dans le tableau final
-                $produit = array_merge($produit, $details);
-            }
-        } catch (PDOException $e) {
-            echo "Erreur lors de la récupération des produits (tri croissant) : " . $e->getMessage();
-        }
-    }
-
-
-    // Tri par ordre décroissant
-    if (isset($_POST['desc'])) {
-        try {
-            // Appel de la procédure stockée pour le tri décroissant
-            $stmtPrix = $conn->prepare('CALL get_dispos_produit_light_desc(?)');
-            $stmtPrix->bindParam(1, $_POST['produit_id'], PDO::PARAM_INT); // Passage du paramètre produit_id
-            $stmtPrix->execute();
-
-            $produits = $stmtPrix->fetchAll(PDO::FETCH_ASSOC); // Récupère tous les résultats
-            $stmtPrix->closeCursor();
+			$produits = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			$stmt->closeCursor();
 
             foreach ($produits as &$produit) {
                 // Récupération des détails pour chaque produit
                 $stmtProd = $conn->prepare(
                     "SELECT NOMPROD, COMPOSITION, NOTESTECH, DESCRIPTION 
-                 FROM PRODUIT 
-                 WHERE IDPROD = :idProd"
+					 FROM PRODUIT 
+					 WHERE IDPROD = :idProd"
                 );
                 $stmtProd->bindParam(':idProd', $produit['IDPROD'], PDO::PARAM_INT);
                 $stmtProd->execute();
@@ -218,7 +89,7 @@ try {
         } catch (PDOException $e) {
             echo "Erreur lors de la récupération des produits : " . $e->getMessage();
         }
-    }
+	}
 } catch (PDOException $e) {
     echo "<div class='alert alert-danger'>Erreur lors de la récupération des produits : {$e->getMessage()}</div>";
     die();

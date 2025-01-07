@@ -14,7 +14,7 @@
     <div class="collapse navbar-collapse" id="navbar">
       <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link fw-bold text-danger" href="produit.php">PRODUITS</a>
+          <a class="nav-link fw-bold text-danger" href="produit.php?query=">PRODUITS</a>
         </li>
 
         <li class="nav-item">
@@ -37,12 +37,12 @@
               <!-- Colonne 1 -->
               <div class='col'>
                 <a href='profile.php' class='dropdown-item'>
-                  <h6 class='dropdown-header'>Vos Informations personnelles</h6>
+                  <h6 class='dropdown-header'>Mon Profil</h6>
                 </a>
               </div>
               <!-- Colonne 2 -->
               <div class='col'>
-                <a href='#' class='dropdown-item'>
+                <a href='listeCommandes.php' class='dropdown-item'>
                   <h6 class='dropdown-header'>Vos Commandes</h6>
                 </a>
               </div>

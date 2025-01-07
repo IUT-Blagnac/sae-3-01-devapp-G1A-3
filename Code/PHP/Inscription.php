@@ -26,7 +26,7 @@ require_once 'includes/verif_inactivite.php';
 						INSCRIPTION
 					</div>
 					<div class="card-body">
-						<form method="POST" action="./includes/TraitSignIn.php">
+						<form method="POST" action="./includes/TraitInscription.php">
 							<p>* Champs obligatoires</p>
 							<div class="mb-3">
 								<label for="nom" class="form-label">Nom *</label>

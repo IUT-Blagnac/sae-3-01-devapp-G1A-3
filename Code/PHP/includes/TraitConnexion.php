@@ -30,6 +30,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $numTelephone = $result['NUMTEL'];
             $dateNaissance = $result['DTN'];
         }
+
+        if (!isset($idCompte)){
+            // Identifiants incorrects, redirection vers le formulaire avec un message d'erreur
+            $error_message = "Login ou mot de passe incorrect.";
+            header("Location: ../Connexion.php?msgErreur=" . urlencode($error_message));
+            exit();
+        }
+
+        $stmt = $conn->prepare('CALL get_panier(?)');
+        $stmt->execute([$idCompte]);
+		
+		// Récupère les résultats sous forme de tableau associatif
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $panier = $result['IDCOMMANDE'];
     
     } catch (PDOException $e) {
         die('Erreur : ' . $e->getMessage());
@@ -71,6 +86,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION["mail"] = $mail;
         $_SESSION["dateNaissance"] = $dateNaissance;
         $_SESSION["numeroTelephone"] = $numTelephone;
+
+        $_SESSION["panier"] = $panier;
 
         $_SESSION["numRue"] = $numRue;
         $_SESSION["ville"] = $ville;

@@ -14,6 +14,18 @@ require_once 'includes/verif_inactivite.php';
     <link rel="website icon" type="png" href="./images/logo/logo.png">
     <link rel="stylesheet" href="./includes/style.css">
     <title>Ma commande | SweetShops</title>
+
+    <script>
+		// Cette fonction permettra de demander confirmation avant la suppression d'un produit
+		function confirmSuppr(idProd) {
+			if(confirm("Etes vous sur de  vouloir supprimer ce produit ?")){
+				document.location.href = "./includes/TraitSupprProd.php?pIdProd="+idProd;
+			} else {
+				alert("Suppression annulée");
+				return false;
+			}
+		}
+	</script>
 </head>
 
 <body>
@@ -65,17 +77,59 @@ require_once 'includes/verif_inactivite.php';
                                     <?php
                                         require_once('connect.inc.php');
 
+                                        $_SESSION['totalPanier'] = 0;
+
                                         if (empty($_SESSION['panier'])){
                                             if (isset($_COOKIE['panierInvite'])){
+
+                                                
+
                                                 foreach ($_COOKIE["panierInvite"] as $name => $value) {
-                                                    $name = htmlspecialchars($name);
-                                                    $value = htmlspecialchars($value);        
-                                                    echo "$name : $value <br />\n";
+                                                    $data = unserialize($value);
+
+                                                    $stmt = $conn->prepare("CALL get_dispos_produit_light(?)");
+                                                    $stmt->execute([$data['idProduit']]);
+                                                    $infos = $stmt->fetch(PDO::FETCH_ASSOC); 
+                                                    
+                                                    $prix = $infos['PRIX'];
+
+                                                    echo "<div class='d-flex align-items-center py-3 border-bottom'>
+                                                        <img src='./images/produits/image".$data['idProduit'].".jpeg' alt='Produit' class='img-fluid' style='max-width: 120px;'>
+                                                        <div class='ms-3 flex-grow-1'>
+                                                    <p class='mb-1'>";
+
+                                                    $stmt = $conn->prepare("SELECT NOMPROD FROM PRODUIT WHERE IDPROD = ?");
+                                                    $stmt->execute([$data['idProduit']]);
+                                                    $nom = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                                                    echo $nom['NOMPROD'];
+                                                    echo "</p>
+                                                            <div class='d-flex align-items-center'>
+                                                                <form action='includes/TraitModifPanier.php' method='post'>
+                                                                    <input type='hidden' name='product_id' value='".$data['idProduit']."'>
+                                                                    <input type='hidden' name='command_id' value='0'>
+                                                                    <input type='number' id='quantity' name='quantity' min='1' step='1' value='".$data['qteProduit']."' required onblur='checkNegativeOnBlur(this)' onchange='this.form.submit()'>
+                                                                </form>
+                                                                <button 
+                                                                    class='btn btn-link text-danger'
+                                                                    onclick='confirmSuppr(".$data['idProduit'].")'>
+                                                                    <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash' viewBox='0 0 16 16'>
+                                                                        <path d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z' />
+                                                                        <path d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z' />
+                                                                    </svg>
+                                                                </button>
+
+                                                            </div>
+                                                        </div>
+                                                        <span class='text-pink fw-bold'>".$prix * $data['qteProduit']."€ </span>
+                                                    </div>";
+                                                    if (empty($_SESSION['totalPanier'])){
+                                                        $_SESSION['totalPanier'] = $prix * $data['qteProduit'];
+                                                    }
+                                                    else{
+                                                        $_SESSION['totalPanier'] = $_SESSION['totalPanier'] + ($prix * $data['qteProduit']);
+                                                    }
                                                 }
-                                            }
-                                            else{
-                                                var_dump($_COOKIE);
-                                                echo "Erreur d'affichage";
                                             }
                                         }
                                         else{
@@ -97,7 +151,7 @@ require_once 'includes/verif_inactivite.php';
                                                     $prix = $infos['PRIX'];
 
                                                     echo "<div class='d-flex align-items-center py-3 border-bottom'>
-                                                        <img src='./images/test.jpg' alt='Produit' class='img-fluid' style='max-width: 120px;'>
+                                                        <img src='./images/produits/image".$produit['IDPROD'].".jpeg' alt='Produit' class='img-fluid' style='max-width: 120px;'>
                                                         <div class='ms-3 flex-grow-1'>
                                                     <p class='mb-1'>";
 
@@ -108,8 +162,10 @@ require_once 'includes/verif_inactivite.php';
                                                     echo $nom['NOMPROD'];
                                                     echo "</p>
                                                             <div class='d-flex align-items-center'>
-                                                                <form action='shoppingCart.php' method='post' onchange='this.form.submit()'>
-                                                                    <input type='number' id='quantity' name='quantity' min='1' step='1' value='".$produit['QTE']."' required onblur='checkNegativeOnBlur(this)'>
+                                                                <form action='includes/TraitModifPanier.php' method='post'>
+                                                                    <input type='hidden' name='product_id' value='".$produit['IDPROD']."'>
+                                                                    <input type='hidden' name='command_id' value='".$panier['IDCOMMANDE']."'>
+                                                                    <input type='number' id='quantity' name='quantity' min='1' step='1' value='".$produit['QTE']."' required onblur='checkNegativeOnBlur(this)' onchange='this.form.submit()'>
                                                                 </form>
                                                                 <button class='btn btn-link text-danger'>
                                                                     <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash' viewBox='0 0 16 16'>
@@ -119,8 +175,14 @@ require_once 'includes/verif_inactivite.php';
                                                                 </button>
                                                             </div>
                                                         </div>
-                                                        <span class='text-pink fw-bold'>".$prix."€ </span>
+                                                        <span class='text-pink fw-bold'>".$prix * $produit['QTE']."€ </span>
                                                     </div>";
+                                                    if (empty($_SESSION['totalPanier'])){
+                                                        $_SESSION['totalPanier'] = $prix * $produit['QTE'];
+                                                    }
+                                                    else{
+                                                        $_SESSION['totalPanier'] = $_SESSION['totalPanier'] + ($prix*$produit['QTE']);
+                                                    }
                                                 }
                                             }
                                         }
@@ -132,15 +194,15 @@ require_once 'includes/verif_inactivite.php';
                         <table class="table text-end">
                             <tr>
                                 <td>Total des articles (Prix initial)</td>
-                                <td><?php $total_articles = isset($quantity) ? $prix * $quantity : $prix; echo $total_articles ?> €</td>
+                                <td><?php echo $_SESSION['totalPanier']; ?> €</td>
                             </tr>
                             <tr>
                                 <td>Frais de livraison</td>
-                                <td><?php $frais_livraison = 2.50; echo $frais_livraison ?> €</td>
+                                <td><?php $frais_livraison = '2.50'; echo $frais_livraison ?> €</td>
                             </tr>
                             <tr class="fw-bold">
                                 <td>Total de la commande</td>
-                                <td><?php $total_commande = $total_articles+$frais_livraison; echo $total_commande ?> €</td>
+                                <td><?php $total_commande = $_SESSION['totalPanier']+$frais_livraison; echo $total_commande ?> €</td>
                             </tr>
                         </table>
                         <button class="btn btn-secondary btn-block mt-3"><a style="text-decoration : none; color:aliceblue;" href="index.php">Encore une envie de nostalgie ?</a></button>
@@ -148,36 +210,93 @@ require_once 'includes/verif_inactivite.php';
                     </div>
                 </div>
             </div>
+
             <!-- Etape Livraison -->
             <div id="step2-content" style="display:none;">
                 <h4 class="text-uppercase text-pink mb-4">Adresse de livraison</h4>
                 <div class="mb-3">
-                    <label for="nom" class="form-label">Nom</label>
-                    <input type="text" class="form-control" id="nom" placeholder="Entrez votre nom">
+                <?php $selectionneAdresse = false ?>
+                    <?php if (!isset($_SESSION['idCompte'])){
+                        echo "<label for='nom' class='form-label'>Si vous avez un compte, veuillez cliquer sur le lien suivant : </label>";
+                    }
+                    else{
+                        echo ("Votre adresse : ");
+                        echo $_SESSION["numRue"]." ";
+                        echo $_SESSION["nomRue"].", ";
+                        echo $_SESSION["codePostal"]." ";
+                        echo $_SESSION["ville"]." ";
+                        echo $_SESSION["pays"]." <br>";
+                        echo "<label for='nom' class='form-label'>Si vous souhaitez modifier votre adresse de livraison, veuillez cliquer sur le lien suivant : </label>";
+                        echo "<a class='link' href='Modification.php'>Modification de votre adresse</a>";
+                    } ?>
+                        <?php if (!isset($_SESSION['idCompte'])){echo "<a class='link' href='Connexion.php'>Connectez-vous ici !</a>";} ?>
                 </div>
                 <div class="mb-3">
-                    <label for="adresse" class="form-label">Adresse</label>
-                    <input type="text" class="form-control" id="adresse" placeholder="Entrez votre adresse">
+                <?php if (!isset($_SESSION['idCompte'])){echo "<label for='nom' class='form-label'>Autrement, veuillez cliquer sur le lien suivant : </label>";} ?>
+                    <?php if (!isset($_SESSION['idCompte'])){echo "<a class='link' href='Inscription.php'>Inscrivez-vous ici !</a>";} ?>
                 </div>
                 <button class="btn btn-secondary btn-block mt-3" id="prevToStep1">Précédent</button>
-                <button class="btn btn-secondary btn-block mt-3" id="nextToStep3">Continuer au paiement</button>
+                <?php if (isset($_SESSION['idCompte'])){echo "<button class='btn btn-secondary btn-block mt-3' id='nextToStep3'>Continuer au paiement</button>";} ?>
             </div>
 
             <!-- Etape Paiement -->
             <div id="step3-content" style="display:none;">
                 <h4 class="text-uppercase text-pink mb-4">Détails de paiement</h4>
-                <div class="mb-3">
-                    <label for="carte" class="form-label">Numéro de carte</label>
-                    <input type="text" class="form-control" id="carte" placeholder="Entrez votre numéro de carte">
-                </div>
-                <div class="mb-3">
-                    <label for="expiration" class="form-label">Date d'expiration</label>
-                    <input type="text" class="form-control" id="expiration" placeholder="MM/AA">
-                </div>
-                <div class="mb-3">
-                    <label for="cvv" class="form-label">CVV</label>
-                    <input type="text" class="form-control" id="cvv" placeholder="CVV">
-                </div>
+                <?php $stmt = $conn->prepare('CALL get_client_cb(?)');
+                    $stmt->execute([$_SESSION['idCompte']]);
+                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    $date = date('Y-m-d', time());
+                    foreach ($result as $cb){
+                        if ($cb['DATEEXPIRATION'] >= $date){
+                            echo "<div class='col-md-4 col-sm-6 mb-3'>
+                            <div class='single-card-info d-flex'>
+                                <img src='./images/mastercard.png' alt='Mastercard'>
+                                <div class='card-info ms-3'>
+                                    <h5 class='card-name'>";
+                                    echo $_SESSION['prenom'].' '.$_SESSION['nom'];
+                                    echo "</h5><p class='card-number'>";
+                                    $fincb = substr($cb['NUMCARTE'], -4);
+                                    echo $fincb;
+                                    echo "<span>";
+                                    $expi = substr($cb['DATEEXPIRATION'], -2);
+                                    $expi .= "/";
+                                    $expi .= substr($cb['DATEEXPIRATION'], 2, 2);
+                                    echo $expi;
+                                    echo "</span></p>
+                                </div>
+                            </div>
+                        </div>";
+                        }
+                    }
+                ?>
+
+                <?php
+                    $stmt = $conn->prepare('CALL get_client_paypal(?)');
+                    $stmt->execute([$_SESSION['idCompte']]);
+                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    $date = date('Y-m-d', time());
+                    try {
+                        $stmt = $conn->prepare('CALL get_client_paypal(?)');
+                        $stmt->execute([$_SESSION['idCompte']]);
+                        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        foreach ($result as $cb){
+                            echo "<div class='col-md-4 col-sm-6 mb-3'>
+                                <div class='single-card-info d-flex'>
+                                    <img src='./images/paypal.png' alt='Paypal'>
+                                    <div class='card-info ms-3'>
+                                        <h5 class='card-name'>";
+                                        echo $_SESSION['prenom'].' '.$_SESSION['nom'];
+                                        echo "</h5><p class='card-number'>";
+                                        echo $cb['MAIL'];
+                                        echo "</p>
+                                    </div>
+                                </div>
+                            </div>";
+                        }
+                    }   catch (PDOException $e) {
+                        die('Erreur : ' . $e->getMessage());
+                    }
+                ?>
                 <button class="btn btn-secondary btn-block mt-3" id="prevToStep2">Précédent</button>
                 <button class="btn btn-secondary btn-block mt-3" id="nextToStep4">Finaliser la commande</button>
             </div>
@@ -186,7 +305,7 @@ require_once 'includes/verif_inactivite.php';
             <div id="step4-content" style="display:none;">
                 <h4 class="text-uppercase text-pink mb-4">Confirmation de commande</h4>
                 <p>Merci pour votre commande !</p>
-                <button class="btn btn-secondary btn-block mt-3" id="prevToStep3">Précédent</button>
+                <button class="btn btn-secondary btn-block mt-3" id="index">Retour à l'accueil</button>
             </div>
         </div>
     </div>
@@ -242,6 +361,9 @@ require_once 'includes/verif_inactivite.php';
 
             $("#prevToStep3").click(function() {
                 goToPreviousStep("#step4-content", "#step3-content");
+            });
+            $("#index").click(function() {
+                document.location.href = 'index.php';
             });
         });
 
