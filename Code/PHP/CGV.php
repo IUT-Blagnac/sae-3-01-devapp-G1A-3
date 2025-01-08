@@ -64,7 +64,7 @@ require_once 'includes/verif_inactivite.php';
 				Le paiement s’effectue en ligne via les moyens suivants :
 				<li>Carte bancaire (Visa, MasterCard, etc.)</li>
 				<li>PayPal</li>
-				Les transactions sont sécurisées grâce au protocole [préciser le protocole, ex. SSL].<br>
+				Les transactions sont sécurisées grâce au protocole SSL.<br>
 				<br>
 				<h2>Article 7 : Livraison</h2>
 				<strong>Zones de livraison :</strong><br>

@@ -159,6 +159,7 @@ require_once 'includes/verif_inactivite.php';
                                             $fincb = substr($cb['NUMCARTE'], -4); // returns "s"
                                             echo $fincb;
                                             echo "<span>";
+                                            echo " ";
                                             $expi = substr($cb['DATEEXPIRATION'], -2);
                                             $expi .= "/";
                                             $expi .= substr($cb['DATEEXPIRATION'], 2, 2);
@@ -180,7 +181,7 @@ require_once 'includes/verif_inactivite.php';
                 </div>
             </div>
         </div>
-
+                        
         <!-- Section Paypal -->
         <div class="profile-footer mt-5">
             <div class="profile-title d-flex justify-content-between align-items-center">

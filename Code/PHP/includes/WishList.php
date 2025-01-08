@@ -52,6 +52,27 @@
                     </div>
                 </div>
             </div>
+			<?php 
+				require_once 'connect.inc.php';
+				$getWishList = $conn -> prepare('CALL get_panier(?)');
+				$getWishList -> execute([$_SESSION["idCompte"]]);
+				$wishList = $getWishList -> fetch();
+				$getWishList -> closeCursor();
+				$wishlistitems = $conn -> prepare('CALL get_commande_details(?)');
+				$wishlistitems -> execute([$wishList["IDCOMMANDE"]]);
+				$cpt = 1;
+				foreach($wishlistitems as $item){
+					if(cpt==1){
+						echo '<div class="carousel-item">';
+						echo '<div class="row">';
+					}
+					echo '<div class="col-md-3">
+							<div class="card">
+								<a href="detailProd.php?idProduit='.$item["IDPROD"].'"><img src="./images/produits/image'.$item["IDPROD"].'.jpeg" class="card-img-top" alt="'.$item["NOMPROD"]."></a>
+							</div>
+						</div>';
+				}
+			?>
             <button class="carousel-control-prev" type="button" data-bs-target="#wishlistCarousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>

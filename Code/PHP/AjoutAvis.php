@@ -16,7 +16,12 @@ require_once 'includes/verif_inactivite.php';
 </head>
 
 <body style="background-color: #ffe4e1;">
-	<?php include './includes/header.php'; ?>
+	<?php 
+		include './includes/header.php'; 
+		if (!empty($_GET)){
+			$idProduit = htmlentities($_GET['idProduit']);
+		}
+	?>
 
 	<div class="container-fluid py-5 my-5">
 		<div class="row py-5 mx-auto justify-content-evenly">
@@ -26,10 +31,10 @@ require_once 'includes/verif_inactivite.php';
 						AVIS
 					</div>
 					<div class="card-body">
-						<form method="POST" action="./includes/TraitAjoutAvis.php">
+						<form method="POST" action="./includes/TraitAjoutAvis.php?idProduit=<?php echo $idProduit ?>">
 							<div class="mb-3">
-								<label for="mailpaypal" class="form-label">Note</label>
-								<input placeholder="10/10" name="note" id="note" class="form-control" type="text" required>
+								<label for="mailpaypal" class="form-label">Note (comprise entre 1 et 10)</label>
+								<input placeholder="10" name="note" id="note" class="form-control" type="text" required>
 							</div>
 							<div class="mb-3">
 								<label for="mailpaypal" class="form-label">Commentaire</label>

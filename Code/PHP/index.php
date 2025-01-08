@@ -33,7 +33,7 @@ require_once 'includes/verif_inactivite.php';
             </div>
         </div>
     </div>
-
+ 
 
     <?php include './includes/StarProd.php' ?>
     

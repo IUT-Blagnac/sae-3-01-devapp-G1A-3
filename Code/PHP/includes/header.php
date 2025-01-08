@@ -28,25 +28,51 @@
         </li>
         <li class="nav-item dropdown">
           <?php
-          if (!empty($_SESSION["loggedin"])) {
+          // echo "<pre>";
+          // var_dump($_SESSION['idPermission'], $_SESSION["loggedin"]);
+          // echo "</pre>";
+          
+          if (!empty($_SESSION["loggedin"]) && isset($_SESSION['idPermission']) && $_SESSION['idPermission'] == 'Administrateur') {
+            // Si l'utilisateur est connecté ET est un administrateur
             echo "<a class='nav-link dropdown-toggle fw-bold text-danger' href='#' id='navbarDropdown' role='button'>
             COMPTE
           </a>
           <div class='dropdown-menu p-3' aria-labelledby='navbarDropdown' style='width: 450px;'>
             <div class='row row-cols-1 g-3'>
-              <!-- Colonne 1 -->
               <div class='col'>
                 <a href='profile.php' class='dropdown-item'>
                   <h6 class='dropdown-header'>Mon Profil</h6>
                 </a>
               </div>
-              <!-- Colonne 2 -->
               <div class='col'>
-                <a href='listeCommandes.php' class='dropdown-item'>
-                  <h6 class='dropdown-header'>Vos Commandes</h6>
+                <a href='adHUB.php' class='dropdown-item'>
+                  <h6 class='dropdown-header'>Admin HUB</h6>
                 </a>
               </div>
-              <!-- Colonne 4 -->
+              <div class='col'>
+                <a href='includes/deconnexion.php' class='dropdown-item'>
+                  <h6 class='dropdown-header'>Se Déconnecter</h6>
+                </a>
+              </div>
+            </div>
+          </div>";
+          } else if (!empty($_SESSION["loggedin"])) {
+            // Si l'utilisateur est connecté mais n'est pas administrateur
+            echo "<a class='nav-link dropdown-toggle fw-bold text-danger' href='#' id='navbarDropdown' role='button'>
+            COMPTE
+          </a>
+          <div class='dropdown-menu p-3' aria-labelledby='navbarDropdown' style='width: 450px;'>
+            <div class='row row-cols-1 g-3'>
+              <div class='col'>
+                <a href='profile.php' class='dropdown-item'>
+                  <h6 class='dropdown-header'>Mon Profil</h6>
+                </a>
+              </div>
+              <div class='col'>
+                <a href='listeCommandes.php' class='dropdown-item'>
+                  <h6 class='dropdown-header'>Mes Commandes</h6>
+                </a>
+              </div>
               <div class='col'>
                 <a href='includes/deconnexion.php' class='dropdown-item'>
                   <h6 class='dropdown-header'>Se Déconnecter</h6>
@@ -55,6 +81,7 @@
             </div>
           </div>";
           } else {
+            // Si l'utilisateur n'est pas connecté
             echo "<a class='nav-link fw-bold text-danger' href='Connexion.php'>SE CONNECTER</a>";
           }
           ?>

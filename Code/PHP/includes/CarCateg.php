@@ -19,7 +19,7 @@ $categoriesChunks = array_chunk($categories, 4);
 
 <!-- Carrousel des catégories -->
 <div class="container my-5 carcateg">
-    <h1 class="fw-bold text-danger">Catégories</h1>
+    <h1 class="fw-bold text-danger" id="categories">Catégories</h1>
     <div id="categoriesCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <?php foreach ($categoriesChunks as $index => $chunk): ?>

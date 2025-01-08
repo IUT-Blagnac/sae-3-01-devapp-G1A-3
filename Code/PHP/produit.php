@@ -22,6 +22,7 @@ require_once 'includes/verif_inactivite.php';
 
     <div class="container-fluid">
         <!-- Navigation supérieure -->
+		<!-- EN COURS DE DEVELOPPEMENT
         <ul class="nav justify-content-center custom-nav mb-4">
             <li class="nav-item">
                 <a class="nav-link fw-bold text-danger active" href="#">PROMOTIONS</a>
@@ -33,6 +34,7 @@ require_once 'includes/verif_inactivite.php';
                 <a class="nav-link fw-bold text-danger" href="#">NOS STARS</a>
             </li>
         </ul>
+		-->
 
         <div class="row">
             <!-- Barre de filtres -->
@@ -88,39 +90,45 @@ require_once 'includes/verif_inactivite.php';
                         </div>
                         <hr>
 
-                        <hr>
-
                     </form>
                 </div>
             </div>
-            
+
             <!-- Affichage des produits -->
             <div class="col-12 col-md-9">
                 <div class="row g-4">
                     <?php if (!empty($produits)) {
                         foreach ($produits as &$produit) {
                             echo "<div class='col-12 col-sm-6 col-lg-4'>
-                                    <div class='card h-100'>
-                                        <div class='card-body d-flex flex-column align-items-center'>
-                                            <h5 class='card-title text-truncate'>" . htmlspecialchars($produit['NOMPROD']) . "</h5>
-                                            <p class='card-text'>
-                                                <img src='images/produits/image" . htmlspecialchars($produit['IDPROD']) . ".jpeg' width='100%'>
-                                                <strong>Composition :</strong>" . htmlspecialchars($produit['COMPOSITION']) . "<br>
-                                                <strong>Notes techniques :</strong>" . htmlspecialchars($produit['NOTESTECH'] ?? 'Non spécifié') . "<br>
-                                                <strong>Description :</strong>" . htmlspecialchars($produit['DESCRIPTION'] ?? 'Aucune description disponible') . "
-                                                <br>
-                                                <strong>" . htmlspecialchars($produit['PRIX']) . " €</strong>
-                                            </p>
-                                            <a href='detailProd.php?idProduit=" . htmlspecialchars($produit['IDPROD']) . "' class='btn' id='prd-btn'>Voir l'article</a>
-                                        </div>
-                                    </div>
-                                </div>";
+                        <div class='card h-100'>
+                            <div class='card-body d-flex flex-column align-items-center'>
+                                <h5 class='card-title text-truncate'>" . htmlspecialchars($produit['NOMPROD']) . "</h5>
+                                <p class='card-text'>
+                                    <img src='images/produits/image" . htmlspecialchars($produit['IDPROD']) . ".jpeg' width='100%' alt='Image produit'>
+                                    <strong>Composition :</strong> " . htmlspecialchars($produit['COMPOSITION']) . "<br>
+                                    <strong>Notes techniques :</strong> " . htmlspecialchars($produit['NOTESTECH'] ?? 'Non spécifié') . "<br>
+                                    <strong>Description :</strong> " . htmlspecialchars($produit['DESCRIPTION'] ?? 'Aucune description disponible') . "<br>
+                                    <strong>" . htmlspecialchars($produit['PRIX']) . " €</strong>
+                                </p>
+                                <a href='detailProd.php?idProduit=" . htmlspecialchars($produit['IDPROD']) . "' class='btn btn-primary mb-2'>Voir l'article</a>";
+
+                            // Affiche les boutons d'administration uniquement pour les administrateurs
+                            if (!empty($_SESSION["loggedin"]) && isset($_SESSION['idPermission']) && $_SESSION['idPermission'] == 'Administrateur') {
+                                echo "<a href='modifierProd.php?idProduit=" . htmlspecialchars($produit['IDPROD']) . "' class='btn btn-warning mb-2'>Modifier le produit</a>
+                          <form action='./includes/TraitAdmin.php' method='POST' onsubmit='return confirm(\"Êtes-vous sûr de vouloir supprimer ce produit ?\");'>
+                              <input type='hidden' name='deleteProductID' value='" . htmlspecialchars($produit['IDPROD']) . "'>
+                              <button type='submit' class='btn btn-danger'>Supprimer le produit</button>
+                          </form>";
+                            }
+
+                            echo "</div></div></div>";
                         }
                     } else {
                         echo "<p class='text-center'>Aucun produit trouvé.</p>";
                     } ?>
                 </div>
             </div>
+
         </div>
     </div>
 

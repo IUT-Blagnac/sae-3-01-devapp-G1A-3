@@ -149,6 +149,24 @@ h3.text-uppercase, h4.text-uppercase {
   padding-bottom: 5px;
 }
 
+/* Styles de base */
+.btnPaypal, .btnCB {
+  border: none;
+  background-color: #F8F9FA;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Animation quand sélectionné/actif */
+.btnPaypal:focus, .btnPaypal:active, 
+.btnCB:focus, .btnCB:active {
+  transform: scale(1.1); /* Agrandissement */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Effet d'ombre */
+  background-color: #e9ecef; /* Change légèrement le fond */
+}
+
+
 
 /* Barre de progression dans la partie commande */
 .progressbar {

@@ -30,7 +30,7 @@ try {
 
 <!-- Produit stars -->
 <div class="container my-5">
-    <h1 class="fw-bold text-danger">Nos produits stars</h1>
+    <h1 class="fw-bold text-danger" id="produits_stars">Nos produits stars</h1>
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <?php foreach ($topProducts as $index => $product): ?>

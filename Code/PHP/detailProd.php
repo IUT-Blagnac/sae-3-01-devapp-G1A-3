@@ -106,13 +106,16 @@
                             echo "<div class='stock-info'>
                                     <h3>En Stock</h3>"
 							?>
-										<form action='includes/TraitAjoutPanier.php' method='POST' class='form-inline'>
+									<form action='includes/TraitAjoutPanier.php' method='POST' class='form-inline'>
                                         <input type='number' id='quantite' name='quantite' class='form-control' min='1' step='1' value='1' required onblur='checkNegativeOnBlur(this)'>
 										<input type='hidden' id='selected-format' name='selected-format' value="<?=htmlspecialchars($defaultFormat)?>">
 										<input type='hidden' id='selected-color' name='selected-color' value="<?=htmlspecialchars($defaultColor)?>">
 										<input type='hidden' id='idProduit' name='idProduit' value="<?=htmlspecialchars($idProduit)?>">
                                         <button type='submit' name='action' value='Ajouter au panier' class='btn btn-success ms-2'>Ajouter au panier</button>
                                         <button type='submit' name='action' value='Acheter' class='btn btn-danger ms-2'>Acheter</button>
+                                    </form>
+                                    <form action='AjoutAvis.php?idProduit=<?php echo $idProduit ?>' method='POST'>
+                                        <button type='submit' name='action' value='ajouterAvis' class='btn btn-success ms-2'>Ajouter un avis</button>
                                     </form>
                                   </div>
 							<?php

@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST['submit'])) {
 
-    var_dump($_POST);
+    // var_dump($_POST);
 
     // Récupération des informations lors de l'inscription
     $nom = htmlentities($_POST['nom']);
