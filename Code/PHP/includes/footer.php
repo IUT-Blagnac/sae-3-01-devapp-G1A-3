@@ -32,7 +32,7 @@
                     <div class="d-flex flex-column flex-sm-row w-100 gap-2">
                         <label for="newsletter1" class="form-label">Adresse mail :</label>
                         <input id="newsletter1" type="email" class="form-control" placeholder="Entrez votre adresse mail">
-                        <button class="btn btn-primary" type="button">S'abonner</button>
+                        <button class="btn btn-primary" type="submit">S'abonner</button>
                     </div>
                 </form>
             </div>

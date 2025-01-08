@@ -25,6 +25,61 @@ require_once 'includes/verif_inactivite.php';
                 return false;
             }
         }
+        $(document).ready(function() {
+            let currentIndex = 0; 
+            const steps = $(".progress-step"); 
+
+            function goToNextStep(currentStep, nextStep) {
+                $(currentStep).hide(); 
+                $(nextStep).show(); 
+
+                $(steps.eq(currentIndex)).removeClass("active");
+                currentIndex++;
+                $(steps.eq(currentIndex)).addClass("active");
+            }
+
+            function goToPreviousStep(currentStep, previousStep) {
+                $(currentStep).hide();
+                $(previousStep).show(); 
+
+                $(steps.eq(currentIndex)).removeClass("active");
+                currentIndex--;
+                $(steps.eq(currentIndex)).addClass("active");
+            }
+
+            $("#nextToStep2").click(function() {
+                goToNextStep("#step1-content", "#step2-content");
+            });
+
+            $("#nextToStep3").click(function() {
+                goToNextStep("#step2-content", "#step3-content");
+            });
+
+            $("#nextToStep4").click(function() {
+                goToNextStep("#step3-content", "#step4-content");
+            });
+
+            $("#prevToStep1").click(function() {
+                goToPreviousStep("#step2-content", "#step1-content");
+            });
+
+            $("#prevToStep2").click(function() {
+                goToPreviousStep("#step3-content", "#step2-content");
+            });
+
+            $("#prevToStep3").click(function() {
+                goToPreviousStep("#step4-content", "#step3-content");
+            });
+            $("#index").click(function() {
+                document.location.href = 'includes/TraitValidationPanier.php';
+            });
+        });
+
+        function checkNegativeOnBlur(input) {
+            if (input.value < 1) {
+                input.value = 1;
+            }
+        }
     </script>
 </head>
 
@@ -73,7 +128,16 @@ require_once 'includes/verif_inactivite.php';
                 <div class="row">
                     <div class="col-lg-8">
                         <h4 class="text-uppercase text-pink mb-4">Articles de mon panier :</h4>
-                            <?php
+                        <?php
+                            if (isset($_GET['paiement'])) {
+                                echo "<script>
+                                    $(document).ready(function() {
+                                        goToNextStep('#step1-content', '#step2-content');
+                                        goToNextStep('#step2-content', '#step3-content');
+                                    });
+                                </script>";
+                            }
+
                             require_once('connect.inc.php');
 
                             $_SESSION['totalPanier'] = 0;
@@ -248,9 +312,8 @@ require_once 'includes/verif_inactivite.php';
                     if ($cb['DATEEXPIRATION'] >= $date) {
                         echo "<div class='col-md-4 col-sm-6 mb-3'>
                             <div class='single-card-info d-flex justify-content-center'>
-                            <form method='post' action='includes/ChoixPaiement.html'>
-                                <button class='btnCB'>
-                            </form>
+                            <form method='post' action='includes/ChoixPaiement.php'>
+                                <button class='btnCB' name='cb'>
                                 <img src='./images/mastercard.png' alt='Mastercard'>
                                 <div class='card-info ms-3'>
                                     <h5 class='card-name'>";
@@ -266,6 +329,7 @@ require_once 'includes/verif_inactivite.php';
                         echo "</span></p>
                                 </div>
                             </button>
+                            </form>
                             </div>
                         </div>";
                     }
@@ -284,9 +348,8 @@ require_once 'includes/verif_inactivite.php';
                     foreach ($result as $cb) {
                         echo "<div class='col-md-4 col-sm-6 mb-3'>
                                 <div class='single-card-info d-flex justify-content-center'>
-                                    <form method='post' action='includes/ChoixPaiement.html'>
-                                        <button class='btnPaypal' onclick='this.form.submit()'>
-                                    </form>
+                                    <form method='post' action='includes/ChoixPaiement.php'>
+                                        <button class='btnPaypal' name='paypal' onclick='this.form.submit()'>
                                     <img src='./images/paypal.png' alt='Paypal'>
                                     <div class='card-info ms-3'>
                                         <h5 class='card-name'>";
@@ -296,6 +359,7 @@ require_once 'includes/verif_inactivite.php';
                         echo "</p>
                                     </div>
                                     </button>
+                                    </form>
                                 </div>
                             </div>";
                     }
@@ -315,64 +379,6 @@ require_once 'includes/verif_inactivite.php';
             </div>
         </div>
     </div>
-
-    <script>
-        $(document).ready(function() {
-            let currentIndex = 0; 
-            const steps = $(".progress-step"); 
-
-            function goToNextStep(currentStep, nextStep) {
-                $(currentStep).hide(); 
-                $(nextStep).show(); 
-
-                $(steps.eq(currentIndex)).removeClass("active");
-                currentIndex++;
-                $(steps.eq(currentIndex)).addClass("active");
-            }
-
-            function goToPreviousStep(currentStep, previousStep) {
-                $(currentStep).hide();
-                $(previousStep).show(); 
-
-                $(steps.eq(currentIndex)).removeClass("active");
-                currentIndex--;
-                $(steps.eq(currentIndex)).addClass("active");
-            }
-
-            $("#nextToStep2").click(function() {
-                goToNextStep("#step1-content", "#step2-content");
-            });
-
-            $("#nextToStep3").click(function() {
-                goToNextStep("#step2-content", "#step3-content");
-            });
-
-            $("#nextToStep4").click(function() {
-                goToNextStep("#step3-content", "#step4-content");
-            });
-
-            $("#prevToStep1").click(function() {
-                goToPreviousStep("#step2-content", "#step1-content");
-            });
-
-            $("#prevToStep2").click(function() {
-                goToPreviousStep("#step3-content", "#step2-content");
-            });
-
-            $("#prevToStep3").click(function() {
-                goToPreviousStep("#step4-content", "#step3-content");
-            });
-            $("#index").click(function() {
-                document.location.href = 'includes/TraitValidationPanier.php';
-            });
-        });
-
-        function checkNegativeOnBlur(input) {
-            if (input.value < 1) {
-                input.value = 1;
-            }
-        }
-    </script>
 </body>
 
 </html>

@@ -39,7 +39,7 @@ require_once 'includes/verif_inactivite.php';
     
     <?php include './includes/CarCateg.php' ?>
 
-    <?php include './includes/WishList.php' ?>
+    <?php if(isset($_SESSION["panier"])){include './includes/WishList.php';} ?>
 
     <?php include './includes/AvisRecent.php' ?>
 

@@ -5,11 +5,10 @@ include_once('../connect.inc.php');
 
 try {
     $date = date('Y-m-d', time());
+    
     $stmt = $conn->prepare('CALL get_panier(?)');
     $stmt->execute([$_SESSION['idCompte']]);
     $panier = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    var_dump($panier);
 
     $stmt = $conn->prepare('UPDATE COMMANDE SET STATUSCOMMANDE = ?, DATECOMMANDE = ? WHERE IDCOMMANDE = ?');
     $stmt->execute(['Payée', $date, $panier['IDCOMMANDE']]);
