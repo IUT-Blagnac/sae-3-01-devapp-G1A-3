@@ -552,6 +552,6 @@ public class DonneesAnterieuresController {
      * Retire la section des alertes de l'interface utilisateur.
      */
     public void retireAlertes(){
-        contenu.getChildren().removeLast();
+        contenu.getChildren().remove(contenu.getChildren().size() - 1);
     }
 }
