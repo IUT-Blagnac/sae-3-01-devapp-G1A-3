@@ -100,12 +100,12 @@ De plus, nous inclurons deux diagrammes de collaboration pour clarifier les proc
 
 [cols="1*", options="header"]
 |=======
-|  https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/Documentation%20conception.adoc[Lien vers la documentation de utilisateur]   
+|  https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/Documentation%20conception.adoc[Lien vers la documentation de conception utilisateur]   
 |=======
 
 [cols="1*", options="header"]
 |=======
-|  https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/Documentation%20conception.adoc[Lien vers la documentation de administrateur]   
+|  https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/Documentation%20conception.adoc[Lien vers la documentation de conception administrateur]   
 |=======
 
 
@@ -113,7 +113,7 @@ De plus, nous inclurons deux diagrammes de collaboration pour clarifier les proc
 [cols="2*", options="header"]
 |=======
 |  **Plateforme** |  Code Source
-|  http://193.54.227.208/~R2024SAE3008/[Lien vers le site web de SweetShops]   | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/tree/master/Code/PHP[Code sources du site web]
+|  http://193.54.227.208/~R2024SAE3008/[Lien vers le site web de SweetShops]   | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/tree/master/Code/PHP[Code source du site web]
 |=======
 
 ===  Apllication IOT
@@ -121,14 +121,14 @@ De plus, nous inclurons deux diagrammes de collaboration pour clarifier les proc
 [cols="2*", options="header"]
 |=======
 |  **Plateforme** |  Code source
-|  https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/tree/master/Code/Java/src/main[L'application]   | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/tree/master/Code/Java/src/main[Code sources l'application]
+|  https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/tree/master/Code/Java/src/main[L'application]   | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/tree/master/Code/Java/src/main[Code source de l'application]
 |=======
 
 ==== Python
 [cols="2*", options="header"]
 |=======
 |  **Plateforme** |  Code source
-|  https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/tree/master/Code/Python[L'application]   | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/tree/master/Code/Python[Code sources l'application]
+|  https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/tree/master/Code/Python[L'application]   | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/tree/master/Code/Python[Code source de l'application]
 |=======
 
 == Gestion de projet & Qualité
