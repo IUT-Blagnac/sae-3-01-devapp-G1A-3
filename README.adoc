@@ -186,6 +186,9 @@ https://github.com/orgs/IUT-Blagnac/projects/253/views/2[ici].
 |=======
 == Retours et évaluations
 
+=== Fiche de synthese droit
+15/20
+
 [cols="5*", options="header"]
 |====
 | Semaine |Professeur| Nom | Retour | Note
