@@ -31,88 +31,187 @@ endif::[]
 // /!\ A MODIFIER !!!
 :baseURL: https://github.com/IUT-Blagnac/sae3-01-template
 
-// Tags
-image:{baseURL}/actions/workflows/blank.yml/badge.svg[Bidon] 
-image:{baseURL}/actions/workflows/build.yml/badge.svg[Build] 
-image:{baseURL}/actions/workflows/tests.yml/badge.svg[Tests] 
-image:https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg[License: MPL-2.0, link="https://opensource.org/licenses/MPL-2.0"]
-//---------------------------------------------------------------
 
-TIP: Pensez à mettre à jour les infos dans ce fichier pour que les badges pointent sur les résultats effectifs de vos intégrations continue ou sur la bonne licence logicielle.
-
-WARNING: Ce dépôt présente le projet à développer dans le cadre de la SAÉ 3.01 du BUT1 Informatique de l'IUT de Blagnac.
-
-Ce fichier `README.adoc` (dont vous lisez sûrement le rendu HTML automatiquement effectué par GitHUb), fait partie du dépôt initial cloné à partir du lien GitHub classroom qui vous a été donné en cours (https://classroom.github.com/a/fePVlfpN).
-Vous trouverez le dépôt "template" qui a servi de base ici : https://github.com/IUT-Blagnac/sae3-01-template. En complément du cours Moodle de la SAE 3.01 (cf. <<liensUtiles>>), ce dépôt template vous permet d'accéder à des exemples d'https://github.com/IUT-Blagnac/sae3-01-template/issues[issues], de https://github.com/IUT-Blagnac/sae3-01-template/releases[releases], ou d'autres artefacts à venir.
 
 toc::[]
 
 == Equipe
 
-Projet est réalisé par::
+Projet réalisé par::
 
-- https://github.com/janeDoe[Jane Doe]
-- https://github.com/johnSmith[John Smith]
-...
+- https://github.com/PierreCornu[Pierre Cornu]
+- https://github.com/RaphaLLamothe[Raphaël Lamothe]
+- https://github.com/NariaReynhard[Naria Savary]
+- https://github.com/DavidTRANMinhAnh[David Tran]
 
 Tuteur/tutrice enseignant(e) de l'équipe:: mailto:jean-michel.bruel@univ-tlse2.fr[JMB]
 
 == Contexte général
 
-TIP: Cette partie de votre `README.adoc` peut être supprimée ou mise ailleurs.
+=== Présentation du client
 
-=== Dépôt initial
-
-Ce dépôt initial a été créé pour que tous les groupes de 2ème année aient les mêmes informations de départ.
-
-Vous y trouverez des fichiers qui peuvent être supprimés s'ils ne vous sont pas utiles :
-
-- `.gitignore` => un fichier minimaliste des éléments à ne pas pousser en général sur vos dépôts (utiliser la commande `git add -f` pour forcer l'ajout d'un fichier Jar qui ne bougera plus, pour archive par exemple).
-- `.github` => le répertoire qui contient des éléments de gestion de projet :
-** `workflows` => le repertoire qui contient les actions à lancer à chaque push sur votre repo. 
-*** `blank.yml` => un exemple bidon mais dont vous pourrez vérifier l’exécution correcte (1er tag)
-** `ISSUE_TEMPLATE` => le repertoire qui contient quelques templates pour vos issues.
-*** `us.yml` => Exemple de template pour les User Stories
-*** `bug.yml` => Exemple de template pour les issues de bug report
-
-TIP: Adaptez ces fichiers à votre projet et à votre organisation. Et inspirez-vous en pour en ajouter.
+SweetShops est une entreprise spécialisée dans la vente de confiseries et chocolats haut de gamme. Cette enseigne propose
+une large gamme de produits tels que des bonbons ou encore des chocolats, ainsi que des boissons telles que des sodas et des thés glacés.
+L'entreprise vise à exploiter le potentiel digital pour accroître sa visibilité et sa compétitivité afin d'attirer une clientèle plus large et de diversifier ses offres.
 
 [[liensUtiles]]
 === Liens utiles
 
-- Le https://webetud.iut-blagnac.fr/course/view.php?id=841[cours Moodle] sur la SAE
+- Le cours https://webetud.iut-blagnac.fr/course/view.php?id=841[cours Moodle] sur la SAE
 - Le dépôt https://github.com/IUT-Blagnac/sae3-01-template[template] qui sert de base à tous les dépôts étudiants.
 - Le lien https://classroom.github.com/a/OUF7gxEa[classroom] si besoin.
 
-TIP: Pensez à utiliser les salons Discord dédiés pour poser vos questions.
+Afin de communiquer nous utilisons Discord.
 
 == Réalisations 
+Vous trouverez dans cette section toute les informations concernant les réalisations du projet.
 
-TIP: Mettez ici toutes les informations nécessaire à l'utilisation de votre dépôt (comment on installe votre application, où sont les docs, etc.)
+=== Documentation de conception
+
+Ce document traite des cas d’utilisation du site, il présentera également un diagramme des classes métiers ainsi qu’un diagramme des classes de conception, ce dernier axé sur les fonctionnalités de recherche, de visualisation et d’ajout au panier des produits proposés par le site.
+Il est destiné à l’équipe de développement afin d’avoir une compréhension unique de l’architecture du site, ainsi qu’au client pour qu’il puisse visualiser comment ce dernier fonctionnera, et enfin à l’équipe pédagogique afin d’être évalué.
+
+[cols="1*", options="header"]
+|=======
+|  https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/Documentation%20conception.adoc[Lien vers la documentation de conception]   
+|=======
+
+=== Documentations Technique
+La documentation technique contiendra toutes les informations nécessaires pour comprendre et développer le projet. Elle détaille les composants techniques, les spécifications des fonctionnalités, et les exigences d’architecture, permettant aux développeurs d'avoir une vision complète et cohérente de l'infrastructure et des interactions du système. +
+
+Une documentation technique de la partie administration du site sera fournie. Elle détaillera les fonctionnalités principales, les configurations possibles, ainsi que les instructions de maintenance et de résolution des problèmes courants, permettant ainsi une gestion autonome et efficace de la plateforme.
+
+[cols="1*", options="header"]
+|=======
+|  https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/DocumentationTechniqueJava.adoc[Lien vers la documentation technique Java]   
+|=======
+
+[cols="1*", options="header"]
+|=======
+|  https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/DocumentationTechniquePython.adoc[Lien vers la documentation technique Python]   
+|=======
+
+=== Documentation utilisateur
+La documentation utilisateur sera destinée pour les utilisateurs finaux, présentant de manière détaillée les fonctionnalités disponibles et leur utilisation. Ce document servira de guide pratique pour que les utilisateurs puissent naviguer et interagir facilement avec les différentes fonctionnalités de l'interface, leur assurant une expérience fluide et intuitive sur le site ou l'application. +
+
+Pour accompagner les futurs administrateurs du site et faciliter leur prise en main, nous proposons une documentation utilisateur détaillée. Celle-ci comprendra des instructions claires pour naviguer et utiliser efficacement l'interface d'administration, ainsi qu'un guide pour la gestion des produits et des commandes. +
+
+De plus, nous inclurons deux diagrammes de collaboration pour clarifier les processus clés : le premier diagramme illustrera le processus de création d’un produit (de l’ajout d’un nouveau produit à son affichage sur le site), tandis que le second décrira le suivi complet d'une commande (depuis la commande passée par un client jusqu'à la livraison). Ces diagrammes aideront à communiquer les étapes de chaque processus et à former les administrateurs plus facilement. +
+
+[cols="1*", options="header"]
+|=======
+|  https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/Documentation%20conception.adoc[Lien vers la documentation de conception utilisateur]   
+|=======
+
+[cols="1*", options="header"]
+|=======
+|  https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/Documentation%20conception.adoc[Lien vers la documentation de conception administrateur]   
+|=======
+
+
+===  Plateforme e-commerce
+[cols="2*", options="header"]
+|=======
+|  **Plateforme** |  Code Source
+|  http://193.54.227.208/~R2024SAE3008/[Lien vers le site web de SweetShops]   | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/tree/master/Code/PHP[Code source du site web]
+|=======
+
+===  Apllication IOT
+==== Java
+[cols="2*", options="header"]
+|=======
+|  **Plateforme** |  Code source
+|  https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/tree/master/Code/Java/src/main[L'application]   | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/tree/master/Code/Java/src/main[Code source de l'application]
+|=======
+
+==== Python
+[cols="2*", options="header"]
+|=======
+|  **Plateforme** |  Code source
+|  https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/tree/master/Code/Python[L'application]   | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/tree/master/Code/Python[Code source de l'application]
+|=======
 
 == Gestion de projet & Qualité
 
-Chaque sprint (semaine) vous devrez livrer une nouvelle version de votre application (release).
-Utilisez pour cela les fonctionnalités de GitHub pour les https://docs.github.com/en/repositories/releasing-projects-on-github[Releases].
+Version courante : https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3[v2]
 
-De plus ce fichier `README.adoc` devra être à jour des informations suivantes :
+=== User Stories 
 
-- Version courante : https://github.com/IUT-Blagnac/sae3-01-template/releases/tag/v0.1.2[v0.1.2]
-- Lien vers la doc technique
-- Lien vers la doc utilisateur
-- Liste des (ou lien vers les) User Stories (ToDo/Ongoing/Done) et % restant
-- Tests unitaires et plans de test
-- Indicateurs de qualité du code (dette technique)
-- ... tout autre élément que vous jugerez utiles pour démontrer la qualité de votre application
+Les User Stories et leurs avancements seront dans le https://github.com/orgs/IUT-Blagnac/projects/253[Project Board] de ce repository. + 
+Vous pourrez les voir triés via ce lien
+https://github.com/orgs/IUT-Blagnac/projects/253/views/2[ici].
 
-Voici un exemple d'évaluation :
+=== Tests unitaires et plans de test
+
+[cols="1*", options="header"]
+|=======
+|  Vous trouverez les testes unitaires via le lien ci-dessous : 
+|   https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/CahierDeRecette.adoc[CAHIER DE RECETTES]
+|=======
+
+
+=== Ordres du jours et comptes rendus de réunions
+
+[cols="2*", options="header"]
+|====
+| Ordres du jour | Compte-rendus
+| https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Ordre%20du%20jour/OrdreDuJour1.pdf[Semaine 44] | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Compte%20Rendu/Compte%20Rendu1.pdf[Semaine 44]
+| https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Ordre%20du%20jour/OrdreDuJour2.pdf[Semaine 45] | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Compte%20Rendu/Compte%20Rendu2.pdf[Semaine 45] 
+| https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Ordre%20du%20jour/OrdreDuJour3.pdf[Réunion avec SweetShops (Semaine 45)] | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/CompteRenduReunionAvecClient/CompteRendu3.pdf[Réunion avec SweetShops (Semaine 45)]
+| https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Ordre%20du%20jour/OrdreDuJour4.pdf[Semaine 46] | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Compte%20Rendu/Compte%20Rendu%204.pdf[Semaine 46]
+| https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Ordre%20du%20jour/OrdreDuJour5.pdf[Semaine 48] | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Compte%20Rendu/CompteRendu5.pdf[Semaine 48]
+| https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Ordre%20du%20jour/OrdreDuJour6.pdf[Semaine 49] | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/tree/master/Documentation/CompteRenduReunionAvecClient[Semaine 49]
+| https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Ordre%20du%20jour/OrdreDuJour7.pdf[Semaine 50] | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Compte%20Rendu/CompteRendu7.pdf[Semaine 50]
+| https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Ordre%20du%20jour/OrdreDuJour8.pdf[Semaine 51] | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Compte%20Rendu/CompteRendu8.pdf[Semaine 51]
+|https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Ordre%20du%20jour/OrdreDuJour9.pdf[Semaine 2]| https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/SuiviAvancement/Compte%20Rendu/CR_Réunion_Post-Mortem.pdf[Post-Mortem]
+|====
+
+== Livrables
+[cols="3*", options="header"]
+|=======
+| Matière | Professeurs référents | Liens vers le livrable 
+| IOT Python Java | AP / PS | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/DocumentationTechniqueJava.adoc[Lien vers la documentation technique Java]
+| IOT Python Java | AP / PS | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/DocumentationTechniquePython.adoc[Lien vers la documentation technique Python]
+| IOT Python Java | AP / PS | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/tree/master/Code/Python[Code sources l'application]
+| IOT Python Java | AP / PS | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/tree/master/Code/Java/src/main[Code sources l'application]
+| BD | LN | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/BD/CR.pdf[Diagramme de classe + schéma relationnel]
+| BD | LN | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/BD/CompteRenduBD1GA3.pdf[Livrable BD : Trace d'exécution création de la BD + Inserts]
+| BD | LN | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/BD/CompteRenduBD1GA3_Procédures.pdf[Livrable BD : Détail des procédures de la BD]
+| PHP | NH | 
+| PHP | NH |
+| PHP | NH | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/User_Stories_Principales_1GA3.pdf[User stories principales]
+| MSI | EP | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/Fiche%20de%20conseils%20juridiques%20et%20de%20sécurité.adoc[Fiche conseil juridique]
+| MSI - Gestion de projet | EP | https://github.com/IUT-Blagnac/sae-3-01-devapp-G1A-3/blob/master/Documentation/Documentations/Documentation_Utilisateur1GA3.pdf[Documentation utilisateur]
+|=======
+== Retours et évaluations
+
+=== Fiche de synthese droit
+15/20
+
+=== Evaluations communication 
+
+[cols="5*", options="header"]
+|====
+| Semaine |Professeur| Nom | Retour | Note
+| 48| EP  | retour Com  | ODJ : manque rôle qui anime, qui prend des notes ? Rubriques succintes, point client ? Qui est responsable de chaque rubrique ? Manque intitulé de la réunion. CR : trop succinct, chaque point doit être rédigé, manque analyse des difficultés:réussites. Manque retour réunion client, manque prochain responsable de l'organisation de la réunion semaine 49. | 1,2/3
+|49 | EP| ODJ|L'ODJ parle d'une réunion pour le 03/ 11, les thèmes ne sont pas à jour !! Pas de CR disponible pour la semaine 49.  Note : 0,2/3     Note appel Offre :11,64/20 (avec malus surnotation des autres équipes !)  MODIF NOTE CR publié (attention votre CR montre plus la forme que le contenu ... quelles sont vos réussites, quelles sont les retours du client ??|0,2/3 -> 2,2/3
+|50 |EP | Pas d'ODJ ni CR pour la semaine 50 correction semaine 2 / Retard Revoir analyse et point client. MALUS RETARD
+| 1,49/3|
+| 51| EP|Attention c'est le CR de rétrospective de sprint qui est demandé par du sprint review avec le client. Pensez à préparer l'ODJ pour la semaine prochaine.
+ |2,49/3 |
+| | | | |
+|====
+
+
 
 ifdef::env-github[]
-image:https://docs.google.com/spreadsheets/d/e/2PACX-1vTc3HJJ9iSI4aa2I9a567wX1AUEmgGrQsPl7tHGSAJ_Z-lzWXwYhlhcVIhh5vCJxoxHXYKjSLetP6NS/pubchart?oid=1850914734&amp;format=image[link=https://docs.google.com/spreadsheets/d/e/2PACX-1vTc3HJJ9iSI4aa2I9a567wX1AUEmgGrQsPl7tHGSAJ_Z-lzWXwYhlhcVIhh5vCJxoxHXYKjSLetP6NS/pubchart?oid=1850914734&amp;format=image]
+image:https://docs.google.com/spreadsheets/d/e/2PACX-1vSACcYeKaH_ims3faegSLAFJ9s5_Kd9Fbyi4ODEb8BTN5OnUXWenVGhlVPo84yQDhTkTj3f9nXiluh1/pubchart?oid=2038500358&format=image[link=https://docs.google.com/spreadsheets/d/e/2PACX-1vSACcYeKaH_ims3faegSLAFJ9s5_Kd9Fbyi4ODEb8BTN5OnUXWenVGhlVPo84yQDhTkTj3f9nXiluh1/pubchart?oid=2038500358&format=image]
 endif::[]
 
 ifndef::env-github[]
 ++++
-<iframe width="786" height="430" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTc3HJJ9iSI4aa2I9a567wX1AUEmgGrQsPl7tHGSAJ_Z-lzWXwYhlhcVIhh5vCJxoxHXYKjSLetP6NS/pubchart?oid=1850914734&amp;format=image"></iframe>
+<iframe width="786" height="430" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSACcYeKaH_ims3faegSLAFJ9s5_Kd9Fbyi4ODEb8BTN5OnUXWenVGhlVPo84yQDhTkTj3f9nXiluh1/pubchart?oid=2038500358&format=image"></iframe>
 ++++
 endif::[]
+
+
